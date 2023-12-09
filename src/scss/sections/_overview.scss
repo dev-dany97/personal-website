@@ -1,0 +1,132 @@
+// 
+// Overview
+// 
+
+
+.overview-section {
+    padding: 10rem 0;
+    /* Color stop: A gradient going from the bottom to top,
+    starting #{fade-out($black, 0.2)} 100%, turning #{fade-out($black, 0.1)} 75%,
+    and finishing #{fade-out($black, 0.9)} 0% */
+    background:linear-gradient(0deg, #{fade-out($signup-color, 0.6)} 0%, #{fade-out($black, 0.2)} 100%);
+    .featured-text {
+        padding: 2rem;
+
+        @include media-breakpoint-up(lg) {
+            padding: 0 0 0 2rem;
+            border-left: 0.5rem solid $primary;
+        }
+    }
+
+    .project-text {
+        padding: 3rem;
+        font-size: 90%;
+
+        @include media-breakpoint-up(lg) {
+            padding: 5rem;
+
+            hr {
+                border-color: $primary;
+                border-width: 0.25rem;
+                width: 30%;
+            }
+        }
+    }    
+}
+
+.overview-section-black {
+    padding: 10rem 0;
+    /* Color stop: A gradient going from the bottom to top,
+    starting #{fade-out($black, 0.2)} 100%, turning #{fade-out($black, 0.1)} 75%,
+    and finishing #{fade-out($black, 0.9)} 0% */
+    background:linear-gradient(0deg, #{fade-out($black, 0)} 0%, #{fade-out($signup-color, 0.9)} 10%, #{fade-out($black, 0.2)} 100%);
+    .featured-text {
+        padding: 2rem;
+
+        @include media-breakpoint-up(lg) {
+            padding: 0 0 0 2rem;
+            border-left: 0.5rem solid $primary;
+        }
+    }
+
+    .project-text {
+        padding: 3rem;
+        font-size: 90%;
+
+        @include media-breakpoint-up(lg) {
+            padding: 5rem;
+
+            hr {
+                border-color: $primary;
+                border-width: 0.25rem;
+                width: 30%;
+            }
+        }
+    }    
+}
+
+// 
+// Overview Project
+// 
+.overview-section-project {
+    padding: 6rem 0;
+    /* Color stop: A gradient going from the bottom to top,
+    starting #{fade-out($black, 0.2)} 100%, turning #{fade-out($black, 0.1)} 75%,
+    and finishing #{fade-out($black, 0.9)} 0% */
+    background:linear-gradient(0deg, #{fade-out($signup-color, 0.9)} 0%, #{fade-out($black, 0.2)} 100%);
+    .featured-text {
+        //padding: 2rem;
+
+        @include media-breakpoint-up(lg) {
+            padding: 0 0 0 2rem;
+            border-left: 0.5rem solid $primary;
+        }
+    }
+
+    .project-text {
+        padding: 3rem;
+        font-size: 90%;
+
+        @include media-breakpoint-up(lg) {
+            padding: 5rem;
+
+            hr {
+                border-color: $primary;
+                border-width: 0.25rem;
+                width: 30%;
+            }
+        }
+    }
+    
+    h1 {
+        @include media-breakpoint-up(lg) {
+            font-size: 3.5rem;
+            line-height: 4.5rem;
+            letter-spacing: 0.4rem;
+        }
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.1rem;
+    }
+
+    h2 {
+        @include media-breakpoint-up(lg) {
+            font-size: 2.2rem;
+            line-height: 3rem;
+        }
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    line-height: normal;
+    }
+
+    p {
+        @include media-breakpoint-up(lg) {
+            font-size: 1.8rem;
+            line-height: 3rem;
+        }
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    line-height: normal;
+    }
+    
+}
