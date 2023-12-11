@@ -1,0 +1,45 @@
+// 
+// Projects
+// 
+
+.projects-section {
+    padding: 7rem 0;
+    /* Color stop: A gradient going from the bottom to top,
+    starting #{fade-out($black, 0.2)} 100%, turning #{fade-out($black, 0.1)} 75%,
+    and finishing #{fade-out($black, 0.9)} 0% */
+    background: linear-gradient(to bottom,
+        $black 0%,
+        #{fade-out($black, 0.2)} 30%,
+        #{fade-out($black, 0.1)} 75%,
+        #{fade-out($black, 0.2)} 90%,
+        $black 100%);
+
+    .featured-text {
+        padding: 2rem;
+
+        @include media-breakpoint-up(lg) {
+            padding: 0 0 0 2rem;
+            border-left: 0.5rem solid $primary;
+        }
+    }
+
+    .project-text {
+        padding: 3rem;
+        font-size: 90%;
+
+        @include media-breakpoint-up(lg) {
+            padding: 5rem;
+
+            hr {
+                border-color: $primary;
+                border-width: 0.25rem;
+                width: 30%;
+            }
+        }
+    }
+
+    h4 {
+        padding-bottom: 40px;
+        padding-top: 10px;
+    }
+}
