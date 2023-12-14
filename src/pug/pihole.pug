@@ -1,0 +1,162 @@
+doctype html
+html(lang='en')
+
+    head
+
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(name='description', content='')
+        meta(name='author', content='')
+
+        title My Projects
+
+        link(rel='icon', type='image/x-icon', href='assets/favicon.ico')
+
+        // Font Awesome icons (free version)
+        script(src='https://use.fontawesome.com/releases/v6.5.1/js/all.js', crossorigin='anonymous')
+
+        // Google fonts
+        link(href='https://fonts.googleapis.com/css?family=Varela+Round', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i', rel='stylesheet')
+
+        // Core theme CSS (includes Bootstrap)
+        link(href='css/styles.css', rel='stylesheet')
+
+        link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/default.min.css')
+
+        script(src='https://cdn.jsdelivr.net/npm/highlight.js@10.7.2')
+
+    body#page-top
+
+        // Navigation
+        nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top
+            .container.px-4.px-lg-5
+                a.navbar-brand(href='index.html#page-top') Modeste
+                button.navbar-toggler.navbar-toggler-right(type='button', data-bs-toggle='collapse', data-bs-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+                    i.fas.fa-bars
+                #navbarResponsive.collapse.navbar-collapse
+                    ul.navbar-nav.ms-auto
+                        li.nav-item
+                            a.nav-link(href='index.html#about') About me
+                        li.nav-item
+                            a.nav-link(href='projects.html#projects') My Projects
+                        li.nav-item
+                            a.nav-link(href='setup.html') My Setup
+                        li.nav-item
+                            a.nav-link(href='travelstories.html') Travelstories
+                        li.nav-item
+                            a.nav-link(href='finance.html#finance') Finance
+                        li.nav-item
+                            a.nav-link(href='index.html#signup') Contact
+
+        // Masthead
+        header.projectdetail
+
+        // Overview
+        section#about.overview-section-project
+            .container.px-4.px-lg-5.d-flex.h-100.align-items-center.justify-content-center
+                .d-flex.justify-content-center
+                    .text-center
+                        h1.mx-auto.my-0 Pi Hole - Ad Blocker
+                        h4.text-white-50.mx-auto.mt-2.mb-5 The Pi Hole project adds a new layer of security to one's home network to block unwanted ads and metrics across the network. The Pi Hole runs on a Raspberry Pi III.
+
+            .container.px-4.px-lg-5
+                .row.gx-0.mb-4.mb-lg-5.justify-content-center
+                    img.img-fluid.mb-3.mb-lg-0(src='assets/img/pihole.png', alt='Pi Hole Concept', style="max-width: 50%")
+
+
+            .container.px-4.px-lg-5.d-flex.h-100.align-items-center.justify-content-center
+                .d-flex.justify-content-center
+                    .text-left
+                        h3.mx-auto.my-0 Pi-Hole on Raspberry Pi 3: An Effective Ad Blocker for Your Home Network
+                        h4.mx-auto.my-0 Introduction
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | The Raspberry Pi is a versatile mini-computer that can be used for various projects. In this article, we'll show you how to turn your Raspberry Pi 3 into a powerful ad blocker called Pi-Hole. Pi-Hole blocks annoying ads before they even enter your home network, all with the help of a small, affordable device.
+                        h4.mx-auto.my-0 What is Pi-Hole?
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | Pi-Hole is an open-source software that serves as a network-wide ad blocker. It blocks ads before they reach your devices by filtering DNS requests. In other words, it prevents unwanted ads from making it to your screen in the first place. The Raspberry Pi 3 is perfect for running Pi-Hole as it is energy-efficient and provides enough power to effectively filter network traffic.
+                        h4.mx-auto.my-0 Why Pi-Hole?
+                        ul
+                            li 
+                                .text-column 
+                                    b Speed up Internet: 
+                                    | By blocking ads, Pi-Hole reduces the amount of data transmitted over your network, leading to faster internet speeds as less data needs to be downloaded.
+                            li 
+                                .text-column 
+                                    b Enhanced Security: 
+                                    | Ads can be not only annoying but also pose security risks. By blocking ads, Pi-Hole minimizes potential threats conveyed through malicious ads.
+                            li 
+                                .text-column 
+                                    b Easy Management: 
+                                    | Easy Management: Pi-Hole offers a user-friendly web interface through which you can monitor status, change settings, and view statistics on blocked requests.
+                        h4.mx-auto.my-0 Installing Pi-Hole on Raspberry Pi 3
+                        h5.mx-auto.my-0 Step 1: Prepare Raspberry Pi 3
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | Ensure your Raspberry Pi 3 is updated with the latest Raspbian operating system. You also need a working internet connection.
+                        h5.mx-auto.my-0 Step 2: Install Pi-Hole
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | Open the terminal on your Raspberry Pi and run the following command to install Pi-Hole:
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | Follow the on-screen instructions to complete the installation. You can make custom settings if desired.
+                        h5.mx-auto.my-0 Step 3: Configure the Router
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | Change your router's DNS settings to use Pi-Hole as the primary DNS server. This ensures all devices in your network are filtered by Pi-Hole. 
+                        h5.mx-auto.my-0 Step 4: Further Customization
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | Through the Pi-Hole web interface, you can make additional settings, add filter rules, and view statistics.
+                        h4.mx-auto.my-0 Conclusion
+                        h4.text-white-50.mx-auto.mt-2.mb-5
+                            | With Pi-Hole on Raspberry Pi 3, you can effectively block annoying ads, improve your internet speed, and enhance your network security. This DIY project not only offers practical features but also showcases the versatility of the Raspberry Pi. Start your Pi-Hole project today and enjoy an ad-free internet in your home network!
+                        
+
+        // Contact
+        section.contact-section.bg-black
+            .container.px-4.px-lg-5
+                .row.gx-4.gx-lg-5
+                    .col-md-4.mb-3.mb-md-0
+                        .card.py-4.h-100
+                            .card-body.text-center
+                                i.fas.fa-map-marked-alt.text-primary.mb-2
+                                h4.text-uppercase.m-0 Address
+                                hr.my-4.mx-auto
+                                .small.text-black-50 Regensburg, Germany
+                    .col-md-4.mb-3.mb-md-0
+                        .card.py-4.h-100
+                            .card-body.text-center
+                                i.fas.fa-envelope.text-primary.mb-2
+                                h4.text-uppercase.m-0 Email
+                                hr.my-4.mx-auto
+                                .small.text-black-50
+                                    a(href='mailto:kontakt@d-mohles.de') kontakt@d-mohles.de
+                    .col-md-4.mb-3.mb-md-0
+                        .card.py-4.h-100
+                            .card-body.text-center
+                                i.fas.fa-fingerprint.text-primary.mb-2
+                                h4.text-uppercase.m-0 Privacy
+                                hr.my-4.mx-auto
+                                .small.text-black-50
+                                a.nav-link(href='impressum.html') Impressum
+                .social.d-flex.justify-content-center
+                    a.mx-2(href='https://twitter.com/Daniel69119111')
+                        i.fab.fa-x-twitter
+                    a.mx-2(href='https://www.facebook.com/daniel.mohles.5')
+                        i.fab.fa-facebook-f
+                    a.mx-2(href='https://instagram.com/d.mohles')
+                        i.fab.fa-instagram
+                    a.mx-2(href='https://www.xing.com/profile/Daniel_Mohles')
+                        i.fab.fa-xing
+                    a.mx-2(href='https://linkedin.com/in/daniel-mohles')
+                        i.fab.fa-linkedin
+                    a.mx-2(href='https://music.apple.com/profile/dany_mohles')
+                        i.fab.fa-itunes-note
+
+        // Footer
+        footer.footer.bg-black.small.text-center.text-white-50
+            .container.px-4.px-lg-5
+                | Copyright &copy; 2024 Daniel Mohles. All Rights Reserved.
+
+        // Bootstrap core JS
+        script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')
+
+        // Core theme JS
+        script(src='js/scripts.js')
