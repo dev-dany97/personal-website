@@ -1,0 +1,185 @@
+// 
+// Setup
+// 
+
+.setuphead {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 35rem;
+    padding: 15rem 0;
+    background: linear-gradient(to bottom,
+        #{fade-out($black, 0.7)} 0%,
+        #{fade-out($black, 0.3)} 75%,
+        $black 100%),
+    url("../assets/img/bg-gaminghead.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+
+    h1 {
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        letter-spacing: 0.8rem;
+        background: linear-gradient(fade-out($white, 0.1), fade-out($white, 1));
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-family: dancingscript-regular,dancing script,cursive;
+        padding-bottom: 30px;
+    }
+
+    h2 {
+        max-width: 20rem;
+        font-size: 1rem;
+    }
+
+    @include media-breakpoint-up(md) {
+        h1 {
+            font-size: 2rem;
+            line-height: 4rem;
+            font-family: dancingscript-regular,dancing script,cursive;
+            padding-bottom: 30px
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        height: 100vh;
+        padding: 0;
+
+        h1 {
+            font-size: 4rem;
+            line-height: 6.5rem;
+            letter-spacing: 0.8rem;
+            font-family: dancingscript-regular,dancing script,cursive;
+            padding-bottom: 30px
+        }
+
+        h2 {
+            max-width: 30rem;
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.about-setup-section img {
+    max-width: 40%;
+    height: auto;
+}
+
+.about-setup-section {
+    padding-bottom: 50px;
+
+    padding-top: 10rem;
+    background: linear-gradient(to bottom,
+        $black 0%,
+        #{fade-out($black, 0.2)} 30%,
+        #{fade-out($black, 0.1)} 75%,
+        #{fade-out($black, 0.2)} 96%,
+        $black 100%);
+
+    p {
+        margin-bottom: 5rem;
+    }
+
+    img {
+        max-width: 20%;
+        height: auto;
+      }
+}
+
+#setup {
+
+    .gaming-pc-video {
+        width: 90%!important;
+    }
+
+    .custom-text {
+        font-size: clamp(0.6rem, 1.1vw, 1.4rem);
+    }
+
+    h4 {
+        font-size: clamp(0.8rem, 2vw, 4rem);
+    }
+
+    .gaming-pc-video-col {
+        text-align: right;
+    }
+
+    @include media-breakpoint-down(md) {
+        .gaming-pc-video-col {
+            text-align: center;
+        }
+    }
+
+    .important-text{
+        padding-top: 50px;
+    }
+
+}
+
+#pc-component-setup {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        margin: 20px;
+
+    /* Cooler Look für Aufzählungspunkte */
+    ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column; /* Setzt die Ausrichtung auf vertikal */
+    }
+
+    li {
+        background-color: #6c757d38;
+        color: #fff;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between; /* Platz für Icons und Text */
+        align-items: center;
+        transition: background-color 0.3s; /* Animation für Hovern */
+    }
+
+    /* Icons */
+    .fa-icon {
+        margin-right: 10px;
+    }
+
+    /* Spalten */
+    .icon-column {
+        flex-basis: 7%; /* Breite der Icon-Spalte */
+        text-align: center; /* Links ausrichten */
+        
+    }
+
+    .text-column {
+        flex-basis: 93%; /* Breite der Text-Spalte */
+        text-align: left; /* Links ausrichten */
+    }
+
+    /* Bildanzeige */
+    .component-image {
+        display: none;
+        max-width: 1000px; /* Maximale Breite des Bildes */
+        max-height: 1000px; /* Maximale Höhe des Bildes */
+    }
+
+    li:hover .component-image {
+        display: block; /* Bild anzeigen bei Hover */
+    }
+
+    li:hover {
+        background-color: #6c757d80;
+    }
+}
+
+.last-setup-container {
+        padding-bottom: 70px;
+
+        h3 {
+           margin-top: 30px;
+        }
+}
