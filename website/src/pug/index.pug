@@ -1,0 +1,246 @@
+doctype html
+html(lang='en')
+
+    head
+
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(name='description', content='My Own Portfolio Website')
+        meta(name='author', content='d.mohles')
+
+        title Modeste
+
+        link(rel='icon', type='image/x-icon', href='assets/favicon.ico')
+
+        // Cookie Banner
+        script(id='CookieDeclaration', src='https://consent.cookiebot.com/DEINE_COOKIEBOT_ID/cd.js', type='text/javascript', async)
+        // Font Awesome icons (free version)
+        script(src='https://use.fontawesome.com/releases/v6.5.1/js/all.js', crossorigin='anonymous')
+        // Google fonts
+        link(href='https://fonts.googleapis.com/css?family=Varela+Round', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i', rel='stylesheet')
+
+        // Core theme CSS (includes Bootstrap)
+        link(href='css/styles.css', rel='stylesheet')
+
+    body#page-top
+
+        // Navigation
+        nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top
+            .container.px-4.px-lg-5
+                a.navbar-brand(href='#page-top') Modeste
+                button.navbar-toggler.navbar-toggler-right(type='button', data-bs-toggle='collapse', data-bs-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+                    i.fas.fa-bars
+                #navbarResponsive.collapse.navbar-collapse
+                    ul.navbar-nav.ms-auto
+                        li.nav-item
+                            a.nav-link(href='#about') About me
+                        li.nav-item
+                            a.nav-link(href='projects.html#projects') My Projects
+                        li.nav-item
+                            a.nav-link(href='setup.html') My Setup
+                        li.nav-item
+                            a.nav-link(href='travelstories.html') Travelstories
+                        li.nav-item
+                            a.nav-link(href='finance.html#finance') Finance
+                        li.nav-item
+                            a.nav-link(href='#signup') Contact
+
+        // Masthead
+        header.masthead
+            .container.px-4.px-lg-5.d-flex.h-100.align-items-center.justify-content-center
+                .d-flex.justify-content-center
+                    .text-center
+                        h1.mx-auto.my-0 Welcome to my Webpage
+                        h2.text-white-50.mx-auto.mt-2.mb-5 I am glad that you visit my website. 
+                        a.btn.btn-primary.opacity-50(href='#about') More about me
+
+        // About
+        section#about.about-section.text-center
+            .container.daniel-container.px-4.px-lg-5
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8
+                        h2.text-white.mb-4 Hi I'm Daniel!
+                        p.text-white-50
+                            | I'm a 26-year-old soul with a heart that beats in code. Away from the screen, you'll often find me harnessing the wind and waves. I have a deep-seated love for boats and sailing, and there's something enchanting about navigating the waters. The thrill of the open sea, the wind in my hair – it's my way of finding balance in this fast-paced digital world.
+                            br
+                            br
+                            | When I'm not immersed in lines of code or setting sail, you can find me in the world of finance. Over the past three years, I have embarked on a journey to unravel the intricacies of the financial markets. Initially I started with a few small trades. When this went well, I tried to invest a bit more money but set my trades as I would trade with small amounts.
+                            | And as cryptocurrencies became more and more popular, I looked into the crypto sector and started investing in it too. This was a little difficult for me at first, as I didn't understand what influences the courses and how everything works and why you can mine "money" .
+                            br
+                            br
+                            | Speaking of heights: I also have a passion for photographing the world from above. I use my DJI Mavic 3 drone to explore the sky and turn moments into captivating aerial snapshots. There is a unique perspective that comes from being up high, and I enjoy the art of capturing the beauty of life from a different height. I would also like to share a few of my photos/videos on my website. 
+                            br
+                            br
+                            | In the quieter moments, you can often find me lost in my own programming paradise. I love working on personal code projects where creativity meets functionality. Whether it's bringing an idea to life or simplifying some things. That's where this website was born.
+                            br
+                            br
+                            | At heart, I am a harmonious blend of technology enthusiast, ocean adventurer, financial navigator, aerial artist and code specialist. To me, life is an intricate code waiting to be deciphered, a sea of opportunities to explore, a market of experiences to invest in and a canvas of skies to photograph.
+                            br
+                            | With my website, I want to share my multi-faceted journey as we sail the binary seas, navigate financial currents, capture the world from new heights and bring code dreams to life.
+                            br
+                            | So take a look around :)
+                //img.img-fluid(src='assets/img/me.png', alt='...')
+
+        // Overview
+        section#about.overview-section
+            .container.px-4.px-lg-5
+                // Finished Project Row
+                .row.gx-0.mb-4.mb-lg-5.align-items-center
+                    .col-xl-8.col-lg-7
+                        img.img-fluid.mb-3.mb-lg-0(src='assets/img/dji-photo-1.jpg', alt='...')
+                    .col-xl-4.col-lg-5
+                        .featured-text.text-center.text-lg-left
+                            h4 Regensburg Nord
+                            p.text-black-50.mb-0
+                                | In Regensburg North, an enchanting landscape unfolds in a greyscale photograph. Scattered villages tell individual stories amidst the calm embrace of nature. Numerous valleys and rolling hills lend the scene a harmonious dynamic that rises and falls in harmony with the clouds in the sky. The landscape radiates a sense of vastness and freedom, stretching across wide fields under a constantly changing sky. The black and white format, shrouded in a veil of clouds, conveys a timeless aesthetic, emphasising contrasts and creating a poetic interplay of light and shadow. Nature takes centre stage, a silent yet powerful symbol of the enduring beauty of the region. The photography captures the everlasting charm of Regensburg North.
+
+                // Current Project Row
+                .row.gx-0.mb-4.mb-lg-5.align-items-center
+                    .col-xl-8.col-lg-7
+                        img.img-fluid.mb-3.mb-lg-0(src='assets/img/dji-photo-2.jpg', alt='...')
+                    .col-xl-4.col-lg-5
+                        .featured-text.text-center.text-lg-left
+                            h4 Lupburg
+                            p.text-black-50.mb-0
+                                | In Lupburg, a serene village framed by untouched nature, this photo captures the essence of rural life. Among scattered houses, the distant backdrop reveals towering wind turbines. These turbines stand not just as structures but as symbols of Lupburg's commitment to environmental responsibility and sustainable energy practices. In this tranquil setting, the photograph tells a concise yet powerful story of a small community actively contributing to the larger narrative of climate action and a greener future.
+                
+                // Current Project Row
+                .row.gx-0.mb-4.mb-lg-5.align-items-center
+                    .col-xl-8.col-lg-7
+                        img.img-fluid.mb-3.mb-lg-0(src='assets/img/dji-photo-3.jpg', alt='...')
+                    .col-xl-4.col-lg-5
+                        .featured-text.text-center.text-lg-left
+                            h4 Regensburg Süd
+                            p.text-black-50.mb-0
+                                | In a captivating snapshot of Regensburg Süd, the photo unveils the structured arrangement of houses, forming the intricate web of streets that define the cityscape. The organized layout of residences creates a harmonious urban pattern, while in the foreground, an empty field bordered by trees serves as a natural boundary to the city. The image encapsulates the balance between urban development and green spaces, offering a visual narrative of the city's architectural precision coexisting with pockets of nature.
+                
+                // Current Project Row
+                .row.gx-0.mb-4.mb-lg-5.align-items-center
+                    .col-xl-8.col-lg-7
+                        img.img-fluid.mb-3.mb-lg-0(src='assets/img/dji-photo-4.jpg', alt='...')
+                    .col-xl-4.col-lg-5
+                        .featured-text.text-center.text-lg-left
+                            h4 Parsberg
+                            p.text-black-50.mb-0
+                                | The photo of Parsberg shows the harmonious integration of a small town into the surrounding nature. The town blends seamlessly into its natural surroundings, demonstrating a symbiotic relationship between urban life and the environment. Surrounded by many forests, Parsberg is an example of the delicate balance that is achieved when human settlements embrace and coexist with the beauty of the natural world.
+
+                // Current Project Row
+                .row.gx-0.mb-4.mb-lg-5.align-items-center
+                    #video-container.col-xl-8.col-lg-7
+                        video(src="assets/video/komprimiertes_Intro_Video1.mp4", id="my-video", type="video/mp4", preload="auto", muted autoplay playsinline loop class=" w-100") Your browser does not support the video tag.
+                    .col-xl-4.col-lg-5
+                        .featured-text.text-center.text-lg-left
+                            h4 Beautiful sunset
+                            p.text-black-50.mb-0
+                                | In this video, you'll see the sun set gracefully, painting the sky with a palette of warm hues. From vibrant oranges to tranquil blues, each image captures the breathtaking dance of dusk. Silhouettes emerge, shadows lengthen and nature whispers goodnight. Immerse yourself in the beauty of a sunset, a fleeting masterpiece that bids the day farewell in serene elegance.
+
+        // Signup
+        section#signup.signup-section
+            .container.px-4.px-lg-5
+                .row.gx-4.gx-lg-5
+                    .col-md-10.col-lg-8.mx-auto.text-center
+                        i.far.fa-paper-plane.fa-2x.mb-2.text-white
+                        h2.text-white.mb-5 You can also contact me!
+
+                        // * * * * * * * * * * * * * * *
+                        // * * SB Forms Contact Form * *
+                        // * * * * * * * * * * * * * * *
+
+                        // This form is pre-integrated with SB Forms.
+                        // To make this form functional, sign up at
+                        // https://startbootstrap.com/solution/contact-forms
+                        // to get an API token!
+                        
+                        .container.px-5.my-5
+                                form#contactForm.form-signup(data-sb-form-api-token="2be6829b-426d-4e1c-8df0-2188c5d0f0fb")
+                                    .form-floating.mb-3
+                                    .row.input-group-newsletter
+                                    .col
+                                        input#emailAddress.form-control(
+                                            type='email',
+                                            placeholder='Enter email address...',
+                                            data-sb-validations='required,email'
+                                        )
+                                        .invalid-feedback(data-sb-feedback="emailAddress:required") Email Address is required.
+                                        .invalid-feedback(data-sb-feedback="emailAddress:email") Email Address is not valid.
+                                    .form-floating.mb-3
+                                    .row.input-group-newsletter
+                                    .col
+                                        textarea#message.form-control(
+                                            type="text", 
+                                            placeholder="Your message...",
+                                            style='height: 7rem;', 
+                                            data-sb-validations="required"
+                                        )
+                                        .invalid-feedback(data-sb-feedback="message:required") Message is required.
+                                    .form-floating.mb-3
+                                    .d-none#submitSuccessMessage
+                                        .text-center.mb-3
+                                            .fw-bolder Message send!
+                                    .d-none#submitErrorMessage
+                                        .text-center.text-danger.mb-3 Error sending message!
+                                    .d-grid
+                                        button.btn.btn-primary.btn-lg.disabled#submitButton(type="submit") Contact me
+
+        // Contact
+        section.contact-section.bg-black
+            .container.px-4.px-lg-5
+                .row.gx-4.gx-lg-5
+                    .col-md-4.mb-3.mb-md-0
+                        .card.py-4.h-100
+                            .card-body.text-center
+                                i.fas.fa-map-marked-alt.text-primary.mb-2
+                                h4.text-uppercase.m-0 Address
+                                hr.my-4.mx-auto
+                                .small.text-black-50 Regensburg, Germany
+                    .col-md-4.mb-3.mb-md-0
+                        .card.py-4.h-100
+                            .card-body.text-center
+                                i.fas.fa-envelope.text-primary.mb-2
+                                h4.text-uppercase.m-0 Email
+                                hr.my-4.mx-auto
+                                .small.text-black-50
+                                    a(href='mailto:kontakt@d-mohles.de') kontakt@d-mohles.de
+                    .col-md-4.mb-3.mb-md-0
+                        .card.py-4.h-100
+                            .card-body.text-center
+                                i.fas.fa-fingerprint.text-primary.mb-2
+                                h4.text-uppercase.m-0 Privacy
+                                hr.my-4.mx-auto
+                                .small.text-black-50
+                                a.nav-link(href='impressum.html') Impressum
+                .social.d-flex.justify-content-center
+                    a.mx-2(href='https://twitter.com/Daniel69119111')
+                        i.fab.fa-x-twitter
+                    a.mx-2(href='https://www.facebook.com/daniel.mohles.5')
+                        i.fab.fa-facebook-f
+                    a.mx-2(href='https://instagram.com/d.mohles')
+                        i.fab.fa-instagram
+                    a.mx-2(href='https://www.xing.com/profile/Daniel_Mohles')
+                        i.fab.fa-xing
+                    a.mx-2(href='https://linkedin.com/in/daniel-mohles')
+                        i.fab.fa-linkedin
+                    a.mx-2(href='https://music.apple.com/profile/dany_mohles')
+                        i.fab.fa-itunes-note
+
+        // Footer
+        footer.footer.bg-black.small.text-center.text-white-50
+            .container.px-4.px-lg-5
+                | Copyright &copy; 2024 Daniel Mohles. All Rights Reserved.
+
+        // Bootstrap core JS
+        script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')
+
+        // Core theme JS
+        script(src='js/scripts.js')
+
+        // Own JS for video
+        script(src='js/video_script.js')
+
+        // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+        // * *                               SB Forms JS                               * *
+        // * * Activate your form at https://startbootstrap.com/solution/contact-forms * *
+        // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        script(src='https://cdn.startbootstrap.com/sb-forms-latest.js')

@@ -1,0 +1,31 @@
+// 
+// Index
+// 
+
+textarea#message {
+    height: 7rem;
+    font-size: 80%;
+    letter-spacing: 0.15rem;
+    padding: 1.25rem 2rem;
+    font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+textarea#message::placeholder {
+    text-transform: uppercase;
+}
+
+.fw-bolder {
+    font-weight: bolder !important;
+    color: white;
+}
+
+.daniel-container {
+    max-width: 2000px;
+}
+
+@include media-breakpoint-down(md) {
+    .featured-text {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
