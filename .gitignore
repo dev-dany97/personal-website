@@ -1,0 +1,32 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+
+# AWS and credentials
+.aws/
+*.pem
+*.key
+.env
+.env.*
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and generated output
+logs/
+*.log
+plan.out
+
+# Website build output, if a framework is added later
+node_modules/
+dist/
+build/
