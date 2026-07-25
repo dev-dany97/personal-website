@@ -1,0 +1,44 @@
+name: Deploy static website
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-central-1
+
+      - name: Validate website entry point
+        run: test -f site/index.html
+
+      - name: Synchronize website
+        run: |
+          aws s3 sync site/ "s3://${{ secrets.SITE_BUCKET }}/" \
+            --delete \
+            --exclude "README.md" \
+            --exclude "index.html.example" \
+            --cache-control "public,max-age=300"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/*"
