@@ -31,6 +31,17 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local content database (regenerated from src/lib/seed-data.ts on first run)
+/data/*.db
+/data/*.db-*
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/data/
+/public/videos/
+/public/certificates/
+/public/images/
+.env
+.env.*
+!.env.example
