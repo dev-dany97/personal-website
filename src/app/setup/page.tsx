@@ -1,16 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { GamingHudBackground } from '@/app/components/backgrounds/GamingHudBackground';
-
-const PcModel3D = dynamic(() => import('@/app/components/pc3d/PcModel3D').then((m) => m.PcModel3D), {
-  ssr: false,
-  loading: () => <div className="pc3d-loading">Loading 3D model…</div>
-});
 
 // Large video files are hosted on S3/CloudFront rather than bundled under
 // /public — falls back to the local /public/videos path when unset.
@@ -158,7 +152,13 @@ export default function Setup() {
             <p className="theme-text-soft mb-0">{c.explore3dText}</p>
           </div>
           <div className="mb-5">
-            <PcModel3D />
+            <iframe
+              src="/pc-modell.html"
+              title="Custom-Loop PC – 3D-Modell"
+              style={{ width: '100%', height: '720px', border: 0, borderRadius: '12px' }}
+              allow="autoplay"
+              loading="lazy"
+            />
           </div>
 
           <div className="mb-5">
