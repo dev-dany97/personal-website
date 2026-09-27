@@ -99,8 +99,32 @@ export default function Datenschutz() {
                 Interesse an einer technisch einwandfreien Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO).
               </p>
               <p>
-                Darüber hinaus setze ich keine Cookies, keine Analyse- oder Trackingdienste (z.&nbsp;B. Google
-                Analytics) und keine Plug-ins sozialer Netzwerke ein.
+                Darüber hinaus setze ich keine Cookies und keine Plug-ins sozialer Netzwerke ein.
+              </p>
+
+              <h3>§ 5a Reichweitenmessung mit Umami</h3>
+              <p>
+                Zur statistischen Auswertung der Zugriffe auf diese Website (Anzahl der Aufrufe und ungefähres
+                Herkunftsland der Besucher) nutze ich den selbst gehosteten, quelloffenen Analysedienst Umami. Der
+                zugehörige Server wird ebenfalls in der AWS-Region Frankfurt am Main betrieben. Umami setzt keine
+                Cookies, erstellt keine geräteübergreifenden Nutzerprofile und speichert keine vollständigen
+                IP-Adressen; die IP-Adresse wird lediglich kurzzeitig zur Bestimmung des Herkunftslands verarbeitet
+                und anschließend verworfen. Gespeichert werden nur aggregierte, nicht auf einzelne Personen
+                rückführbare Daten wie Land, Browsertyp, Betriebssystem, verwendetes Gerät, Referrer und aufgerufene
+                Seite. Rechtsgrundlage ist mein berechtigtes Interesse an der bedarfsgerechten Gestaltung und
+                statistischen Auswertung meiner Website (Art. 6 Abs. 1 lit. f DSGVO). Da kein Tracking über Cookies
+                oder Geräte-Fingerprinting stattfindet, ist hierfür keine Einwilligung erforderlich.
+              </p>
+
+              <h3>§ 5b Regionale Zugriffsbeschränkung</h3>
+              <p>
+                Diese Website ist technisch so eingerichtet, dass sie ausschließlich von Aufrufen aus Deutschland aus
+                erreichbar ist. Hierzu wird die Herkunft eines Zugriffs anhand der IP-Adresse mittels AWS WAF
+                (Amazon Web Services) bereits am Netzwerkrand ermittelt; Zugriffe aus anderen Ländern werden
+                automatisiert abgewiesen, bevor eine Verbindung zu dieser Website zustande kommt. Es findet dabei
+                keine Speicherung der IP-Adresse über die Dauer der Anfrage hinaus statt. Rechtsgrundlage ist mein
+                berechtigtes Interesse an einem auf mein Zielpublikum begrenzten und missbrauchsarmen Betrieb der
+                Website (Art. 6 Abs. 1 lit. f DSGVO).
               </p>
 
               <h3>§ 6 Lokale Speicherung im Browser</h3>
