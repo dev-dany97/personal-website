@@ -40,11 +40,13 @@ yarn-error.log*
 /data/*.db
 /data/*.db-*
 
+# large video assets — hosted on S3/CloudFront instead (see infra/aws/media-cdn.yml)
+/public/videos/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 /data/
-/public/videos/
 /public/certificates/
 /public/images/
 .env

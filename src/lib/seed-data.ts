@@ -4,6 +4,12 @@ import type { DatabaseSync } from 'node:sqlite';
 // hardcoded directly in the page components. This is the source of truth
 // until an editing UI exists — delete data/content.db to reseed from here.
 
+// Large video files are hosted on S3/CloudFront rather than bundled under
+// /public (they'd blow past GitHub's file size limit and bloat every
+// deploy). Falls back to the local /public/videos path when unset, e.g.
+// for local dev.
+const MEDIA_BASE_URL = process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? '';
+
 export function seedDatabase(db: DatabaseSync) {
   db.exec('BEGIN');
   try {
@@ -375,21 +381,21 @@ function seedHome(db: DatabaseSync) {
 
   const videos = [
     {
-      src: '/videos/sunset-intro.mp4',
+      src: `${MEDIA_BASE_URL}/videos/sunset-intro.mp4`,
       title_en: 'Beautiful sunset',
       title_de: 'Wunderschöner Sonnenuntergang',
       description_en: 'Watch the sun go down and paint the sky in warm colors — a nice, calm way to end the day.',
       description_de: 'Erlebe, wie die Sonne anmutig untergeht und den Himmel in warme Farben taucht — ein flüchtiges Meisterwerk, das den Tag in stiller Eleganz verabschiedet.'
     },
     {
-      src: '/videos/winter-intro.mp4',
+      src: `${MEDIA_BASE_URL}/videos/winter-intro.mp4`,
       title_en: 'Winter from above',
       title_de: 'Winter von oben',
       description_en: 'A snowy landscape seen from the drone — calm, white and quiet. The same hills look completely different in winter.',
       description_de: 'Eine verschneite Landschaft gleitet unter der Drohne vorbei — ruhig, weiß und still, eine andere Seite der immer gleichen Hügel.'
     },
     {
-      src: '/videos/silvester-intro.mp4',
+      src: `${MEDIA_BASE_URL}/videos/silvester-intro.mp4`,
       title_en: "New Year's Eve",
       title_de: 'Silvester',
       description_en: "Fireworks light up the night sky on New Year's Eve, filmed from above as the old year turns into the new one.",

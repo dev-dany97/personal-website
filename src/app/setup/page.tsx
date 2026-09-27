@@ -12,6 +12,10 @@ const PcModel3D = dynamic(() => import('@/app/components/pc3d/PcModel3D').then((
   loading: () => <div className="pc3d-loading">Loading 3D model…</div>
 });
 
+// Large video files are hosted on S3/CloudFront rather than bundled under
+// /public — falls back to the local /public/videos path when unset.
+const MEDIA_BASE_URL = process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? '';
+
 interface HardwareComponent {
   label: string;
   value: string;
@@ -87,7 +91,7 @@ export default function Setup() {
             <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
               <div className="setup-build-card">
                 <video
-                  src="/videos/setup/Gaming_PC.mp4"
+                  src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC.mp4`}
                   className="rounded shadow-lg"
                   style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}
                   muted
@@ -174,7 +178,7 @@ export default function Setup() {
             <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
               <div className="setup-build-card">
                 <video
-                  src="/videos/setup/Gaming_PC2.mp4"
+                  src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC2.mp4`}
                   className="rounded shadow-lg"
                   style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}
                   muted
