@@ -1,0 +1,71 @@
+import { NextResponse } from 'next/server';
+import { getDb } from '@/lib/db';
+
+export const dynamic = 'force-dynamic';
+
+export async function GET() {
+  const db = getDb();
+
+  const pageRow = db.prepare('SELECT data_en, data_de FROM page_content WHERE page = ?').get('resume') as
+    | { data_en: string; data_de: string }
+    | undefined;
+  if (!pageRow) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+
+  const experienceRows = db.prepare('SELECT * FROM resume_experience ORDER BY sort_order').all() as Array<{
+    role_en: string;
+    role_de: string;
+    company: string;
+    period_en: string;
+    period_de: string;
+    description_en: string;
+    description_de: string;
+  }>;
+
+  const educationRows = db.prepare('SELECT * FROM resume_education ORDER BY sort_order').all() as Array<{
+    degree_en: string;
+    degree_de: string;
+    institution_en: string;
+    institution_de: string;
+    period_en: string;
+    period_de: string;
+    note_en: string;
+    note_de: string;
+    thesis_en: string;
+    thesis_de: string;
+  }>;
+
+  const skillRows = db.prepare('SELECT name FROM resume_skills ORDER BY sort_order').all() as Array<{ name: string }>;
+
+  const certRows = db.prepare('SELECT name_en, name_de FROM resume_certificates ORDER BY sort_order').all() as Array<{
+    name_en: string;
+    name_de: string;
+  }>;
+
+  const en = JSON.parse(pageRow.data_en);
+  const de = JSON.parse(pageRow.data_de);
+
+  en.experience = experienceRows.map((r) => ({ role: r.role_en, company: r.company, period: r.period_en, description: r.description_en }));
+  de.experience = experienceRows.map((r) => ({ role: r.role_de, company: r.company, period: r.period_de, description: r.description_de }));
+
+  en.education = educationRows.map((r) => ({
+    degree: r.degree_en,
+    institution: r.institution_en,
+    period: r.period_en,
+    note: r.note_en,
+    thesis: r.thesis_en
+  }));
+  de.education = educationRows.map((r) => ({
+    degree: r.degree_de,
+    institution: r.institution_de,
+    period: r.period_de,
+    note: r.note_de,
+    thesis: r.thesis_de
+  }));
+
+  en.certificates = certRows.map((r) => r.name_en);
+  de.certificates = certRows.map((r) => r.name_de);
+
+  const skills = skillRows.map((r) => r.name);
+
+  return NextResponse.json({ en, de, skills });
+}

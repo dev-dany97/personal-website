@@ -1,0 +1,831 @@
+import type { DatabaseSync } from 'node:sqlite';
+
+// One-time seed of the SQLite database from the content that used to be
+// hardcoded directly in the page components. This is the source of truth
+// until an editing UI exists — delete data/content.db to reseed from here.
+
+export function seedDatabase(db: DatabaseSync) {
+  db.exec('BEGIN');
+  try {
+    seedPageContent(db);
+    seedHome(db);
+    seedProjects(db);
+    seedTravel(db);
+    seedSetup(db);
+    seedFinance(db);
+    seedResume(db);
+    db.exec('COMMIT');
+  } catch (err) {
+    db.exec('ROLLBACK');
+    throw err;
+  }
+}
+
+function insertPage(db: DatabaseSync, page: string, en: unknown, de: unknown) {
+  db.prepare('INSERT INTO page_content (page, data_en, data_de) VALUES (?, ?, ?)').run(
+    page,
+    JSON.stringify(en),
+    JSON.stringify(de)
+  );
+}
+
+function seedPageContent(db: DatabaseSync) {
+  insertPage(
+    db,
+    'home',
+    {
+      heroTitle1: 'Welcome to my',
+      heroTitle2: 'Website',
+      heroSubtitle: "I'm glad you're here.",
+      heroCta: 'More about me',
+      aboutHeading: "Hi, I'm Daniel!",
+      aboutP1Template:
+        "I'm {age} years old and I love writing code. When I'm not in front of a screen, you'll often find me out on the water. I really love boats and sailing, and there's something special about being out there.",
+      aboutP2:
+        "When I'm not coding or sailing, I like to spend time on finance. Over the last few years I've been learning a lot about financial markets and crypto.",
+      aboutP3:
+        'I also love taking photos from above. I use my DJI Mavic 3 drone to fly over places and turn everyday moments into nice aerial shots.',
+      aerialEyebrow: 'Drone Photography',
+      aerialTitle: 'A view from above',
+      aerialLead:
+        "I fly a DJI Mavic 3 to take photos of landscapes from a different angle. Here are some of my favorite shots around Regensburg — and the sunset that got me started."
+    },
+    {
+      heroTitle1: 'Willkommen auf meiner',
+      heroTitle2: 'Webseite',
+      heroSubtitle: 'Schön, dass du meine Webseite besuchst.',
+      heroCta: 'Mehr über mich',
+      aboutHeading: 'Hi, ich bin Daniel!',
+      aboutP1Template:
+        'Ich bin ein {age}-jähriger Kopf, der im Code zu Hause ist. Abseits vom Bildschirm findet man mich oft auf dem Wasser, wo ich mit Wind und Wellen arbeite. Ich liebe Boote und das Segeln, und das Navigieren auf dem Wasser hat für mich etwas ganz Besonderes.',
+      aboutP2:
+        'Wenn ich nicht gerade in Codezeilen versinke oder segeln bin, findet man mich in der Welt der Finanzen. In den letzten Jahren habe ich mich intensiv mit den Feinheiten der Finanzmärkte und Kryptowährungen beschäftigt.',
+      aboutP3:
+        'Und weil wir schon bei Höhen sind: Ich habe auch eine Leidenschaft dafür, die Welt von oben zu fotografieren. Mit meiner DJI Mavic 3 Drohne erkunde ich den Himmel und verwandle Momente in faszinierende Luftaufnahmen.',
+      aerialEyebrow: 'Drohnen-Fotografie',
+      aerialTitle: 'Eine Ansicht von oben',
+      aerialLead:
+        'Ich fliege eine DJI Mavic 3, um Momente und Landschaften aus einer anderen Perspektive festzuhalten. Ein paar meiner liebsten Aufnahmen rund um Regensburg — und der Sonnenuntergang, mit dem alles begann.'
+    }
+  );
+
+  insertPage(
+    db,
+    'projects',
+    {
+      eyebrow: 'Portfolio',
+      title: 'My Projects',
+      lead: "A mix of finished projects and things I'm still working on — from home automation to trading bots. Here's an overview of what I've built so far and what I'm currently tinkering with.",
+      filterAriaLabel: 'Filter projects by status',
+      statTotal: 'Total Projects',
+      statCompleted: 'Completed',
+      statInProgress: 'In Progress',
+      filters: [
+        { id: 'all', label: 'All' },
+        { id: 'completed', label: 'Completed' },
+        { id: 'in-progress', label: 'In Progress' }
+      ],
+      statusLabel: { completed: 'Completed', 'in-progress': 'In Progress' },
+      photos: 'photos',
+      viewDetails: 'View details',
+      close: 'Close',
+      previousImage: 'Previous image',
+      nextImage: 'Next image'
+    },
+    {
+      eyebrow: 'Portfolio',
+      title: 'Meine Projekte',
+      lead: 'Eine Mischung aus fertigen Builds und laufenden Projekten — von Hausautomatisierung bis zu Trading-Bots. Hier ein Überblick über das, was ich bereits gebaut habe und woran ich gerade tüftle.',
+      filterAriaLabel: 'Projekte nach Status filtern',
+      statTotal: 'Projekte gesamt',
+      statCompleted: 'Abgeschlossen',
+      statInProgress: 'In Arbeit',
+      filters: [
+        { id: 'all', label: 'Alle' },
+        { id: 'completed', label: 'Abgeschlossen' },
+        { id: 'in-progress', label: 'In Arbeit' }
+      ],
+      statusLabel: { completed: 'Abgeschlossen', 'in-progress': 'In Arbeit' },
+      photos: 'Fotos',
+      viewDetails: 'Details ansehen',
+      close: 'Schließen',
+      previousImage: 'Vorheriges Bild',
+      nextImage: 'Nächstes Bild'
+    }
+  );
+
+  insertPage(
+    db,
+    'travel',
+    {
+      heroTitle: 'Travel Stories & Adventures',
+      heroLead:
+        "A few places I've visited so far — sailing along the Italian and Croatian coast, exploring Dubai's skyline, taking boats through Bangkok's canals, watching VALORANT Champions live in Paris, hiking on the Canary Islands, and road-tripping through Italy and Australia.",
+      photos: 'photos',
+      viewGallery: 'View Gallery'
+    },
+    {
+      heroTitle: 'Reisegeschichten & Abenteuer',
+      heroLead:
+        'Ein paar Orte, die ich bisher erkundet habe — Segeln an der italienischen und kroatischen Küste, Dubais Skyline erkunden, Bangkoks Kanäle durchqueren, die VALORANT Champions in Paris live erleben, Wandern auf den Kanarischen Inseln, und Roadtrips durch Italien und Australien.',
+      photos: 'Fotos',
+      viewGallery: 'Galerie ansehen'
+    }
+  );
+
+  insertPage(
+    db,
+    'setup',
+    {
+      title: 'My Gaming Setup',
+      lead: 'Hey gaming fans! 👾🎮 I want to show you my gaming PC, built for long gaming sessions. 🚀',
+      highEndTitle: 'High-End Build',
+      highEndDesc: 'My main PC — full custom water cooling, built for performance and a nice RGB look.',
+      waterCoolingTitle: 'My Water Cooling Setup',
+      waterCoolingIntro: "Here's why I decided to add water cooling to my PC, and why I think it's worth it.",
+      bullets: [
+        { title: 'Temperature Control:', text: 'Water cools a lot better than air.' },
+        { title: 'Overclocking Potential:', text: 'Lower temperatures mean you can push the hardware further.' },
+        { title: 'Silent Operation:', text: 'The PC runs a lot quieter.' },
+        { title: 'Component Protection:', text: 'Better temperatures can help your hardware last longer.' }
+      ],
+      tipsTitle: 'A few tips',
+      tipsText:
+        "Before you build your own water cooling loop, here are a few tips. Water cooling works great, but it also has risks — leaks, corrosion, and it needs some maintenance. If you plan it well and test for leaks first, it can look great and still be reliable.",
+      explore3dTitle: 'Explore the build in 3D',
+      explore3dText: 'A simple 3D model of the loop. Drag to rotate it, scroll to zoom, and hover or click on a part to see what it is.',
+      componentsPhotoTitle: 'Everything that went into this build',
+      componentsPhotoCaption: 'Every box, before I put in a single screw.',
+      componentsPhotoAlt: 'All the parts for the high-end PC build, unboxed and laid out',
+      secondBuildTitle: 'Second Build',
+      secondBuildDesc: 'A second PC I built — a clean NZXT case with air cooling.',
+      hardwareTitle: 'Hardware',
+      hardwareDisclaimer: "⚠️ Not final yet — I still need to check the exact parts in this build, so the specs below are just examples for now."
+    },
+    {
+      title: 'Mein Gaming-Setup',
+      lead: 'Hey Gaming-Fans! 👾🎮 Ich freue mich, euch meinen ultimativen Gaming-PC für grenzenlose Gaming-Abenteuer vorzustellen. 🚀',
+      highEndTitle: 'High-End Build',
+      highEndDesc: 'Mein Hauptrechner — komplett individuelle Wasserkühlung, gebaut für Performance und RGB-Show.',
+      waterCoolingTitle: 'Wasserkühlung meistern: Eine individuelle Reise',
+      waterCoolingIntro: 'Ich möchte kurz auf die Vorteile von Wasserkühlung eingehen und erklären, warum ich mich entschieden habe, meinen Computer mit einer Wasserkühlung auszustatten.',
+      bullets: [
+        { title: 'Temperaturkontrolle:', text: 'Wasserkühlung leitet Wärme deutlich effizienter ab als Luft.' },
+        { title: 'Overclocking-Potenzial:', text: 'Niedrigere Temperaturen ermöglichen aggressiveres Tuning.' },
+        { title: 'Leiser Betrieb:', text: 'Die Systemlautstärke wird deutlich reduziert.' },
+        { title: 'Komponentenschutz:', text: 'Bessere thermische Stabilität kann die Lebensdauer der Hardware verlängern.' }
+      ],
+      tipsTitle: 'Ein paar wichtige Dinge...',
+      tipsText:
+        'Bevor du selbst mit einer Wasserkühlung anfängst, möchte ich dir ein paar Tipps mit auf den Weg geben. Wasserkühlung senkt die Temperatur effizient, bringt aber auch Risiken wie Lecks, Korrosion und Wartungsaufwand mit sich. Mit sorgfältiger Planung und Drucktests kann das System sowohl schön als auch zuverlässig sein.',
+      explore3dTitle: 'Den Build in 3D erkunden',
+      explore3dText: 'Eine stilisierte 3D-Darstellung des Wasserkreislaufs — ziehen zum Drehen, scrollen zum Zoomen, und über ein Teil hovern oder klicken, um mehr zu erfahren.',
+      componentsPhotoTitle: 'Alles, was in diesen Build geflossen ist',
+      componentsPhotoCaption: 'Jede Box, bevor auch nur eine Schraube verbaut wurde.',
+      componentsPhotoAlt: 'Alle Teile für den High-End-PC-Build, ausgepackt und aufgereiht',
+      secondBuildTitle: 'Zweiter Build',
+      secondBuildDesc: 'Ein zweiter PC, den ich zusammengebaut habe — cleanes NZXT-Gehäuse mit Luftkühlung.',
+      hardwareTitle: 'Hardware',
+      hardwareDisclaimer: '⚠️ Vorläufig — ich muss die genauen Teile in diesem Build noch überprüfen, daher sind die untenstehenden Angaben vorerst Beispiele.'
+    }
+  );
+
+  insertPage(
+    db,
+    'finance',
+    {
+      eyebrow: 'Finance & Investing',
+      title: 'My Investment Journey',
+      lead: "I've been actively trading since 2021 — my focus is on short-term crypto trading and hand-picked individual stocks rather than broad ETFs. I watch charts, price action and news daily and make my calls based on technical analysis.",
+      tags: ['Crypto', 'Day-Trading', 'Individual Stocks', 'Chart Analysis', 'Risk Management'],
+      stats: [
+        { label: 'Since', value: '2021' },
+        { label: 'Focus', value: 'Individual Stocks' },
+        { label: 'Approach', value: 'Crypto Day-Trader' },
+        { label: 'Style', value: 'Technical' }
+      ],
+      strategyTitle: 'What guides my strategy',
+      focusAreas: [
+        'Active day-trading in the crypto market',
+        'Targeted positions in hand-picked individual stocks',
+        'Technical chart analysis over gut feeling',
+        'Watching price action and news daily'
+      ],
+      platformsTitle: 'Where I invest & connect',
+      platformsLead: "The platforms I trade on and the community I'm part of.",
+      resourcesTitle: 'Resources I use'
+    },
+    {
+      eyebrow: 'Finanzen & Investieren',
+      title: 'Meine Investment-Reise',
+      lead: 'Ich handle seit 2021 aktiv — mein Fokus liegt auf kurzfristigem Krypto-Trading und ausgewählten Einzelaktien statt breit gestreuten ETFs. Ich beobachte Charts, Kursbewegungen und Nachrichtenlage täglich und treffe meine Entscheidungen technisch fundiert.',
+      tags: ['Krypto', 'Day-Trading', 'Einzelaktien', 'Chartanalyse', 'Risikomanagement'],
+      stats: [
+        { label: 'Seit', value: '2021' },
+        { label: 'Fokus', value: 'Einzelaktien' },
+        { label: 'Ansatz', value: 'Krypto Day-Trader' },
+        { label: 'Stil', value: 'Technisch' }
+      ],
+      strategyTitle: 'Was meine Strategie leitet',
+      focusAreas: [
+        'Aktives Day-Trading im Kryptomarkt',
+        'Gezielte Positionen in ausgewählten Einzelaktien',
+        'Technische Chartanalyse statt Bauchgefühl',
+        'Tägliches Beobachten von Kursbewegungen und News'
+      ],
+      platformsTitle: 'Wo ich investiere & mich vernetze',
+      platformsLead: 'Die Plattformen, auf denen ich handle, und die Community, deren Teil ich bin.',
+      resourcesTitle: 'Ressourcen, die ich nutze'
+    }
+  );
+
+  insertPage(
+    db,
+    'contact',
+    {
+      eyebrow: 'Contact',
+      title: "Let's Connect",
+      lead: "Got a question, a project idea, or just want to say hi? Drop me a message and I'll get back to you as soon as I can.",
+      sendMessage: 'Send a Message',
+      successMessage: "Thanks for reaching out! Your message is on its way and I'll get back to you soon.",
+      emailLabel: 'Email address',
+      emailPlaceholder: 'you@example.com',
+      emailErrorPrefix: 'Email',
+      messageLabel: 'Message',
+      messagePlaceholder: "Tell me what's on your mind...",
+      messageErrorPrefix: 'Message',
+      sending: 'Sending...',
+      send: 'Send Message',
+      professionalTitle: 'Computer Scientist M.Sc. | Software Engineer'
+    },
+    {
+      eyebrow: 'Kontakt',
+      title: 'Lass uns in Kontakt treten',
+      lead: 'Hast du eine Frage, eine Projektidee oder möchtest einfach Hallo sagen? Schreib mir eine Nachricht — ich melde mich so schnell wie möglich zurück.',
+      sendMessage: 'Nachricht senden',
+      successMessage: 'Danke für deine Nachricht! Sie ist auf dem Weg und ich melde mich bald bei dir zurück.',
+      emailLabel: 'E-Mail-Adresse',
+      emailPlaceholder: 'du@beispiel.de',
+      emailErrorPrefix: 'E-Mail',
+      messageLabel: 'Nachricht',
+      messagePlaceholder: 'Was möchtest du mir mitteilen...',
+      messageErrorPrefix: 'Nachricht',
+      sending: 'Wird gesendet...',
+      send: 'Nachricht senden',
+      professionalTitle: 'Informatiker M.Sc. | Software Engineer'
+    }
+  );
+
+  insertPage(
+    db,
+    'resume',
+    {
+      eyebrow: 'Background',
+      title: 'A Quick Look at My Path',
+      lead: "From radar software to cloud tools — here's a short overview of where I've worked, what I studied, and what I've learned along the way.",
+      experienceTitle: 'Experience',
+      educationTitle: 'Education',
+      skillsTitle: 'Skills & Tools',
+      certificatesTitle: 'Certificates'
+    },
+    {
+      eyebrow: 'Werdegang',
+      title: 'Ein kurzer Überblick über meinen Weg',
+      lead: 'Von eingebetteter Radar-Software bis zu Cloud-Tooling — hier ein kompakter Überblick über meine Stationen, mein Studium und was ich dabei mitgenommen habe.',
+      experienceTitle: 'Berufserfahrung',
+      educationTitle: 'Ausbildung',
+      skillsTitle: 'Skills & Tools',
+      certificatesTitle: 'Zertifikate'
+    }
+  );
+}
+
+function seedHome(db: DatabaseSync) {
+  const shots = [
+    {
+      image: '/images/projects/dji-photo-1.jpg',
+      title_en: 'Regensburg Nord',
+      title_de: 'Regensburg Nord',
+      description_en:
+        'A black-and-white photo of the countryside near Regensburg. Small villages sit between gentle hills, with clouds moving slowly overhead.',
+      description_de:
+        'Eine bezaubernde Landschaft entfaltet sich in einem Graustufenfoto. Verstreute Dörfer erzählen einzelne Geschichten inmitten der ruhigen Umarmung der Natur, während sanfte Hügel im Einklang mit den Wolken darüber auf- und absteigen.'
+    },
+    {
+      image: '/images/projects/dji-photo-2.jpg',
+      title_en: 'Lupburg',
+      title_de: 'Lupburg',
+      description_en:
+        "A quiet village surrounded by untouched nature. In the distance you can see wind turbines — a sign of the region's move toward clean energy.",
+      description_de:
+        'Ein ruhiges Dorf, eingerahmt von unberührter Natur. In der Ferne stehen hoch aufragende Windräder als Symbol für das Engagement der Region für nachhaltige Energie.'
+    },
+    {
+      image: '/images/projects/dji-photo-3.jpg',
+      title_en: 'Regensburg Süd',
+      title_de: 'Regensburg Süd',
+      description_en:
+        'The streets and houses form a neat pattern, while an open field lined with trees marks the edge between the city and the countryside.',
+      description_de:
+        'Die geordnete Anordnung der Häuser bildet ein feines Netz aus Straßen, während ein offenes, von Bäumen gesäumtes Feld eine natürliche Grenze zwischen Stadt und Land markiert.'
+    },
+    {
+      image: '/images/projects/dji-photo-4.jpg',
+      title_en: 'Parsberg',
+      title_de: 'Parsberg',
+      description_en: 'A small town sits right next to the forest — a simple example of people and nature sharing the same space.',
+      description_de:
+        'Eine kleine Stadt fügt sich nahtlos in ihre bewaldete Umgebung ein — ein stilles Beispiel dafür, wie menschliche Siedlungen mit der Schönheit der Natur koexistieren.'
+    },
+    {
+      image: '/images/projects/dji-photo-5.jpg',
+      title_en: 'Winter Trail',
+      title_de: 'Winter Trail',
+      description_en: 'A quiet path disappears into a snow-covered forest. Footprints are the only sign that someone has been here.',
+      description_de:
+        'Ein stiller Pfad verschwindet in einem verschneiten Wald, Fußspuren sind die einzige Spur von Leben in den verstummten Winterwäldern.'
+    },
+    {
+      image: '/images/projects/dji-photo-6.jpg',
+      title_en: 'Winter Dusk over the Danube',
+      title_de: 'Winterliche Dämmerung über der Donau',
+      description_en: 'The Danube winds past snow-covered fields as the light fades on a cold winter evening.',
+      description_de: 'Die Donau schlängelt sich an schneebedeckten Feldern vorbei, während das letzte Licht eines kalten Winterabends über den Hügeln verblasst.'
+    },
+    {
+      image: '/images/projects/dji-photo-7.jpg',
+      title_en: 'Golden Hour over the Countryside',
+      title_de: 'Goldene Stunde über dem Land',
+      description_en: 'Sunlight breaks through the clouds over the farmland, lighting up the villages and fields below.',
+      description_de: 'Sonnenlicht bricht durch die Wolken über sanft hügeligem Ackerland und taucht die Dörfer und Felder darunter in warme Strahlen.'
+    },
+    {
+      image: '/images/projects/dji-photo-8.jpg',
+      title_en: 'Regensburg Altstadt',
+      title_de: 'Regensburg Altstadt',
+      description_en: "Regensburg's old town, with the twin towers of the cathedral, next to the Danube and a lively riverside fair.",
+      description_de: 'Die historische Altstadt von Regensburg, gekrönt von den beiden Domtürmen, eingerahmt von der Donau und einem lebendigen Fest am Flussufer.'
+    }
+  ];
+
+  const insertShot = db.prepare(
+    'INSERT INTO home_aerial_shots (sort_order, image, title_en, title_de, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?)'
+  );
+  shots.forEach((s, i) => insertShot.run(i, s.image, s.title_en, s.title_de, s.description_en, s.description_de));
+
+  const videos = [
+    {
+      src: '/videos/sunset-intro.mp4',
+      title_en: 'Beautiful sunset',
+      title_de: 'Wunderschöner Sonnenuntergang',
+      description_en: 'Watch the sun go down and paint the sky in warm colors — a nice, calm way to end the day.',
+      description_de: 'Erlebe, wie die Sonne anmutig untergeht und den Himmel in warme Farben taucht — ein flüchtiges Meisterwerk, das den Tag in stiller Eleganz verabschiedet.'
+    },
+    {
+      src: '/videos/winter-intro.mp4',
+      title_en: 'Winter from above',
+      title_de: 'Winter von oben',
+      description_en: 'A snowy landscape seen from the drone — calm, white and quiet. The same hills look completely different in winter.',
+      description_de: 'Eine verschneite Landschaft gleitet unter der Drohne vorbei — ruhig, weiß und still, eine andere Seite der immer gleichen Hügel.'
+    },
+    {
+      src: '/videos/silvester-intro.mp4',
+      title_en: "New Year's Eve",
+      title_de: 'Silvester',
+      description_en: "Fireworks light up the night sky on New Year's Eve, filmed from above as the old year turns into the new one.",
+      description_de: 'Feuerwerk erleuchtet den Nachthimmel an Silvester, von oben eingefangen, während das alte Jahr dem neuen weicht.'
+    }
+  ];
+
+  const insertVideo = db.prepare(
+    'INSERT INTO home_videos (sort_order, src, title_en, title_de, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?)'
+  );
+  videos.forEach((v, i) => insertVideo.run(i, v.src, v.title_en, v.title_de, v.description_en, v.description_de));
+}
+
+function seedProjects(db: DatabaseSync) {
+  const projects = [
+    {
+      id: 'bike-tracker',
+      image: '/images/projects/gpstracker.png',
+      images: null as string[] | null,
+      status: 'completed',
+      title_en: 'Bike Tracker',
+      title_de: 'Bike Tracker',
+      description_en:
+        "I built this a few years ago because I needed it. Someone stole parts off my bike — the bike computer and the front light were taken right off the handlebars. At the time you could only buy an alarm or a GPS tracker, not both together, so I built my own. You can check it from an app.",
+      description_de:
+        'Der Bike Tracker ist eine Projektidee, die ich vor etwa drei Jahren aus der Not heraus entwickelt habe. Der Grund dafür war ein Diebstahl an meinem Fahrrad, bei dem der Fahrradcomputer und das Frontlicht vom Lenker entfernt wurden. Da der Markt derzeit nur Alarmanlagen oder GPS-Tracker anbietet, aber nicht die Kombination aus beidem, habe ich das Ganze selbst entwickelt — überwachbar per App.',
+      tags_en: ['GPS Tracking', 'Mobile App', 'IoT', 'Arduino'],
+      tags_de: ['GPS-Tracking', 'Mobile App', 'IoT', 'Arduino'],
+      link_label_en: 'View on GitHub',
+      link_label_de: 'Auf GitHub ansehen',
+      link_url: 'https://github.com/dev-dany97/raspi_gps_tracker'
+    },
+    {
+      id: 'magic-mirror',
+      image: '/images/projects/magic-mirror.jpg',
+      images: null,
+      status: 'completed',
+      title_en: 'Magic Mirror',
+      title_de: 'Magic Mirror',
+      description_en: 'A big, flexible project with a lot of possibilities. I use it to see important dates, events and news, and to start my day with a nice quote.',
+      description_de: 'Das Magic-Mirror-Projekt ist sehr umfangreich, aber auch flexibel mit endlosen Möglichkeiten. Ich nutze es, um über wichtige Termine, Events und Neuigkeiten informiert zu sein und den Tag mit schönen Sprüchen zu beginnen.',
+      tags_en: ['Raspberry Pi', 'JavaScript', 'Smart Display'],
+      tags_de: ['Raspberry Pi', 'JavaScript', 'Smart Display'],
+      link_label_en: 'View on GitHub',
+      link_label_de: 'Auf GitHub ansehen',
+      link_url: 'https://github.com/dev-dany97/magicMirror'
+    },
+    {
+      id: 'pi-hole',
+      image: '/images/projects/pihole.png',
+      images: null,
+      status: 'completed',
+      title_en: 'Pi Hole - Ad Blocker',
+      title_de: 'Pi-hole - Werbeblocker',
+      description_en: 'Pi-hole adds an extra layer of security to my home network — it blocks ads and trackers for every device on the network. It runs on a Raspberry Pi 3.',
+      description_de: 'Das Pi-hole-Projekt fügt dem eigenen Heimnetzwerk eine zusätzliche Sicherheitsebene hinzu, um unerwünschte Werbung und Tracking netzwerkweit zu blockieren. Pi-hole läuft auf einem Raspberry Pi III.',
+      tags_en: ['Raspberry Pi', 'Networking', 'Privacy'],
+      tags_de: ['Raspberry Pi', 'Netzwerk', 'Privatsphäre'],
+      link_label_en: 'Visit pi-hole.net',
+      link_label_de: 'pi-hole.net besuchen',
+      link_url: 'https://pi-hole.net/'
+    },
+    {
+      id: 'homeassistant',
+      image: '/images/projects/homeassistant-1.png',
+      images: [
+        '/images/projects/homeassistant-1.png',
+        '/images/projects/homeassistant-2.jpg',
+        '/images/projects/homeassistant-3.jpg',
+        '/images/projects/homeassistant-4.jpg'
+      ],
+      status: 'completed',
+      title_en: 'HomeAssistant',
+      title_de: 'HomeAssistant',
+      description_en: 'Home Assistant is an open-source platform that lets you build your own smart home system by connecting and automating different devices. Mine runs on a Raspberry Pi 4.',
+      description_de: 'Home Assistant ist eine Open-Source-Plattform, mit der man durch die Integration und Automatisierung verschiedener Geräte und Dienste ein zentralisiertes, individuell anpassbares Smart-Home-System aufbauen kann. HomeAssistant läuft bei mir auf einem Raspberry Pi IV.',
+      tags_en: ['Raspberry Pi', 'Home Automation', 'Smart Home'],
+      tags_de: ['Raspberry Pi', 'Hausautomatisierung', 'Smart Home'],
+      link_label_en: 'Visit home-assistant.io',
+      link_label_de: 'home-assistant.io besuchen',
+      link_url: 'https://www.home-assistant.io/'
+    },
+    {
+      id: 'own-website',
+      image: '/images/projects/website.png',
+      images: null,
+      status: 'completed',
+      title_en: 'Own Website',
+      title_de: 'Eigene Webseite',
+      description_en: 'This website. Built with Next.js and Bootstrap, and hosted on AWS.',
+      description_de: 'Die Erstellung dieser Webseite. Sie basiert auf Next.js in Kombination mit Bootstrap als Frontend-CSS-Framework und wird über einen AWS-Bucket gehostet.',
+      tags_en: ['Next.js', 'React', 'AWS'],
+      tags_de: ['Next.js', 'React', 'AWS'],
+      link_label_en: 'View on GitHub',
+      link_label_de: 'Auf GitHub ansehen',
+      link_url: 'https://github.com/dev-dany97/homepage'
+    },
+    {
+      id: 'crypto-trading-bot',
+      image: '/images/projects/cryptotrading-bot.png',
+      images: null,
+      status: 'in-progress',
+      title_en: 'Crypto Trading Bot',
+      title_de: 'Crypto Trading Bot',
+      description_en: 'This bot watches the price of a few cryptocurrencies and buys or sells automatically when the price is low or high.',
+      description_de: 'Der Crypto Trading Bot überwacht aktuelle Preisänderungen ausgewählter Kryptowährungen und kauft oder verkauft, wenn der Preis niedrig oder hoch ist — so werden Handelsentscheidungen automatisiert.',
+      tags_en: ['Python', 'Trading API', 'Automation'],
+      tags_de: ['Python', 'Trading-API', 'Automatisierung'],
+      link_label_en: null,
+      link_label_de: null,
+      link_url: null
+    },
+    {
+      id: 'radar-recognition',
+      image: '/images/projects/radar.png',
+      images: null,
+      status: 'in-progress',
+      title_en: 'Radar Recognition',
+      title_de: 'Radar-Erkennung',
+      description_en: 'This project looks at object recognition and what you could automate with it — like opening a garage door automatically when it detects something.',
+      description_de: 'Das Projekt untersucht Objekterkennung und mögliche automatisierte Aktionen, wie zum Beispiel das automatische Öffnen eines Garagentors basierend auf erkannten Objekten.',
+      tags_en: ['Computer Vision', 'Object Detection', 'Hardware'],
+      tags_de: ['Computer Vision', 'Objekterkennung', 'Hardware'],
+      link_label_en: null,
+      link_label_de: null,
+      link_url: null
+    },
+    {
+      id: 'water-quality',
+      image: '/images/projects/waterqualitysystem.png',
+      images: null,
+      status: 'in-progress',
+      title_en: 'Water Quality Testing System',
+      title_de: 'Wasserqualitäts-Testsystem',
+      description_en: "If you have an aquarium or a pond with fish or other animals in it, you're responsible for them. A lot of people don't really know how good or bad their water quality is. This system measures the important values all the time and shows them to you.",
+      description_de: 'Wer ein Aquarium oder einen Teich besitzt und darin Lebewesen hält, trägt auch eine gewisse Verantwortung. Viele wissen nicht, wie gut oder schlecht die Wasserqualität ist, in der Fische, Schnecken oder andere Tiere leben. Dieses System misst kontinuierlich zentrale Parameter und meldet sie.',
+      tags_en: ['IoT', 'Sensors', 'Raspberry Pi'],
+      tags_de: ['IoT', 'Sensoren', 'Raspberry Pi'],
+      link_label_en: null,
+      link_label_de: null,
+      link_url: null
+    }
+  ];
+
+  const insert = db.prepare(`
+    INSERT INTO projects (id, sort_order, image, images, status, title_en, title_de, description_en, description_de, tags_en, tags_de, link_label_en, link_label_de, link_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  projects.forEach((p, i) => {
+    insert.run(
+      p.id,
+      i,
+      p.image,
+      p.images ? JSON.stringify(p.images) : null,
+      p.status,
+      p.title_en,
+      p.title_de,
+      p.description_en,
+      p.description_de,
+      JSON.stringify(p.tags_en),
+      JSON.stringify(p.tags_de),
+      p.link_label_en,
+      p.link_label_de,
+      p.link_url
+    );
+  });
+}
+
+function buildGallery(folder: string, count: number, prefix: string): string[] {
+  return Array.from({ length: count }, (_, i) => `/images/travel/${folder}/${prefix}${i + 1}.jpg`);
+}
+
+function seedTravel(db: DatabaseSync) {
+  const sailingFiles = [
+    'sailing1.jpg', 'sailing2.jpg', 'sailing3.jpg', 'sailing4.jpg', 'sailing5.jpg', 'sailing6.jpg',
+    'sailing7.JPG', 'sailing8.jpg', 'sailing9.jpg', 'sailing10.jpg', 'sailing11.jpg', 'sailing12.jpg',
+    'sailing13.jpg', 'sailing14.JPG', 'sailing15.JPG', 'sailing16.JPG', 'sailing17.JPG', 'sailing18.JPG',
+    'sailing19.jpg', 'sailing20.JPG', 'sailing21.JPG', 'sailing22.JPG', 'sailing23.jpg', 'sailing24.JPG',
+    'sailing25.JPG', 'sailing26.jpg', 'sailing27.jpg', 'sailing28.jpg', 'sailing29.jpg', 'sailing30.jpg',
+    'sailing31.jpg', 'sailing32.jpg', 'sailing33.jpg'
+  ].map((f) => `/images/travel/sailing/${f}`);
+
+  const destinations = [
+    {
+      id: 'sailing', flag: 'IT', image: '/images/travel/sailing/sailing1.jpg', imageCount: 33, gallery: sailingFiles,
+      name_en: 'Sardinia', name_de: 'Sardinien',
+      description_en: 'Exploring the coast and some great moments out sailing.',
+      description_de: 'Erkundung der Küstengewässer und unvergessliche Momente beim Segeln.'
+    },
+    {
+      id: 'dubai', flag: 'AE', image: '/images/travel/dubai/dubai1.jpg', imageCount: 8, gallery: buildGallery('dubai', 8, 'dubai'),
+      name_en: 'Dubai', name_de: 'Dubai',
+      description_en: 'Modern buildings, desert views and a lively city.',
+      description_de: 'Moderne Architektur, Wüstenblicke und pulsierendes Stadtleben.'
+    },
+    {
+      id: 'bangkok', flag: 'TH', image: '/images/travel/bangkok/bangkok1.jpg', imageCount: 16, gallery: buildGallery('bangkok', 16, 'bangkok'),
+      name_en: 'Bangkok', name_de: 'Bangkok',
+      description_en: "Floating markets, longtail boats and the busy energy of Thailand's capital.",
+      description_de: 'Schwimmende Märkte, Longtail-Boote und das lebendige Chaos von Thailands Hauptstadt.'
+    },
+    {
+      id: 'paris', flag: 'FR', image: '/images/travel/paris/paris1.jpg', imageCount: 10, gallery: buildGallery('paris', 10, 'paris'),
+      name_en: 'Paris', name_de: 'Paris',
+      description_en: 'A city trip to Paris, including a front-row night at the VALORANT Champions Tour.',
+      description_de: 'Städtetrip nach Paris, inklusive einer Nacht in der ersten Reihe bei der VALORANT Champions Tour.'
+    },
+    {
+      id: 'canary-islands', flag: 'ES', image: '/images/travel/canary-islands/canary1.jpg', imageCount: 20, gallery: buildGallery('canary-islands', 20, 'canary'),
+      name_en: 'Canary Islands', name_de: 'Kanarische Inseln',
+      description_en: 'Volcanic landscapes, desert trails and rough coastline with friends.',
+      description_de: 'Vulkanlandschaften, Wüstenpfade und raue Küste mit Freunden.'
+    },
+    {
+      id: 'italy-trip', flag: 'IT', image: '/images/travel/italy-trip/italytrip1.jpg', imageCount: 13, gallery: buildGallery('italy-trip', 13, 'italytrip'),
+      name_en: 'Italy', name_de: 'Italien',
+      description_en: 'A road trip through Italy — old towns, the coast and good food.',
+      description_de: 'Ein Roadtrip durch Italien — historische Städte, Küste und gutes Essen.'
+    },
+    {
+      id: 'croatia', flag: 'HR', image: '/images/travel/croatia/croatia1.jpg', imageCount: 9, gallery: buildGallery('croatia', 9, 'croatia'),
+      name_en: 'Croatia', name_de: 'Kroatien',
+      description_en: 'Sailing along the Adriatic coast, with drone shots of the islands.',
+      description_de: 'Segeln an der Adriaküste mit Luftaufnahmen der Inseln aus der Drohne.'
+    },
+    {
+      id: 'australia', flag: 'AU', image: '/images/travel/australia/australia1.jpg', imageCount: 35, gallery: buildGallery('australia', 35, 'australia'),
+      name_en: 'Australia', name_de: 'Australien',
+      description_en: 'Amazing landscapes, beaches and a road trip down under.',
+      description_de: 'Epische Landschaften, Strände und Roadtrip-Abenteuer down under.'
+    }
+  ];
+
+  const insert = db.prepare(`
+    INSERT INTO travel_destinations (id, sort_order, flag, image, image_count, gallery, name_en, name_de, description_en, description_de)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  destinations.forEach((d, i) => {
+    insert.run(d.id, i, d.flag, d.image, d.imageCount, JSON.stringify(d.gallery), d.name_en, d.name_de, d.description_en, d.description_de);
+  });
+}
+
+function seedSetup(db: DatabaseSync) {
+  // Hardware specs (brand/product names) stay identical in both languages.
+  const primary: Array<{ label: string; value: string; image?: string }> = [
+    { label: 'CPU', value: 'AMD Ryzen 7 2700X', image: '/images/setup/pc-setup/cpu-image.jpg' },
+    { label: 'GPU', value: 'ASUS ROG STRIX NVIDIA GeForce RTX 2080 Advanced', image: '/images/setup/pc-setup/graphic-image.jpg' },
+    { label: 'RAM', value: '32 GB - 4x G.Skill DIMM 8GB DDR4-3200, Trident Z RGB', image: '/images/setup/pc-setup/ram-image.jpg' },
+    { label: 'Memory SSD', value: 'Samsung 850 Pro 2.5 256GB + Samsung SSD 850 Evo 250GB + Samsung SSD 870 EVO 1TB + WD BLACK SSD AN1500 4TB', image: '/images/setup/pc-setup/memory-image.jpg' },
+    { label: 'Memory M2', value: 'SanDisk Extreme PRO M.2 500GB + WD Black SN750 500GB', image: '/images/setup/pc-setup/memory-m2.jpg' },
+    { label: 'MB', value: 'ASUS ROG Strix X470-F Gaming', image: '/images/setup/pc-setup/mb-image.jpg' },
+    { label: 'Water Cooling', value: 'Alphacool Eisbecher Helix 250 + Alphacool Eisblock XPX Aurora Plexi Digital RGB + Alphacool Eisfluegel Aurora Durchflussanzeiger', image: '/images/setup/pc-setup/water-cooling-image.jpg' },
+    { label: 'Fan', value: 'LIAN LI UNI FAN SL-INF 120', image: '/images/setup/pc-setup/fan-image.jpg' },
+    { label: 'Case', value: 'LIAN LI O11 Dynamic', image: '/images/setup/pc-setup/case-image.jpg' },
+    { label: 'PowerSupply', value: 'be quiet! Dark Power Pro 11 1000W', image: '/images/setup/pc-setup/power-supply-image.jpg' },
+    { label: 'Keyboard', value: 'Logitech G910 Orion Spectrum', image: '/images/setup/pc-setup/keyboard-image.jpg' },
+    { label: 'Mouse', value: 'Logitech G900 Chaos Spectrum + Logitech G Powerplay', image: '/images/setup/pc-setup/mouse-image.jpg' },
+    { label: 'Wheel', value: 'Logitech G29' },
+    { label: 'Microphone', value: 'HyperX QuadCast S', image: '/images/setup/pc-setup/microphone-image.jpg' },
+    { label: 'Monitor', value: 'Samsung C49HG90DMU 49"', image: '/images/setup/pc-setup/monitor-image.jpg' },
+    { label: 'Cable', value: 'Motherboard 24-Pin, GPU Dual 8-Pin Cable: Streamer Plus V2', image: '/images/setup/pc-setup/cable-image.jpg' },
+    { label: 'Custom Water Front Plate', value: 'LIAN LI O11D XL FRONT PLATE SK2 + D5/DDC ADAPTER' }
+  ];
+
+  const secondEn: Array<{ label: string; value: string }> = [
+    { label: 'CPU', value: 'Example: AMD Ryzen 5 (exact model TBD)' },
+    { label: 'GPU', value: 'Example: NVIDIA GeForce RTX 3060 (exact model TBD)' },
+    { label: 'RAM', value: 'Example: 16-32 GB DDR4 (exact kit TBD)' },
+    { label: 'Storage', value: 'Example: 1 TB NVMe SSD (exact model TBD)' },
+    { label: 'MB', value: 'Example: mATX motherboard (exact model TBD)' },
+    { label: 'Case', value: 'NZXT H-Series (white)' },
+    { label: 'Cooling', value: 'Air cooling (exact cooler TBD)' },
+    { label: 'PowerSupply', value: 'Example: 650-750W (exact model TBD)' }
+  ];
+
+  const secondDe: Array<{ label: string; value: string }> = [
+    { label: 'CPU', value: 'Beispiel: AMD Ryzen 5 (genaues Modell noch offen)' },
+    { label: 'GPU', value: 'Beispiel: NVIDIA GeForce RTX 3060 (genaues Modell noch offen)' },
+    { label: 'RAM', value: 'Beispiel: 16-32 GB DDR4 (genaues Kit noch offen)' },
+    { label: 'Storage', value: 'Beispiel: 1 TB NVMe SSD (genaues Modell noch offen)' },
+    { label: 'MB', value: 'Beispiel: mATX-Mainboard (genaues Modell noch offen)' },
+    { label: 'Case', value: 'NZXT H-Series (weiß)' },
+    { label: 'Cooling', value: 'Luftkühlung (genauer Kühler noch offen)' },
+    { label: 'PowerSupply', value: 'Beispiel: 650-750W (genaues Modell noch offen)' }
+  ];
+
+  const insert = db.prepare(`
+    INSERT INTO setup_components (build, sort_order, label, value_en, value_de, image)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `);
+
+  primary.forEach((c, i) => insert.run('primary', i, c.label, c.value, c.value, c.image ?? null));
+  secondEn.forEach((c, i) => insert.run('second', i, c.label, c.value, secondDe[i].value, null));
+}
+
+function seedFinance(db: DatabaseSync) {
+  const platforms = [
+    {
+      id: 'binance', name: 'Binance', url: 'https://www.binance.com',
+      description_en: 'The exchange I use for active crypto day-trading — fast entries and exits.',
+      description_de: 'Meine Börse für aktives Krypto-Day-Trading — schnelle Ein- und Ausstiege.',
+      affiliate_url: 'https://www.binance.com'
+    },
+    {
+      id: 'trade-republic', name: 'Trade Republic', url: 'https://traderepublic.com',
+      description_en: 'My broker for taking targeted positions in individual stocks.',
+      description_de: 'Mein Broker für gezielte Positionen in Einzelaktien.',
+      affiliate_url: 'https://refnocode.trade.re/jgh5ljqh'
+    },
+    {
+      id: 'market-mavens', name: 'Market Mavens e.V.', url: 'https://marketmavens-ev.com/',
+      description_en: "I'm a member of the student finance club at Hochschule Deggendorf, where we talk about markets and investing.",
+      description_de: 'Mitglied der studentischen Finanzvereinigung an der Hochschule Deggendorf, Austausch über Märkte und Investieren.',
+      affiliate_url: null
+    }
+  ];
+
+  const insertPlatform = db.prepare(`
+    INSERT INTO finance_platforms (id, sort_order, name, url, description_en, description_de, affiliate_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `);
+  platforms.forEach((p, i) => insertPlatform.run(p.id, i, p.name, p.url, p.description_en, p.description_de, p.affiliate_url));
+
+  const resources = [
+    { id: 'boerse-de', name: 'Börse.de', url: 'https://www.boerse.de', category: 'Marktdaten' },
+    { id: 'coinmarketcap', name: 'CoinMarketCap', url: 'https://coinmarketcap.com', category: 'Marktdaten' },
+    { id: 'bloomberg', name: 'Bloomberg', url: 'https://www.bloomberg.com', category: 'Nachrichten' },
+    { id: 'oaws', name: 'Ohne Aktien wird schwer', url: 'https://open.spotify.com/show/2asbnnLJbo3dzukAJQfie6', category: 'Podcasts' },
+    { id: 'wallstreet-koch', name: 'Wall Street mit Markus Koch', url: 'https://open.spotify.com/show/3rTbUHHq3tpY5XYqQkem8c', category: 'Podcasts' },
+    { id: 'marktgefluester', name: 'Marktgeflüster', url: 'https://open.spotify.com/show/3y9LP87SHF5b3hciAsZDBh', category: 'Podcasts' }
+  ];
+
+  const insertResource = db.prepare('INSERT INTO finance_resources (id, sort_order, name, url, category) VALUES (?, ?, ?, ?, ?)');
+  resources.forEach((r, i) => insertResource.run(r.id, i, r.name, r.url, r.category));
+
+  // Manually entered positions (Trade Republic has no public API) — quantity + buy
+  // price only, used purely to compute allocation % and gain % since purchase.
+  // Absolute € amounts are never exposed via the API, same privacy rule as crypto.
+  // Beispielwerte: eigene Positionen hier eintragen.
+  const stocks = [
+    { ticker: 'AAPL', name: 'Apple', quantity: 1, buy_price: 100 },
+    { ticker: 'AMZN', name: 'Amazon', quantity: 1, buy_price: 100 },
+    { ticker: 'IS3R.DE', name: 'iShares Edge MSCI World Momentum', quantity: 1, buy_price: 100 },
+    { ticker: 'MUV2.DE', name: 'Münchener Rück', quantity: 1, buy_price: 100 },
+    { ticker: 'GOOGL', name: 'Alphabet', quantity: 1, buy_price: 100 }
+  ];
+  const insertStock = db.prepare(
+    'INSERT INTO stock_positions (ticker, name, quantity, buy_price, sort_order) VALUES (?, ?, ?, ?, ?)'
+  );
+  stocks.forEach((s, i) => insertStock.run(s.ticker, s.name, s.quantity, s.buy_price, i));
+}
+
+function seedResume(db: DatabaseSync) {
+  const experience = [
+    {
+      role_en: 'Developer Automotive', role_de: 'Developer Automotive', company: 'intive GmbH',
+      period_en: '04/2023 – present', period_de: '04/2023 – heute',
+      description_en: "I'm working on a tool that analyzes, visualizes and processes bus system data, with AI-assisted data analysis and plausibility checks.",
+      description_de: 'Weiterentwicklung eines Tools zur Analyse, Visualisierung und Verarbeitung von Bussystemdaten, inkl. KI-gestützter Datenanalyse und Plausibilitätsprüfung.'
+    },
+    {
+      role_en: 'Junior Software Developer', role_de: 'Junior Software Developer', company: 'intive GmbH',
+      period_en: '01/2022 – 03/2023', period_de: '01/2022 – 03/2023',
+      description_en: 'I developed software components to process radar sensor data for automotive, on ARM Cortex-R4 and FreeRTOS.',
+      description_de: 'Entwicklung von Softwarekomponenten zur Verarbeitung von Radarsensordaten im Automotive-Umfeld auf ARM Cortex-R4 und FreeRTOS.'
+    },
+    {
+      role_en: 'Working Student / Master’s Thesis', role_de: 'Werkstudent / Masterand', company: 'intive automotive GmbH',
+      period_en: '08/2019 – 10/2021', period_de: '08/2019 – 10/2021',
+      description_en: 'I built an embedded software component for obstacle detection, using a radar hardware accelerator (TI AWR1843BOOST).',
+      description_de: 'Entwicklung einer embedded Softwarekomponente zur Hinderniserkennung mittels Radar Hardware Accelerator (TI AWR1843BOOST).'
+    },
+    {
+      role_en: 'Working Student & Intern', role_de: 'Werkstudent & Praktikant', company: 'iNTENCE automotive electronics GmbH',
+      period_en: '08/2017 – 07/2019', period_de: '08/2017 – 07/2019',
+      description_en: 'Python-based build automation and tooling, plus a C#/.NET project to control a power supply for driver assistance systems.',
+      description_de: 'Python-basierte Build-Automatisierung und Tooling sowie ein C#/.NET-Projekt zur Netzteilansteuerung im Fahrerassistenzumfeld.'
+    }
+  ];
+
+  const insertExperience = db.prepare(`
+    INSERT INTO resume_experience (sort_order, role_en, role_de, company, period_en, period_de, description_en, description_de)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+  experience.forEach((e, i) =>
+    insertExperience.run(i, e.role_en, e.role_de, e.company, e.period_en, e.period_de, e.description_en, e.description_de)
+  );
+
+  const education = [
+    {
+      degree_en: 'M.Sc. Applied Computer Science / Infotronics', degree_de: 'M.Sc. Angewandte Informatik / Infotronik',
+      institution_en: 'TH Deggendorf', institution_de: 'TH Deggendorf',
+      period_en: '2019 – present', period_de: '2019 – heute',
+      note_en: 'Grade: 1.5', note_de: 'Note: 1,5',
+      thesis_en: 'Thesis: Development of an Embedded Software Component for Obstacle Detection Using a Radar Hardware Accelerator',
+      thesis_de: 'Masterarbeit: Entwicklung einer embedded Softwarekomponente zur Hinderniserkennung mittels Radar Hardware Accelerator'
+    },
+    {
+      degree_en: 'Exchange Semester', degree_de: 'Auslandssemester',
+      institution_en: 'Griffith University, Brisbane, Australia', institution_de: 'Griffith University, Brisbane, Australien',
+      period_en: '2020 – 2021', period_de: '2020 – 2021',
+      note_en: 'GPA: 6.67 / 7.00', note_de: 'GPA: 6,67 / 7,00',
+      thesis_en: '', thesis_de: ''
+    },
+    {
+      degree_en: 'B.Sc. Computer Engineering', degree_de: 'B.Sc. Technische Informatik',
+      institution_en: 'OTH Regensburg', institution_de: 'OTH Regensburg',
+      period_en: '2015 – 2019', period_de: '2015 – 2019',
+      note_en: '', note_de: '',
+      thesis_en: 'Thesis: Analysis and Implementation of Build Time Optimization Through Massive Parallelization of a Multi-Computer System',
+      thesis_de: 'Bachelorarbeit: Analyse und Umsetzung von Möglichkeiten zur Buildzeitoptimierung durch die massive Parallelisierung eines Mehrrechnersystems'
+    }
+  ];
+
+  const insertEducation = db.prepare(`
+    INSERT INTO resume_education (sort_order, degree_en, degree_de, institution_en, institution_de, period_en, period_de, note_en, note_de, thesis_en, thesis_de)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+  education.forEach((e, i) =>
+    insertEducation.run(i, e.degree_en, e.degree_de, e.institution_en, e.institution_de, e.period_en, e.period_de, e.note_en, e.note_de, e.thesis_en, e.thesis_de)
+  );
+
+  const skills = ['C/C++', 'Python', 'C#', 'JavaScript', 'VHDL', 'SQL', 'Docker', 'Git', 'CI/CD', 'UML', 'Scrum'];
+  const insertSkill = db.prepare('INSERT INTO resume_skills (sort_order, name) VALUES (?, ?)');
+  skills.forEach((s, i) => insertSkill.run(i, s));
+
+  const certificates = [
+    { en: 'ISTQB Certified Tester (iSQI Group)', de: 'ISTQB Certified Tester (iSQI Group)' },
+    { en: 'AWS Cloud Practitioner Essentials', de: 'AWS Cloud Practitioner Essentials' },
+    { en: 'Embedded Software Design & Patterns with C (MicroConsult)', de: 'Embedded-Software-Design und Patterns mit C (MicroConsult)' },
+    { en: 'Autosar Architecture', de: 'Autosar Architecture' },
+    { en: 'Embedded Systems Programming on ARM Cortex M3/M4', de: 'Embedded Systems Programming on ARM Cortex M3/M4' },
+    { en: 'DAAD English Language Certificate', de: 'DAAD-Sprachzertifikat Englisch' }
+  ];
+  const insertCert = db.prepare('INSERT INTO resume_certificates (sort_order, name_en, name_de) VALUES (?, ?, ?)');
+  certificates.forEach((c, i) => insertCert.run(i, c.en, c.de));
+}
