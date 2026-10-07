@@ -477,12 +477,49 @@ html[data-theme='light'] .legacy-hero {
   margin-bottom: 0.75rem;
 }
 
+.legacy-about-more-image-wrap {
+  position: relative;
+  isolation: isolate;
+}
+
+.legacy-about-more-image-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 1.1rem;
+  background: linear-gradient(135deg, var(--primary-strong), var(--primary));
+  transform: rotate(-3deg) translate(10px, 12px);
+  opacity: 0.9;
+  transition: transform 0.35s ease;
+}
+
+.legacy-about-more-image-wrap--reverse::before {
+  transform: rotate(3deg) translate(-10px, 12px);
+}
+
+.legacy-about-more-image-wrap:hover::before {
+  transform: rotate(-1deg) translate(6px, 8px);
+}
+
+.legacy-about-more-image-wrap--reverse:hover::before {
+  transform: rotate(1deg) translate(-6px, 8px);
+}
+
 .legacy-about-more-image {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 0.75rem;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
+  border-radius: 1rem;
+  border: 3px solid var(--bg-soft);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+  transition: transform 0.35s ease;
+}
+
+.legacy-about-more-image-wrap:hover .legacy-about-more-image {
+  transform: translate(-4px, -4px);
 }
 
 .legacy-about-toggle {
@@ -498,6 +535,53 @@ html[data-theme='light'] .legacy-hero {
 .legacy-about-link:hover {
   color: var(--primary-strong);
   opacity: 1;
+}
+
+.scroll-to-top-btn {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: #0c1014;
+  font-size: 1.3rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  animation: scroll-to-top-in 0.2s ease;
+}
+
+.scroll-to-top-btn:hover {
+  background: var(--primary-strong);
+  transform: translateY(-3px);
+}
+
+@keyframes scroll-to-top-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 576px) {
+  .scroll-to-top-btn {
+    right: 1rem;
+    bottom: 1rem;
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .legacy-portrait {
@@ -648,6 +732,19 @@ footer {
   justify-content: space-between;
   gap: 2.5rem;
   padding-bottom: 2.75rem;
+}
+
+.site-footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.site-footer-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 0.3rem;
 }
 
 .site-footer-name {

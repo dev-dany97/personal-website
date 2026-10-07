@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Providers } from "@/app/providers";
 import { CookieBanner } from "@/app/components/CookieBanner";
+import { ScrollToTopButton } from "@/app/components/ScrollToTopButton";
 import "bootstrap/dist/css/bootstrap.css";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <CookieBanner />
+          <ScrollToTopButton />
         </Providers>
         <Script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

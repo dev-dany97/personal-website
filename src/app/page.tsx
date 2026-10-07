@@ -132,9 +132,14 @@ export default function Home() {
           {aboutExpanded && (
             <div className="legacy-about-more">
               {c.aboutSections.map((section, sIdx) => (
-                <div key={section.heading} className="row align-items-center g-5 legacy-about-more-section">
+                <div
+                  key={section.heading}
+                  className={`row align-items-center g-5 legacy-about-more-section ${sIdx % 2 === 1 ? 'flex-row-reverse' : ''}`}
+                >
                   <div className="col-lg-4 text-center">
-                    <img src={section.image} alt={section.heading} className="legacy-about-more-image" loading="lazy" />
+                    <div className={`legacy-about-more-image-wrap ${sIdx % 2 === 1 ? 'legacy-about-more-image-wrap--reverse' : ''}`}>
+                      <img src={section.image} alt={section.heading} className="legacy-about-more-image" loading="lazy" />
+                    </div>
                   </div>
                   <div className="col-lg-8">
                     <h3>{section.heading}</h3>

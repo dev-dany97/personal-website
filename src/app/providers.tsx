@@ -40,6 +40,7 @@ const de = {
   'cookie.text': 'Diese Website nutzt nur technisch notwendige Daten (z.B. deine Sprach- und Theme-Einstellung) — kein Tracking, keine Cookies von Drittanbietern.',
   'cookie.privacyLink': 'Datenschutzerklärung',
   'cookie.accept': 'Verstanden',
+  scrollToTop: 'Nach oben scrollen',
 };
 
 const en = {
@@ -76,6 +77,7 @@ const en = {
   'cookie.text': 'This site only uses technically necessary data (e.g. your language and theme preference) to work — no tracking, no third-party cookies.',
   'cookie.privacyLink': 'Privacy policy',
   'cookie.accept': 'Got it',
+  scrollToTop: 'Scroll to top',
 };
 
 if (!i18n.isInitialized) {

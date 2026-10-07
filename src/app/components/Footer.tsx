@@ -13,7 +13,10 @@ export function Footer() {
       <div className="container">
         <div className="site-footer-main">
           <div className="site-footer-brand">
-            <span className="site-footer-name">Daniel Mohles</span>
+            <div className="site-footer-brand-row">
+              <img src="/favicon.ico" alt="" className="site-footer-logo" />
+              <span className="site-footer-name">Daniel Mohles</span>
+            </div>
             <p className="site-footer-tagline">{t('footer.tagline')}</p>
           </div>
 
