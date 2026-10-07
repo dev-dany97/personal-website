@@ -45,12 +45,81 @@ function seedPageContent(db: DatabaseSync) {
       heroSubtitle: "I'm glad you're here.",
       heroCta: 'More about me',
       aboutHeading: "Hi, I'm Daniel!",
-      aboutP1Template:
-        "I'm {age} years old and I love writing code. When I'm not in front of a screen, you'll often find me out on the water. I really love boats and sailing, and there's something special about being out there.",
-      aboutP2:
-        "When I'm not coding or sailing, I like to spend time on finance. Over the last few years I've been learning a lot about financial markets and crypto.",
-      aboutP3:
-        'I also love taking photos from above. I use my DJI Mavic 3 drone to fly over places and turn everyday moments into nice aerial shots.',
+      aboutIntro: [
+        "I'm {age} years old, a software developer, sailor, tech nerd, gamer, and above all someone who loves trying new things and figuring out how they work. That curiosity is, among other things, exactly why this website exists.",
+        "Here I don't just want to tell you a bit about myself — I also want to share my projects, travels, experiences, and interests with you. Maybe you'll even find an idea or two that inspires you."
+      ],
+      aboutMoreLabel: 'Read more',
+      aboutLessLabel: 'Show less',
+      aboutSections: [
+        {
+          heading: 'From hobby to profession and somehow back again',
+          paragraphs: [
+            "I've been working as a software developer for seven years now. But programming isn't just a job for me. In my free time, I also love tinkering with my own projects, trying out new technologies, or making everyday things a little bit smarter.",
+            "That's resulted in everything from small software projects to smart home setups (like Home Assistant), electronics tinkering, or just things I wanted to try out of pure curiosity.",
+            'If that sounds interesting, feel free to check out my [personal projects](/projects). You’ll find both finished projects and things I’m still working on.'
+          ]
+        },
+        {
+          heading: 'At some point, sailing came into the picture …',
+          paragraphs: [
+            'As you can probably already tell from my profile picture, sailing has become one of my biggest passions alongside technology.',
+            'It actually started a bit differently about five years ago: with a motorboat license.',
+            "After the first few longer trips, I quickly realized that pure motorboating didn't really fulfill me. Just going from A to B got a bit too monotonous over time, and it's famously not exactly cheap either.",
+            'I ended up discovering sailing more or less by chance, through a student sailing trip, and I was immediately hooked by the connection to nature combined with that feeling of freedom.',
+            "At the same time, I also knew I didn't want to permanently depend on someone else deciding when and where to sail, always with strangers along for the ride. So it was clear to me that I wanted to be out there as a skipper myself one day.",
+            'The next logical step was therefore the SKS (Sport Coastal Skipper) license.',
+            "I quickly learned, though, that a sailing license isn't comparable to a driver's license. Just because you've passed the exam doesn't mean you can safely handle a yacht in every situation.",
+            'So more skipper training and additional qualifications followed — including the SRC radio license for VHF marine radio, as well as the corresponding certificate for pyrotechnic distress signals.',
+            'Especially the practical training showed me how much there still is to learn about sailing, even after passing the exams.',
+            'By now I plan and organize my own sailing trips and try to explore new sailing areas almost every year.',
+            "If you'd like to follow my trips and sailing adventures, feel free to check out the [travel section](/travel)."
+          ]
+        },
+        {
+          heading: 'Why finance eventually became just as interesting to me',
+          paragraphs: [
+            "Besides my job and my hobbies — which, alongside sailing, also include skiing and tennis — I've been digging deeper into my own finances and investing for a few years now.",
+            "The reason is actually pretty simple: I don't want to be financially dependent on a single source of income.",
+            "A job that feels secure isn't automatically a guarantee for the future. Illness, an accident, economic shifts, a company going bankrupt, or technological developments like AI can change career paths faster than you might expect.",
+            "At the same time, I've long felt that financial education plays a surprisingly small role in our society.",
+            "It wasn't any different for me at first. I learned a lot in school, but almost nothing about how building wealth actually works, what stocks and ETFs even are, how to assess risk, or why it can make sense to deal with your finances as early as possible. That's exactly why I find this topic all the more important.",
+            "My own educational path wasn't exactly a straight line either. I started at a Hauptschule (Germany's lower-tier secondary school), worked my way up step by step to a high school diploma, and eventually went to university — ending up with a master's degree.",
+            'During my studies, I even had the chance to take a PhD position in Brisbane, Australia. As exciting as that opportunity was, I ultimately decided against it. I find research interesting, but I realized I’d rather work hands-on, build things, and actually see what comes out of it in the end.',
+            'My time and experiences in Australia also changed how I see Germany, work, and financial security. They reinforced my decision to dig deeper into building wealth and long-term financial planning.',
+            "That said, I'm not trying to tell anyone on this website how to invest their money. Instead, I want to show how I go about it myself — the decisions I make, the mistakes I've made, and what I learned from them.",
+            'Because I started small too.',
+            "And that's exactly why I know getting started can sometimes feel more complicated than it actually has to be. At the same time, you notice over time what a difference it makes to start early and stick with it consistently.",
+            'During my studies, I also joined a student investing club. Looking back, that was one of the best ways to really get into the topic. What I valued most was exchanging ideas with others — from fellow students who were just getting started themselves to members with years of experience.',
+            "It wasn't just about stocks or investments, either. I met a lot of open, warm people there, with whom I could share a common interest and learn from at the same time.",
+            "Especially if you're new to this topic, I can only recommend talking to others and getting to know different perspectives.",
+            "If you're interested in my personal approach to investing, or want to see the trades and decisions I make myself, you'll find more in the [finance section](/finance)."
+          ]
+        },
+        {
+          heading: 'And then there’s probably my strongest and longest-running passion …',
+          paragraphs: [
+            'My probably oldest passion has been with me since I was about seven years old: video games.',
+            'It all started with a PlayStation 2, a Game Boy, and eventually a pretty old PC.',
+            'What started out as just playing games slowly turned into an interest in the technology behind them. At some point I no longer just wanted to know which game ran on my PC, but why it ran.',
+            'How does a processor actually work? What happens in RAM? How does software communicate with hardware? And what happens at the lower levels, all the way down to machine instructions and assembly?',
+            'The more I learned about it, the more interested I became in building my own PC.',
+            "And that's how a little never-ending story began.",
+            'A fairly normal PC with classic air cooling eventually turned into an ever more optimized system. New hardware, better cooling, RGB lighting, cable management, different case concepts — all the way to a fully custom water-cooled build.',
+            'And as is usually the case with hobbies like this, a PC is never really "finished" … For me, that’s been going on for 5 years now…',
+            "You can find what I'm currently playing and which hardware I use in the [gaming section](/setup)."
+          ]
+        },
+        {
+          heading: "So that's me",
+          paragraphs: [
+            'Software development, sailing, travel, finance, tech, gaming — at first glance, maybe pretty different topics.',
+            "But to me, they all have something in common: I love trying things out, I want to understand how they work, and I'm always trying to keep growing.",
+            "That's exactly what this website is about.",
+            "If any of it is interesting, helpful, or just entertaining for you, then this site has already done its job."
+          ]
+        }
+      ],
       aerialEyebrow: 'Drone Photography',
       aerialTitle: 'A view from above',
       aerialLead:
@@ -62,12 +131,81 @@ function seedPageContent(db: DatabaseSync) {
       heroSubtitle: 'Schön, dass du meine Webseite besuchst.',
       heroCta: 'Mehr über mich',
       aboutHeading: 'Hi, ich bin Daniel!',
-      aboutP1Template:
-        'Ich bin ein {age}-jähriger Kopf, der im Code zu Hause ist. Abseits vom Bildschirm findet man mich oft auf dem Wasser, wo ich mit Wind und Wellen arbeite. Ich liebe Boote und das Segeln, und das Navigieren auf dem Wasser hat für mich etwas ganz Besonderes.',
-      aboutP2:
-        'Wenn ich nicht gerade in Codezeilen versinke oder segeln bin, findet man mich in der Welt der Finanzen. In den letzten Jahren habe ich mich intensiv mit den Feinheiten der Finanzmärkte und Kryptowährungen beschäftigt.',
-      aboutP3:
-        'Und weil wir schon bei Höhen sind: Ich habe auch eine Leidenschaft dafür, die Welt von oben zu fotografieren. Mit meiner DJI Mavic 3 Drohne erkunde ich den Himmel und verwandle Momente in faszinierende Luftaufnahmen.',
+      aboutIntro: [
+        'Ich bin {age} Jahre alt, Softwareentwickler, Segler, Technik-Nerd, Gamer und vor allem jemand, der gerne neue Dinge ausprobiert und verstehen möchte, wie sie funktionieren. Genau diese Neugier hat unter anderem auch dazu geführt, dass diese Webseite entstanden ist.',
+        'Hier möchte ich nicht nur ein bisschen über mich erzählen, sondern auch meine Projekte, Reisen, Erfahrungen und Interessen mit dir teilen. Vielleicht findest du dabei ja sogar die eine oder andere Idee, die dich selbst inspiriert.'
+      ],
+      aboutMoreLabel: 'Mehr lesen',
+      aboutLessLabel: 'Weniger anzeigen',
+      aboutSections: [
+        {
+          heading: 'Vom Hobby zum Beruf und irgendwie wieder zurück',
+          paragraphs: [
+            'Seit mittlerweile sieben Jahren arbeite ich als Softwareentwickler. Das Programmieren ist für mich allerdings nicht nur ein Beruf. Auch in meiner Freizeit tüftle ich gerne an eigenen Projekten, probiere neue Technologien aus oder versuche, alltägliche Dinge ein kleines bisschen smarter zu machen.',
+            'Dabei entstehen mal kleinere Softwareprojekte, mal Smart-Home-Lösungen (wie Home-Assistant), Elektronik-Basteleien oder einfach Dinge, die ich aus Interesse ausprobieren wollte.',
+            'Wenn dich das interessiert, kannst du gerne bei meinen [privaten Projekten](/projects) vorbeischauen. Dort findest du sowohl bereits abgeschlossene Projekte als auch Dinge, an denen ich aktuell noch arbeite.'
+          ]
+        },
+        {
+          heading: 'Irgendwann kam das Segeln dazu …',
+          paragraphs: [
+            'Wie du wahrscheinlich schon an meinem Profilbild erkennen kannst, gehört neben der Technik inzwischen auch das Segeln zu meinen größten Leidenschaften.',
+            'Angefangen hat das Ganze vor ungefähr fünf Jahren allerdings etwas anders: mit einem Motorbootführerschein.',
+            'Nach den ersten längeren Fahrten habe ich relativ schnell festgestellt, dass mich reines Motorbootfahren nicht wirklich erfüllt. Einfach nur von A nach B zu fahren, wurde mir auf Dauer etwas zu eintönig und günstig ist das Ganze bekanntlich auch nicht gerade.',
+            'Durch einen Studenten-Segeltörn bin ich schließlich eher zufällig beim Segeln gelandet und mich hat die Naturverbundenheit in Verbindung mit einem Freiheitsgefühl sofort begeistert.',
+            'Gleichzeitig wusste ich aber auch: Ich möchte nicht dauerhaft darauf angewiesen sein, dass jemand anderes entscheidet, wann und wohin gesegelt wird und auch immer mit fremden Leuten. Also stand für mich fest, dass ich irgendwann selbst als Skipper unterwegs sein möchte.',
+            'Der nächste logische Schritt war deshalb der Sportküstenschifferschein, kurz SKS.',
+            'Dabei habe ich allerdings schnell gelernt, dass ein Segelschein nicht mit einem Autoführerschein vergleichbar ist. Nur weil man die Prüfung bestanden hat, bedeutet das noch lange nicht, dass man eine Yacht in jeder Situation sicher beherrscht.',
+            'Deshalb folgten weitere Skippertrainings und zusätzliche Qualifikationen – unter anderem der SRC-Funkschein für den UKW-Seefunk sowie der entsprechende Fachkundenachweis für pyrotechnische Seenotsignalmittel.',
+            'Vor allem die praktischen Trainings haben mir gezeigt, wie viel es beim Segeln auch nach den Prüfungen noch zu lernen gibt.',
+            'Mittlerweile plane und organisiere ich eigene Segeltörns und versuche, fast jedes Jahr neue Reviere kennenzulernen.',
+            'Wenn du meine Reise und Segelabenteuer verfolgen möchtest, schau gerne im [Bereich Reisen](/travel) vorbei.'
+          ]
+        },
+        {
+          heading: 'Warum mich Finanzen irgendwann genauso interessiert haben',
+          paragraphs: [
+            'Neben meinem Beruf und meinen Hobbys, zu denen neben dem Segeln unter anderem auch Skifahren und Tennis gehören, beschäftige ich mich seit einigen Jahren intensiver mit meinen eigenen Finanzen und dem Thema Geldanlage.',
+            'Der Grund dafür ist eigentlich ziemlich einfach: Ich möchte finanziell nicht ausschließlich von einem einzigen Einkommen abhängig sein.',
+            'Ein sicher geglaubter Arbeitsplatz ist nicht automatisch eine Garantie für die Zukunft. Krankheit, ein Unfall, wirtschaftliche Veränderungen, die Insolvenz eines Unternehmens oder technologische Entwicklungen wie künstliche Intelligenz können Berufswege schneller verändern, als man vielleicht erwartet.',
+            'Gleichzeitig hatte ich lange das Gefühl, dass finanzielle Bildung in unserer Gesellschaft eine erstaunlich kleine Rolle spielt.',
+            'Mir ging es anfangs selbst nicht anders. In der Schule habe ich viel gelernt, aber kaum etwas darüber, wie Vermögensaufbau funktioniert, was Aktien und ETFs eigentlich sind, wie man Risiken einschätzt oder warum es sinnvoll sein kann, sich möglichst früh mit seinen Finanzen auseinanderzusetzen. Gerade deshalb finde ich dieses Thema umso wichtiger.',
+            'Mein eigener Bildungsweg war dabei auch nicht unbedingt geradlinig. Ich habe auf der Hauptschule angefangen, mich anschließend Schritt für Schritt bis zum Abitur weitergearbeitet und schließlich studiert. Am Ende habe ich meinen Masterabschluss gemacht.',
+            'Während meines Studiums ergab sich sogar die Möglichkeit einer Doktorandenstelle in Brisbane (Australien). So spannend diese Chance auch war, habe ich mich letztendlich dagegen entschieden. Forschung finde ich interessant, aber ich habe gemerkt, dass ich lieber praktisch arbeite, Dinge entwickle und am Ende auch sehe, was daraus entsteht.',
+            'Auch meine Zeit und Erfahrungen in Australien haben meine Sicht auf Deutschland, Arbeit und finanzielle Absicherung verändert. Sie haben mich noch einmal darin bestärkt, mich intensiver mit Vermögensaufbau und langfristiger finanzieller Planung auseinanderzusetzen.',
+            'Dabei möchte ich auf dieser Webseite allerdings niemandem erzählen, wie er sein Geld anzulegen hat. Stattdessen möchte ich zeigen, wie ich selbst vorgehe, welche Entscheidungen ich treffe, welche Fehler ich gemacht habe und was ich daraus gelernt habe.',
+            'Denn auch ich habe klein angefangen.',
+            'Und genau deshalb weiß ich, dass der Einstieg manchmal komplizierter wirkt, als er eigentlich sein muss. Gleichzeitig merkt man mit der Zeit, welchen Unterschied es macht, früh anzufangen und konsequent dranzubleiben.',
+            'Während meines Studiums bin ich außerdem einem Börsenverein beigetreten. Rückblickend war das eine der besten Möglichkeiten, um tiefer in das Thema einzusteigen. Besonders wertvoll war für mich der Austausch mit anderen – von Studierenden, die selbst gerade erst angefangen hatten, bis hin zu Mitgliedern mit jahrelanger Erfahrung.',
+            'Dabei ging es nicht nur um Aktien oder Investments. Ich habe dort viele offene und herzliche Menschen kennengelernt, mit denen man ein gemeinsames Interesse teilen und gleichzeitig voneinander lernen konnte.',
+            'Gerade wenn man neu in diesem Bereich ist, kann ich deshalb nur empfehlen, sich mit anderen auszutauschen und unterschiedliche Sichtweisen kennenzulernen.',
+            'Wenn dich meine persönliche Herangehensweise an Investments interessiert oder du sehen möchtest, welche Trades und Entscheidungen ich selbst treffe, findest du mehr dazu im [Bereich Finanzen](/finance).'
+          ]
+        },
+        {
+          heading: 'Und dann wäre da noch meine wahrscheinlich stärkste und längste Leidenschaft …',
+          paragraphs: [
+            'Meine wahrscheinlich älteste Leidenschaft begleitet mich nämlich schon, seit ich ungefähr sieben Jahre alt bin: Videospiele.',
+            'Angefangen hat alles mit einer PlayStation 2, einem Game Boy und irgendwann einem ziemlich alten PC.',
+            'Was zunächst einfach nur Spielen war, entwickelte sich mit der Zeit immer mehr zu einem Interesse an der Technik dahinter. Irgendwann wollte ich nicht mehr nur wissen, welches Spiel auf meinem PC läuft, sondern warum es läuft.',
+            'Wie arbeitet eigentlich ein Prozessor? Was passiert im Arbeitsspeicher? Wie kommuniziert Software mit der Hardware? Und was passiert auf den unteren Ebenen bis hin zu Maschinenbefehlen und Assembler?',
+            'Je mehr ich darüber gelernt habe, desto größer wurde mein Interesse daran, meinen eigenen PC zusammenzustellen.',
+            'Und damit begann eine kleine Never-Ending-Story.',
+            'Aus einem relativ normalen PC mit klassischer Luftkühlung wurde irgendwann ein immer weiter optimiertes System. Neue Hardware, bessere Kühlung, RGB-Beleuchtung, Kabelmanagement, verschiedene Gehäusekonzepte – bis hin zu einem komplett Custom-Wasserkühlungs-PC.',
+            'Und wie das bei solchen Hobbys meistens ist, ist ein PC eigentlich nie wirklich „fertig"… Bei mir geht das schon 5 Jahre so…',
+            'Was ich aktuell spiele, welche Hardware ich verwende, findest du im [Bereich Gaming](/setup).'
+          ]
+        },
+        {
+          heading: 'Das bin also ich',
+          paragraphs: [
+            'Softwareentwicklung, Segeln, Reisen, Finanzen, Technik, Gaming – auf den ersten Blick vielleicht ziemlich unterschiedliche Themen.',
+            'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus, möchte verstehen, wie sie funktionieren, und versuche mich ständig weiterzuentwickeln.',
+            'Genau darum geht es auch auf dieser Webseite.',
+            'Wenn davon etwas für dich interessant, hilfreich oder einfach unterhaltsam ist, hat die Seite schon ihren Zweck erfüllt.'
+          ]
+        }
+      ],
       aerialEyebrow: 'Drohnen-Fotografie',
       aerialTitle: 'Eine Ansicht von oben',
       aerialLead:

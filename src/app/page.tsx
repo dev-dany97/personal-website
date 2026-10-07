@@ -18,15 +18,21 @@ interface HomeVideo {
   description: string;
 }
 
+interface AboutSection {
+  heading: string;
+  paragraphs: string[];
+}
+
 interface HomeContent {
   heroTitle1: string;
   heroTitle2: string;
   heroSubtitle: string;
   heroCta: string;
   aboutHeading: string;
-  aboutP1Template: string;
-  aboutP2: string;
-  aboutP3: string;
+  aboutIntro: string[];
+  aboutMoreLabel: string;
+  aboutLessLabel: string;
+  aboutSections: AboutSection[];
   aerialEyebrow: string;
   aerialTitle: string;
   aerialLead: string;
@@ -36,10 +42,28 @@ interface HomeContent {
 
 type HomeResponse = Record<'en' | 'de', HomeContent>;
 
+// Renders `[label](href)` markdown-style links within otherwise plain text.
+function renderWithLinks(text: string, keyPrefix: string) {
+  const parts = text.split(/\[([^\]]+)\]\(([^)]+)\)/);
+  return parts.map((part, i) => {
+    if (i % 3 === 1) {
+      const href = parts[i + 1];
+      return (
+        <Link key={`${keyPrefix}-${i}`} href={href}>
+          {part}
+        </Link>
+      );
+    }
+    if (i % 3 === 2) return null;
+    return part;
+  });
+}
+
 export default function Home() {
   const { i18n } = useTranslation();
   const lang = i18n.language === 'de' ? 'de' : 'en';
   const [data, setData] = useState<HomeResponse | null>(null);
+  const [aboutExpanded, setAboutExpanded] = useState(false);
 
   useEffect(() => {
     fetch('/api/home')
@@ -65,7 +89,7 @@ export default function Home() {
   }
 
   const c = data[lang];
-  const aboutP1 = c.aboutP1Template.replace('{age}', String(currentAge));
+  const aboutIntro = c.aboutIntro.map((p) => p.replace('{age}', String(currentAge)));
 
   return (
     <main className="legacy-home">
@@ -89,9 +113,31 @@ export default function Home() {
             </div>
             <div className="col-lg-8">
               <h2>{c.aboutHeading}</h2>
-              <p>{aboutP1}</p>
-              <p>{c.aboutP2}</p>
-              <p>{c.aboutP3}</p>
+              {aboutIntro.map((p, i) => (
+                <p key={`intro-${i}`}>{renderWithLinks(p, `intro-${i}`)}</p>
+              ))}
+
+              {aboutExpanded && (
+                <div className="legacy-about-more">
+                  {c.aboutSections.map((section, sIdx) => (
+                    <div key={section.heading} className="legacy-about-more-section">
+                      <h3>{section.heading}</h3>
+                      {section.paragraphs.map((p, pIdx) => (
+                        <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <button
+                type="button"
+                className="btn btn-brand-outline legacy-about-toggle"
+                onClick={() => setAboutExpanded((v) => !v)}
+                aria-expanded={aboutExpanded}
+              >
+                {aboutExpanded ? c.aboutLessLabel : c.aboutMoreLabel}
+              </button>
             </div>
           </div>
         </div>
