@@ -54,6 +54,7 @@ function seedPageContent(db: DatabaseSync) {
       aboutSections: [
         {
           heading: 'From hobby to profession and somehow back again',
+          image: '/images/projects/homeassistant-1.png',
           paragraphs: [
             "I've been working as a software developer for seven years now. But programming isn't just a job for me. In my free time, I also love tinkering with my own projects, trying out new technologies, or making everyday things a little bit smarter.",
             "That's resulted in everything from small software projects to smart home setups (like Home Assistant), electronics tinkering, or just things I wanted to try out of pure curiosity.",
@@ -62,6 +63,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: 'At some point, sailing came into the picture …',
+          image: '/images/travel/sailing/sailing1.jpg',
           paragraphs: [
             'As you can probably already tell from my profile picture, sailing has become one of my biggest passions alongside technology.',
             'It actually started a bit differently about five years ago: with a motorboat license.',
@@ -78,6 +80,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: 'Why finance eventually became just as interesting to me',
+          image: '/images/images/backgrounds/bg-financehead.jpg',
           paragraphs: [
             "Besides my job and my hobbies — which, alongside sailing, also include skiing and tennis — I've been digging deeper into my own finances and investing for a few years now.",
             "The reason is actually pretty simple: I don't want to be financially dependent on a single source of income.",
@@ -98,6 +101,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: 'And then there’s probably my strongest and longest-running passion …',
+          image: '/images/setup/Gaming_PC.jpg',
           paragraphs: [
             'My probably oldest passion has been with me since I was about seven years old: video games.',
             'It all started with a PlayStation 2, a Game Boy, and eventually a pretty old PC.',
@@ -112,6 +116,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: "So that's me",
+          image: '/images/profile.jpg',
           paragraphs: [
             'Software development, sailing, travel, finance, tech, gaming — at first glance, maybe pretty different topics.',
             "But to me, they all have something in common: I love trying things out, I want to understand how they work, and I'm always trying to keep growing.",
@@ -140,6 +145,7 @@ function seedPageContent(db: DatabaseSync) {
       aboutSections: [
         {
           heading: 'Vom Hobby zum Beruf und irgendwie wieder zurück',
+          image: '/images/projects/homeassistant-1.png',
           paragraphs: [
             'Seit mittlerweile sieben Jahren arbeite ich als Softwareentwickler. Das Programmieren ist für mich allerdings nicht nur ein Beruf. Auch in meiner Freizeit tüftle ich gerne an eigenen Projekten, probiere neue Technologien aus oder versuche, alltägliche Dinge ein kleines bisschen smarter zu machen.',
             'Dabei entstehen mal kleinere Softwareprojekte, mal Smart-Home-Lösungen (wie Home-Assistant), Elektronik-Basteleien oder einfach Dinge, die ich aus Interesse ausprobieren wollte.',
@@ -148,6 +154,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: 'Irgendwann kam das Segeln dazu …',
+          image: '/images/travel/sailing/sailing1.jpg',
           paragraphs: [
             'Wie du wahrscheinlich schon an meinem Profilbild erkennen kannst, gehört neben der Technik inzwischen auch das Segeln zu meinen größten Leidenschaften.',
             'Angefangen hat das Ganze vor ungefähr fünf Jahren allerdings etwas anders: mit einem Motorbootführerschein.',
@@ -164,6 +171,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: 'Warum mich Finanzen irgendwann genauso interessiert haben',
+          image: '/images/images/backgrounds/bg-financehead.jpg',
           paragraphs: [
             'Neben meinem Beruf und meinen Hobbys, zu denen neben dem Segeln unter anderem auch Skifahren und Tennis gehören, beschäftige ich mich seit einigen Jahren intensiver mit meinen eigenen Finanzen und dem Thema Geldanlage.',
             'Der Grund dafür ist eigentlich ziemlich einfach: Ich möchte finanziell nicht ausschließlich von einem einzigen Einkommen abhängig sein.',
@@ -184,6 +192,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: 'Und dann wäre da noch meine wahrscheinlich stärkste und längste Leidenschaft …',
+          image: '/images/setup/Gaming_PC.jpg',
           paragraphs: [
             'Meine wahrscheinlich älteste Leidenschaft begleitet mich nämlich schon, seit ich ungefähr sieben Jahre alt bin: Videospiele.',
             'Angefangen hat alles mit einer PlayStation 2, einem Game Boy und irgendwann einem ziemlich alten PC.',
@@ -198,6 +207,7 @@ function seedPageContent(db: DatabaseSync) {
         },
         {
           heading: 'Das bin also ich',
+          image: '/images/profile.jpg',
           paragraphs: [
             'Softwareentwicklung, Segeln, Reisen, Finanzen, Technik, Gaming – auf den ersten Blick vielleicht ziemlich unterschiedliche Themen.',
             'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus, möchte verstehen, wie sie funktionieren, und versuche mich ständig weiterzuentwickeln.',

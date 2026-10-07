@@ -464,6 +464,10 @@ html[data-theme='light'] .legacy-hero {
 }
 
 .legacy-about-more-section {
+  margin-top: 3rem;
+}
+
+.legacy-about-more-section:first-child {
   margin-top: 2rem;
 }
 
@@ -473,8 +477,27 @@ html[data-theme='light'] .legacy-hero {
   margin-bottom: 0.75rem;
 }
 
+.legacy-about-more-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
+}
+
 .legacy-about-toggle {
   margin-top: 0.5rem;
+}
+
+.legacy-about-link {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.legacy-about-link:hover {
+  color: var(--primary-strong);
+  opacity: 1;
 }
 
 .legacy-portrait {

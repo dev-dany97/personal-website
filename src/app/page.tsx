@@ -20,6 +20,7 @@ interface HomeVideo {
 
 interface AboutSection {
   heading: string;
+  image: string;
   paragraphs: string[];
 }
 
@@ -49,7 +50,7 @@ function renderWithLinks(text: string, keyPrefix: string) {
     if (i % 3 === 1) {
       const href = parts[i + 1];
       return (
-        <Link key={`${keyPrefix}-${i}`} href={href}>
+        <Link key={`${keyPrefix}-${i}`} href={href} className="legacy-about-link">
           {part}
         </Link>
       );
@@ -117,19 +118,6 @@ export default function Home() {
                 <p key={`intro-${i}`}>{renderWithLinks(p, `intro-${i}`)}</p>
               ))}
 
-              {aboutExpanded && (
-                <div className="legacy-about-more">
-                  {c.aboutSections.map((section, sIdx) => (
-                    <div key={section.heading} className="legacy-about-more-section">
-                      <h3>{section.heading}</h3>
-                      {section.paragraphs.map((p, pIdx) => (
-                        <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              )}
-
               <button
                 type="button"
                 className="btn btn-brand-outline legacy-about-toggle"
@@ -140,6 +128,24 @@ export default function Home() {
               </button>
             </div>
           </div>
+
+          {aboutExpanded && (
+            <div className="legacy-about-more">
+              {c.aboutSections.map((section, sIdx) => (
+                <div key={section.heading} className="row align-items-center g-5 legacy-about-more-section">
+                  <div className="col-lg-4 text-center">
+                    <img src={section.image} alt={section.heading} className="legacy-about-more-image" loading="lazy" />
+                  </div>
+                  <div className="col-lg-8">
+                    <h3>{section.heading}</h3>
+                    {section.paragraphs.map((p, pIdx) => (
+                      <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
