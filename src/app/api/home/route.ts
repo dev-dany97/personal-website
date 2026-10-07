@@ -13,6 +13,9 @@ export async function GET() {
 
   const shots = db.prepare('SELECT * FROM home_aerial_shots ORDER BY sort_order').all() as Array<{
     image: string;
+    hover_video: string | null;
+    location: string;
+    year: number | null;
     title_en: string;
     title_de: string;
     description_en: string;
@@ -21,6 +24,8 @@ export async function GET() {
 
   const videos = db.prepare('SELECT * FROM home_videos ORDER BY sort_order').all() as Array<{
     src: string;
+    location: string;
+    year: number | null;
     title_en: string;
     title_de: string;
     description_en: string;
@@ -30,11 +35,15 @@ export async function GET() {
   const en = JSON.parse(pageRow.data_en);
   const de = JSON.parse(pageRow.data_de);
 
-  en.aerialShots = shots.map((s) => ({ title: s.title_en, image: s.image, description: s.description_en }));
-  de.aerialShots = shots.map((s) => ({ title: s.title_de, image: s.image, description: s.description_de }));
+  en.aerialShots = shots.map((s) => ({
+    title: s.title_en, image: s.image, hoverVideo: s.hover_video, location: s.location, year: s.year, description: s.description_en
+  }));
+  de.aerialShots = shots.map((s) => ({
+    title: s.title_de, image: s.image, hoverVideo: s.hover_video, location: s.location, year: s.year, description: s.description_de
+  }));
 
-  en.videos = videos.map((v) => ({ src: v.src, title: v.title_en, description: v.description_en }));
-  de.videos = videos.map((v) => ({ src: v.src, title: v.title_de, description: v.description_de }));
+  en.videos = videos.map((v) => ({ src: v.src, title: v.title_en, location: v.location, year: v.year, description: v.description_en }));
+  de.videos = videos.map((v) => ({ src: v.src, title: v.title_de, location: v.location, year: v.year, description: v.description_de }));
 
   return NextResponse.json({ en, de });
 }

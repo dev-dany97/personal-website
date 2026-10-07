@@ -7,7 +7,7 @@ import { Footer } from '@/app/components/Footer';
 import { GithubIcon, ExternalLinkIcon } from '@/app/components/Icons';
 import { CodeEditorBackground } from '@/app/components/backgrounds/CodeEditorBackground';
 
-type ProjectStatus = 'completed' | 'in-progress';
+type ProjectStatus = 'completed' | 'active' | 'experimental';
 
 interface ProjectLink {
   label: string;
@@ -21,6 +21,7 @@ interface Project {
   image: string;
   images?: string[];
   status: ProjectStatus;
+  year: number | null;
   tags: string[];
   link?: ProjectLink;
 }
@@ -64,7 +65,7 @@ export default function Projects() {
 
   const projects = data ? data[lang].projects : [];
   const completedCount = projects.filter((p) => p.status === 'completed').length;
-  const inProgressCount = projects.filter((p) => p.status === 'in-progress').length;
+  const inProgressCount = projects.filter((p) => p.status === 'active').length;
   const filteredProjects = activeFilter === 'all' ? projects : projects.filter((p) => p.status === activeFilter);
   const gallery = selected ? selected.images ?? [selected.image] : [];
 
@@ -155,6 +156,7 @@ export default function Projects() {
                   <img src={project.image} alt={project.title} loading="lazy" />
                   <span className={`project-status project-status--${project.status}`}>
                     {c.statusLabel[project.status]}
+                    {project.year && <span className="project-status-year">{project.year}</span>}
                   </span>
                   {project.images && (
                     <span className="project-gallery-badge">{project.images.length} {c.photos}</span>
@@ -247,6 +249,7 @@ export default function Projects() {
             <div className="project-modal-body">
               <span className={`project-status project-status--${selected.status}`}>
                 {c.statusLabel[selected.status]}
+                {selected.year && <span className="project-status-year">{selected.year}</span>}
               </span>
               <h2>{selected.title}</h2>
               <div className="project-tags">

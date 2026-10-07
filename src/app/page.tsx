@@ -5,16 +5,22 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
+import { Reveal } from '@/app/components/Reveal';
 
 interface AerialShot {
   title: string;
   image: string;
+  hoverVideo: string | null;
+  location: string;
+  year: number | null;
   description: string;
 }
 
 interface HomeVideo {
   src: string;
   title: string;
+  location: string;
+  year: number | null;
   description: string;
 }
 
@@ -39,6 +45,7 @@ interface HomeContent {
   aerialLead: string;
   aerialShots: AerialShot[];
   videos: HomeVideo[];
+  stats: string[];
 }
 
 type HomeResponse = Record<'en' | 'de', HomeContent>;
@@ -58,6 +65,39 @@ function renderWithLinks(text: string, keyPrefix: string) {
     if (i % 3 === 2) return null;
     return part;
   });
+}
+
+function shotCaption(location: string, year: number | null) {
+  return `Shot on DJI Mavic 3 · ${location}${year ? ` · ${year}` : ''}`;
+}
+
+function AerialShotCard({ shot }: { shot: AerialShot }) {
+  const [hovering, setHovering] = useState(false);
+
+  return (
+    <div className="legacy-aerial-card" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
+      <div className="legacy-aerial-media">
+        <img src={shot.image} alt={shot.title} loading="lazy" />
+        {shot.hoverVideo && hovering && (
+          <video
+            className="legacy-aerial-hover-video"
+            src={shot.hoverVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        )}
+      </div>
+      <div className="legacy-aerial-card-body">
+        <h4>{shot.title}</h4>
+        <p className="legacy-aerial-caption">{shotCaption(shot.location, shot.year)}</p>
+        {shot.description.split('\n\n').map((paragraph, i) => (
+          <p key={i}>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default function Home() {
@@ -108,7 +148,7 @@ export default function Home() {
 
       <section id="about" className="legacy-about">
         <div className="container">
-          <div className="row align-items-center g-5">
+          <Reveal className="row align-items-center g-5">
             <div className="col-lg-4 text-center">
               <img src="/images/profile.jpg" alt="Daniel Mohles" className="legacy-portrait" />
             </div>
@@ -127,12 +167,12 @@ export default function Home() {
                 {aboutExpanded ? c.aboutLessLabel : c.aboutMoreLabel}
               </button>
             </div>
-          </div>
+          </Reveal>
 
           {aboutExpanded && (
             <div className="legacy-about-more">
               {c.aboutSections.map((section, sIdx) => (
-                <div
+                <Reveal
                   key={section.heading}
                   className={`row align-items-center g-5 legacy-about-more-section ${sIdx % 2 === 1 ? 'flex-row-reverse' : ''}`}
                 >
@@ -147,7 +187,7 @@ export default function Home() {
                       <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
                     ))}
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           )}
@@ -159,21 +199,17 @@ export default function Home() {
           <div className="text-center mb-5">
             <p className="legacy-eyebrow">{c.aerialEyebrow}</p>
             <h2>{c.aerialTitle}</h2>
-            <p className="legacy-aerial-lead">{c.aerialLead}</p>
+            {c.aerialLead.split('\n\n').map((paragraph, i) => (
+              <p key={i} className="legacy-aerial-lead">{paragraph}</p>
+            ))}
           </div>
 
           <div className="row g-4">
             {c.aerialShots.map((shot) => (
               <div key={shot.title} className="col-md-6">
-                <div className="legacy-aerial-card">
-                  <img src={shot.image} alt={shot.title} loading="lazy" />
-                  <div className="legacy-aerial-card-body">
-                    <h4>{shot.title}</h4>
-                    {shot.description.split('\n\n').map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
-                    ))}
-                  </div>
-                </div>
+                <Reveal>
+                  <AerialShotCard shot={shot} />
+                </Reveal>
               </div>
             ))}
           </div>
@@ -181,20 +217,34 @@ export default function Home() {
           <div className="row g-4 mt-1">
             {c.videos.map((video) => (
               <div key={video.src} className="col-12 col-lg-4">
-                <div className="legacy-aerial-card legacy-aerial-video">
+                <Reveal className="legacy-aerial-card legacy-aerial-video">
                   <video src={video.src} muted autoPlay playsInline loop preload="auto">
                     Your browser does not support the video tag.
                   </video>
                   <div className="legacy-aerial-card-body">
                     <h4>{video.title}</h4>
+                    <p className="legacy-aerial-caption">{shotCaption(video.location, video.year)}</p>
                     {video.description.split('\n\n').map((paragraph, i) => (
                       <p key={i}>{paragraph}</p>
                     ))}
                   </div>
-                </div>
+                </Reveal>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="legacy-stats">
+        <div className="container">
+          <Reveal className="legacy-stats-row">
+            {c.stats.map((stat, i) => (
+              <span key={stat} className="legacy-stats-item">
+                {i > 0 && <span className="legacy-stats-dot" aria-hidden="true">·</span>}
+                {stat}
+              </span>
+            ))}
+          </Reveal>
         </div>
       </section>
 

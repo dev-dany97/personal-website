@@ -41,8 +41,7 @@ export function Navbar({ currentPage }: NavbarProps) {
     { href: '/contact', label: t('nav.contact') },
   ];
 
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+  const setThemeTo = (nextTheme: 'dark' | 'light') => {
     setTheme(nextTheme);
     localStorage.setItem('theme', nextTheme);
     document.documentElement.setAttribute('data-theme', nextTheme);
@@ -110,14 +109,26 @@ export function Navbar({ currentPage }: NavbarProps) {
                 EN
               </button>
             </div>
-            <button
-              onClick={toggleTheme}
-              className="btn btn-sm btn-outline-light theme-button"
-              title={t('nav.toggleTheme')}
-              aria-label={t('nav.toggleTheme')}
-            >
-              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-            </button>
+            <div className="lang-toggle" role="group" aria-label={t('nav.toggleTheme')}>
+              <button
+                type="button"
+                className={`lang-toggle-option ${theme === 'light' ? 'active' : ''}`}
+                onClick={() => setThemeTo('light')}
+                aria-pressed={theme === 'light'}
+                title={t('nav.toggleTheme')}
+              >
+                <SunIcon />
+              </button>
+              <button
+                type="button"
+                className={`lang-toggle-option ${theme === 'dark' ? 'active' : ''}`}
+                onClick={() => setThemeTo('dark')}
+                aria-pressed={theme === 'dark'}
+                title={t('nav.toggleTheme')}
+              >
+                <MoonIcon />
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -194,6 +194,9 @@ html[data-theme='light'] .navbar-logo {
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: color 0.2s ease, background 0.2s ease;
 }
 
@@ -204,30 +207,6 @@ html[data-theme='light'] .navbar-logo {
 
 .lang-toggle-option:not(.active):hover {
   color: var(--text);
-}
-
-.theme-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2.5rem;
-  height: 2.5rem;
-  padding: 0 0.7rem !important;
-  border: 1px solid var(--card-border) !important;
-  border-radius: 999px !important;
-  color: var(--text-soft) !important;
-  background: var(--card-bg) !important;
-  font-weight: 600;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.theme-button:hover,
-.theme-button:focus-visible {
-  color: #fff !important;
-  background: var(--primary) !important;
-  border-color: var(--primary) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 18px -8px var(--primary-strong);
 }
 
 .legacy-navbar .container {
@@ -313,23 +292,30 @@ html[data-theme='light'] .navbar-logo {
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
-    transition: max-height 0.35s ease, opacity 0.25s ease, visibility 0s linear 0.35s;
+    transform: translateY(-6px);
+    transition: max-height 0.3s ease, opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.3s;
   }
 
   .legacy-navbar .navbar-collapse.show {
     max-height: 32rem;
     opacity: 1;
     visibility: visible;
-    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.28);
-    transition: max-height 0.35s ease, opacity 0.25s ease, visibility 0s linear 0s;
+    transform: translateY(0);
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 0 0 1.25rem 1.25rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+    transition: max-height 0.3s ease, opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0s;
   }
 
   .legacy-navbar .navbar-nav {
-    padding-top: 0.5rem;
+    padding: 0.5rem 1rem 0;
   }
 
   .legacy-navbar .nav-item {
     border-bottom: 1px solid var(--nav-border);
+    opacity: 0.9;
   }
 
   .legacy-navbar .nav-item:last-child {
@@ -337,14 +323,14 @@ html[data-theme='light'] .navbar-logo {
   }
 
   .legacy-navbar .nav-link {
-    padding: 0.9rem 0.15rem !important;
-    font-size: 1.05rem;
+    padding: 0.85rem 0.15rem !important;
+    font-size: 1.03rem;
   }
 
   .navbar-utility {
-    margin-top: 1rem;
+    margin: 0.75rem 1rem 0;
     padding-top: 1rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
     border-top: 1px solid var(--nav-border);
   }
 
@@ -353,7 +339,9 @@ html[data-theme='light'] .navbar-logo {
     position: fixed;
     inset: 0;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     animation: navbarScrimFade 0.25s ease;
   }
 }
@@ -472,6 +460,25 @@ html[data-theme='light'] .legacy-hero {
   background: var(--primary);
   color: #ffffff !important;
   transform: translateY(-1px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .legacy-about {
@@ -656,6 +663,40 @@ html[data-theme='light'] .legacy-hero {
   text-underline-offset: 2px;
 }
 
+.legacy-imprint-note {
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+
+.legacy-stats {
+  padding: 2.5rem 0;
+}
+
+.legacy-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.9rem;
+  text-align: center;
+}
+
+.legacy-stats-item {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.legacy-stats-dot {
+  color: var(--primary);
+  margin-right: 0.9rem;
+  opacity: 0.8;
+}
+
 footer {
   background: var(--footer-bg);
   color: var(--text-soft);
@@ -722,6 +763,16 @@ footer {
   height: 380px;
 }
 
+.legacy-aerial-media {
+  position: relative;
+}
+
+.legacy-aerial-hover-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .legacy-aerial-card-body {
   padding: 1.5rem;
 }
@@ -729,6 +780,13 @@ footer {
 .legacy-aerial-card-body h4 {
   font-weight: 600;
   margin-bottom: 0.6rem;
+}
+
+.legacy-aerial-caption {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin: -0.2rem 0 0.9rem;
 }
 
 .legacy-aerial-card-body p {
@@ -850,6 +908,13 @@ footer {
 
 .site-footer-bottom a:hover {
   color: var(--primary);
+}
+
+.site-footer-credit {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-size: 0.78rem;
+  opacity: 0.6;
 }
 
 .setup-component-grid,
@@ -1292,9 +1357,22 @@ footer {
   color: #ffffff;
 }
 
-.project-status--in-progress {
+.project-status--active {
   background: rgba(224, 169, 61, 0.9);
   color: #201200;
+}
+
+.project-status--experimental {
+  background: rgba(150, 120, 230, 0.85);
+  color: #ffffff;
+}
+
+.project-status-year {
+  margin-left: 0.4rem;
+  padding-left: 0.4rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  opacity: 0.9;
 }
 
 .project-gallery-badge {
@@ -2011,6 +2089,17 @@ footer {
   opacity: 0.55;
   mask-image: radial-gradient(ellipse 80% 90% at 50% 30%, #000 55%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 30%, #000 55%, transparent 100%);
+}
+
+@media (max-width: 576px) {
+  /* The hero is much shorter on phones, so the code animation sits right
+     behind the heading text instead of fading out around it — tone it
+     down instead of competing with the text. */
+  .bg-canvas--code {
+    opacity: 0.22;
+    mask-image: radial-gradient(ellipse 60% 70% at 50% 25%, #000 35%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 25%, #000 35%, transparent 100%);
+  }
 }
 
 .bg-canvas--globe {

@@ -126,9 +126,10 @@ function seedPageContent(db: DatabaseSync) {
         }
       ],
       aerialEyebrow: 'Drone Photography',
-      aerialTitle: 'A view from above',
+      aerialTitle: 'The World from a Different Perspective',
       aerialLead:
-        "I fly a DJI Mavic 3 to take photos of landscapes from a different angle. Here are some of my favorite shots around Regensburg — and the sunset that got me started."
+        "Sometimes all it takes is a change of perspective to discover something completely new...\nWith my DJI Mavic 3, I love capturing beautiful landscapes and moments that often stay hidden from the ground.\n\nBelow you'll find some of my favorite shots around Regensburg and the surrounding area.",
+      stats: ['7+ Years Coding', '5+ Years Sailing', '7+ Countries', '∞ Ideas']
     },
     {
       heroTitle1: 'Willkommen auf meiner',
@@ -217,9 +218,10 @@ function seedPageContent(db: DatabaseSync) {
         }
       ],
       aerialEyebrow: 'Drohnen-Fotografie',
-      aerialTitle: 'Eine Ansicht von oben',
+      aerialTitle: 'Die Welt aus einer anderen Perspektive',
       aerialLead:
-        'Ich fliege eine DJI Mavic 3, um Momente und Landschaften aus einer anderen Perspektive festzuhalten. Ein paar meiner liebsten Aufnahmen rund um Regensburg — und der Sonnenuntergang, mit dem alles begann.'
+        'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig neues zu entdecken...\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
+      stats: ['7+ Jahre Programmieren', '5+ Jahre Segeln', '7+ Länder', '∞ Ideen']
     }
   );
 
@@ -233,13 +235,14 @@ function seedPageContent(db: DatabaseSync) {
       filterAriaLabel: 'Filter projects by status',
       statTotal: 'Total Projects',
       statCompleted: 'Completed',
-      statInProgress: 'In Progress',
+      statInProgress: 'Active',
       filters: [
         { id: 'all', label: 'All' },
         { id: 'completed', label: 'Completed' },
-        { id: 'in-progress', label: 'In Progress' }
+        { id: 'active', label: 'Active' },
+        { id: 'experimental', label: 'Experimental' }
       ],
-      statusLabel: { completed: 'Completed', 'in-progress': 'In Progress' },
+      statusLabel: { completed: 'Completed', active: 'Active', experimental: 'Experimental' },
       photos: 'photos',
       viewDetails: 'View details',
       close: 'Close',
@@ -253,13 +256,14 @@ function seedPageContent(db: DatabaseSync) {
       filterAriaLabel: 'Projekte nach Status filtern',
       statTotal: 'Projekte gesamt',
       statCompleted: 'Abgeschlossen',
-      statInProgress: 'In Arbeit',
+      statInProgress: 'Aktiv',
       filters: [
         { id: 'all', label: 'Alle' },
         { id: 'completed', label: 'Abgeschlossen' },
-        { id: 'in-progress', label: 'In Arbeit' }
+        { id: 'active', label: 'Aktiv' },
+        { id: 'experimental', label: 'Experimentell' }
       ],
-      statusLabel: { completed: 'Abgeschlossen', 'in-progress': 'In Arbeit' },
+      statusLabel: { completed: 'Abgeschlossen', active: 'Aktiv', experimental: 'Experimentell' },
       photos: 'Fotos',
       viewDetails: 'Details ansehen',
       close: 'Schließen',
@@ -456,6 +460,8 @@ function seedHome(db: DatabaseSync) {
   const shots = [
     {
       image: '/images/projects/dji-photo-1.jpg',
+      location: 'Regensburg',
+      year: 2022,
       title_en: 'Regensburg Nord',
       title_de: 'Regensburg Nord',
       description_en:
@@ -465,6 +471,8 @@ function seedHome(db: DatabaseSync) {
     },
     {
       image: '/images/projects/dji-photo-2.jpg',
+      location: 'Lupburg',
+      year: null,
       title_en: 'Lupburg',
       title_de: 'Lupburg',
       description_en:
@@ -474,6 +482,8 @@ function seedHome(db: DatabaseSync) {
     },
     {
       image: '/images/projects/dji-photo-3.jpg',
+      location: 'Regensburg',
+      year: null,
       title_en: 'Regensburg Süd',
       title_de: 'Regensburg Süd',
       description_en:
@@ -483,6 +493,8 @@ function seedHome(db: DatabaseSync) {
     },
     {
       image: '/images/projects/dji-photo-4.jpg',
+      location: 'Parsberg',
+      year: null,
       title_en: 'Parsberg',
       title_de: 'Parsberg',
       description_en:
@@ -492,15 +504,20 @@ function seedHome(db: DatabaseSync) {
     },
     {
       image: '/images/projects/dji-photo-5.jpg',
+      location: 'Regensburg',
+      year: 2021,
+      hoverVideo: `${MEDIA_BASE_URL}/videos/winter2021-hover.mp4`,
       title_en: 'Winter 2021',
       title_de: 'Winter 2021',
       description_en:
-        'During a brief but intense cold snap in 2021, I wanted to capture this particular moment. This photo was taken on a walk through the snow-covered forest near Steinweg.\n\nFor a short while, the snow turned a familiar path into an almost perfectly still winter landscape. The snow-laden trees, the narrow trail, and the muted atmosphere made this moment feel special to me.\n\nPrecisely because days with snow like this aren’t a given in Regensburg, I wanted to hold onto this moment.',
+        'During a brief but intense cold snap in 2021, I wanted to capture this particular moment. This recording was taken on a walk through the snow-covered forest near Steinweg.\n\nFor a short while, the snow turned a familiar path into an almost perfectly still winter landscape. The snow-laden trees, the narrow trail, and the muted atmosphere made this moment feel special to me.\n\nPrecisely because days with snow like this aren’t a given in Regensburg, I wanted to hold onto this moment.',
       description_de:
-        'Während eines kurzen, aber kräftigen Wintereinbruchs im Jahr 2021 wollte ich diesen besonderen Moment festhalten. Bei einem Spaziergang durch den verschneiten Wald bei Steinweg entstand dieses Foto.\n\nFür kurze Zeit verwandelte der Schnee den vertrauten Weg in eine beinahe vollkommen ruhige Winterlandschaft. Die schneebedeckten Bäume, der schmale Weg und die gedämpfte Atmosphäre machten diesen Augenblick für mich zu etwas Besonderem.\n\nGerade weil solche ausgeprägten Wintertage in Regensburg nicht selbstverständlich sind, wollte ich diesen Moment in Erinnerung behalten.'
+        'Während eines kurzen, aber kräftigen Wintereinbruchs im Jahr 2021 wollte ich diesen besonderen Moment festhalten. Bei einem Spaziergang durch den verschneiten Wald bei Steinweg entstand diese Aufnahme.\n\nFür kurze Zeit verwandelte der Schnee den vertrauten Weg in eine beinahe vollkommen ruhige Winterlandschaft. Die schneebedeckten Bäume, der schmale Weg und die gedämpfte Atmosphäre machten diesen Augenblick für mich zu etwas Besonderem.\n\nGerade weil solche ausgeprägten Wintertage in Regensburg nicht selbstverständlich sind, wollte ich diesen Moment in Erinnerung behalten.'
     },
     {
       image: '/images/projects/dji-photo-6.jpg',
+      location: 'Regensburg',
+      year: null,
       title_en: 'Winter Dusk over the Danube',
       title_de: 'Winterliche Dämmerung über der Donau',
       description_en:
@@ -510,6 +527,8 @@ function seedHome(db: DatabaseSync) {
     },
     {
       image: '/images/projects/dji-photo-7.jpg',
+      location: 'Regensburg',
+      year: null,
       title_en: 'The Golden Hour over the Land',
       title_de: 'Die goldenen Stunden über dem Land',
       description_en:
@@ -519,6 +538,8 @@ function seedHome(db: DatabaseSync) {
     },
     {
       image: '/images/projects/dji-photo-8.jpg',
+      location: 'Regensburg',
+      year: null,
       title_en: 'Regensburg Dult',
       title_de: 'Regensburg Dult',
       description_en:
@@ -529,13 +550,17 @@ function seedHome(db: DatabaseSync) {
   ];
 
   const insertShot = db.prepare(
-    'INSERT INTO home_aerial_shots (sort_order, image, title_en, title_de, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?)'
+    'INSERT INTO home_aerial_shots (sort_order, image, hover_video, location, year, title_en, title_de, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
   );
-  shots.forEach((s, i) => insertShot.run(i, s.image, s.title_en, s.title_de, s.description_en, s.description_de));
+  shots.forEach((s: typeof shots[number] & { hoverVideo?: string }, i) =>
+    insertShot.run(i, s.image, s.hoverVideo ?? null, s.location, s.year ?? null, s.title_en, s.title_de, s.description_en, s.description_de)
+  );
 
   const videos = [
     {
       src: `${MEDIA_BASE_URL}/videos/sunset-intro.mp4`,
+      location: 'Lupburg',
+      year: null,
       title_en: 'Lupburg 360° at sunset',
       title_de: 'Lupburg 360° bei Sonnenuntergang',
       description_en:
@@ -545,6 +570,8 @@ function seedHome(db: DatabaseSync) {
     },
     {
       src: `${MEDIA_BASE_URL}/videos/winter-intro.mp4`,
+      location: 'Regensburg',
+      year: null,
       title_en: 'Winter over Regensburg',
       title_de: 'Winter über Regensburg',
       description_en:
@@ -554,6 +581,8 @@ function seedHome(db: DatabaseSync) {
     },
     {
       src: `${MEDIA_BASE_URL}/videos/silvester-intro.mp4`,
+      location: 'Regensburg',
+      year: null,
       title_en: "New Year's Eve in Regensburg",
       title_de: 'Silvester in Regensburg',
       description_en:
@@ -564,9 +593,11 @@ function seedHome(db: DatabaseSync) {
   ];
 
   const insertVideo = db.prepare(
-    'INSERT INTO home_videos (sort_order, src, title_en, title_de, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?)'
+    'INSERT INTO home_videos (sort_order, src, location, year, title_en, title_de, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
   );
-  videos.forEach((v, i) => insertVideo.run(i, v.src, v.title_en, v.title_de, v.description_en, v.description_de));
+  videos.forEach((v, i) =>
+    insertVideo.run(i, v.src, v.location, v.year ?? null, v.title_en, v.title_de, v.description_en, v.description_de)
+  );
 }
 
 function seedProjects(db: DatabaseSync) {
@@ -576,6 +607,7 @@ function seedProjects(db: DatabaseSync) {
       image: '/images/projects/gpstracker.png',
       images: null as string[] | null,
       status: 'completed',
+      year: null,
       title_en: 'Bike Tracker',
       title_de: 'Bike Tracker',
       description_en:
@@ -593,6 +625,7 @@ function seedProjects(db: DatabaseSync) {
       image: '/images/projects/magic-mirror.jpg',
       images: null,
       status: 'completed',
+      year: null,
       title_en: 'Magic Mirror',
       title_de: 'Magic Mirror',
       description_en: 'A big, flexible project with a lot of possibilities. I use it to see important dates, events and news, and to start my day with a nice quote.',
@@ -608,6 +641,7 @@ function seedProjects(db: DatabaseSync) {
       image: '/images/projects/pihole.png',
       images: null,
       status: 'completed',
+      year: null,
       title_en: 'Pi Hole - Ad Blocker',
       title_de: 'Pi-hole - Werbeblocker',
       description_en: 'Pi-hole adds an extra layer of security to my home network — it blocks ads and trackers for every device on the network. It runs on a Raspberry Pi 3.',
@@ -628,6 +662,7 @@ function seedProjects(db: DatabaseSync) {
         '/images/projects/homeassistant-4.jpg'
       ],
       status: 'completed',
+      year: null,
       title_en: 'HomeAssistant',
       title_de: 'HomeAssistant',
       description_en: 'Home Assistant is an open-source platform that lets you build your own smart home system by connecting and automating different devices. Mine runs on a Raspberry Pi 4.',
@@ -643,6 +678,7 @@ function seedProjects(db: DatabaseSync) {
       image: '/images/projects/website.png',
       images: null,
       status: 'completed',
+      year: null,
       title_en: 'Own Website',
       title_de: 'Eigene Webseite',
       description_en: 'This website. Built with Next.js and Bootstrap, and hosted on AWS.',
@@ -657,7 +693,8 @@ function seedProjects(db: DatabaseSync) {
       id: 'crypto-trading-bot',
       image: '/images/projects/cryptotrading-bot.png',
       images: null,
-      status: 'in-progress',
+      status: 'active',
+      year: null,
       title_en: 'Crypto Trading Bot',
       title_de: 'Crypto Trading Bot',
       description_en: 'This bot watches the price of a few cryptocurrencies and buys or sells automatically when the price is low or high.',
@@ -672,7 +709,8 @@ function seedProjects(db: DatabaseSync) {
       id: 'radar-recognition',
       image: '/images/projects/radar.png',
       images: null,
-      status: 'in-progress',
+      status: 'active',
+      year: null,
       title_en: 'Radar Recognition',
       title_de: 'Radar-Erkennung',
       description_en: 'This project looks at object recognition and what you could automate with it — like opening a garage door automatically when it detects something.',
@@ -687,7 +725,8 @@ function seedProjects(db: DatabaseSync) {
       id: 'water-quality',
       image: '/images/projects/waterqualitysystem.png',
       images: null,
-      status: 'in-progress',
+      status: 'active',
+      year: null,
       title_en: 'Water Quality Testing System',
       title_de: 'Wasserqualitäts-Testsystem',
       description_en: "If you have an aquarium or a pond with fish or other animals in it, you're responsible for them. A lot of people don't really know how good or bad their water quality is. This system measures the important values all the time and shows them to you.",
@@ -701,17 +740,18 @@ function seedProjects(db: DatabaseSync) {
   ];
 
   const insert = db.prepare(`
-    INSERT INTO projects (id, sort_order, image, images, status, title_en, title_de, description_en, description_de, tags_en, tags_de, link_label_en, link_label_de, link_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO projects (id, sort_order, image, images, status, year, title_en, title_de, description_en, description_de, tags_en, tags_de, link_label_en, link_label_de, link_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
-  projects.forEach((p, i) => {
+  projects.forEach((p: typeof projects[number] & { year?: number | null }, i) => {
     insert.run(
       p.id,
       i,
       p.image,
       p.images ? JSON.stringify(p.images) : null,
       p.status,
+      p.year ?? null,
       p.title_en,
       p.title_de,
       p.description_en,

@@ -44,6 +44,10 @@ export function Footer() {
             <Link href="/datenschutz">Datenschutz</Link>
           </div>
         </div>
+
+        <p className="site-footer-credit">
+          {t('footer.builtBy')} &middot; {t('footer.stack')}
+        </p>
       </div>
     </footer>
   );
