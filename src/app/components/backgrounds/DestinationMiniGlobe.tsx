@@ -62,13 +62,25 @@ function easeInOutCubic(t: number) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
-const TRANSITION_DURATION = 1.3;
+// shortest-path angle interpolation so the globe never spins the "long way round"
+function lerpAngle(a: number, b: number, factor: number) {
+  let diff = ((b - a + Math.PI) % (Math.PI * 2)) - Math.PI;
+  if (diff < -Math.PI) diff += Math.PI * 2;
+  return a + diff * factor;
+}
+
+function facingRotation(vec: Vec3) {
+  return Math.atan2(-vec.x, vec.z);
+}
+
+const TRANSITION_DURATION = 1.6;
 
 export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
   const stateRef = useRef({
     active: countryCode,
     prev: countryCode,
-    transitionStart: null as number | null
+    transitionStart: null as number | null,
+    rotation: facingRotation(toVector3(COUNTRY_COORDS[countryCode]?.lat ?? 0, COUNTRY_COORDS[countryCode]?.lon ?? 0))
   });
 
   useEffect(() => {
@@ -92,7 +104,11 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
     const cx = width / 2;
     const cy = height / 2;
     const radius = Math.min(width, height) * 0.42;
-    const rotation = t * 0.1;
+
+    const activeTarget = COUNTRY_COORDS[st.active] ?? HOME;
+    const targetRotation = facingRotation(toVector3(activeTarget.lat, activeTarget.lon));
+    st.rotation = lerpAngle(st.rotation, targetRotation, 0.035);
+    const rotation = st.rotation;
     const cosR = Math.cos(rotation);
     const sinR = Math.sin(rotation);
 
@@ -166,26 +182,57 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
     if (progress < 1 && st.prev !== st.active) {
       const prevPlace = COUNTRY_COORDS[st.prev] ?? HOME;
       const prevVec = toVector3(prevPlace.lat, prevPlace.lon);
+      const fade = Math.sin(Math.PI * progress);
+
+      // short fading trail behind the plane
+      for (let i = 1; i <= 4; i++) {
+        const trailT = Math.max(0, eased - i * 0.035);
+        const trailVec = slerp(prevVec, activeVec, trailT);
+        const tp = project(trailVec);
+        if (tp.z <= -0.05) continue;
+        ctx.fillStyle = `rgba(255, 255, 255, ${fade * (0.22 - i * 0.045)})`;
+        ctx.beginPath();
+        ctx.arc(tp.sx, tp.sy, Math.max(0.4, 1.4 - i * 0.25), 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       const planeVec = slerp(prevVec, activeVec, eased);
       const planeAheadVec = slerp(prevVec, activeVec, Math.min(1, eased + 0.02));
       const p = project(planeVec);
       const ahead = project(planeAheadVec);
 
       if (p.z > -0.05) {
-        const fade = Math.sin(Math.PI * progress);
         const angle = Math.atan2(ahead.sy - p.sy, ahead.sx - p.sx);
+        const bob = Math.sin(t * 14) * 0.6;
 
         ctx.save();
-        ctx.translate(p.sx, p.sy);
+        ctx.translate(p.sx, p.sy + bob);
         ctx.rotate(angle);
-        ctx.fillStyle = `rgba(255, 255, 255, ${0.85 * fade})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${0.9 * fade})`;
+        ctx.strokeStyle = `rgba(127, 231, 214, ${0.6 * fade})`;
+        ctx.lineWidth = 0.6;
+
+        // fuselage
         ctx.beginPath();
-        ctx.moveTo(5, 0);
-        ctx.lineTo(-4, 3);
-        ctx.lineTo(-2, 0);
-        ctx.lineTo(-4, -3);
+        ctx.moveTo(6, 0);
+        ctx.lineTo(-5, 2.2);
+        ctx.lineTo(-2.5, 0);
+        ctx.lineTo(-5, -2.2);
         ctx.closePath();
         ctx.fill();
+
+        // wings (subtle flutter)
+        const wingSpan = 4.5 + Math.sin(t * 16) * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(0.5, 0);
+        ctx.lineTo(-1, wingSpan);
+        ctx.lineTo(-2, 0.5);
+        ctx.lineTo(-2, -0.5);
+        ctx.lineTo(-1, -wingSpan);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
         ctx.restore();
       }
     }

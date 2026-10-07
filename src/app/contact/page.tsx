@@ -5,6 +5,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
+import Link from 'next/link';
 import { PigeonBackground } from '@/app/components/backgrounds/PigeonBackground';
 import { socialLinks } from '@/app/components/Icons';
 
@@ -124,28 +125,24 @@ export default function Contact() {
               <div className="contact-profile-body">
                 <h3 className="contact-profile-name">Daniel Mohles</h3>
                 <p className="contact-profile-tagline">{c.professionalTitle}</p>
-
-                <div className="contact-social">
-                  {socialLinks
-                    .filter((link) => CONTACT_SOCIAL_LABELS.includes(link.label))
-                    .map(({ label, href, Icon }) => (
-                      <a
-                        key={label}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={label}
-                        className="social-icon-btn"
-                      >
-                        <Icon />
-                      </a>
-                    ))}
-                </div>
               </div>
             </aside>
 
             <div className="contact-form-card">
               <h3>{c.sendMessage}</h3>
+              <p className="contact-social-note">
+                {lang === 'de' ? 'Du erreichst mich auch über ' : 'You can also reach me via '}
+                {socialLinks
+                  .filter((link) => CONTACT_SOCIAL_LABELS.includes(link.label))
+                  .map((link, i, arr) => (
+                    <span key={link.label}>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.label}
+                      </a>
+                      {i < arr.length - 1 ? (lang === 'de' ? ' oder ' : ' or ') : '.'}
+                    </span>
+                  ))}
+              </p>
 
               {state.succeeded ? (
                 <p className="contact-form-note contact-form-note--success">{c.successMessage}</p>
@@ -182,6 +179,17 @@ export default function Contact() {
                       errors={state.errors}
                     />
                   </div>
+
+                  <label className="contact-privacy-check">
+                    <input type="checkbox" name="privacyConsent" required />
+                    <span>
+                      {lang === 'de' ? 'Ich habe die ' : 'I have read and accept the '}
+                      <Link href="/datenschutz">
+                        {lang === 'de' ? 'Datenschutzerklärung' : 'privacy policy'}
+                      </Link>
+                      {lang === 'de' ? ' gelesen und akzeptiere sie.' : '.'}
+                    </span>
+                  </label>
 
                   <ValidationError className="contact-form-note contact-form-note--error" errors={state.errors} />
 

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { Reveal } from '@/app/components/Reveal';
-import { Code2, ShipWheel, Globe, Lightbulb, type LucideIcon } from 'lucide-react';
+import { Code2, ShipWheel, Map, Lightbulb, type LucideIcon } from 'lucide-react';
 
 interface AerialShot {
   title: string;
@@ -40,7 +40,7 @@ interface HomeStat {
 const STAT_ICONS: Record<HomeStat['icon'], LucideIcon> = {
   code: Code2,
   sailing: ShipWheel,
-  globe: Globe,
+  globe: Map,
   idea: Lightbulb
 };
 
@@ -188,7 +188,7 @@ export default function Home() {
               const Icon = STAT_ICONS[stat.icon];
               return (
                 <div key={stat.label} className="legacy-stats-card">
-                  <span className="legacy-stats-icon"><Icon size={20} strokeWidth={1.8} /></span>
+                  <span className="legacy-stats-icon"><Icon size={16} strokeWidth={1.8} /></span>
                   <strong>{stat.value}</strong>
                   <span className="legacy-stats-label">{stat.label}</span>
                 </div>
@@ -231,13 +231,11 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="row g-4">
+          <div className="legacy-aerial-grid">
             {c.aerialShots.map((shot) => (
-              <div key={shot.title} className="col-md-6">
-                <Reveal>
-                  <AerialShotCard shot={shot} />
-                </Reveal>
-              </div>
+              <Reveal key={shot.title}>
+                <AerialShotCard shot={shot} />
+              </Reveal>
             ))}
           </div>
 

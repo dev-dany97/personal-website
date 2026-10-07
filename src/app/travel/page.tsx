@@ -204,14 +204,15 @@ export default function Travel() {
           >
             &times;
           </button>
-          <Image
-            src={lightboxImage.src}
-            alt={lightboxImage.alt}
-            width={1200}
-            height={900}
-            className="travel-lightbox-image"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="travel-lightbox-polaroid" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={lightboxImage.src}
+              alt={lightboxImage.alt}
+              width={1200}
+              height={900}
+              className="travel-lightbox-image"
+            />
+          </div>
         </div>
       )}
 
