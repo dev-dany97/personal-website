@@ -738,6 +738,10 @@ footer {
   margin: 0;
 }
 
+.legacy-aerial-card-body p + p {
+  margin-top: 0.9rem;
+}
+
 
 .site-footer {
   position: relative;

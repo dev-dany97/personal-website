@@ -169,7 +169,9 @@ export default function Home() {
                   <img src={shot.image} alt={shot.title} loading="lazy" />
                   <div className="legacy-aerial-card-body">
                     <h4>{shot.title}</h4>
-                    <p>{shot.description}</p>
+                    {shot.description.split('\n\n').map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
                   </div>
                 </div>
               </div>

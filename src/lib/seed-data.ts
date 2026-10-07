@@ -461,64 +461,72 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Regensburg Nord',
       title_de: 'Regensburg Nord',
       description_en:
-        'A black-and-white photo of the countryside near Regensburg. Small villages sit between gentle hills, with clouds moving slowly overhead.',
+        "This photo was taken in 2022 on the Winzerer Höhen in the north of Regensburg. From up here, the view opens out over the city's northern outskirts toward Adlersberg and Tremmelhauserhöhe.\n\nBetween fields, meadows, and small villages, plenty of farmland and farmsteads still shape this area today. That contrast with the city center, just a few kilometers away, shows a different side of Regensburg: quiet, spacious, and surprisingly close to nature.",
       description_de:
-        'Eine bezaubernde Landschaft entfaltet sich in einem Graustufenfoto. Verstreute Dörfer erzählen einzelne Geschichten inmitten der ruhigen Umarmung der Natur, während sanfte Hügel im Einklang mit den Wolken darüber auf- und absteigen.'
+        'Dieses Foto entstand 2022 auf den Winzerer Höhen im Norden Regensburgs. Von hier aus öffnet sich der Blick über die nördlichen Ausläufer der Stadt in Richtung Adlersberg und Tremmelhauserhöhe.\n\nZwischen Feldern, Wiesen und kleinen Ortschaften liegen noch heute zahlreiche landwirtschaftlich geprägte Flächen und Höfe. Gerade dieser Kontrast zur nur wenige Kilometer entfernten Innenstadt zeigt eine andere Seite Regensburgs: ruhig, weitläufig und überraschend naturverbunden.'
     },
     {
       image: '/images/projects/dji-photo-2.jpg',
       title_en: 'Lupburg',
       title_de: 'Lupburg',
       description_en:
-        "A quiet village surrounded by untouched nature. In the distance you can see wind turbines — a sign of the region's move toward clean energy.",
+        "Lupburg is a small market town in the Upper Palatinate Jura, not far from Parsberg. With around 2,500 residents, it's surrounded by a wide landscape of forests, meadows, and fields.\n\nWhat I love about this photo is how closely the village and nature are woven together here. At the same time, the tall wind turbines on the horizon shape the modern landscape and stand as a symbol of the shift toward renewable energy.\n\nFor me, Lupburg is one of the most beautiful and lovable places in this area — quiet, rural, and with exactly the charm I associate with the Upper Palatinate.",
       description_de:
-        'Ein ruhiges Dorf, eingerahmt von unberührter Natur. In der Ferne stehen hoch aufragende Windräder als Symbol für das Engagement der Region für nachhaltige Energie.'
+        'Lupburg ist eine kleine Marktgemeinde im Oberpfälzer Jura, unweit von Parsberg. Mit seinen rund 2.500 Einwohnern ist der Ort von einer weitläufigen Landschaft aus Wäldern, Wiesen und Feldern umgeben.\n\nDas Foto zeigt für mich besonders schön, wie eng Dorf und Natur hier miteinander verbunden sind. Gleichzeitig prägen die hoch aufragenden Windräder am Horizont das moderne Landschaftsbild und stehen sinnbildlich für den Wandel hin zu erneuerbaren Energien.\n\nLupburg gehört für mich zu den schönsten und liebenswertesten Orten in dieser Gegend – ruhig, ländlich und mit genau dem Charme, den ich mit der Oberpfalz verbinde.'
     },
     {
       image: '/images/projects/dji-photo-3.jpg',
       title_en: 'Regensburg Süd',
       title_de: 'Regensburg Süd',
       description_en:
-        'The streets and houses form a neat pattern, while an open field lined with trees marks the edge between the city and the countryside.',
+        "Looking south over Regensburg, it becomes clear how much the city has grown and developed over the past few decades.\n\nIn the background lies Burgweinting-Harting, among other areas — today one of Regensburg's larger districts. Where fields and small settlements once shaped the landscape, residential areas, commercial zones, and transport infrastructure now meet the still-expansive countryside surrounding the city.\n\nFrom the air, this transition between city and nature becomes especially clear.",
       description_de:
-        'Die geordnete Anordnung der Häuser bildet ein feines Netz aus Straßen, während ein offenes, von Bäumen gesäumtes Feld eine natürliche Grenze zwischen Stadt und Land markiert.'
+        'Richtet man den Blick in den Süden Regensburgs, wird deutlich, wie stark sich die Stadt über die vergangenen Jahrzehnte entwickelt und ausgedehnt hat.\n\nIm Hintergrund erstreckt sich unter anderem Burgweinting-Harting, heute einer der größeren Stadtbezirke Regensburgs. Wo früher vor allem Felder und kleinere Siedlungen das Landschaftsbild bestimmten, treffen heute Wohngebiete, Gewerbeflächen und Verkehrsinfrastruktur unmittelbar auf die noch immer weitläufige Landschaft rund um die Stadt.\n\nGerade aus der Luft wird dieser Übergang zwischen Stadt und Natur besonders deutlich.'
     },
     {
       image: '/images/projects/dji-photo-4.jpg',
       title_en: 'Parsberg',
       title_de: 'Parsberg',
-      description_en: 'A small town sits right next to the forest — a simple example of people and nature sharing the same space.',
+      description_en:
+        'Parsberg sits nestled in the hilly landscape of the Upper Palatinate Jura, blending history, nature, and the life of a modern small town in a special way.\n\nParsberg Castle shapes the townscape from far away. Towering above the rooftops, it’s a reminder of the town’s long history and forms a striking contrast to the surrounding residential areas, fields, and forests.\n\nFrom the air, it’s especially clear how compactly Parsberg sits within the landscape — a small town surrounded by plenty of nature and the countryside typical of the Upper Palatinate.',
       description_de:
-        'Eine kleine Stadt fügt sich nahtlos in ihre bewaldete Umgebung ein — ein stilles Beispiel dafür, wie menschliche Siedlungen mit der Schönheit der Natur koexistieren.'
+        'Parsberg liegt eingebettet in die hügelige Landschaft des Oberpfälzer Jura und verbindet auf besondere Weise Geschichte, Natur und das Leben einer modernen Kleinstadt.\n\nSchon von Weitem prägt die Burg Parsberg das Stadtbild. Hoch über den Dächern erinnert sie an die lange Geschichte des Ortes und bildet einen markanten Kontrast zu den umliegenden Wohngebieten, Feldern und Wäldern.\n\nAus der Luft zeigt sich besonders schön, wie kompakt Parsberg in die Landschaft eingebettet ist – eine kleine Stadt, umgeben von viel Natur und typisch oberpfälzischer Landschaft.'
     },
     {
       image: '/images/projects/dji-photo-5.jpg',
-      title_en: 'Winter Trail',
-      title_de: 'Winter Trail',
-      description_en: 'A quiet path disappears into a snow-covered forest. Footprints are the only sign that someone has been here.',
+      title_en: 'Winter 2021',
+      title_de: 'Winter 2021',
+      description_en:
+        'During a brief but intense cold snap in 2021, I wanted to capture this particular moment. This photo was taken on a walk through the snow-covered forest near Steinweg.\n\nFor a short while, the snow turned a familiar path into an almost perfectly still winter landscape. The snow-laden trees, the narrow trail, and the muted atmosphere made this moment feel special to me.\n\nPrecisely because days with snow like this aren’t a given in Regensburg, I wanted to hold onto this moment.',
       description_de:
-        'Ein stiller Pfad verschwindet in einem verschneiten Wald, Fußspuren sind die einzige Spur von Leben in den verstummten Winterwäldern.'
+        'Während eines kurzen, aber kräftigen Wintereinbruchs im Jahr 2021 wollte ich diesen besonderen Moment festhalten. Bei einem Spaziergang durch den verschneiten Wald bei Steinweg entstand dieses Foto.\n\nFür kurze Zeit verwandelte der Schnee den vertrauten Weg in eine beinahe vollkommen ruhige Winterlandschaft. Die schneebedeckten Bäume, der schmale Weg und die gedämpfte Atmosphäre machten diesen Augenblick für mich zu etwas Besonderem.\n\nGerade weil solche ausgeprägten Wintertage in Regensburg nicht selbstverständlich sind, wollte ich diesen Moment in Erinnerung behalten.'
     },
     {
       image: '/images/projects/dji-photo-6.jpg',
       title_en: 'Winter Dusk over the Danube',
       title_de: 'Winterliche Dämmerung über der Donau',
-      description_en: 'The Danube winds past snow-covered fields as the light fades on a cold winter evening.',
-      description_de: 'Die Donau schlängelt sich an schneebedeckten Feldern vorbei, während das letzte Licht eines kalten Winterabends über den Hügeln verblasst.'
+      description_en:
+        'Especially during the cold winter months, the landscape around Regensburg shows a completely different side of itself. When the surrounding fields are covered in snow and the sun slowly sets in the west, a very particular light settles over the Danube and its surroundings.\n\nThe last warm colors of the day meet the cool blues and whites of the winter landscape. For a brief moment, a mood emerges in which the otherwise lively surroundings feel almost completely still.',
+      description_de:
+        'Besonders in den kalten Wintermonaten zeigt sich die Landschaft rund um Regensburg von einer ganz anderen Seite. Wenn die umliegenden Felder von Schnee bedeckt sind und die Sonne im Westen langsam untergeht, legt sich ein ganz besonderes Licht über die Donau und ihre Umgebung.\n\nDie letzten warmen Farben des Tages treffen dabei auf die kühlen Blau- und Weißtöne der Winterlandschaft. Für einen kurzen Moment entsteht eine Stimmung, in der die sonst so lebendige Umgebung beinahe vollkommen ruhig wirkt.'
     },
     {
       image: '/images/projects/dji-photo-7.jpg',
-      title_en: 'Golden Hour over the Countryside',
-      title_de: 'Goldene Stunde über dem Land',
-      description_en: 'Sunlight breaks through the clouds over the farmland, lighting up the villages and fields below.',
-      description_de: 'Sonnenlicht bricht durch die Wolken über sanft hügeligem Ackerland und taucht die Dörfer und Felder darunter in warme Strahlen.'
+      title_en: 'The Golden Hour over the Land',
+      title_de: 'Die goldenen Stunden über dem Land',
+      description_en:
+        "Watching a sunrise or sunset never stops fascinating me. Seeing how the light slowly changes and bathes the landscape in warm gold, orange, and red tones for just a few minutes is, to me, one of the most beautiful moments of a day.\n\nThat's why I wanted to capture this sunset from the air. What impressed me most was how the last warm rays of sunlight broke through gaps in the cloud cover, casting cones of light onto the fields below.\n\nFrom the drone's perspective, you can really see just how far this particular light reaches across the landscape.",
+      description_de:
+        'Es fasziniert mich immer wieder, einen Sonnenauf- oder Sonnenuntergang zu beobachten. Zu sehen, wie sich das Licht langsam verändert und die Landschaft für wenige Minuten in warme Gold-, Orange- und Rottöne taucht, gehört für mich zu den schönsten Momenten eines Tages.\n\nDiesen Sonnenuntergang wollte ich deshalb aus der Luft festhalten. Besonders beeindruckend fand ich, wie die letzten warmen Sonnenstrahlen durch einzelne Öffnungen in der Wolkendecke brechen und wie Lichtkegel auf die darunterliegenden Felder fallen.\n\nAus der Perspektive der Drohne wird erst richtig sichtbar, wie weit dieses besondere Licht über die Landschaft reicht.'
     },
     {
       image: '/images/projects/dji-photo-8.jpg',
-      title_en: 'Regensburg Altstadt',
-      title_de: 'Regensburg Altstadt',
-      description_en: "Regensburg's old town, with the twin towers of the cathedral, next to the Danube and a lively riverside fair.",
-      description_de: 'Die historische Altstadt von Regensburg, gekrönt von den beiden Domtürmen, eingerahmt von der Donau und einem lebendigen Fest am Flussufer.'
+      title_en: 'Regensburg Dult',
+      title_de: 'Regensburg Dult',
+      description_en:
+        "Twice a year, the Regensburg Dult is one of the highlights of city life. With centuries of tradition behind it, it's far more than just a fun fair, and it's deeply tied to Regensburg and Stadtamhof.\n\nIts history goes back to the Middle Ages. Over the centuries, the markets and festivities were held in different parts of the city before the Dult finally found its current home at Dultplatz in Stadtamhof.\n\nOne of its most visible landmarks is the Ferris wheel. From its gondolas, you get an extraordinary view over the rooftops of Stadtamhof, the Danube, and Regensburg's historic old town with its many towers.\n\nFrom the air, it's especially striking to see how this colorful fun fair sits right next to the old town that grew over centuries — a mix of tradition, history, and modern city life.",
+      description_de:
+        'Zweimal im Jahr gehört die Regensburger Dult zu den Höhepunkten des Stadtlebens. Mit ihrer jahrhundertelangen Tradition ist sie weit mehr als nur ein Volksfest und inzwischen fest mit Regensburg und Stadtamhof verbunden.\n\nIhre Geschichte reicht bis ins Mittelalter zurück. Über die Jahrhunderte fanden die Märkte und Feste an unterschiedlichen Orten der Stadt statt, bevor die Dult schließlich ihren heutigen Platz am Dultplatz in Stadtamhof fand.\n\nEines ihrer weithin sichtbaren Wahrzeichen ist das Riesenrad. Von seinen Gondeln eröffnet sich ein außergewöhnlicher Blick über die Dächer von Stadtamhof, die Donau und die historische Regensburger Altstadt mit ihren zahlreichen Türmen.\n\nGerade aus der Luft zeigt sich besonders schön, wie das farbenfrohe Volksfest unmittelbar neben der über Jahrhunderte gewachsenen Altstadt liegt – ein Zusammenspiel aus Tradition, Geschichte und modernem Stadtleben.'
     }
   ];
 
