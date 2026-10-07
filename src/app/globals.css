@@ -173,6 +173,39 @@ html[data-theme='light'] .navbar-logo {
   font-weight: 700;
 }
 
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0.2rem;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  background: var(--card-bg);
+}
+
+.lang-toggle-option {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.lang-toggle-option.active {
+  color: #0c1014;
+  background: var(--primary);
+}
+
+.lang-toggle-option:not(.active):hover {
+  color: var(--text);
+}
+
 .theme-button {
   display: inline-flex;
   align-items: center;
@@ -709,8 +742,8 @@ footer {
 .site-footer {
   position: relative;
   background: var(--footer-bg);
-  margin-top: 5rem;
-  padding: 4rem 0 1.75rem;
+  margin-top: 3rem;
+  padding: 2.5rem 0 1.25rem;
   overflow: hidden;
 }
 
@@ -730,8 +763,8 @@ footer {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 2.5rem;
-  padding-bottom: 2.75rem;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .site-footer-brand-row {
@@ -755,9 +788,9 @@ footer {
 }
 
 .site-footer-tagline {
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   color: var(--text-soft);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
 }
 
 .site-footer-social {
@@ -793,7 +826,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding-top: 1.75rem;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--card-border);
   color: var(--text-soft);
   font-size: 0.85rem;

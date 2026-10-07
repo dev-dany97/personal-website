@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
+import { SunIcon, MoonIcon } from '@/app/components/Icons';
 
 interface NavbarProps {
   currentPage?: string;
@@ -39,11 +40,6 @@ export function Navbar({ currentPage }: NavbarProps) {
     { href: '/finance', label: t('nav.finance') },
     { href: '/contact', label: t('nav.contact') },
   ];
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'de' ? 'en' : 'de';
-    i18n.changeLanguage(newLang);
-  };
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -96,20 +92,31 @@ export function Navbar({ currentPage }: NavbarProps) {
             ))}
           </ul>
           <div className="navbar-utility">
-            <button
-              onClick={toggleLanguage}
-              className="btn btn-sm btn-outline-light theme-button"
-              title={t('nav.toggleLanguage')}
-            >
-              {i18n.language === 'de' ? 'DE' : 'EN'}
-            </button>
+            <div className="lang-toggle" role="group" aria-label={t('nav.toggleLanguage')}>
+              <button
+                type="button"
+                className={`lang-toggle-option ${i18n.language === 'de' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('de')}
+                aria-pressed={i18n.language === 'de'}
+              >
+                DE
+              </button>
+              <button
+                type="button"
+                className={`lang-toggle-option ${i18n.language !== 'de' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('en')}
+                aria-pressed={i18n.language !== 'de'}
+              >
+                EN
+              </button>
+            </div>
             <button
               onClick={toggleTheme}
               className="btn btn-sm btn-outline-light theme-button"
               title={t('nav.toggleTheme')}
               aria-label={t('nav.toggleTheme')}
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
           </div>
         </div>
