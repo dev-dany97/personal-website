@@ -273,15 +273,13 @@ function seedPageContent(db: DatabaseSync) {
     'travel',
     {
       heroTitle: 'Travel Stories & Adventures',
-      heroLead:
-        "A few places I've visited so far — sailing along the Italian and Croatian coast, exploring Dubai's skyline, taking boats through Bangkok's canals, watching VALORANT Champions live in Paris, hiking on the Canary Islands, and road-tripping through Italy and Australia.",
+      heroLead: 'A few impressions from my travels and trips over the past few years.',
       photos: 'photos',
       viewGallery: 'View Gallery'
     },
     {
       heroTitle: 'Reisegeschichten & Abenteuer',
-      heroLead:
-        'Ein paar Orte, die ich bisher erkundet habe — Segeln an der italienischen und kroatischen Küste, Dubais Skyline erkunden, Bangkoks Kanäle durchqueren, die VALORANT Champions in Paris live erleben, Wandern auf den Kanarischen Inseln, und Roadtrips durch Italien und Australien.',
+      heroLead: 'Ein paar Eindrücke von meinen Reisen und Trips der letzten Jahre.',
       photos: 'Fotos',
       viewGallery: 'Galerie ansehen'
     }
@@ -745,50 +743,64 @@ function seedTravel(db: DatabaseSync) {
     {
       id: 'sailing', flag: 'IT', image: '/images/travel/sailing/sailing1.jpg', imageCount: 33, gallery: sailingFiles,
       name_en: 'Sardinia', name_de: 'Sardinien',
-      description_en: 'Exploring the coast and some great moments out sailing.',
-      description_de: 'Erkundung der Küstengewässer und unvergessliche Momente beim Segeln.'
+      description_en:
+        "A sailing trip along one of Italy's most beautiful Mediterranean islands — from Olbia all the way to Bonifacio, at the impressive southern tip of Corsica. Definitely a trip that's stayed with me.",
+      description_de:
+        'Ein Segeltrip entlang einer der schönsten Mittelmeerinseln Italiens – von Olbia bis nach Bonifacio an der beeindruckenden Südspitze Korsikas. Definitiv eine Reise, die mir in Erinnerung geblieben ist.'
     },
     {
       id: 'dubai', flag: 'AE', image: '/images/travel/dubai/dubai1.jpg', imageCount: 8, gallery: buildGallery('dubai', 8, 'dubai'),
       name_en: 'Dubai', name_de: 'Dubai',
-      description_en: 'Modern buildings, desert views and a lively city.',
-      description_de: 'Moderne Architektur, Wüstenblicke und pulsierendes Stadtleben.'
+      description_en:
+        'On my way to Australia, I made a three-day stopover in Dubai. Not exactly cheap, but the impressive malls, modern architecture, and sheer scale of the city definitely make it worth a visit.',
+      description_de:
+        'Auf meinem Weg nach Australien habe ich für drei Tage einen Zwischenstopp in Dubai eingelegt. Nicht gerade günstig, aber die beeindruckenden Malls, die moderne Architektur und die Dimensionen der Stadt sind definitiv einen Besuch wert.'
     },
     {
       id: 'bangkok', flag: 'TH', image: '/images/travel/bangkok/bangkok1.jpg', imageCount: 16, gallery: buildGallery('bangkok', 16, 'bangkok'),
       name_en: 'Bangkok', name_de: 'Bangkok',
-      description_en: "Floating markets, longtail boats and the busy energy of Thailand's capital.",
-      description_de: 'Schwimmende Märkte, Longtail-Boote und das lebendige Chaos von Thailands Hauptstadt.'
+      description_en:
+        'For me, Bangkok was a city full of contrasts: chaotic and, in places, marked by real poverty, yet at the same time incredibly modern and full of life. What impressed me most, though, was the Thai culture and its people.',
+      description_de:
+        'Bangkok war für mich eine Stadt voller Gegensätze: chaotisch und teilweise von großer Armut geprägt, gleichzeitig aber unglaublich modern und lebendig. Am meisten beeindruckt haben mich jedoch die thailändische Kultur und die Menschen.'
     },
     {
       id: 'paris', flag: 'FR', image: '/images/travel/paris/paris1.jpg', imageCount: 10, gallery: buildGallery('paris', 10, 'paris'),
       name_en: 'Paris', name_de: 'Paris',
-      description_en: 'A city trip to Paris, including a front-row night at the VALORANT Champions Tour.',
-      description_de: 'Städtetrip nach Paris, inklusive einer Nacht in der ersten Reihe bei der VALORANT Champions Tour.'
+      description_en:
+        "As a passionate Valorant player, there was no way I'd miss the Valorant Champions 2025, held in Paris — just a 1.5-hour flight away. The perfect excuse for a short trip, and a chance to finally explore a city that had been on my bucket list for a long time.",
+      description_de:
+        'Als leidenschaftlicher Valorant-Gamer konnte ich mir die Valorant Champions 2025 die in Paris ausgetragen wurden und nur 1,5h Flugzeit entfernt sind, natürlich nicht entgehen lassen. Die perfekte Gelegenheit für einen Kurztrip und um endlich eine Stadt zu entdecken, die schon lange auf meiner Bucketlist stand.'
     },
     {
       id: 'canary-islands', flag: 'ES', image: '/images/travel/canary-islands/canary1.jpg', imageCount: 20, gallery: buildGallery('canary-islands', 20, 'canary'),
       name_en: 'Canary Islands', name_de: 'Kanarische Inseln',
-      description_en: 'Volcanic landscapes, desert trails and rough coastline with friends.',
-      description_de: 'Vulkanlandschaften, Wüstenpfade und raue Küste mit Freunden.'
+      description_en:
+        "One of my most adventurous sailing trips so far, with a crew you honestly couldn't wish for a better one. And if you remember that fierce storm front over the Canary Islands: I was there and I was sailing :D",
+      description_de:
+        'Einer meiner bisher abenteuerlichsten Segeltrips mit einer Crew, wie man sie sich besser kaum wünschen könnte. Und wer sich an die heftige Sturmfront über den Kanaren erinnert: I was there and I was sailing :D'
     },
     {
       id: 'italy-trip', flag: 'IT', image: '/images/travel/italy-trip/italytrip1.jpg', imageCount: 13, gallery: buildGallery('italy-trip', 13, 'italytrip'),
       name_en: 'Italy', name_de: 'Italien',
-      description_en: 'A road trip through Italy — old towns, the coast and good food.',
-      description_de: 'Ein Roadtrip durch Italien — historische Städte, Küste und gutes Essen.'
+      description_en:
+        'During my studies, I got to explore Italy on a study trip together with some fellow students and our professor.',
+      description_de:
+        'Während meines Studiums durfte ich gemeinsam mit einigen Kommilitonen und unserem Professor Italien auf einer Studienreise entdecken.'
     },
     {
       id: 'croatia', flag: 'HR', image: '/images/travel/croatia/croatia1.jpg', imageCount: 9, gallery: buildGallery('croatia', 9, 'croatia'),
       name_en: 'Croatia', name_de: 'Kroatien',
-      description_en: 'Sailing along the Adriatic coast, with drone shots of the islands.',
-      description_de: 'Segeln an der Adriaküste mit Luftaufnahmen der Inseln aus der Drohne.'
+      description_en:
+        "My crew's very first sailing trip together took us to Croatia's beautiful Adriatic coast, laying the groundwork for plenty more sailing adventures to come.",
+      description_de:
+        'Der erste gemeinsame Segeltrip mit meiner Crew führte uns an die wunderschöne kroatische Adriaküste und legte damit den Grundstein für weitere gemeinsame Segelabenteuer.'
     },
     {
       id: 'australia', flag: 'AU', image: '/images/travel/australia/australia1.jpg', imageCount: 35, gallery: buildGallery('australia', 35, 'australia'),
       name_en: 'Australia', name_de: 'Australien',
-      description_en: 'Amazing landscapes, beaches and a road trip down under.',
-      description_de: 'Epische Landschaften, Strände und Roadtrip-Abenteuer down under.'
+      description_en: 'One of my biggest adventures so far: a road trip across Australia, combined with working holiday travel.',
+      description_de: 'Eines meiner bisher größten Abenteuer: ein Roadtrip quer durch Australien, was mit Work & Travel verbunden war.'
     }
   ];
 
