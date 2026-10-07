@@ -24,8 +24,11 @@ test('legal pages are reachable', async ({ page }) => {
 
 test('language toggle switches the navbar language', async ({ page }) => {
   await page.goto('/');
-  const toggle = page.locator('.navbar-utility button').first();
-  const before = await toggle.textContent();
-  await toggle.click();
-  await expect(toggle).not.toHaveText(before ?? '');
+  const deOption = page.locator('.lang-toggle-option', { hasText: 'DE' });
+  const enOption = page.locator('.lang-toggle-option', { hasText: 'EN' });
+  await expect(deOption).toHaveClass(/active/);
+
+  await enOption.click();
+  await expect(enOption).toHaveClass(/active/);
+  await expect(deOption).not.toHaveClass(/active/);
 });
