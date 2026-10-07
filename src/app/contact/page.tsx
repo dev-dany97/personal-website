@@ -6,6 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { PigeonBackground } from '@/app/components/backgrounds/PigeonBackground';
+import { socialLinks } from '@/app/components/Icons';
+
+const CONTACT_SOCIAL_LABELS = ['LinkedIn', 'Xing'];
 
 const FORMSPREE_FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || 'YOUR_FORM_ID';
 
@@ -121,6 +124,23 @@ export default function Contact() {
               <div className="contact-profile-body">
                 <h3 className="contact-profile-name">Daniel Mohles</h3>
                 <p className="contact-profile-tagline">{c.professionalTitle}</p>
+
+                <div className="contact-social">
+                  {socialLinks
+                    .filter((link) => CONTACT_SOCIAL_LABELS.includes(link.label))
+                    .map(({ label, href, Icon }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        className="social-icon-btn"
+                      >
+                        <Icon />
+                      </a>
+                    ))}
+                </div>
               </div>
             </aside>
 

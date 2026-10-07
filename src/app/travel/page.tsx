@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { GlobeBackground } from '@/app/components/backgrounds/GlobeBackground';
+import { DestinationMiniGlobe } from '@/app/components/backgrounds/DestinationMiniGlobe';
 import { FlagIcon } from '@/app/components/FlagIcon';
 
 type FlagCode = 'IT' | 'AE' | 'TH' | 'FR' | 'ES' | 'HR' | 'AU';
@@ -33,12 +35,44 @@ export default function Travel() {
   const { i18n } = useTranslation();
   const lang = i18n.language === 'de' ? 'de' : 'en';
   const [data, setData] = useState<TravelResponse | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
+  const [activeFlag, setActiveFlag] = useState<FlagCode | null>(null);
 
   useEffect(() => {
     fetch('/api/travel')
       .then((res) => res.json())
       .then(setData);
   }, []);
+
+  useEffect(() => {
+    if (!data) return;
+    const destinations = data[lang].destinations;
+    const sections = destinations
+      .map((dest) => document.getElementById(dest.id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (!visible) return;
+        const dest = destinations.find((d) => d.id === visible.target.id);
+        if (dest) setActiveFlag(dest.flag);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [data, lang]);
+
+  useEffect(() => {
+    if (!lightboxImage) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxImage(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxImage]);
 
   if (!data) {
     return (
@@ -77,15 +111,12 @@ export default function Travel() {
                       backgroundColor: '#111'
                     }}
                   >
-                    <img
+                    <Image
                       src={dest.image}
                       alt={dest.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block'
-                      }}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      style={{ objectFit: 'cover' }}
                     />
                     <div
                       style={{
@@ -118,7 +149,12 @@ export default function Travel() {
         </div>
       </section>
 
-      <section className="pb-5">
+      <section className="pb-5 travel-gallery-section">
+        {activeFlag && (
+          <div className="destination-mini-globe">
+            <DestinationMiniGlobe countryCode={activeFlag} />
+          </div>
+        )}
         <div className="container">
           {destinations.map((dest) => (
             <div
@@ -133,11 +169,17 @@ export default function Travel() {
               </h3>
               <div className="travel-scatter">
                 {dest.gallery.map((image, index) => (
-                  <div key={`${dest.id}-${index}`} className="travel-polaroid">
-                    <img
+                  <div
+                    key={`${dest.id}-${index}`}
+                    className="travel-polaroid"
+                    onClick={() => setLightboxImage({ src: image, alt: `${dest.name} gallery ${index + 1}` })}
+                  >
+                    <Image
                       src={image}
                       alt={`${dest.name} gallery ${index + 1}`}
-                      loading="lazy"
+                      width={300}
+                      height={190}
+                      sizes="(max-width: 576px) 50vw, 200px"
                     />
                   </div>
                 ))}
@@ -146,6 +188,32 @@ export default function Travel() {
           ))}
         </div>
       </section>
+
+      {lightboxImage && (
+        <div
+          className="travel-lightbox"
+          onClick={() => setLightboxImage(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            className="travel-lightbox-close"
+            onClick={() => setLightboxImage(null)}
+            aria-label="Close"
+          >
+            &times;
+          </button>
+          <Image
+            src={lightboxImage.src}
+            alt={lightboxImage.alt}
+            width={1200}
+            height={900}
+            className="travel-lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       <Footer />
     </main>

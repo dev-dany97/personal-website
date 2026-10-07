@@ -1195,12 +1195,86 @@ footer {
 
 @media (max-width: 576px) {
   .travel-polaroid {
-    width: 150px;
-    margin: -4px 2px 14px;
+    width: 108px;
+    padding: 6px 6px 16px;
+    margin: -3px 2px 10px;
   }
   .travel-polaroid img {
-    height: 140px;
+    height: 100px;
   }
+}
+
+.travel-gallery-section {
+  position: relative;
+}
+
+.destination-mini-globe {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 110px;
+  height: 110px;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 40;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+}
+
+.destination-mini-globe-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .destination-mini-globe {
+    width: 78px;
+    height: 78px;
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+}
+
+.travel-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+
+.travel-lightbox-image {
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+.travel-lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.travel-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 768px) {
