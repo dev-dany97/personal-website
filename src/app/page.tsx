@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { Reveal } from '@/app/components/Reveal';
-import { Code2, ShipWheel, Map, Lightbulb, type LucideIcon } from 'lucide-react';
+import { Code2, ShipWheel, Map, Lightbulb, ArrowRight, type LucideIcon } from 'lucide-react';
 
 interface AerialShot {
   title: string;
@@ -50,6 +50,7 @@ interface HomeContent {
   heroSubtitle: string;
   heroCta: string;
   aboutHeading: string;
+  aboutTags: string[];
   aboutIntro: string[];
   aboutMoreLabel: string;
   aboutLessLabel: string;
@@ -164,10 +165,19 @@ export default function Home() {
         <div className="container">
           <Reveal className="row align-items-center g-5">
             <div className="col-lg-4 text-center">
-              <img src="/images/profile.jpg" alt="Daniel Mohles" className="legacy-portrait" />
+              <img src="/images/profile.jpg" alt="Daniel Mohles" className="legacy-portrait legacy-portrait--glow" />
             </div>
             <div className="col-lg-8">
               <h2>{c.aboutHeading}</h2>
+              <span className="legacy-about-underline" aria-hidden="true" />
+              <p className="legacy-about-tags">
+                {c.aboutTags.map((tag, i) => (
+                  <span key={tag}>
+                    {tag}
+                    {i < c.aboutTags.length - 1 && <span className="legacy-about-tags-dot">&middot;</span>}
+                  </span>
+                ))}
+              </p>
               {aboutIntro.map((p, i) => (
                 <p key={`intro-${i}`}>{renderWithLinks(p, `intro-${i}`)}</p>
               ))}
@@ -179,6 +189,7 @@ export default function Home() {
                 aria-expanded={aboutExpanded}
               >
                 {aboutExpanded ? c.aboutLessLabel : c.aboutMoreLabel}
+                <ArrowRight size={16} strokeWidth={2} className={`legacy-about-toggle-arrow ${aboutExpanded ? 'legacy-about-toggle-arrow--up' : ''}`} />
               </button>
             </div>
           </Reveal>

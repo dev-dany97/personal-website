@@ -45,11 +45,12 @@ function seedPageContent(db: DatabaseSync) {
       heroSubtitle: "I'm glad you're here.",
       heroCta: 'More about me',
       aboutHeading: "Hi, I'm Daniel!",
+      aboutTags: ['Software Engineer', 'Sailor', 'Tech Nerd', 'Hobby Drone Pilot'],
       aboutIntro: [
         "I'm {age} years old, a software developer, sailor, tech nerd, gamer, and above all someone who loves trying new things and figuring out how they work. That curiosity is, among other things, exactly why this website exists.",
         "Here I don't just want to tell you a bit about myself — I also want to share my projects, travels, experiences, and interests with you. Maybe you'll even find an idea or two that inspires you."
       ],
-      aboutMoreLabel: 'Read more',
+      aboutMoreLabel: 'More about me',
       aboutLessLabel: 'Show less',
       aboutSections: [
         {
@@ -142,11 +143,12 @@ function seedPageContent(db: DatabaseSync) {
       heroSubtitle: 'Schön, dass du meine Webseite besuchst.',
       heroCta: 'Mehr über mich',
       aboutHeading: 'Hi, ich bin Daniel!',
+      aboutTags: ['Softwareentwickler', 'Segler', 'Technik-Nerd', 'Hobby-Drohnen-Pilot'],
       aboutIntro: [
         'Ich bin {age} Jahre alt, Softwareentwickler, Segler, Technik-Nerd, Gamer und vor allem jemand, der gerne neue Dinge ausprobiert und verstehen möchte, wie sie funktionieren. Genau diese Neugier hat unter anderem auch dazu geführt, dass diese Webseite entstanden ist.',
         'Hier möchte ich nicht nur ein bisschen über mich erzählen, sondern auch meine Projekte, Reisen, Erfahrungen und Interessen mit dir teilen. Vielleicht findest du dabei ja sogar die eine oder andere Idee, die dich selbst inspiriert.'
       ],
-      aboutMoreLabel: 'Mehr lesen',
+      aboutMoreLabel: 'Mehr über mich',
       aboutLessLabel: 'Weniger anzeigen',
       aboutSections: [
         {
@@ -286,13 +288,13 @@ function seedPageContent(db: DatabaseSync) {
     db,
     'travel',
     {
-      heroTitle: 'Travel Stories & Adventures',
+      heroTitle: 'My Travel Stories',
       heroLead: 'A few impressions from my travels and trips over the past few years.',
       photos: 'photos',
       viewGallery: 'View Gallery'
     },
     {
-      heroTitle: 'Reisegeschichten & Abenteuer',
+      heroTitle: 'Meine Travelstories',
       heroLead: 'Ein paar Eindrücke von meinen Reisen und Trips der letzten Jahre.',
       photos: 'Fotos',
       viewGallery: 'Galerie ansehen'

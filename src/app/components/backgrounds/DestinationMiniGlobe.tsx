@@ -82,6 +82,7 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
     transitionStart: null as number | null,
     rotation: facingRotation(toVector3(COUNTRY_COORDS[countryCode]?.lat ?? 0, COUNTRY_COORDS[countryCode]?.lon ?? 0))
   });
+  const borderRingsRef = useRef<Vec3[][] | null>(null);
 
   useEffect(() => {
     if (stateRef.current.active === countryCode) return;
@@ -90,9 +91,35 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
     stateRef.current.transitionStart = null;
   }, [countryCode]);
 
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/data/world-borders.json')
+      .then((res) => res.json())
+      .then((flatRings: number[][]) => {
+        if (cancelled) return;
+        borderRingsRef.current = flatRings.map((flat) => {
+          const ring: Vec3[] = [];
+          for (let i = 0; i < flat.length; i += 2) {
+            ring.push(toVector3(flat[i + 1], flat[i]));
+          }
+          return ring;
+        });
+      })
+      .catch(() => {
+        // decorative widget — fail silently, grid + markers still render
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const canvasRef = useCanvasAnimation((ctx, width, height, t) => {
     if (width === 0 || height === 0) return;
     ctx.clearRect(0, 0, width, height);
+
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const lineAlphaMul = isLight ? 1.6 : 1;
+    const homeColor = isLight ? '20, 25, 26' : '255, 255, 255';
 
     const st = stateRef.current;
     if (st.transitionStart === null) st.transitionStart = t;
@@ -122,7 +149,7 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
       const lon = (i / 24) * 360 - 180;
       const p = project(toVector3(0, lon));
       if (p.z <= 0.02) continue;
-      ctx.fillStyle = `rgba(79, 185, 173, ${0.06 + p.z * 0.08})`;
+      ctx.fillStyle = `rgba(79, 185, 173, ${(0.08 + p.z * 0.1) * lineAlphaMul})`;
       ctx.fillRect(p.sx - 0.5, p.sy - 0.5, 1, 1);
     }
     for (const lat of [-45, 0, 45]) {
@@ -130,15 +157,45 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
         const lon = (i / 36) * 360 - 180;
         const p = project(toVector3(lat, lon));
         if (p.z <= 0.02) continue;
-        ctx.fillStyle = `rgba(79, 185, 173, ${0.05 + p.z * 0.07})`;
+        ctx.fillStyle = `rgba(79, 185, 173, ${(0.06 + p.z * 0.08) * lineAlphaMul})`;
         ctx.fillRect(p.sx - 0.5, p.sy - 0.5, 1, 1);
+      }
+    }
+
+    // real country / coastline borders, like the hero globe but smaller + dezent
+    const rings = borderRingsRef.current;
+    if (rings) {
+      ctx.lineWidth = 0.7;
+      ctx.lineJoin = 'round';
+      for (const ring of rings) {
+        ctx.beginPath();
+        let started = false;
+        let minAlpha = 0;
+        for (const v of ring) {
+          const r = rotateY(v, cosR, sinR);
+          if (r.z <= 0.03) {
+            started = false;
+            continue;
+          }
+          const sx = cx + r.x * radius;
+          const sy = cy - r.y * radius;
+          if (!started) {
+            ctx.moveTo(sx, sy);
+            started = true;
+          } else {
+            ctx.lineTo(sx, sy);
+          }
+          if (r.z > minAlpha) minAlpha = r.z;
+        }
+        ctx.strokeStyle = `rgba(148, 226, 213, ${(0.3 + minAlpha * 0.45) * lineAlphaMul})`;
+        ctx.stroke();
       }
     }
 
     // outer rim
     ctx.beginPath();
     ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(79, 185, 173, 0.25)';
+    ctx.strokeStyle = `rgba(79, 185, 173, ${0.35 * lineAlphaMul})`;
     ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -164,8 +221,8 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
       }
 
       ctx.fillStyle = isHome
-        ? `rgba(255, 255, 255, ${0.8 * visibility})`
-        : `rgba(127, 231, 214, ${(isActive ? 0.95 : 0.35) * visibility})`;
+        ? `rgba(${homeColor}, ${0.85 * visibility})`
+        : `rgba(127, 231, 214, ${(isActive ? 0.95 : 0.4) * visibility})`;
       ctx.beginPath();
       ctx.arc(p.sx, p.sy, baseR * pulse, 0, Math.PI * 2);
       ctx.fill();
@@ -190,7 +247,7 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
         const trailVec = slerp(prevVec, activeVec, trailT);
         const tp = project(trailVec);
         if (tp.z <= -0.05) continue;
-        ctx.fillStyle = `rgba(255, 255, 255, ${fade * (0.22 - i * 0.045)})`;
+        ctx.fillStyle = `rgba(${homeColor}, ${fade * (0.22 - i * 0.045)})`;
         ctx.beginPath();
         ctx.arc(tp.sx, tp.sy, Math.max(0.4, 1.4 - i * 0.25), 0, Math.PI * 2);
         ctx.fill();
@@ -208,7 +265,7 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
         ctx.save();
         ctx.translate(p.sx, p.sy + bob);
         ctx.rotate(angle);
-        ctx.fillStyle = `rgba(255, 255, 255, ${0.9 * fade})`;
+        ctx.fillStyle = `rgba(${homeColor}, ${0.9 * fade})`;
         ctx.strokeStyle = `rgba(127, 231, 214, ${0.6 * fade})`;
         ctx.lineWidth = 0.6;
 
@@ -238,5 +295,9 @@ export function DestinationMiniGlobe({ countryCode }: { countryCode: string }) {
     }
   });
 
-  return <canvas ref={canvasRef} className="destination-mini-globe-canvas" aria-hidden="true" />;
+  return (
+    <div className="destination-mini-globe-panel">
+      <canvas ref={canvasRef} className="destination-mini-globe-canvas" aria-hidden="true" />
+    </div>
+  );
 }
