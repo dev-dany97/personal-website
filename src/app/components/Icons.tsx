@@ -97,31 +97,6 @@ export function MoonIcon() {
   );
 }
 
-export function CodeBracketsIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="m9 6-6 6 6 6M15 6l6 6-6 6" />
-    </svg>
-  );
-}
-
-export function AnchorIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="5" r="2.2" />
-      <path d="M12 7.2V21M5 12H2.5a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5H19M7 12a5 5 0 0 0 5 5 5 5 0 0 0 5-5" />
-    </svg>
-  );
-}
-
-export function SparkleIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18" />
-    </svg>
-  );
-}
-
 export const socialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/daniel-mohles/', Icon: LinkedInIcon },
   { label: 'GitHub', href: 'https://github.com/dev-dany97', Icon: GithubIcon },

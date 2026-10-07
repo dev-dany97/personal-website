@@ -671,20 +671,15 @@ html[data-theme='light'] .legacy-hero {
 }
 
 .legacy-stats-bar {
-  position: relative;
-  z-index: 2;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  margin-top: -2.75rem;
-  margin-bottom: 2.5rem;
+  margin-top: 3rem;
   background: var(--card-border);
   border: 1px solid var(--card-border);
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 36px -14px rgba(0, 0, 0, 0.3);
 }
 
 .legacy-stats-card {
@@ -694,7 +689,7 @@ html[data-theme='light'] .legacy-hero {
   justify-content: center;
   gap: 0.3rem;
   padding: 1.5rem 1rem;
-  background: var(--bg-soft);
+  background: var(--bg);
   text-align: center;
   transition: background 0.2s ease;
 }
@@ -732,7 +727,6 @@ html[data-theme='light'] .legacy-hero {
 @media (max-width: 767.98px) {
   .legacy-stats-bar {
     grid-template-columns: repeat(2, 1fr);
-    margin-top: -1.75rem;
   }
 }
 

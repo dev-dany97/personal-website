@@ -130,10 +130,10 @@ function seedPageContent(db: DatabaseSync) {
       aerialLead:
         "Sometimes all it takes is a change of perspective to discover something completely new...\nWith my DJI Mavic 3, I love capturing beautiful landscapes and moments that often stay hidden from the ground.\n\nBelow you'll find some of my favorite shots around Regensburg and the surrounding area.",
       stats: [
-        { icon: 'code', value: '7+', label: 'Years Coding' },
-        { icon: 'anchor', value: '5+', label: 'Years Sailing' },
-        { icon: 'pin', value: '7+', label: 'Countries' },
-        { icon: 'sparkle', value: '∞', label: 'Ideas' }
+        { icon: 'code', value: '7', label: 'Years Coding' },
+        { icon: 'sailing', value: '5', label: 'Years Sailing' },
+        { icon: 'globe', value: '7', label: 'Countries Visited' },
+        { icon: 'idea', value: '∞', label: 'Ideas in My Head' }
       ]
     },
     {
@@ -227,10 +227,10 @@ function seedPageContent(db: DatabaseSync) {
       aerialLead:
         'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig neues zu entdecken...\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
       stats: [
-        { icon: 'code', value: '7+', label: 'Jahre Programmieren' },
-        { icon: 'anchor', value: '5+', label: 'Jahre Segeln' },
-        { icon: 'pin', value: '7+', label: 'Länder' },
-        { icon: 'sparkle', value: '∞', label: 'Ideen' }
+        { icon: 'code', value: '7', label: 'Jahre Programmieren' },
+        { icon: 'sailing', value: '5', label: 'Jahre Segeln' },
+        { icon: 'globe', value: '7', label: 'Länder bereist' },
+        { icon: 'idea', value: '∞', label: 'Ideen im Kopf' }
       ]
     }
   );

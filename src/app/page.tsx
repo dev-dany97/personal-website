@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState, type ComponentType } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { Reveal } from '@/app/components/Reveal';
-import { CodeBracketsIcon, AnchorIcon, MapPinIcon, SparkleIcon } from '@/app/components/Icons';
+import { Code2, ShipWheel, Globe, Lightbulb, type LucideIcon } from 'lucide-react';
 
 interface AerialShot {
   title: string;
@@ -32,16 +32,16 @@ interface AboutSection {
 }
 
 interface HomeStat {
-  icon: 'code' | 'anchor' | 'pin' | 'sparkle';
+  icon: 'code' | 'sailing' | 'globe' | 'idea';
   value: string;
   label: string;
 }
 
-const STAT_ICONS: Record<HomeStat['icon'], ComponentType> = {
-  code: CodeBracketsIcon,
-  anchor: AnchorIcon,
-  pin: MapPinIcon,
-  sparkle: SparkleIcon
+const STAT_ICONS: Record<HomeStat['icon'], LucideIcon> = {
+  code: Code2,
+  sailing: ShipWheel,
+  globe: Globe,
+  idea: Lightbulb
 };
 
 interface HomeContent {
@@ -160,21 +160,6 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="container">
-        <Reveal className="legacy-stats-bar">
-          {c.stats.map((stat) => {
-            const Icon = STAT_ICONS[stat.icon];
-            return (
-              <div key={stat.label} className="legacy-stats-card">
-                <span className="legacy-stats-icon"><Icon /></span>
-                <strong>{stat.value}</strong>
-                <span className="legacy-stats-label">{stat.label}</span>
-              </div>
-            );
-          })}
-        </Reveal>
-      </div>
-
       <section id="about" className="legacy-about">
         <div className="container">
           <Reveal className="row align-items-center g-5">
@@ -196,6 +181,19 @@ export default function Home() {
                 {aboutExpanded ? c.aboutLessLabel : c.aboutMoreLabel}
               </button>
             </div>
+          </Reveal>
+
+          <Reveal className="legacy-stats-bar">
+            {c.stats.map((stat) => {
+              const Icon = STAT_ICONS[stat.icon];
+              return (
+                <div key={stat.label} className="legacy-stats-card">
+                  <span className="legacy-stats-icon"><Icon size={20} strokeWidth={1.8} /></span>
+                  <strong>{stat.value}</strong>
+                  <span className="legacy-stats-label">{stat.label}</span>
+                </div>
+              );
+            })}
           </Reveal>
 
           {aboutExpanded && (
