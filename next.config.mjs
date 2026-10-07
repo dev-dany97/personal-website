@@ -1,11 +1,15 @@
+const mediaOrigin = process.env.NEXT_PUBLIC_MEDIA_BASE_URL
+	? new URL(process.env.NEXT_PUBLIC_MEDIA_BASE_URL).origin
+	: '';
+
 const csp = [
 	"default-src 'self'",
 	"img-src 'self' data: https://media.valorant-api.com",
-	"media-src 'self'",
-	"script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
-	"style-src 'self' 'unsafe-inline'",
-	"font-src 'self' data:",
-	"connect-src 'self' https://formspree.io",
+	`media-src 'self' ${mediaOrigin}`,
+	"script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://analytics.d-mohles.de",
+	"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+	"font-src 'self' data: https://fonts.gstatic.com",
+	"connect-src 'self' https://formspree.io https://analytics.d-mohles.de",
 	"form-action 'self' https://formspree.io",
 	"frame-ancestors 'none'",
 	"base-uri 'self'",
