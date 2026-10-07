@@ -2044,26 +2044,24 @@ footer {
   background: #0c1014;
 }
 
-.projects-hero,
-.contact-page .projects-hero {
+.projects-hero {
   position: relative;
   overflow: hidden;
 }
 
-/* The code-editor animation is styled for a dark editor look, so keep this
-   hero panel dark even in light theme rather than fading it to near-white. */
-html[data-theme='light'] .projects-hero {
-  background: #202b33;
+.contact-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0 3rem;
+  text-align: center;
+  background: var(--bg-soft);
 }
 
-html[data-theme='light'] .projects-hero h1,
-html[data-theme='light'] .projects-hero .projects-hero-lead,
-html[data-theme='light'] .projects-hero .projects-stat span {
-  color: rgba(245, 245, 245, 0.92);
-}
-
-html[data-theme='light'] .projects-hero .projects-hero-lead {
-  color: rgba(245, 245, 245, 0.75);
+.contact-hero-lead {
+  color: var(--text-soft);
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.08rem;
 }
 
 .travel-hero {

@@ -10,13 +10,23 @@ interface Token {
   type: TokenType;
 }
 
-const COLORS: Record<TokenType, string> = {
+const DARK_COLORS: Record<TokenType, string> = {
   keyword: '127, 231, 214',
   string: '224, 169, 61',
   comment: '148, 158, 156',
   fn: '245, 245, 245',
   punct: '150, 165, 163',
   plain: '200, 210, 208'
+};
+
+// Same palette, darkened for legibility on the light-theme panel background.
+const LIGHT_COLORS: Record<TokenType, string> = {
+  keyword: '13, 120, 104',
+  string: '150, 103, 10',
+  comment: '110, 120, 118',
+  fn: '35, 40, 40',
+  punct: '90, 100, 98',
+  plain: '60, 68, 66'
 };
 
 const CODE_LINES: Token[][] = [
@@ -60,6 +70,11 @@ export function CodeEditorBackground() {
   const canvasRef = useCanvasAnimation((ctx, width, height, t) => {
     if (width === 0 || height === 0) return;
 
+    const isLight = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light';
+    const COLORS = isLight ? LIGHT_COLORS : DARK_COLORS;
+    const gutterColor = isLight ? '70, 78, 76' : '148, 158, 156';
+    const dividerColor = isLight ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.06)';
+
     ctx.clearRect(0, 0, width, height);
     ctx.font = `${FONT_SIZE}px "Fira Code", "Courier New", monospace`;
     ctx.textBaseline = 'top';
@@ -85,7 +100,7 @@ export function CodeEditorBackground() {
 
       // line number gutter
       const lineNumber = ((wrappedIndex + 1) % 1000).toString().padStart(2, '0');
-      ctx.fillStyle = `rgba(148, 158, 156, ${0.28 * fade})`;
+      ctx.fillStyle = `rgba(${gutterColor}, ${0.28 * fade})`;
       ctx.fillText(lineNumber, gutterWidth - lineNumber.length * CHAR_WIDTH, y);
 
       // tokens
@@ -114,7 +129,7 @@ export function CodeEditorBackground() {
     }
 
     // subtle gutter divider
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+    ctx.strokeStyle = dividerColor;
     ctx.beginPath();
     ctx.moveTo(gutterWidth + 6, 0);
     ctx.lineTo(gutterWidth + 6, height);

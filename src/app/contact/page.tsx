@@ -99,12 +99,12 @@ export default function Contact() {
     <main className="contact-page">
       <Navbar currentPage="/contact" />
 
-      <section className="projects-hero">
+      <section className="contact-hero">
         <PigeonBackground />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <p className="legacy-eyebrow">{c.eyebrow}</p>
           <h1>{c.title}</h1>
-          <p className="projects-hero-lead">{c.lead}</p>
+          <p className="contact-hero-lead">{c.lead}</p>
         </div>
       </section>
 
