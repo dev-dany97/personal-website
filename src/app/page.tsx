@@ -187,7 +187,9 @@ export default function Home() {
                   </video>
                   <div className="legacy-aerial-card-body">
                     <h4>{video.title}</h4>
-                    <p>{video.description}</p>
+                    {video.description.split('\n\n').map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
                   </div>
                 </div>
               </div>

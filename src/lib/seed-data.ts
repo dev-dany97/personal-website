@@ -488,9 +488,9 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Parsberg',
       title_de: 'Parsberg',
       description_en:
-        'Parsberg sits nestled in the hilly landscape of the Upper Palatinate Jura, blending history, nature, and the life of a modern small town in a special way.\n\nParsberg Castle shapes the townscape from far away. Towering above the rooftops, it’s a reminder of the town’s long history and forms a striking contrast to the surrounding residential areas, fields, and forests.\n\nFrom the air, it’s especially clear how compactly Parsberg sits within the landscape — a small town surrounded by plenty of nature and the countryside typical of the Upper Palatinate.',
+        "Parsberg sits nestled in the hilly landscape of the Upper Palatinate Jura, blending history, nature, and the life of a modern small town in a special way.\n\nParsberg Castle shapes the townscape from far away, even though it's a bit hard to make out in the photo — it sits on the hill in the right background. The Christmas market there is especially lovely, and I visit it every year.\n\nFrom the air, it's also especially clear how compactly Parsberg sits within the landscape — a small town surrounded by plenty of nature and the countryside typical of the Upper Palatinate.\n\nBut you can also see how it keeps growing. On the left you can spot the Möbelhof furniture store and the new Edeka supermarket, with the new housing developments right across from them.",
       description_de:
-        'Parsberg liegt eingebettet in die hügelige Landschaft des Oberpfälzer Jura und verbindet auf besondere Weise Geschichte, Natur und das Leben einer modernen Kleinstadt.\n\nSchon von Weitem prägt die Burg Parsberg das Stadtbild. Hoch über den Dächern erinnert sie an die lange Geschichte des Ortes und bildet einen markanten Kontrast zu den umliegenden Wohngebieten, Feldern und Wäldern.\n\nAus der Luft zeigt sich besonders schön, wie kompakt Parsberg in die Landschaft eingebettet ist – eine kleine Stadt, umgeben von viel Natur und typisch oberpfälzischer Landschaft.'
+        'Parsberg liegt eingebettet in die hügelige Landschaft des Oberpfälzer Jura und verbindet auf besondere Weise Geschichte, Natur und das Leben einer modernen Kleinstadt.\n\nSchon von Weitem prägt die Burg Parsberg das Stadtbild, auch wenn sie auf dem Foto her etwas schwer zu erkennen ist, liegt sie auf dem Hügel rechts im Hintergrund. Besonders schön ist dort der Weihnachtsmarkt, den ich jährlich besuche.\n\nAus der Luft zeigt sich zudem besonders schön, wie kompakt Parsberg in die Landschaft eingebettet ist – eine kleine Stadt, umgeben von viel Natur und typisch oberpfälzischer Landschaft.\n\nAber auch wie sie zunehmend wächst. So ist links der Möbelhof und der neue Edeka zu sehen und die Neubausiedlungen direkt Gegenüber.'
     },
     {
       image: '/images/projects/dji-photo-5.jpg',
@@ -515,9 +515,9 @@ function seedHome(db: DatabaseSync) {
       title_en: 'The Golden Hour over the Land',
       title_de: 'Die goldenen Stunden über dem Land',
       description_en:
-        "Watching a sunrise or sunset never stops fascinating me. Seeing how the light slowly changes and bathes the landscape in warm gold, orange, and red tones for just a few minutes is, to me, one of the most beautiful moments of a day.\n\nThat's why I wanted to capture this sunset from the air. What impressed me most was how the last warm rays of sunlight broke through gaps in the cloud cover, casting cones of light onto the fields below.\n\nFrom the drone's perspective, you can really see just how far this particular light reaches across the landscape.",
+        'What I enjoy most is watching a sunrise or sunset.\n\nSeeing how the light slowly changes and bathes the landscape in warm gold, orange, and red tones for just a few minutes.\n\nI wanted to capture this sunset from the air, because what I find especially striking here is how the last warm rays of sunlight break through gaps in the cloud cover, casting cones of light onto the fields below.',
       description_de:
-        'Es fasziniert mich immer wieder, einen Sonnenauf- oder Sonnenuntergang zu beobachten. Zu sehen, wie sich das Licht langsam verändert und die Landschaft für wenige Minuten in warme Gold-, Orange- und Rottöne taucht, gehört für mich zu den schönsten Momenten eines Tages.\n\nDiesen Sonnenuntergang wollte ich deshalb aus der Luft festhalten. Besonders beeindruckend fand ich, wie die letzten warmen Sonnenstrahlen durch einzelne Öffnungen in der Wolkendecke brechen und wie Lichtkegel auf die darunterliegenden Felder fallen.\n\nAus der Perspektive der Drohne wird erst richtig sichtbar, wie weit dieses besondere Licht über die Landschaft reicht.'
+        'Am schönsten finde ich es einen Sonnenauf- oder Sonnenuntergang zu beobachten.\n\nZu sehen, wie sich das Licht langsam verändert und die Landschaft für wenige Minuten in warme Gold-, Orange- und Rottöne taucht.\n\nDiesen Sonnenuntergang wollte ich dabei aus der Luft festhalten, da ich hier besonders beeindruckend finde, wie die letzten warmen Sonnenstrahlen durch einzelne Öffnungen in der Wolkendecke brechen und wie Lichtkegel auf die darunterliegenden Felder fallen.'
     },
     {
       image: '/images/projects/dji-photo-8.jpg',
@@ -538,24 +538,30 @@ function seedHome(db: DatabaseSync) {
   const videos = [
     {
       src: `${MEDIA_BASE_URL}/videos/sunset-intro.mp4`,
-      title_en: 'Beautiful sunset',
-      title_de: 'Wunderschöner Sonnenuntergang',
-      description_en: 'Watch the sun go down and paint the sky in warm colors — a nice, calm way to end the day.',
-      description_de: 'Erlebe, wie die Sonne anmutig untergeht und den Himmel in warme Farben taucht — ein flüchtiges Meisterwerk, das den Tag in stiller Eleganz verabschiedet.'
+      title_en: 'Lupburg 360° at sunset',
+      title_de: 'Lupburg 360° bei Sonnenuntergang',
+      description_en:
+        'Sometimes it’s worth changing perspective. This 360° shot was taken during a sunset over Lupburg and shows the vastness of the Upper Palatinate landscape from a very special angle.\n\nAs the sun slowly disappears behind the horizon, it bathes fields, forests, and the small surrounding villages in a warm, golden light. From the air, the landscape seems almost endless — and especially in the last few minutes of the day, a very particular kind of stillness sets in.\n\nFor me, it’s one of those moments where you simply pause for a second and take in the view.',
+      description_de:
+        'Manchmal lohnt es sich, die Perspektive zu wechseln. Diese 360°-Aufnahme entstand während eines Sonnenuntergangs über Lupburg und zeigt die Weite der oberpfälzischen Landschaft aus einer ganz besonderen Perspektive.\n\nWährend die Sonne langsam hinter dem Horizont verschwindet, taucht sie Felder, Wälder und die kleinen umliegenden Ortschaften in ein warmes, goldenes Licht. Aus der Luft scheint die Landschaft dabei beinahe endlos – und gerade in den letzten Minuten des Tages entsteht eine ganz besondere Ruhe.\n\nFür mich ist es einer dieser Momente, in denen man einfach kurz innehält und die Aussicht genießt.'
     },
     {
       src: `${MEDIA_BASE_URL}/videos/winter-intro.mp4`,
-      title_en: 'Winter from above',
-      title_de: 'Winter von oben',
-      description_en: 'A snowy landscape seen from the drone — calm, white and quiet. The same hills look completely different in winter.',
-      description_de: 'Eine verschneite Landschaft gleitet unter der Drohne vorbei — ruhig, weiß und still, eine andere Seite der immer gleichen Hügel.'
+      title_en: 'Winter over Regensburg',
+      title_de: 'Winter über Regensburg',
+      description_en:
+        'When snow covers the rooftops, fields, and streets overnight, Regensburg shows a completely different side of itself. The city, usually so familiar, suddenly feels quieter and almost transformed.\n\nFrom the air especially, you can see how the white winter landscape stretches from the densely built parts of the city all the way out into the surrounding fields and forests.\n\nDays like this aren’t all that common in Regensburg — and maybe that’s exactly why these brief winter moments give the city such a special atmosphere for a while, one I wanted to capture and hold on to.',
+      description_de:
+        'Wenn Schnee über Nacht die Dächer, Felder und Straßen bedeckt, zeigt sich Regensburg von einer ganz anderen Seite. Die sonst so vertraute Stadt wirkt plötzlich ruhiger und beinahe wie verwandelt.\n\nBesonders aus der Luft wird sichtbar, wie sich die weiße Winterlandschaft von den dicht bebauten Teilen der Stadt bis weit hinaus in die umliegenden Felder und Wälder zieht.\n\nSolche Tage sind in Regensburg nicht allzu häufig – und vielleicht sind es gerade deshalb diese kurzen Wintermomente, die die Stadt für eine Weile in einer ganz besonderen Atmosphäre erscheinen lassen und ich für die Vergangenheit festhalten möchte.'
     },
     {
       src: `${MEDIA_BASE_URL}/videos/silvester-intro.mp4`,
-      title_en: "New Year's Eve",
-      title_de: 'Silvester',
-      description_en: "Fireworks light up the night sky on New Year's Eve, filmed from above as the old year turns into the new one.",
-      description_de: 'Feuerwerk erleuchtet den Nachthimmel an Silvester, von oben eingefangen, während das alte Jahr dem neuen weicht.'
+      title_en: "New Year's Eve in Regensburg",
+      title_de: 'Silvester in Regensburg',
+      description_en:
+        'As the old year comes to an end and the first fireworks rise over Regensburg at midnight, the city’s appearance changes within just a few moments.\n\nCountless small fireworks light up over the rooftops all at once, bathing the night sky in ever-changing colors. Seen from a distance, the individual rockets blend into an impressive sea of light that stretches across large parts of the city.\n\nFor me, this moment is something special every year.',
+      description_de:
+        'Wenn das alte Jahr zu Ende geht und um Mitternacht die ersten Feuerwerke über Regensburg aufsteigen, verändert sich das Bild der Stadt innerhalb weniger Augenblicke.\n\nÜber den Dächern leuchten unzählige kleine Feuerwerke gleichzeitig auf und tauchen den Nachthimmel immer wieder in neue Farben. Aus der Ferne betrachtet verschmelzen die einzelnen Raketen zu einem beeindruckenden Lichtermeer, das sich über weite Teile der Stadt erstreckt.\n\nFür mich ist dieser Moment jedes Jahr etwas Besonderes.'
     }
   ];
 
