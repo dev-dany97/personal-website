@@ -129,7 +129,12 @@ function seedPageContent(db: DatabaseSync) {
       aerialTitle: 'The World from a Different Perspective',
       aerialLead:
         "Sometimes all it takes is a change of perspective to discover something completely new...\nWith my DJI Mavic 3, I love capturing beautiful landscapes and moments that often stay hidden from the ground.\n\nBelow you'll find some of my favorite shots around Regensburg and the surrounding area.",
-      stats: ['7+ Years Coding', '5+ Years Sailing', '7+ Countries', '∞ Ideas']
+      stats: [
+        { icon: 'code', value: '7+', label: 'Years Coding' },
+        { icon: 'anchor', value: '5+', label: 'Years Sailing' },
+        { icon: 'pin', value: '7+', label: 'Countries' },
+        { icon: 'sparkle', value: '∞', label: 'Ideas' }
+      ]
     },
     {
       heroTitle1: 'Willkommen auf meiner',
@@ -221,7 +226,12 @@ function seedPageContent(db: DatabaseSync) {
       aerialTitle: 'Die Welt aus einer anderen Perspektive',
       aerialLead:
         'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig neues zu entdecken...\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
-      stats: ['7+ Jahre Programmieren', '5+ Jahre Segeln', '7+ Länder', '∞ Ideen']
+      stats: [
+        { icon: 'code', value: '7+', label: 'Jahre Programmieren' },
+        { icon: 'anchor', value: '5+', label: 'Jahre Segeln' },
+        { icon: 'pin', value: '7+', label: 'Länder' },
+        { icon: 'sparkle', value: '∞', label: 'Ideen' }
+      ]
     }
   );
 
@@ -1004,7 +1014,7 @@ function seedResume(db: DatabaseSync) {
     {
       degree_en: 'M.Sc. Applied Computer Science / Infotronics', degree_de: 'M.Sc. Angewandte Informatik / Infotronik',
       institution_en: 'TH Deggendorf', institution_de: 'TH Deggendorf',
-      period_en: '2019 – present', period_de: '2019 – heute',
+      period_en: '2019 – 2021', period_de: '2019 – 2021',
       note_en: 'Grade: 1.5', note_de: 'Note: 1,5',
       thesis_en: 'Thesis: Development of an Embedded Software Component for Obstacle Detection Using a Radar Hardware Accelerator',
       thesis_de: 'Masterarbeit: Entwicklung einer embedded Softwarekomponente zur Hinderniserkennung mittels Radar Hardware Accelerator'

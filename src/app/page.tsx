@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ComponentType } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { Reveal } from '@/app/components/Reveal';
+import { CodeBracketsIcon, AnchorIcon, MapPinIcon, SparkleIcon } from '@/app/components/Icons';
 
 interface AerialShot {
   title: string;
@@ -30,6 +31,19 @@ interface AboutSection {
   paragraphs: string[];
 }
 
+interface HomeStat {
+  icon: 'code' | 'anchor' | 'pin' | 'sparkle';
+  value: string;
+  label: string;
+}
+
+const STAT_ICONS: Record<HomeStat['icon'], ComponentType> = {
+  code: CodeBracketsIcon,
+  anchor: AnchorIcon,
+  pin: MapPinIcon,
+  sparkle: SparkleIcon
+};
+
 interface HomeContent {
   heroTitle1: string;
   heroTitle2: string;
@@ -45,7 +59,7 @@ interface HomeContent {
   aerialLead: string;
   aerialShots: AerialShot[];
   videos: HomeVideo[];
-  stats: string[];
+  stats: HomeStat[];
 }
 
 type HomeResponse = Record<'en' | 'de', HomeContent>;
@@ -146,6 +160,21 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="container">
+        <Reveal className="legacy-stats-bar">
+          {c.stats.map((stat) => {
+            const Icon = STAT_ICONS[stat.icon];
+            return (
+              <div key={stat.label} className="legacy-stats-card">
+                <span className="legacy-stats-icon"><Icon /></span>
+                <strong>{stat.value}</strong>
+                <span className="legacy-stats-label">{stat.label}</span>
+              </div>
+            );
+          })}
+        </Reveal>
+      </div>
+
       <section id="about" className="legacy-about">
         <div className="container">
           <Reveal className="row align-items-center g-5">
@@ -232,19 +261,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="legacy-stats">
-        <div className="container">
-          <Reveal className="legacy-stats-row">
-            {c.stats.map((stat, i) => (
-              <span key={stat} className="legacy-stats-item">
-                {i > 0 && <span className="legacy-stats-dot" aria-hidden="true">·</span>}
-                {stat}
-              </span>
-            ))}
-          </Reveal>
         </div>
       </section>
 
