@@ -19,7 +19,7 @@ export default function Datenschutz() {
               {lang === 'de' ? (
                 <>
                   <h1>Datenschutzerklärung</h1>
-                  <p>Stand: Oktober 2026</p>
+                  <p>Stand: November 2026</p>
 
                   <p>
                     Der Schutz Ihrer personenbezogenen Daten ist mir ein wichtiges Anliegen. Nachfolgend informiere ich
@@ -62,10 +62,17 @@ export default function Datenschutz() {
 
                   <h3>§ 3 Bereitstellung der Website und Erstellung von Logfiles</h3>
                   <p>
-                    Diese Website wird auf einem Server bei Amazon Web Services (AWS), Region Frankfurt am Main,
-                    betrieben. Eine Übermittlung Ihrer Daten in ein Drittland außerhalb der Europäischen Union findet
-                    dadurch nicht statt. Bei jedem Aufruf dieser Website erfasst mein System automatisiert Daten und
-                    Informationen des aufrufenden Rechners. Folgende Daten werden hierbei erhoben:
+                    Diese Website wird auf einem Server bei Amazon Web Services (Amazon Web Services EMEA SARL, 38
+                    Avenue John F. Kennedy, L-1855 Luxemburg) in der Region Frankfurt am Main betrieben. Für die
+                    Auslieferung nutze ich zusätzlich das Content Delivery Network Amazon CloudFront desselben Anbieters.
+                    Aufrufe dieser Website werden dabei zunächst von einem CloudFront-Server entgegengenommen und an
+                    meinen Server weitergeleitet; hierbei verarbeitet CloudFront insbesondere Ihre IP-Adresse sowie die
+                    unten genannten Zugriffsdaten. CloudFront ist so eingestellt, dass nur Server in Europa und
+                    Nordamerika eingesetzt werden; eine Verarbeitung in den USA kann daher nicht vollständig
+                    ausgeschlossen werden. Amazon Web Services, Inc. ist nach dem EU-US Data Privacy Framework
+                    zertifiziert; ergänzend gelten die EU-Standardvertragsklauseln aus dem Auftragsverarbeitungsvertrag
+                    von AWS. Bei jedem Aufruf dieser Website erfasst mein System automatisiert Daten und Informationen
+                    des aufrufenden Rechners. Folgende Daten werden hierbei erhoben:
                   </p>
                   <ol>
                     <li>Informationen über den Browsertyp und die verwendete Version</li>
@@ -123,9 +130,9 @@ export default function Datenschutz() {
                   <h3>§ 5b Regionale Zugriffsbeschränkung</h3>
                   <p>
                     Diese Website ist technisch so eingerichtet, dass sie ausschließlich von Aufrufen aus Deutschland aus
-                    erreichbar ist. Hierzu wird die Herkunft eines Zugriffs anhand der IP-Adresse mittels AWS WAF
-                    (Amazon Web Services) bereits am Netzwerkrand ermittelt; Zugriffe aus anderen Ländern werden
-                    automatisiert abgewiesen, bevor eine Verbindung zu dieser Website zustande kommt. Es findet dabei
+                    erreichbar ist. Hierzu ermittelt Amazon CloudFront (Amazon Web Services) die Herkunft eines Zugriffs
+                    anhand der IP-Adresse bereits am Netzwerkrand; Zugriffe aus anderen Ländern werden automatisiert
+                    abgewiesen, bevor eine Verbindung zu meinem Server zustande kommt. Es findet dabei
                     keine Speicherung der IP-Adresse über die Dauer der Anfrage hinaus statt. Rechtsgrundlage ist mein
                     berechtigtes Interesse an einem auf mein Zielpublikum begrenzten und missbrauchsarmen Betrieb der
                     Website (Art. 6 Abs. 1 lit. f DSGVO).
@@ -161,7 +168,7 @@ export default function Datenschutz() {
               ) : (
                 <>
                   <h1>Privacy Policy</h1>
-                  <p>Last updated: October 2026</p>
+                  <p>Last updated: November 2026</p>
                   <p className="legacy-imprint-note">
                     This is a courtesy translation. The German version of this privacy policy is legally binding.
                   </p>
@@ -205,10 +212,16 @@ export default function Datenschutz() {
 
                   <h3>§ 3 Provision of the Website and Creation of Log Files</h3>
                   <p>
-                    This website is operated on a server provided by Amazon Web Services (AWS), Frankfurt am Main
-                    region. As a result, your data is not transferred to a third country outside the European Union.
-                    Each time this website is accessed, my system automatically collects data and information from the
-                    accessing computer. The following data is collected:
+                    This website is operated on a server provided by Amazon Web Services (Amazon Web Services EMEA SARL,
+                    38 Avenue John F. Kennedy, L-1855 Luxembourg) in the Frankfurt am Main region. In addition, I use
+                    the Amazon CloudFront content delivery network from the same provider to deliver the website.
+                    Requests to this website are first received by a CloudFront server and forwarded to my server; in
+                    doing so, CloudFront processes in particular your IP address and the access data listed below.
+                    CloudFront is configured to use only servers in Europe and North America, so processing in the USA
+                    cannot be completely ruled out. Amazon Web Services, Inc. is certified under the EU-US Data Privacy
+                    Framework; in addition, the EU Standard Contractual Clauses from the AWS data processing addendum
+                    apply. Each time this website is accessed, my system automatically collects data and information
+                    from the accessing computer. The following data is collected:
                   </p>
                   <ol>
                     <li>Information about the browser type and version used</li>
@@ -263,9 +276,9 @@ export default function Datenschutz() {
                   <h3>§ 5b Regional Access Restriction</h3>
                   <p>
                     This website is technically configured to be accessible exclusively from Germany. To this end, the
-                    origin of a request is determined based on the IP address using AWS WAF (Amazon Web Services)
-                    already at the network edge; requests from other countries are automatically rejected before a
-                    connection to this website is established. No storage of the IP address beyond the duration of the
+                    origin of a request is determined by Amazon CloudFront (Amazon Web Services) based on the IP
+                    address already at the network edge; requests from other countries are automatically rejected
+                    before a connection to my server is established. No storage of the IP address beyond the duration of the
                     request takes place. The legal basis is my legitimate interest in operating the website in a way
                     that is limited to my target audience and low in potential for abuse (Art. 6(1)(f) GDPR).
                   </p>
