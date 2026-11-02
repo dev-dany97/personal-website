@@ -37,6 +37,19 @@ interface HomeStat {
   label: string;
 }
 
+// Start years for the "x years" mentions in the about texts and stats.
+const CODING_START_YEAR = 2019;
+const SAILING_START_YEAR = 2021;
+
+const NUMBER_WORDS: Record<'de' | 'en', string[]> = {
+  de: ['null', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf'],
+  en: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
+};
+
+function numberWord(n: number, lang: 'de' | 'en') {
+  return NUMBER_WORDS[lang][n] ?? String(n);
+}
+
 const STAT_ICONS: Record<HomeStat['icon'], LucideIcon> = {
   code: Code2,
   sailing: ShipWheel,
@@ -147,6 +160,21 @@ export default function Home() {
   const c = data[lang];
   const aboutIntro = c.aboutIntro.map((p) => p.replace('{age}', String(currentAge)));
 
+  // Years since I started coding / sailing, so the texts and stats don't need
+  // a manual update every year. Prose spells small numbers out ("fünf Jahren"),
+  // the stats bar shows digits.
+  const codingYears = today.getFullYear() - CODING_START_YEAR;
+  const sailingYears = today.getFullYear() - SAILING_START_YEAR;
+  const fillYears = (text: string, asWords: boolean) =>
+    text
+      .replaceAll('{codingYears}', asWords ? numberWord(codingYears, lang) : String(codingYears))
+      .replaceAll('{sailingYears}', asWords ? numberWord(sailingYears, lang) : String(sailingYears));
+  const aboutSections = c.aboutSections.map((section) => ({
+    ...section,
+    paragraphs: section.paragraphs.map((p) => fillYears(p, true))
+  }));
+  const stats = c.stats.map((stat) => ({ ...stat, value: fillYears(stat.value, false) }));
+
   return (
     <main className="legacy-home">
       <Navbar currentPage="/" />
@@ -195,7 +223,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal className="legacy-stats-bar">
-            {c.stats.map((stat) => {
+            {stats.map((stat) => {
               const Icon = STAT_ICONS[stat.icon];
               return (
                 <div key={stat.label} className="legacy-stats-card">
@@ -209,7 +237,7 @@ export default function Home() {
 
           {aboutExpanded && (
             <div className="legacy-about-more">
-              {c.aboutSections.map((section, sIdx) => (
+              {aboutSections.map((section, sIdx) => (
                 <Reveal
                   key={section.heading}
                   className={`row align-items-center g-5 legacy-about-more-section ${sIdx % 2 === 1 ? 'flex-row-reverse' : ''}`}

@@ -60,9 +60,9 @@ function seedPageContent(db: DatabaseSync) {
           heading: 'From hobby to profession and somehow back again',
           image: '/images/about/hobby-zum-beruf.jpg',
           paragraphs: [
-            "I've been working as a software developer for seven years now. But programming isn't just a job for me. In my free time, I also love tinkering with my own projects, trying out new technologies, or making everyday things a little bit smarter.",
-            "That's resulted in everything from small software projects to smart home setups (like Home Assistant), electronics tinkering, or just things I wanted to try out of pure curiosity.",
-            'If that sounds interesting, feel free to check out my [personal projects](/projects). You’ll find both finished projects and things I’m still working on.'
+            "I've been working as a software developer for {codingYears} years now. But programming isn't just a job for me. In my free time, I also love tinkering with my own projects, trying out new technologies, or making everyday things a little bit smarter.",
+            "That's resulted in everything from small software projects to smart home solutions (for my Home Assistant), electronics tinkering, or just things I wanted to try out of pure curiosity.",
+            'If that sounds interesting, feel free to check out my [personal projects](/projects). You’ll find both finished projects and things I’m still working on or have simply tried out for testing purposes.'
           ]
         },
         {
@@ -70,15 +70,17 @@ function seedPageContent(db: DatabaseSync) {
           image: '/images/about/segeln.jpg',
           paragraphs: [
             'As you can probably already tell from my profile picture, sailing has become one of my biggest passions alongside technology.',
-            'It actually started a bit differently about five years ago: with a motorboat license.',
-            "After the first few longer trips, I quickly realized that pure motorboating didn't really fulfill me. Just going from A to B got a bit too monotonous over time, and it's famously not exactly cheap either.",
+            'It actually started a bit differently about {sailingYears} years ago, and very small back then: with a motorboat license (in Germany called SBF Binnen/See).',
+            "After the first few longer trips, I quickly realized that pure motorboating didn't really fulfill me. Just going from A to B got a bit too monotonous over time, and it's famously not exactly cheap either – even less so now than back then (as of August 2026).",
             'I ended up discovering sailing more or less by chance, through a student sailing trip, and I was immediately hooked by the connection to nature combined with that feeling of freedom.',
-            "At the same time, I also knew I didn't want to permanently depend on someone else deciding when and where to sail, always with strangers along for the ride. So it was clear to me that I wanted to be out there as a skipper myself one day.",
+            "At the same time, I also knew I didn't want to permanently depend on someone else deciding when and where to sail – and always with strangers along for the ride. Not that I'd mind, even if I can come across as a bit reserved and shy around new people, but sailing with friends is simply more fun. So it was clear to me that I wanted to be out there as a skipper myself one day.",
             'The next logical step was therefore the SKS (Sport Coastal Skipper) license.',
-            "I quickly learned, though, that a sailing license isn't comparable to a driver's license. Just because you've passed the exam doesn't mean you can safely handle a yacht in every situation.",
+            "I quickly learned, though, that a sailing license isn't comparable to a motorboat or driver's license. Just because you've passed the exam doesn't mean you can safely handle a yacht in every situation.",
             'So more skipper training and additional qualifications followed — including the SRC radio license for VHF marine radio, as well as the corresponding certificate for pyrotechnic distress signals.',
             'Especially the practical training showed me how much there still is to learn about sailing, even after passing the exams.',
-            'By now I plan and organize my own sailing trips and try to explore new sailing areas almost every year.',
+            'By now I plan and organize my own sailing trips and try to explore new sailing areas almost every year. I also want to grow with bigger challenges: I’ve already sailed in the Canary Islands, for example, where I had to helm the boat at night in rough weather because the jetty we were moored to had broken.',
+            'My biggest role model here is the Australian sailor Jessica Watson. She is regarded as the youngest person to sail solo, non-stop and unassisted around the world. In October 2009, at just 16 years old, she set off from Sydney on her yacht “Ella’s Pink Lady” and returned in May 2010 after 210 days at sea – three days before her 17th birthday.',
+            'What impresses me most is that she never gave up. Even before the start, her boat collided with a bulk carrier at night on the delivery trip to the start and lost its mast. Many people called the whole project irresponsible after that – she had the boat repaired and set off anyway. Along the way, storms in the Southern Ocean knocked her boat flat onto its side several times, and she kept going every time. She later told her story in the book “True Spirit”, which was also made into a film in 2023.',
             "If you'd like to follow my trips and sailing adventures, feel free to check out the [travel section](/travel)."
           ]
         },
@@ -86,20 +88,21 @@ function seedPageContent(db: DatabaseSync) {
           heading: 'Why finance eventually became just as interesting to me',
           image: '/images/about/finanzen.jpg',
           paragraphs: [
-            "Besides my job and my hobbies — which, alongside sailing, also include skiing and tennis — I've been digging deeper into my own finances and investing for a few years now.",
-            "The reason is actually pretty simple: I don't want to be financially dependent on a single source of income.",
-            "A job that feels secure isn't automatically a guarantee for the future. Illness, an accident, economic shifts, a company going bankrupt, or technological developments like AI can change career paths faster than you might expect.",
-            "At the same time, I've long felt that financial education plays a surprisingly small role in our society.",
+            "Besides my job and my hobbies — which, alongside sailing, also include skiing and tennis — I've been digging deeper into my own finances and the topic of saving and investing for a few years now.",
+            "The reason is actually pretty simple: I don't want to be financially dependent on a single source of income. On top of that, I want my money to work for me and generate passive income that also counters the noticeably higher inflation we've seen since the start of the COVID crisis.",
+            "A job that feels secure isn't automatically a guarantee for the future. Illness, an accident, economic shifts, a company going bankrupt, or technological developments like AI can change career paths faster than you might expect. Unfortunately, I've felt that very strongly myself.",
+            'My former passion for programming, and in a way for creating things, changed almost overnight. You are no longer in the role of the developer, but rather that of a conductor who sets the direction, leads and oversees everything. But the more I tried to come to terms with it, the more I also saw the potential and the progress in it.',
+            "For example, it can also help education — which matters to me, because I've long felt that financial education plays a surprisingly small role in our society.",
             "It wasn't any different for me at first. I learned a lot in school, but almost nothing about how building wealth actually works, what stocks and ETFs even are, how to assess risk, or why it can make sense to deal with your finances as early as possible. That's exactly why I find this topic all the more important.",
-            "My own educational path wasn't exactly a straight line either. I started at a Hauptschule (Germany's lower-tier secondary school), worked my way up step by step to a high school diploma, and eventually went to university — ending up with a master's degree.",
-            'During my studies, I even had the chance to take a PhD position in Brisbane, Australia. As exciting as that opportunity was, I ultimately decided against it. I find research interesting, but I realized I’d rather work hands-on, build things, and actually see what comes out of it in the end.',
+            "My own educational path wasn't exactly a straight line either. I started at a Hauptschule (Germany's lower-tier secondary school), worked my way up step by step to a high school diploma, and eventually went to university — ending up with a master's degree. True to the motto: you can achieve anything in life if you have the courage and the drive it takes.",
+            'During my studies, I even had the chance to take a PhD position in Brisbane, Australia. As exciting as that opportunity was, I ultimately decided against it. I find research interesting, but I realized I’d rather work hands-on, build things, and actually be able to see what comes out of it in the end.',
             'My time and experiences in Australia also changed how I see Germany, work, and financial security. They reinforced my decision to dig deeper into building wealth and long-term financial planning.',
             "That said, I'm not trying to tell anyone on this website how to invest their money. Instead, I want to show how I go about it myself — the decisions I make, the mistakes I've made, and what I learned from them.",
             'Because I started small too.',
             "And that's exactly why I know getting started can sometimes feel more complicated than it actually has to be. At the same time, you notice over time what a difference it makes to start early and stick with it consistently.",
             'During my studies, I also joined a student investing club. Looking back, that was one of the best ways to really get into the topic. What I valued most was exchanging ideas with others — from fellow students who were just getting started themselves to members with years of experience.',
             "It wasn't just about stocks or investments, either. I met a lot of open, warm people there, with whom I could share a common interest and learn from at the same time.",
-            "Especially if you're new to this topic, I can only recommend talking to others and getting to know different perspectives.",
+            "Especially if you're new to this field and come from a completely different industry, it always helps to build a network. At first, I was the only computer scientist among lots of business students and a few people from other fields of study — and that very mix is what made the exchange so valuable. So I can only recommend talking to others and getting to know different perspectives.",
             "If you're interested in my personal approach to investing, or want to see the trades and decisions I make myself, you'll find more in the [finance section](/finance)."
           ]
         },
@@ -134,8 +137,8 @@ function seedPageContent(db: DatabaseSync) {
       aerialLead:
         "Sometimes all it takes is a change of perspective to discover something completely new...\nWith my DJI Mavic 3, I love capturing beautiful landscapes and moments that often stay hidden from the ground.\n\nBelow you'll find some of my favorite shots around Regensburg and the surrounding area.",
       stats: [
-        { icon: 'code', value: '7', label: 'Years Coding' },
-        { icon: 'sailing', value: '5', label: 'Years Sailing' },
+        { icon: 'code', value: '{codingYears}', label: 'Years Coding' },
+        { icon: 'sailing', value: '{sailingYears}', label: 'Years Sailing' },
         { icon: 'globe', value: '7', label: 'Countries Visited' },
         { icon: 'idea', value: '∞', label: 'Ideas in My Head' }
       ]
@@ -158,9 +161,9 @@ function seedPageContent(db: DatabaseSync) {
           heading: 'Vom Hobby zum Beruf und irgendwie wieder zurück',
           image: '/images/about/hobby-zum-beruf.jpg',
           paragraphs: [
-            'Seit mittlerweile sieben Jahren arbeite ich als Softwareentwickler. Das Programmieren ist für mich allerdings nicht nur ein Beruf. Auch in meiner Freizeit tüftle ich gerne an eigenen Projekten, probiere neue Technologien aus oder versuche, alltägliche Dinge ein kleines bisschen smarter zu machen.',
-            'Dabei entstehen mal kleinere Softwareprojekte, mal Smart-Home-Lösungen (wie Home-Assistant), Elektronik-Basteleien oder einfach Dinge, die ich aus Interesse ausprobieren wollte.',
-            'Wenn dich das interessiert, kannst du gerne bei meinen [privaten Projekten](/projects) vorbeischauen. Dort findest du sowohl bereits abgeschlossene Projekte als auch Dinge, an denen ich aktuell noch arbeite.'
+            'Seit mittlerweile {codingYears} Jahren arbeite ich als Softwareentwickler. Das Programmieren ist für mich allerdings nicht nur ein Beruf. Auch in meiner Freizeit tüftle ich gerne an eigenen Projekten, probiere neue Technologien aus oder versuche, alltägliche Dinge ein kleines bisschen smarter zu machen.',
+            'Dabei entstehen mal kleinere Softwareprojekte, mal Smart-Home-Lösungen (für mein Home Assistant), Elektronik-Basteleien oder einfach Dinge, die ich aus Interesse ausprobieren wollte.',
+            'Wenn dich das interessiert, kannst du gerne bei meinen [privaten Projekten](/projects) vorbeischauen. Dort findest du sowohl bereits abgeschlossene Projekte als auch Dinge, an denen ich aktuell noch arbeite oder die ich zu Testzwecken einfach mal ausprobiert habe.'
           ]
         },
         {
@@ -168,36 +171,39 @@ function seedPageContent(db: DatabaseSync) {
           image: '/images/about/segeln.jpg',
           paragraphs: [
             'Wie du wahrscheinlich schon an meinem Profilbild erkennen kannst, gehört neben der Technik inzwischen auch das Segeln zu meinen größten Leidenschaften.',
-            'Angefangen hat das Ganze vor ungefähr fünf Jahren allerdings etwas anders: mit einem Motorbootführerschein.',
-            'Nach den ersten längeren Fahrten habe ich relativ schnell festgestellt, dass mich reines Motorbootfahren nicht wirklich erfüllt. Einfach nur von A nach B zu fahren, wurde mir auf Dauer etwas zu eintönig und günstig ist das Ganze bekanntlich auch nicht gerade.',
+            'Angefangen hat das Ganze vor ungefähr {sailingYears} Jahren allerdings etwas anders – damals noch ganz klein mit einem Motorbootführerschein (auch SBF Binnen/See genannt).',
+            'Nach den ersten längeren Fahrten habe ich relativ schnell festgestellt, dass mich reines Motorbootfahren nicht wirklich erfüllt. Einfach nur von A nach B zu fahren, wurde mir auf Dauer etwas zu eintönig, und günstig ist das Ganze bekanntlich auch nicht gerade – heute sogar noch weniger als damals (Stand: August 2026).',
             'Durch einen Studenten-Segeltörn bin ich schließlich eher zufällig beim Segeln gelandet und mich hat die Naturverbundenheit in Verbindung mit einem Freiheitsgefühl sofort begeistert.',
-            'Gleichzeitig wusste ich aber auch: Ich möchte nicht dauerhaft darauf angewiesen sein, dass jemand anderes entscheidet, wann und wohin gesegelt wird und auch immer mit fremden Leuten. Also stand für mich fest, dass ich irgendwann selbst als Skipper unterwegs sein möchte.',
+            'Gleichzeitig wusste ich aber auch: Ich möchte nicht dauerhaft darauf angewiesen sein, dass jemand anderes entscheidet, wann und wohin gesegelt wird – und das auch immer mit fremden Leuten. Nicht, dass mir das etwas ausmachen würde, auch wenn ich auf neue Leute anfangs etwas distanziert und schüchtern wirke, aber mit Freunden macht es einfach mehr Spaß. Also stand für mich fest, dass ich irgendwann selbst als Skipper unterwegs sein möchte.',
             'Der nächste logische Schritt war deshalb der Sportküstenschifferschein, kurz SKS.',
-            'Dabei habe ich allerdings schnell gelernt, dass ein Segelschein nicht mit einem Autoführerschein vergleichbar ist. Nur weil man die Prüfung bestanden hat, bedeutet das noch lange nicht, dass man eine Yacht in jeder Situation sicher beherrscht.',
+            'Dabei habe ich allerdings schnell gelernt, dass ein Segelschein nicht mit einem Motorboot- oder Autoführerschein vergleichbar ist. Nur weil man die Prüfung bestanden hat, bedeutet das noch lange nicht, dass man eine Yacht in jeder Situation sicher beherrscht.',
             'Deshalb folgten weitere Skippertrainings und zusätzliche Qualifikationen – unter anderem der SRC-Funkschein für den UKW-Seefunk sowie der entsprechende Fachkundenachweis für pyrotechnische Seenotsignalmittel.',
             'Vor allem die praktischen Trainings haben mir gezeigt, wie viel es beim Segeln auch nach den Prüfungen noch zu lernen gibt.',
-            'Mittlerweile plane und organisiere ich eigene Segeltörns und versuche, fast jedes Jahr neue Reviere kennenzulernen.',
-            'Wenn du meine Reise und Segelabenteuer verfolgen möchtest, schau gerne im [Bereich Reisen](/travel) vorbei.'
+            'Mittlerweile plane und organisiere ich eigene Segeltörns und versuche, fast jedes Jahr neue Reviere kennenzulernen. Außerdem möchte ich an größeren Herausforderungen wachsen: So bin ich zum Beispiel schon auf den Kanaren gesegelt und musste dort bei widrigen Wetterbedingungen nachts das Boot steuern, weil der Steg, an dem wir festgemacht hatten, gebrochen war.',
+            'Mein größtes Vorbild ist dabei die australische Seglerin Jessica Watson. Sie gilt als jüngste Person, die allein, nonstop und ohne fremde Hilfe um die Welt gesegelt ist. Im Oktober 2009 startete sie mit gerade einmal 16 Jahren auf ihrer Yacht „Ella’s Pink Lady“ in Sydney und kam im Mai 2010 nach 210 Tagen auf See zurück – drei Tage vor ihrem 17. Geburtstag.',
+            'Was mich daran am meisten beeindruckt: Sie hat nie aufgegeben. Schon vor dem Start kollidierte ihr Boot auf der Überführungsfahrt zum Startort nachts mit einem Frachter und verlor dabei den Mast. Viele hielten ihr Vorhaben danach für unverantwortlich – sie ließ das Boot reparieren und segelte trotzdem los. Unterwegs wurde ihr Boot in den Stürmen des Südpolarmeers mehrmals flach aufs Wasser gedrückt, und jedes Mal hat sie weitergemacht. Ihre Geschichte hat sie später im Buch „True Spirit“ erzählt, das 2023 auch verfilmt wurde.',
+            'Wenn du meine Reisen und Segelabenteuer verfolgen möchtest, schau gerne im [Bereich Reisen](/travel) vorbei.'
           ]
         },
         {
           heading: 'Warum mich Finanzen irgendwann genauso interessiert haben',
           image: '/images/about/finanzen.jpg',
           paragraphs: [
-            'Neben meinem Beruf und meinen Hobbys, zu denen neben dem Segeln unter anderem auch Skifahren und Tennis gehören, beschäftige ich mich seit einigen Jahren intensiver mit meinen eigenen Finanzen und dem Thema Geldanlage.',
-            'Der Grund dafür ist eigentlich ziemlich einfach: Ich möchte finanziell nicht ausschließlich von einem einzigen Einkommen abhängig sein.',
-            'Ein sicher geglaubter Arbeitsplatz ist nicht automatisch eine Garantie für die Zukunft. Krankheit, ein Unfall, wirtschaftliche Veränderungen, die Insolvenz eines Unternehmens oder technologische Entwicklungen wie künstliche Intelligenz können Berufswege schneller verändern, als man vielleicht erwartet.',
-            'Gleichzeitig hatte ich lange das Gefühl, dass finanzielle Bildung in unserer Gesellschaft eine erstaunlich kleine Rolle spielt.',
+            'Neben meinem Beruf und meinen Hobbys, zu denen neben dem Segeln unter anderem auch Skifahren und Tennis gehören, beschäftige ich mich seit einigen Jahren intensiver mit meinen eigenen Finanzen und dem Thema Geld- bzw. Kapitalanlage.',
+            'Der Grund dafür ist eigentlich ziemlich einfach: Ich möchte finanziell nicht ausschließlich von einem einzigen Einkommen abhängig sein. Außerdem soll mein Geld für mich arbeiten und ein passives Einkommen generieren, das zugleich der deutlich gestiegenen Inflation seit Beginn der Corona-Krise entgegenwirkt.',
+            'Ein sicher geglaubter Arbeitsplatz ist nicht automatisch eine Garantie für die Zukunft. Krankheit, ein Unfall, wirtschaftliche Veränderungen, die Insolvenz eines Unternehmens oder technologische Entwicklungen wie künstliche Intelligenz können Berufswege schneller verändern, als man vielleicht erwartet. Leider habe ich das auch selbst deutlich zu spüren bekommen.',
+            'Meine einstige Leidenschaft, zu programmieren und in gewisser Weise etwas zu erschaffen, hat sich fast von heute auf morgen gewandelt. Man ist nicht mehr in der Rolle des Entwicklers, sondern eher in der des Dirigenten, der alles vorgibt, leitet und überwacht. Doch je mehr ich versucht habe, mich damit anzufreunden, desto mehr habe ich auch das Potenzial und den Fortschritt darin gesehen.',
+            'So kann diese Entwicklung zum Beispiel auch die Bildung fördern. Das liegt mir am Herzen, denn ich hatte lange das Gefühl, dass finanzielle Bildung in unserer Gesellschaft eine erstaunlich kleine Rolle spielt.',
             'Mir ging es anfangs selbst nicht anders. In der Schule habe ich viel gelernt, aber kaum etwas darüber, wie Vermögensaufbau funktioniert, was Aktien und ETFs eigentlich sind, wie man Risiken einschätzt oder warum es sinnvoll sein kann, sich möglichst früh mit seinen Finanzen auseinanderzusetzen. Gerade deshalb finde ich dieses Thema umso wichtiger.',
-            'Mein eigener Bildungsweg war dabei auch nicht unbedingt geradlinig. Ich habe auf der Hauptschule angefangen, mich anschließend Schritt für Schritt bis zum Abitur weitergearbeitet und schließlich studiert. Am Ende habe ich meinen Masterabschluss gemacht.',
-            'Während meines Studiums ergab sich sogar die Möglichkeit einer Doktorandenstelle in Brisbane (Australien). So spannend diese Chance auch war, habe ich mich letztendlich dagegen entschieden. Forschung finde ich interessant, aber ich habe gemerkt, dass ich lieber praktisch arbeite, Dinge entwickle und am Ende auch sehe, was daraus entsteht.',
+            'Mein eigener Bildungsweg war dabei auch nicht unbedingt geradlinig. Ich habe auf der Hauptschule angefangen, mich anschließend Schritt für Schritt bis zum Abitur weitergearbeitet und schließlich studiert. Am Ende habe ich meinen Masterabschluss gemacht. Ganz nach dem Motto: Man kann im Leben alles erreichen, wenn man den Mut und den nötigen Ehrgeiz dafür aufbringt.',
+            'Während meines Studiums ergab sich sogar die Möglichkeit einer Doktorandenstelle in Brisbane (Australien). So spannend diese Chance auch war, habe ich mich letztendlich dagegen entschieden. Forschung finde ich interessant, aber ich habe gemerkt, dass ich lieber praktisch arbeite, Dinge entwickle und am Ende auch sehen kann, was daraus entsteht.',
             'Auch meine Zeit und Erfahrungen in Australien haben meine Sicht auf Deutschland, Arbeit und finanzielle Absicherung verändert. Sie haben mich noch einmal darin bestärkt, mich intensiver mit Vermögensaufbau und langfristiger finanzieller Planung auseinanderzusetzen.',
             'Dabei möchte ich auf dieser Webseite allerdings niemandem erzählen, wie er sein Geld anzulegen hat. Stattdessen möchte ich zeigen, wie ich selbst vorgehe, welche Entscheidungen ich treffe, welche Fehler ich gemacht habe und was ich daraus gelernt habe.',
             'Denn auch ich habe klein angefangen.',
             'Und genau deshalb weiß ich, dass der Einstieg manchmal komplizierter wirkt, als er eigentlich sein muss. Gleichzeitig merkt man mit der Zeit, welchen Unterschied es macht, früh anzufangen und konsequent dranzubleiben.',
             'Während meines Studiums bin ich außerdem einem Börsenverein beigetreten. Rückblickend war das eine der besten Möglichkeiten, um tiefer in das Thema einzusteigen. Besonders wertvoll war für mich der Austausch mit anderen – von Studierenden, die selbst gerade erst angefangen hatten, bis hin zu Mitgliedern mit jahrelanger Erfahrung.',
             'Dabei ging es nicht nur um Aktien oder Investments. Ich habe dort viele offene und herzliche Menschen kennengelernt, mit denen man ein gemeinsames Interesse teilen und gleichzeitig voneinander lernen konnte.',
-            'Gerade wenn man neu in diesem Bereich ist, kann ich deshalb nur empfehlen, sich mit anderen auszutauschen und unterschiedliche Sichtweisen kennenzulernen.',
+            'Gerade wenn man neu in diesem Bereich ist und aus einer ganz anderen Branche kommt, ist es immer gut, sich zu vernetzen. Anfangs war ich der einzige Informatiker unter sehr vielen BWL-Studenten und ein paar Leuten aus anderen Studienrichtungen – und gerade diese Mischung hat den Austausch so wertvoll gemacht. Deshalb kann ich nur empfehlen, sich mit anderen auszutauschen und unterschiedliche Sichtweisen kennenzulernen.',
             'Wenn dich meine persönliche Herangehensweise an Investments interessiert oder du sehen möchtest, welche Trades und Entscheidungen ich selbst treffe, findest du mehr dazu im [Bereich Finanzen](/finance).'
           ]
         },
@@ -232,8 +238,8 @@ function seedPageContent(db: DatabaseSync) {
       aerialLead:
         'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig neues zu entdecken...\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
       stats: [
-        { icon: 'code', value: '7', label: 'Jahre Programmieren' },
-        { icon: 'sailing', value: '5', label: 'Jahre Segeln' },
+        { icon: 'code', value: '{codingYears}', label: 'Jahre Programmieren' },
+        { icon: 'sailing', value: '{sailingYears}', label: 'Jahre Segeln' },
         { icon: 'globe', value: '7', label: 'Länder bereist' },
         { icon: 'idea', value: '∞', label: 'Ideen im Kopf' }
       ]
