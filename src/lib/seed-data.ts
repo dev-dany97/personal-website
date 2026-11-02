@@ -111,14 +111,14 @@ function seedPageContent(db: DatabaseSync) {
           image: '/images/about/gaming.jpg',
           paragraphs: [
             'My probably oldest passion has been with me since I was about seven years old: video games.',
-            'It all started with a PlayStation 2, a Game Boy, and eventually a pretty old PC.',
+            'It all started with a PlayStation 2, a Game Boy, a Nintendo DS, and eventually a pretty old PC.',
             'What started out as just playing games slowly turned into an interest in the technology behind them. At some point I no longer just wanted to know which game ran on my PC, but why it ran.',
             'How does a processor actually work? What happens in RAM? How does software communicate with hardware? And what happens at the lower levels, all the way down to machine instructions and assembly?',
             'The more I learned about it, the more interested I became in building my own PC.',
             "And that's how a little never-ending story began.",
-            'A fairly normal PC with classic air cooling eventually turned into an ever more optimized system. New hardware, better cooling, RGB lighting, cable management, different case concepts — all the way to a fully custom water-cooled build.',
-            'And as is usually the case with hobbies like this, a PC is never really "finished" … For me, that’s been going on for 5 years now…',
-            "You can find what I'm currently playing and which hardware I use in the [gaming section](/setup)."
+            'A fairly normal PC with classic air cooling eventually turned into an ever more optimized system. New hardware, better cooling, RGB lighting, cable management, different case concepts — all the way to a PC with a fully custom water-cooling loop, extra gimmicks, and mods I designed myself.',
+            'And as is usually the case with hobbies like this, a PC is never really "finished" … For me, that’s been going on for {pcYears} years now…',
+            "You can find what I'm currently playing, which hardware I use, and the mods I've built myself in the [gaming section](/setup)."
           ]
         },
         {
@@ -135,7 +135,7 @@ function seedPageContent(db: DatabaseSync) {
       aerialEyebrow: 'Drone Photography',
       aerialTitle: 'The World from a Different Perspective',
       aerialLead:
-        "Sometimes all it takes is a change of perspective to discover something completely new...\nWith my DJI Mavic 3, I love capturing beautiful landscapes and moments that often stay hidden from the ground.\n\nBelow you'll find some of my favorite shots around Regensburg and the surrounding area.",
+        "Sometimes all it takes is a change of perspective to discover something completely new...\nEven though I try to stay down to earth and protecting nature matters a lot to me, I love to take off now and then, look beyond the horizon, and realize how beautiful everything actually is.\nWith my DJI Mavic 3, I love capturing beautiful landscapes and moments that often stay hidden from the ground.\n\nBelow you'll find some of my favorite shots around Regensburg and the surrounding area.",
       stats: [
         { icon: 'code', value: '{codingYears}', label: 'Years Coding' },
         { icon: 'sailing', value: '{sailingYears}', label: 'Years Sailing' },
@@ -212,14 +212,14 @@ function seedPageContent(db: DatabaseSync) {
           image: '/images/about/gaming.jpg',
           paragraphs: [
             'Meine wahrscheinlich älteste Leidenschaft begleitet mich nämlich schon, seit ich ungefähr sieben Jahre alt bin: Videospiele.',
-            'Angefangen hat alles mit einer PlayStation 2, einem Game Boy und irgendwann einem ziemlich alten PC.',
+            'Angefangen hat alles mit einer PlayStation 2, einem Game Boy, einem Nintendo DS und irgendwann einem ziemlich alten PC.',
             'Was zunächst einfach nur Spielen war, entwickelte sich mit der Zeit immer mehr zu einem Interesse an der Technik dahinter. Irgendwann wollte ich nicht mehr nur wissen, welches Spiel auf meinem PC läuft, sondern warum es läuft.',
             'Wie arbeitet eigentlich ein Prozessor? Was passiert im Arbeitsspeicher? Wie kommuniziert Software mit der Hardware? Und was passiert auf den unteren Ebenen bis hin zu Maschinenbefehlen und Assembler?',
             'Je mehr ich darüber gelernt habe, desto größer wurde mein Interesse daran, meinen eigenen PC zusammenzustellen.',
             'Und damit begann eine kleine Never-Ending-Story.',
-            'Aus einem relativ normalen PC mit klassischer Luftkühlung wurde irgendwann ein immer weiter optimiertes System. Neue Hardware, bessere Kühlung, RGB-Beleuchtung, Kabelmanagement, verschiedene Gehäusekonzepte – bis hin zu einem komplett Custom-Wasserkühlungs-PC.',
-            'Und wie das bei solchen Hobbys meistens ist, ist ein PC eigentlich nie wirklich „fertig"… Bei mir geht das schon 5 Jahre so…',
-            'Was ich aktuell spiele, welche Hardware ich verwende, findest du im [Bereich Gaming](/setup).'
+            'Aus einem relativ normalen PC mit klassischer Luftkühlung wurde irgendwann ein immer weiter optimiertes System. Neue Hardware, bessere Kühlung, RGB-Beleuchtung, Kabelmanagement, verschiedene Gehäusekonzepte – bis hin zu einem PC mit kompletter Custom-Wasserkühlung, zusätzlichen Spielereien und selbst entworfenen Modifikationen.',
+            'Und wie das bei solchen Hobbys meistens ist, ist ein PC eigentlich nie wirklich „fertig"… Bei mir geht das schon {pcYears} Jahre so…',
+            'Was ich aktuell spiele, welche Hardware ich verwende und welche Modifikationen ich selbst gebaut habe, findest du im [Bereich Gaming](/setup).'
           ]
         },
         {
@@ -227,7 +227,7 @@ function seedPageContent(db: DatabaseSync) {
           image: '/images/about/das-bin-ich.jpg',
           paragraphs: [
             'Softwareentwicklung, Segeln, Reisen, Finanzen, Technik, Gaming – auf den ersten Blick vielleicht ziemlich unterschiedliche Themen.',
-            'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus, möchte verstehen, wie sie funktionieren, und versuche mich ständig weiterzuentwickeln.',
+            'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus, möchte verstehen, wie sie funktionieren – und versuche, mich ständig weiterzuentwickeln.',
             'Genau darum geht es auch auf dieser Webseite.',
             'Wenn davon etwas für dich interessant, hilfreich oder einfach unterhaltsam ist, hat die Seite schon ihren Zweck erfüllt.'
           ]
@@ -236,7 +236,7 @@ function seedPageContent(db: DatabaseSync) {
       aerialEyebrow: 'Drohnen-Fotografie',
       aerialTitle: 'Die Welt aus einer anderen Perspektive',
       aerialLead:
-        'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig neues zu entdecken...\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
+        'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig Neues zu entdecken...\nAuch wenn ich versuche, bodenständig und geerdet zu bleiben, und es mir sehr wichtig ist, unsere Natur zu schützen, hebe ich gerne mal ab, blicke über den Horizont hinaus und erkenne dabei, wie schön eigentlich alles ist.\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
       stats: [
         { icon: 'code', value: '{codingYears}', label: 'Jahre Programmieren' },
         { icon: 'sailing', value: '{sailingYears}', label: 'Jahre Segeln' },
@@ -493,7 +493,7 @@ function seedHome(db: DatabaseSync) {
     {
       image: '/images/projects/dji-photo-2.jpg',
       location: 'Lupburg',
-      year: null,
+      year: 2022,
       title_en: 'Lupburg',
       title_de: 'Lupburg',
       description_en:
@@ -504,7 +504,7 @@ function seedHome(db: DatabaseSync) {
     {
       image: '/images/projects/dji-photo-3.jpg',
       location: 'Regensburg',
-      year: null,
+      year: 2024,
       title_en: 'Regensburg Süd',
       title_de: 'Regensburg Süd',
       description_en:
@@ -515,13 +515,13 @@ function seedHome(db: DatabaseSync) {
     {
       image: '/images/projects/dji-photo-4.jpg',
       location: 'Parsberg',
-      year: null,
+      year: 2024,
       title_en: 'Parsberg',
       title_de: 'Parsberg',
       description_en:
-        "Parsberg sits nestled in the hilly landscape of the Upper Palatinate Jura, blending history, nature, and the life of a modern small town in a special way.\n\nParsberg Castle shapes the townscape from far away, even though it's a bit hard to make out in the photo — it sits on the hill in the right background. The Christmas market there is especially lovely, and I visit it every year.\n\nFrom the air, it's also especially clear how compactly Parsberg sits within the landscape — a small town surrounded by plenty of nature and the countryside typical of the Upper Palatinate.\n\nBut you can also see how it keeps growing. On the left you can spot the Möbelhof furniture store and the new Edeka supermarket, with the new housing developments right across from them.",
+        "Parsberg sits nestled in the hilly landscape of the Upper Palatinate Jura, blending history, nature, and the life of a modern small town in a special way — a town I feel closely connected to.\n\nParsberg Castle shapes the townscape from far away, even though it's a bit hard to make out in the photo — it sits on the hill in the right background. The Christmas market there is especially lovely, and I visit it every year.\n\nFrom the air, it's also especially clear how compactly Parsberg sits within the landscape — a small town surrounded by plenty of nature and the countryside typical of the Upper Palatinate.\n\nBut you can also see how it keeps growing. On the left you can spot the Möbelhof furniture store and the new Edeka supermarket, with the new housing developments right across from them.",
       description_de:
-        'Parsberg liegt eingebettet in die hügelige Landschaft des Oberpfälzer Jura und verbindet auf besondere Weise Geschichte, Natur und das Leben einer modernen Kleinstadt.\n\nSchon von Weitem prägt die Burg Parsberg das Stadtbild, auch wenn sie auf dem Foto her etwas schwer zu erkennen ist, liegt sie auf dem Hügel rechts im Hintergrund. Besonders schön ist dort der Weihnachtsmarkt, den ich jährlich besuche.\n\nAus der Luft zeigt sich zudem besonders schön, wie kompakt Parsberg in die Landschaft eingebettet ist – eine kleine Stadt, umgeben von viel Natur und typisch oberpfälzischer Landschaft.\n\nAber auch wie sie zunehmend wächst. So ist links der Möbelhof und der neue Edeka zu sehen und die Neubausiedlungen direkt Gegenüber.'
+        'Parsberg liegt eingebettet in die hügelige Landschaft des Oberpfälzer Jura und vereint auf besondere Weise Geschichte, Natur und das Leben einer modernen Kleinstadt, mit der ich mich auch eng verbunden fühle.\n\nSchon von Weitem prägt die Burg Parsberg das Stadtbild, auch wenn sie auf dem Foto her etwas schwer zu erkennen ist, liegt sie auf dem Hügel rechts im Hintergrund. Besonders schön ist dort der Weihnachtsmarkt, den ich jährlich besuche.\n\nAus der Luft zeigt sich zudem besonders schön, wie kompakt Parsberg in die Landschaft eingebettet ist – eine kleine Stadt, umgeben von viel Natur und typisch oberpfälzischer Landschaft.\n\nAber auch wie sie zunehmend wächst. So ist links der Möbelhof und der neue Edeka zu sehen und die Neubausiedlungen direkt Gegenüber.'
     },
     {
       image: '/images/projects/dji-photo-5.jpg',
@@ -538,7 +538,7 @@ function seedHome(db: DatabaseSync) {
     {
       image: '/images/projects/dji-photo-6.jpg',
       location: 'Regensburg',
-      year: null,
+      year: 2025,
       title_en: 'Winter Dusk over the Danube',
       title_de: 'Winterliche Dämmerung über der Donau',
       description_en:
@@ -549,7 +549,7 @@ function seedHome(db: DatabaseSync) {
     {
       image: '/images/projects/dji-photo-7.jpg',
       location: 'Regensburg',
-      year: null,
+      year: 2023,
       title_en: 'The Golden Hour over the Land',
       title_de: 'Die goldenen Stunden über dem Land',
       description_en:
@@ -560,7 +560,7 @@ function seedHome(db: DatabaseSync) {
     {
       image: '/images/projects/dji-photo-8.jpg',
       location: 'Regensburg',
-      year: null,
+      year: 2025,
       title_en: 'Regensburg Dult',
       title_de: 'Regensburg Dult',
       description_en:
@@ -581,7 +581,7 @@ function seedHome(db: DatabaseSync) {
     {
       src: `${MEDIA_BASE_URL}/videos/sunset-intro.mp4`,
       location: 'Lupburg',
-      year: null,
+      year: 2022,
       title_en: 'Lupburg 360° at sunset',
       title_de: 'Lupburg 360° bei Sonnenuntergang',
       description_en:
@@ -592,7 +592,7 @@ function seedHome(db: DatabaseSync) {
     {
       src: `${MEDIA_BASE_URL}/videos/winter-intro.mp4`,
       location: 'Regensburg',
-      year: null,
+      year: 2023,
       title_en: 'Winter over Regensburg',
       title_de: 'Winter über Regensburg',
       description_en:
@@ -603,7 +603,7 @@ function seedHome(db: DatabaseSync) {
     {
       src: `${MEDIA_BASE_URL}/videos/silvester-intro.mp4`,
       location: 'Regensburg',
-      year: null,
+      year: 2024,
       title_en: "New Year's Eve in Regensburg",
       title_de: 'Silvester in Regensburg',
       description_en:

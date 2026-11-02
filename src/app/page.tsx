@@ -41,6 +41,7 @@ interface HomeStat {
 // Start years for the "x years" mentions in the about texts and stats.
 const CODING_START_YEAR = 2019;
 const SAILING_START_YEAR = 2021;
+const PC_BUILD_START_YEAR = 2021;
 
 const NUMBER_WORDS: Record<'de' | 'en', string[]> = {
   de: ['null', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf'],
@@ -161,15 +162,17 @@ export default function Home() {
   const c = data[lang];
   const aboutIntro = c.aboutIntro.map((p) => p.replace('{age}', String(currentAge)));
 
-  // Years since I started coding / sailing, so the texts and stats don't need
+  // Years since I started coding / sailing / building my own PC, so the texts and stats don't need
   // a manual update every year. Prose spells small numbers out ("fünf Jahren"),
   // the stats bar shows digits.
   const codingYears = today.getFullYear() - CODING_START_YEAR;
   const sailingYears = today.getFullYear() - SAILING_START_YEAR;
+  const pcYears = today.getFullYear() - PC_BUILD_START_YEAR;
   const fillYears = (text: string, asWords: boolean) =>
     text
       .replaceAll('{codingYears}', asWords ? numberWord(codingYears, lang) : String(codingYears))
-      .replaceAll('{sailingYears}', asWords ? numberWord(sailingYears, lang) : String(sailingYears));
+      .replaceAll('{sailingYears}', asWords ? numberWord(sailingYears, lang) : String(sailingYears))
+      .replaceAll('{pcYears}', asWords ? numberWord(pcYears, lang) : String(pcYears));
   const aboutSections = c.aboutSections.map((section) => ({
     ...section,
     paragraphs: section.paragraphs.map((p) => fillYears(p, true))
