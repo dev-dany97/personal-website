@@ -527,7 +527,6 @@ function seedHome(db: DatabaseSync) {
       image: '/images/projects/dji-photo-5.jpg',
       location: 'Regensburg',
       year: 2021,
-      hoverVideo: `${MEDIA_BASE_URL}/videos/winter2021-hover.mp4`,
       title_en: 'Winter 2021',
       title_de: 'Winter 2021',
       description_en:
