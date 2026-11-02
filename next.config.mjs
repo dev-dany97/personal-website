@@ -20,7 +20,9 @@ const mediaOrigin = process.env.NEXT_PUBLIC_MEDIA_BASE_URL
 const csp = [
 	"default-src 'self'",
 	"img-src 'self' data: https://media.valorant-api.com",
-	`media-src 'self' ${mediaOrigin}`,
+	// data: is needed by public/pc-modell.html, which carries the clip for the
+	// model's 7-inch display inline as a data URI.
+	`media-src 'self' data: ${mediaOrigin}`,
 	`script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com ${umamiOrigins}`,
 	"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 	"font-src 'self' data: https://fonts.gstatic.com",

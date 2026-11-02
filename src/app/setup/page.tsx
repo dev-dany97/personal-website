@@ -29,6 +29,8 @@ interface SetupContent {
   tipsText: string;
   explore3dTitle: string;
   explore3dText: string;
+  umbauTitle: string;
+  umbauDesc: string;
   componentsPhotoTitle: string;
   componentsPhotoCaption: string;
   componentsPhotoAlt: string;
@@ -153,6 +155,22 @@ export default function Setup() {
               allow="autoplay"
               loading="lazy"
             />
+          </div>
+
+          <div className="row justify-content-center mb-5">
+            <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
+              <div className="setup-build-card">
+                <AutoplayVideo
+                  src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Umbau.mp4`}
+                  className="rounded shadow-lg"
+                  style={{ width: '100%', height: 'auto', aspectRatio: '9 / 16', display: 'block', background: '#000' }}
+                />
+                <div className="setup-build-caption">
+                  <h5 className="mb-1">{c.umbauTitle}</h5>
+                  <p className="theme-text-soft mb-0">{c.umbauDesc}</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="mb-5">
