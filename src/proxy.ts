@@ -7,9 +7,21 @@ const WINDOW_MS = 60_000;
 const MAX_REQUESTS = 120;
 const hits = new Map<string, { count: number; resetAt: number }>();
 
-function clientIp(req: NextRequest): string {
+// The site is only reachable through CloudFront, which sets
+// CloudFront-Viewer-Address ("ip:port") itself and cannot be spoofed by the
+// client. X-Forwarded-For is a fallback: its *first* entry is whatever the
+// client sent, so we take the last entry, which was appended by our own proxy.
+export function clientIp(req: NextRequest): string {
+  const viewer = req.headers.get('cloudfront-viewer-address');
+  if (viewer) {
+    const idx = viewer.lastIndexOf(':');
+    return (idx > 0 ? viewer.slice(0, idx) : viewer).trim();
+  }
   const forwarded = req.headers.get('x-forwarded-for');
-  if (forwarded) return forwarded.split(',')[0].trim();
+  if (forwarded) {
+    const parts = forwarded.split(',').map((p) => p.trim()).filter(Boolean);
+    if (parts.length > 0) return parts[parts.length - 1];
+  }
   return req.headers.get('x-real-ip') ?? 'unknown';
 }
 

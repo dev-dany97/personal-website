@@ -45,6 +45,17 @@ function sanitizeBriefingHtml(html: string): string {
   return out.trim();
 }
 
+// Generating a briefing calls a paid model with web search, so a cache miss must
+// never turn into one paid call per visitor. Concurrent misses share one
+// in-flight generation, a failure blocks retries for a while, and there is a
+// hard daily cap per language. State is in memory: this runs as one process.
+const RETRY_AFTER_FAILURE_MS = 15 * 60 * 1000;
+const MAX_GENERATIONS_PER_DAY = 3;
+type BriefingResult = { available: boolean; date: string; content?: string; generatedAt?: string; reason?: string };
+const inFlight = new Map<string, Promise<BriefingResult>>();
+const lastFailureAt = new Map<string, number>();
+const attempts = new Map<string, number>();
+
 export async function GET(req: NextRequest) {
   const lang = req.nextUrl.searchParams.get('lang') === 'de' ? 'de' : 'en';
   const date = todayBerlin();
@@ -62,6 +73,34 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ available: false, reason: 'not_configured' });
   }
 
+  const key = `${date}:${lang}`;
+  const running = inFlight.get(key);
+  if (running) return NextResponse.json(await running);
+
+  const failedAt = lastFailureAt.get(key);
+  if ((failedAt && Date.now() - failedAt < RETRY_AFTER_FAILURE_MS) || (attempts.get(key) ?? 0) >= MAX_GENERATIONS_PER_DAY) {
+    return NextResponse.json({ available: false, reason: 'unavailable' });
+  }
+
+  attempts.set(key, (attempts.get(key) ?? 0) + 1);
+  // Drop counters from previous days so the maps stay small.
+  for (const k of attempts.keys()) if (!k.startsWith(date)) attempts.delete(k);
+  for (const k of lastFailureAt.keys()) if (!k.startsWith(date)) lastFailureAt.delete(k);
+
+  const job = generateBriefing(lang, date).then((result) => {
+    if (!result.available) lastFailureAt.set(key, Date.now());
+    return result;
+  });
+  inFlight.set(key, job);
+  try {
+    return NextResponse.json(await job);
+  } finally {
+    inFlight.delete(key);
+  }
+}
+
+async function generateBriefing(lang: 'en' | 'de', date: string): Promise<BriefingResult> {
+  const db = getDb();
   try {
     const client = new Anthropic();
     const prompt = PROMPTS[lang];
@@ -78,7 +117,7 @@ export async function GET(req: NextRequest) {
 
     if (response.stop_reason === 'max_tokens') {
       console.error('finance-briefing hit max_tokens, discarding truncated output');
-      return NextResponse.json({ available: false, reason: 'truncated' });
+      return { available: false, date, reason: 'truncated' };
     }
 
     const rawHtml = response.content
@@ -90,7 +129,7 @@ export async function GET(req: NextRequest) {
     const html = sanitizeBriefingHtml(rawHtml);
 
     if (!html) {
-      return NextResponse.json({ available: false, reason: 'empty_response' });
+      return { available: false, date, reason: 'empty_response' };
     }
 
     const generatedAt = new Date().toISOString();
@@ -98,9 +137,9 @@ export async function GET(req: NextRequest) {
       'INSERT OR REPLACE INTO finance_briefings (briefing_date, lang, content, generated_at) VALUES (?, ?, ?, ?)'
     ).run(date, lang, html, generatedAt);
 
-    return NextResponse.json({ available: true, date, content: html, generatedAt });
+    return { available: true, date, content: html, generatedAt };
   } catch (err) {
     console.error('finance-briefing generation failed', err);
-    return NextResponse.json({ available: false, reason: 'error' });
+    return { available: false, date, reason: 'error' };
   }
 }

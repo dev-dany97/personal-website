@@ -70,7 +70,7 @@ export default function Contact() {
   const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const honeypot = (e.currentTarget.elements.namedItem('company') as HTMLInputElement | null)?.value;
+    const honeypot = (e.currentTarget.elements.namedItem('_gotcha') as HTMLInputElement | null)?.value;
     if (honeypot) {
       e.preventDefault();
       return;
@@ -148,10 +148,10 @@ export default function Contact() {
                 <p className="contact-form-note contact-form-note--success">{c.successMessage}</p>
               ) : (
                 <form onSubmit={onFormSubmit}>
-                  {/* Honeypot: hidden from real users, but bots tend to fill every field. */}
+                  {/* Honeypot: hidden from real users, but bots tend to fill every field. Formspree also drops any submission with _gotcha set, so bots posting straight to Formspree are filtered too. */}
                   <input
                     type="text"
-                    name="company"
+                    name="_gotcha"
                     tabIndex={-1}
                     autoComplete="off"
                     aria-hidden="true"

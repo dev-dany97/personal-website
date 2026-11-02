@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
-import { proxy } from './proxy';
+import { clientIp, proxy } from './proxy';
 
 function requestFrom(ip: string) {
   return new NextRequest('http://localhost/api/contact', {
@@ -45,5 +45,22 @@ describe('proxy rate limiting', () => {
     }
     expect(proxy(requestFrom(ipA)).status).toBe(429);
     expect(proxy(requestFrom(ipB)).status).toBe(200);
+  });
+
+  it('ignores a spoofed first x-forwarded-for entry', () => {
+    const real = `6.6.6.${Math.random()}`;
+    for (let i = 0; i < 121; i++) {
+      proxy(new NextRequest('http://localhost/api/contact', {
+        headers: { 'x-forwarded-for': `9.9.9.${i}, ${real}` },
+      }));
+    }
+    expect(proxy(requestFrom(real)).status).toBe(429);
+  });
+
+  it('prefers the CloudFront viewer address', () => {
+    const req = new NextRequest('http://localhost/api/contact', {
+      headers: { 'cloudfront-viewer-address': '2001:db8::1:51234', 'x-forwarded-for': '7.7.7.7' },
+    });
+    expect(clientIp(req)).toBe('2001:db8::1');
   });
 });
