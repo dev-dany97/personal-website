@@ -5,8 +5,8 @@ const umamiOrigins = (() => {
 	const src = process.env.NEXT_PUBLIC_UMAMI_SRC;
 	if (!src) return [];
 	const origin = new URL(src).origin;
-	// Umami Cloud has historically sent events through a separate gateway host.
-	return origin.endsWith('.umami.is') ? [origin, 'https://api-gateway.umami.dev'] : [origin];
+	// Umami Cloud serves the script from cloud.umami.is but sends events to gateway.umami.is.
+	return origin.endsWith('.umami.is') ? [origin, 'https://gateway.umami.is'] : [origin];
 })().join(' ');
 
 const mediaOrigin = process.env.NEXT_PUBLIC_MEDIA_BASE_URL
