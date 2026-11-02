@@ -10,9 +10,12 @@ import type { DatabaseSync } from 'node:sqlite';
 // for local dev.
 const MEDIA_BASE_URL = process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? '';
 
-export function seedDatabase(db: DatabaseSync) {
+// `prepare` runs inside the same transaction, before any row is inserted, so a
+// caller can drop/recreate tables and seed atomically.
+export function seedDatabase(db: DatabaseSync, prepare?: (db: DatabaseSync) => void) {
   db.exec('BEGIN');
   try {
+    prepare?.(db);
     seedPageContent(db);
     seedHome(db);
     seedProjects(db);
