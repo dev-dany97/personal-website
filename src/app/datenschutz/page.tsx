@@ -116,15 +116,19 @@ export default function Datenschutz() {
                   <h3>§ 5a Reichweitenmessung mit Umami</h3>
                   <p>
                     Zur statistischen Auswertung der Zugriffe auf diese Website (Anzahl der Aufrufe und ungefähres
-                    Herkunftsland der Besucher) nutze ich den selbst gehosteten, quelloffenen Analysedienst Umami. Der
-                    zugehörige Server wird ebenfalls in der AWS-Region Frankfurt am Main betrieben. Umami setzt keine
+                    Herkunftsland der Besucher) nutze ich den quelloffenen Analysedienst Umami Cloud der Umami Software, Inc.,
+                    28 Geary St, Suite 650 #243, San Francisco, Kalifornien, USA. Die Daten werden in der EU-Datenregion
+                    von Umami Cloud gespeichert; mit dem Anbieter besteht ein Vertrag zur Auftragsverarbeitung nach
+                    Art. 28 DSGVO. Soweit im Rahmen von Betrieb, Support oder Content-Delivery Daten in die USA
+                    übermittelt werden, geschieht dies auf Grundlage der EU-Standardvertragsklauseln. Umami setzt keine
                     Cookies, erstellt keine geräteübergreifenden Nutzerprofile und speichert keine vollständigen
                     IP-Adressen; die IP-Adresse wird lediglich kurzzeitig zur Bestimmung des Herkunftslands verarbeitet
                     und anschließend verworfen. Gespeichert werden nur aggregierte, nicht auf einzelne Personen
                     rückführbare Daten wie Land, Browsertyp, Betriebssystem, verwendetes Gerät, Referrer und aufgerufene
-                    Seite. Rechtsgrundlage ist mein berechtigtes Interesse an der bedarfsgerechten Gestaltung und
-                    statistischen Auswertung meiner Website (Art. 6 Abs. 1 lit. f DSGVO). Da kein Tracking über Cookies
-                    oder Geräte-Fingerprinting stattfindet, ist hierfür keine Einwilligung erforderlich.
+                    Seite; sie werden nach sechs Monaten gelöscht. Rechtsgrundlage ist mein berechtigtes Interesse an der
+                    bedarfsgerechten Gestaltung und statistischen Auswertung meiner Website (Art. 6 Abs. 1 lit. f
+                    DSGVO). Da kein
+                    Tracking über Cookies oder Geräte-Fingerprinting stattfindet, ist hierfür keine Einwilligung erforderlich.
                   </p>
 
                   <h3>§ 5b Regionale Zugriffsbeschränkung</h3>
@@ -263,12 +267,15 @@ export default function Datenschutz() {
                   <h3>§ 5a Traffic Analysis with Umami</h3>
                   <p>
                     For statistical analysis of visits to this website (number of visits and approximate country of
-                    origin of visitors), I use the self-hosted, open-source analytics service Umami. The associated
-                    server is also operated in the AWS Frankfurt am Main region. Umami does not set cookies, does not
-                    create cross-device user profiles, and does not store full IP addresses; the IP address is only
-                    processed briefly to determine the country of origin and is then discarded. Only aggregated data
-                    that cannot be traced back to individuals is stored, such as country, browser type, operating
-                    system, device used, referrer, and page visited. The legal basis is my legitimate interest in the
+                    origin of visitors), I use the open-source analytics service Umami Cloud provided by Umami Software, Inc.,
+                    28 Geary St, Suite 650 #243, San Francisco, California, USA. The data is stored in the EU data region of
+                    Umami Cloud; a data processing agreement pursuant to Art. 28 GDPR is in place with the provider. Where
+                    data is transferred to the USA in the course of operations, support or content delivery, this is
+                    based on the EU Standard Contractual Clauses. Umami does not set cookies, does not create
+                    cross-device user profiles, and does not store full IP addresses; the IP address is only processed
+                    briefly to determine the country of origin and is then discarded. Only aggregated data that cannot
+                    be traced back to individuals is stored, such as country, browser type, operating system, device used, referrer, and
+                    page visited; it is deleted after six months. The legal basis is my legitimate interest in the
                     needs-based design and statistical evaluation of my website (Art. 6(1)(f) GDPR). Since no tracking
                     via cookies or device fingerprinting takes place, no consent is required for this.
                   </p>

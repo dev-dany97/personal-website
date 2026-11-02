@@ -1,3 +1,14 @@
+// Umami's script and its event endpoint live on whatever host
+// NEXT_PUBLIC_UMAMI_SRC points to (self-hosted or Umami Cloud), so the CSP
+// follows that build-time variable instead of hard-coding a host.
+const umamiOrigins = (() => {
+	const src = process.env.NEXT_PUBLIC_UMAMI_SRC;
+	if (!src) return [];
+	const origin = new URL(src).origin;
+	// Umami Cloud has historically sent events through a separate gateway host.
+	return origin.endsWith('.umami.is') ? [origin, 'https://api-gateway.umami.dev'] : [origin];
+})().join(' ');
+
 const mediaOrigin = process.env.NEXT_PUBLIC_MEDIA_BASE_URL
 	? new URL(process.env.NEXT_PUBLIC_MEDIA_BASE_URL).origin
 	: '';
@@ -6,10 +17,10 @@ const csp = [
 	"default-src 'self'",
 	"img-src 'self' data: https://media.valorant-api.com",
 	`media-src 'self' ${mediaOrigin}`,
-	"script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://analytics.d-mohles.de",
+	`script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com ${umamiOrigins}`,
 	"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 	"font-src 'self' data: https://fonts.gstatic.com",
-	"connect-src 'self' https://formspree.io https://analytics.d-mohles.de",
+	`connect-src 'self' https://formspree.io ${umamiOrigins}`,
 	"form-action 'self' https://formspree.io",
 	"frame-ancestors 'none'",
 	"base-uri 'self'",
