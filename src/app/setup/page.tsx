@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
+import { AutoplayVideo } from '@/app/components/AutoplayVideo';
 import { GamingHudBackground } from '@/app/components/backgrounds/GamingHudBackground';
 
 // Large video files are hosted on S3/CloudFront rather than bundled under
@@ -84,18 +85,11 @@ export default function Setup() {
           <div className="row justify-content-center mb-5">
             <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
               <div className="setup-build-card">
-                <video
+                <AutoplayVideo
                   src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC.mp4`}
                   className="rounded shadow-lg"
                   style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}
-                  muted
-                  autoPlay
-                  playsInline
-                  loop
-                  preload="auto"
-                >
-                  Your browser does not support the video tag.
-                </video>
+                />
                 <div className="setup-build-caption">
                   <h5 className="mb-1">{c.highEndTitle}</h5>
                   <p className="theme-text-soft mb-0">{c.highEndDesc}</p>
@@ -177,18 +171,11 @@ export default function Setup() {
           <div className="row justify-content-center mb-4">
             <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
               <div className="setup-build-card">
-                <video
+                <AutoplayVideo
                   src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC2.mp4`}
                   className="rounded shadow-lg"
                   style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}
-                  muted
-                  autoPlay
-                  playsInline
-                  loop
-                  preload="auto"
-                >
-                  Your browser does not support the video tag.
-                </video>
+                />
                 <div className="setup-build-caption">
                   <h5 className="mb-1">{c.secondBuildTitle}</h5>
                   <p className="theme-text-soft mb-0">{c.secondBuildDesc}</p>

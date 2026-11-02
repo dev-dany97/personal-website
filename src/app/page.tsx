@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { Reveal } from '@/app/components/Reveal';
+import { AutoplayVideo } from '@/app/components/AutoplayVideo';
 import { Code2, ShipWheel, Map, Lightbulb, ArrowRight, type LucideIcon } from 'lucide-react';
 
 interface AerialShot {
@@ -101,20 +102,20 @@ function shotCaption(location: string, year: number | null) {
 
 function AerialShotCard({ shot }: { shot: AerialShot }) {
   const [hovering, setHovering] = useState(false);
+  // Phones and tablets have no hover, so there the clip plays on its own
+  // whenever the card is on screen.
+  const [touchOnly, setTouchOnly] = useState(false);
+
+  useEffect(() => {
+    setTouchOnly(window.matchMedia('(hover: none)').matches);
+  }, []);
 
   return (
     <div className="legacy-aerial-card" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
       <div className="legacy-aerial-media">
         <img src={shot.image} alt={shot.title} loading="lazy" />
-        {shot.hoverVideo && hovering && (
-          <video
-            className="legacy-aerial-hover-video"
-            src={shot.hoverVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+        {shot.hoverVideo && (hovering || touchOnly) && (
+          <AutoplayVideo className="legacy-aerial-hover-video" src={shot.hoverVideo} />
         )}
       </div>
       <div className="legacy-aerial-card-body">
@@ -282,9 +283,7 @@ export default function Home() {
             {c.videos.map((video) => (
               <div key={video.src} className="col-12 col-lg-4">
                 <Reveal className="legacy-aerial-card legacy-aerial-video">
-                  <video src={video.src} muted autoPlay playsInline loop preload="auto">
-                    Your browser does not support the video tag.
-                  </video>
+                  <AutoplayVideo src={video.src} />
                   <div className="legacy-aerial-card-body">
                     <h4>{video.title}</h4>
                     <p className="legacy-aerial-caption">{shotCaption(video.location, video.year)}</p>

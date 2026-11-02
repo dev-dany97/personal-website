@@ -687,8 +687,13 @@ html[data-theme='light'] .legacy-hero {
 }
 
 .legacy-imprint-content h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  /* Long German compounds like "Datenschutzerklärung" overflow a phone
+     screen at 2.5rem, so the size scales down with the viewport and the
+     word may hyphenate/wrap instead of being cut off. */
+  font-size: clamp(1.75rem, 8vw, 4rem);
   margin-bottom: 2rem;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .legacy-imprint-content p,
