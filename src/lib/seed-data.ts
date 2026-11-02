@@ -172,7 +172,7 @@ function seedPageContent(db: DatabaseSync) {
           paragraphs: [
             'Wie du wahrscheinlich schon an meinem Profilbild erkennen kannst, gehört neben der Technik inzwischen auch das Segeln zu meinen größten Leidenschaften.',
             'Angefangen hat das Ganze vor ungefähr {sailingYears} Jahren allerdings etwas anders – damals noch ganz klein mit einem Motorbootführerschein (auch SBF Binnen/See genannt).',
-            'Nach den ersten längeren Fahrten habe ich relativ schnell festgestellt, dass mich reines Motorbootfahren nicht wirklich erfüllt. Einfach nur von A nach B zu fahren, wurde mir auf Dauer etwas zu eintönig, und günstig ist das Ganze bekanntlich auch nicht gerade – heute sogar noch weniger als damals (Stand: August 2026).',
+            'Nach den ersten längeren Fahrten habe ich relativ schnell festgestellt, dass mich reines Motorbootfahren nicht wirklich erfüllt. Einfach nur von A nach B zu fahren, wurde mir auf Dauer etwas zu eintönig und günstig ist das Ganze bekanntlich auch nicht gerade – heute sogar noch weniger als damals (Stand: August 2026).',
             'Durch einen Studenten-Segeltörn bin ich schließlich eher zufällig beim Segeln gelandet und mich hat die Naturverbundenheit in Verbindung mit einem Freiheitsgefühl sofort begeistert.',
             'Gleichzeitig wusste ich aber auch: Ich möchte nicht dauerhaft darauf angewiesen sein, dass jemand anderes entscheidet, wann und wohin gesegelt wird – und das auch immer mit fremden Leuten. Nicht, dass mir das etwas ausmachen würde, auch wenn ich auf neue Leute anfangs etwas distanziert und schüchtern wirke, aber mit Freunden macht es einfach mehr Spaß. Also stand für mich fest, dass ich irgendwann selbst als Skipper unterwegs sein möchte.',
             'Der nächste logische Schritt war deshalb der Sportküstenschifferschein, kurz SKS.',
@@ -181,7 +181,7 @@ function seedPageContent(db: DatabaseSync) {
             'Vor allem die praktischen Trainings haben mir gezeigt, wie viel es beim Segeln auch nach den Prüfungen noch zu lernen gibt.',
             'Mittlerweile plane und organisiere ich eigene Segeltörns und versuche, fast jedes Jahr neue Reviere kennenzulernen. Außerdem möchte ich an größeren Herausforderungen wachsen: So bin ich zum Beispiel schon auf den Kanaren gesegelt und musste dort bei widrigen Wetterbedingungen nachts das Boot steuern, weil der Steg, an dem wir festgemacht hatten, gebrochen war.',
             'Mein größtes Vorbild ist dabei die australische Seglerin Jessica Watson. Sie gilt als jüngste Person, die allein, nonstop und ohne fremde Hilfe um die Welt gesegelt ist. Im Oktober 2009 startete sie mit gerade einmal 16 Jahren auf ihrer Yacht „Ella’s Pink Lady“ in Sydney und kam im Mai 2010 nach 210 Tagen auf See zurück – drei Tage vor ihrem 17. Geburtstag.',
-            'Was mich daran am meisten beeindruckt: Sie hat nie aufgegeben. Schon vor dem Start kollidierte ihr Boot auf der Überführungsfahrt zum Startort nachts mit einem Frachter und verlor dabei den Mast. Viele hielten ihr Vorhaben danach für unverantwortlich – sie ließ das Boot reparieren und segelte trotzdem los. Unterwegs wurde ihr Boot in den Stürmen des Südpolarmeers mehrmals flach aufs Wasser gedrückt, und jedes Mal hat sie weitergemacht. Ihre Geschichte hat sie später im Buch „True Spirit“ erzählt, das 2023 auch verfilmt wurde.',
+            'Was mich daran am meisten beeindruckt: Sie hat nie aufgegeben. Schon vor dem Start kollidierte ihr Boot auf der Überführungsfahrt zum Startort nachts mit einem Frachter und verlor dabei den Mast. Viele hielten ihr Vorhaben danach für unverantwortlich – sie ließ das Boot reparieren und segelte trotzdem los. Unterwegs wurde ihr Boot in den Stürmen des Südpolarmeers mehrmals flach aufs Wasser gedrückt und jedes Mal hat sie weitergemacht. Ihre Geschichte hat sie später im Buch „True Spirit“ erzählt, das 2023 auch verfilmt wurde.',
             'Wenn du meine Reisen und Segelabenteuer verfolgen möchtest, schau gerne im [Bereich Reisen](/travel) vorbei.'
           ]
         },
@@ -227,7 +227,7 @@ function seedPageContent(db: DatabaseSync) {
           image: '/images/about/das-bin-ich.jpg',
           paragraphs: [
             'Softwareentwicklung, Segeln, Reisen, Finanzen, Technik, Gaming – auf den ersten Blick vielleicht ziemlich unterschiedliche Themen.',
-            'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus, möchte verstehen, wie sie funktionieren – und versuche, mich ständig weiterzuentwickeln.',
+            'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus und möchte verstehen, wie sie funktionieren. Außerdem versuche ich, mich ständig weiterzuentwickeln.',
             'Genau darum geht es auch auf dieser Webseite.',
             'Wenn davon etwas für dich interessant, hilfreich oder einfach unterhaltsam ist, hat die Seite schon ihren Zweck erfüllt.'
           ]
@@ -236,7 +236,7 @@ function seedPageContent(db: DatabaseSync) {
       aerialEyebrow: 'Drohnen-Fotografie',
       aerialTitle: 'Die Welt aus einer anderen Perspektive',
       aerialLead:
-        'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig Neues zu entdecken...\nAuch wenn ich versuche, bodenständig und geerdet zu bleiben, und es mir sehr wichtig ist, unsere Natur zu schützen, hebe ich gerne mal ab, blicke über den Horizont hinaus und erkenne dabei, wie schön eigentlich alles ist.\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
+        'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig Neues zu entdecken...\nAuch wenn ich bodenständig und geerdet bleiben möchte und es mir sehr wichtig ist, unsere Natur zu schützen, hebe ich gerne mal ab, blicke über den Horizont hinaus und erkenne dabei, wie schön eigentlich alles ist.\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
       stats: [
         { icon: 'code', value: '{codingYears}', label: 'Jahre Programmieren' },
         { icon: 'sailing', value: '{sailingYears}', label: 'Jahre Segeln' },
@@ -356,7 +356,7 @@ function seedPageContent(db: DatabaseSync) {
       tipsText:
         'Bevor du selbst mit einer Wasserkühlung anfängst, möchte ich dir ein paar Tipps mit auf den Weg geben. Wasserkühlung senkt die Temperatur effizient, bringt aber auch Risiken wie Lecks, Korrosion und Wartungsaufwand mit sich. Mit sorgfältiger Planung und Drucktests kann das System sowohl schön als auch zuverlässig sein.',
       explore3dTitle: 'Den Build in 3D erkunden',
-      explore3dText: 'Eine stilisierte 3D-Darstellung des Wasserkreislaufs — ziehen zum Drehen, scrollen zum Zoomen, und über ein Teil hovern oder klicken, um mehr zu erfahren.',
+      explore3dText: 'Eine stilisierte 3D-Darstellung des Wasserkreislaufs — ziehen zum Drehen, scrollen zum Zoomen und über ein Teil hovern oder klicken, um mehr zu erfahren.',
       componentsPhotoTitle: 'Alles, was in diesen Build geflossen ist',
       componentsPhotoCaption: 'Jede Box, bevor auch nur eine Schraube verbaut wurde.',
       componentsPhotoAlt: 'Alle Teile für den High-End-PC-Build, ausgepackt und aufgereiht',
@@ -411,7 +411,7 @@ function seedPageContent(db: DatabaseSync) {
         'Tägliches Beobachten von Kursbewegungen und News'
       ],
       platformsTitle: 'Wo ich investiere & mich vernetze',
-      platformsLead: 'Die Plattformen, auf denen ich handle, und die Community, deren Teil ich bin.',
+      platformsLead: 'Meine Handelsplattformen und die Community, deren Teil ich bin.',
       resourcesTitle: 'Ressourcen, die ich nutze'
     }
   );
