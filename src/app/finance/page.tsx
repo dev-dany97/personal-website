@@ -273,15 +273,17 @@ function formatBriefingTimestamp(generatedAt: string | undefined, lang: 'en' | '
 }
 
 function MorningBriefing({ lang }: { lang: 'en' | 'de' }) {
-  const [briefing, setBriefing] = useState<BriefingResponse | null>(null);
+  // Keyed by language: after a switch the old briefing is hidden right away
+  // instead of being reset inside the effect.
+  const [loaded, setLoaded] = useState<{ lang: 'en' | 'de'; data: BriefingResponse } | null>(null);
+  const briefing = loaded?.lang === lang ? loaded.data : null;
   const t = BRIEFING_TEXT[lang];
 
   useEffect(() => {
-    setBriefing(null);
     fetch(`/api/finance-briefing?lang=${lang}`)
       .then((res) => res.json())
-      .then(setBriefing)
-      .catch(() => setBriefing({ available: false }));
+      .then((data: BriefingResponse) => setLoaded({ lang, data }))
+      .catch(() => setLoaded({ lang, data: { available: false } }));
   }, [lang]);
 
   if (briefing && !briefing.available) return null;
@@ -356,13 +358,13 @@ function DonutChart({
   const strokeWidth = 26;
   const circumference = 2 * Math.PI * radius;
 
-  let cumulative = 0;
-  const segments = allocations.map((a, i) => {
-    const length = (a.percent / 100) * circumference;
-    const seg = { asset: a.asset, offset: cumulative, length, color: ALLOCATION_COLORS[i % ALLOCATION_COLORS.length] };
-    cumulative += length;
-    return seg;
-  });
+  const lengths = allocations.map((a) => (a.percent / 100) * circumference);
+  const segments = allocations.map((a, i) => ({
+    asset: a.asset,
+    offset: lengths.slice(0, i).reduce((sum, l) => sum + l, 0),
+    length: lengths[i],
+    color: ALLOCATION_COLORS[i % ALLOCATION_COLORS.length]
+  }));
 
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ overflow: 'visible' }}>

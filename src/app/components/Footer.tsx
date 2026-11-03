@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { socialLinks } from '@/app/components/Icons';
+import { SiteImage } from '@/app/components/SiteImage';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ export function Footer() {
         <div className="site-footer-main">
           <div className="site-footer-brand">
             <div className="site-footer-brand-row">
-              <img src="/favicon.ico" alt="" className="site-footer-logo" />
+              <SiteImage src="/favicon.ico" alt="" className="site-footer-logo" width={32} height={32} unoptimized />
               <span className="site-footer-name">Daniel Mohles</span>
             </div>
             <p className="site-footer-tagline">{t('footer.tagline')}</p>

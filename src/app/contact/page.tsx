@@ -8,6 +8,7 @@ import { Footer } from '@/app/components/Footer';
 import Link from 'next/link';
 import { PigeonBackground } from '@/app/components/backgrounds/PigeonBackground';
 import { socialLinks } from '@/app/components/Icons';
+import { SiteImage } from '@/app/components/SiteImage';
 
 const CONTACT_SOCIAL_LABELS = ['LinkedIn', 'Xing'];
 
@@ -116,9 +117,14 @@ export default function Contact() {
         <div className="container">
           <div className="contact-grid">
             <aside className="contact-profile-card">
-              <img
+              <SiteImage
                 src="/images/contact-portrait.jpg"
                 alt="Daniel Mohles"
+                width={900}
+                height={1200}
+                sizes="(max-width: 768px) 100vw, 360px"
+                loading="eager"
+                style={{ height: 'auto' }}
                 className="contact-portrait"
               />
 

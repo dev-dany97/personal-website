@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type PointerEvent } from 'react';
+import { SiteImage } from '@/app/components/SiteImage';
 
 export interface HardwareComponent { label: string; value: string; image?: string }
 
@@ -64,7 +65,7 @@ export function HardwareMatrix({ components, lang }: { components: HardwareCompo
           >
             <div className="gx-part-img">
               {c.image
-                ? <img src={c.image} alt={c.label} loading="lazy" />
+                ? <SiteImage src={c.image} alt={c.label} width={720} height={450} sizes="(max-width: 560px) 50vw, (max-width: 1100px) 33vw, 25vw" />
                 : <div className="gx-glyph" aria-hidden="true">{GLYPH[c.label] ?? CHIP}</div>}
             </div>
             <div className="gx-part-body">

@@ -13,7 +13,6 @@ import { seedDatabase } from './seed-data';
 const DB_PATH = path.join(process.cwd(), 'data', 'content.db');
 
 declare global {
-  // eslint-disable-next-line no-var
   var __contentDb: DatabaseSync | undefined;
 }
 

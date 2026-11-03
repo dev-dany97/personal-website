@@ -8,6 +8,8 @@ import { Footer } from '@/app/components/Footer';
 import { Reveal } from '@/app/components/Reveal';
 import { AutoplayVideo } from '@/app/components/AutoplayVideo';
 import { Code2, ShipWheel, Map, Lightbulb, ArrowRight, type LucideIcon } from 'lucide-react';
+import { SiteImage } from '@/app/components/SiteImage';
+import { useMediaQuery } from '@/app/components/useBrowserState';
 
 interface AerialShot {
   title: string;
@@ -105,16 +107,12 @@ function AerialShotCard({ shot }: { shot: AerialShot }) {
   const [hovering, setHovering] = useState(false);
   // Phones and tablets have no hover, so there the clip plays on its own
   // whenever the card is on screen.
-  const [touchOnly, setTouchOnly] = useState(false);
-
-  useEffect(() => {
-    setTouchOnly(window.matchMedia('(hover: none)').matches);
-  }, []);
+  const touchOnly = useMediaQuery('(hover: none)');
 
   return (
     <div className="legacy-aerial-card" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
       <div className="legacy-aerial-media">
-        <img src={shot.image} alt={shot.title} loading="lazy" />
+        <SiteImage src={shot.image} alt={shot.title} width={1200} height={800} sizes="(max-width: 768px) 100vw, 50vw" />
         {shot.hoverVideo && (hovering || touchOnly) && (
           <AutoplayVideo className="legacy-aerial-hover-video" src={shot.hoverVideo} />
         )}
@@ -197,7 +195,7 @@ export default function Home() {
         <div className="container">
           <Reveal className="row align-items-center g-5">
             <div className="col-lg-4 text-center">
-              <img src="/images/profile.jpg" alt="Daniel Mohles" className="legacy-portrait legacy-portrait--glow" />
+              <SiteImage src="/images/profile.jpg" alt="Daniel Mohles" className="legacy-portrait legacy-portrait--glow" width={2209} height={2384} sizes="360px" style={{ height: 'auto' }} />
             </div>
             <div className="col-lg-8">
               <h2>{c.aboutHeading}</h2>
@@ -248,7 +246,7 @@ export default function Home() {
                 >
                   <div className="col-lg-4 text-center">
                     <div className={`legacy-about-more-image-wrap ${sIdx % 2 === 1 ? 'legacy-about-more-image-wrap--reverse' : ''}`}>
-                      <img src={section.image} alt={section.heading} className="legacy-about-more-image" loading="lazy" />
+                      <SiteImage src={section.image} alt={section.heading} className="legacy-about-more-image" width={900} height={1200} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} />
                     </div>
                   </div>
                   <div className="col-lg-8">

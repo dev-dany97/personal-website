@@ -12,6 +12,7 @@ import { HardwareMatrix, type HardwareComponent } from './_components/HardwareMa
 import { ValorantCard } from './_components/ValorantCard';
 import { Sparkline, formatNumber, useTelemetry } from './_components/telemetry';
 import type { SceneState } from './_components/scene';
+import { SiteImage } from '@/app/components/SiteImage';
 
 // Large video files are hosted on S3/CloudFront rather than bundled under
 // /public — falls back to the local /public/videos path when unset.
@@ -210,7 +211,7 @@ export default function Setup() {
             </div>
             <div className="gx-loop">
               <div className="gx-loop-photo gx-rv">
-                <img src="/images/setup/bg-gaminghead.jpg" alt={ui.waterPhotoAlt} loading="lazy" />
+                <SiteImage src="/images/setup/bg-gaminghead.jpg" alt={ui.waterPhotoAlt} width={1800} height={1200} sizes="(max-width: 900px) 100vw, 60vw" />
                 <div className="gx-monitor gx-hud">
                   <div className="gx-monitor-top"><span className="gx-eyebrow">{ui.monitor}</span></div>
                   <div className="gx-monitor-vals">
@@ -263,7 +264,7 @@ export default function Setup() {
               <h2>{c.hardwareTitle}</h2>
             </div>
             <figure className="gx-setup-photo gx-hud gx-rv">
-              <img src="/images/setup/pc-setup.jpg" alt={c.setupPhotoAlt} loading="lazy" />
+              <SiteImage src="/images/setup/pc-setup.jpg" alt={c.setupPhotoAlt} width={1800} height={1350} sizes="(max-width: 1200px) 100vw, 1200px" style={{ height: 'auto' }} />
               <figcaption><span className="gx-eyebrow">{ui.setupEyebrow}</span>{c.setupPhotoCaption}</figcaption>
             </figure>
             <HardwareMatrix components={data.primaryComponents} lang={lang} />
@@ -286,7 +287,7 @@ export default function Setup() {
                     <p>{c.componentsPhotoCaption}</p>
                   </div>
                   <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
-                    <img src="/images/setup/pc-setup/all-components.jpg" alt={c.componentsPhotoAlt} loading="lazy" />
+                    <SiteImage src="/images/setup/pc-setup/all-components.jpg" alt={c.componentsPhotoAlt} width={1920} height={1440} sizes="(max-width: 900px) 100vw, 50vw" style={{ height: 'auto' }} />
                   </div>
                 </div>
               </div>
@@ -325,7 +326,7 @@ export default function Setup() {
                     <p>{c.printText}</p>
                   </div>
                   <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
-                    <img src="/images/setup/neon-transition.jpg" alt={c.printAlt} loading="lazy" className="gx-wide-img" />
+                    <SiteImage src="/images/setup/neon-transition.jpg" alt={c.printAlt} className="gx-wide-img" width={1600} height={900} sizes="(max-width: 900px) 100vw, 50vw" style={{ height: 'auto' }} />
                   </div>
                 </div>
               </div>
@@ -354,7 +355,7 @@ export default function Setup() {
           </div>
         </section>
 
-        <RgbController host={hostRef} scene={sceneRef} lang={lang} overclock={overclock} setOverclock={setOverclock} />
+        <RgbController host={hostRef} sceneRef={sceneRef} lang={lang} overclock={overclock} setOverclock={setOverclock} />
       </div>
 
       <Footer />

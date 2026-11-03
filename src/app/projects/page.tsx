@@ -6,6 +6,7 @@ import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { GithubIcon, ExternalLinkIcon } from '@/app/components/Icons';
 import { CodeEditorBackground } from '@/app/components/backgrounds/CodeEditorBackground';
+import { SiteImage } from '@/app/components/SiteImage';
 
 type ProjectStatus = 'completed' | 'active' | 'experimental';
 
@@ -68,10 +69,6 @@ export default function Projects() {
   const inProgressCount = projects.filter((p) => p.status === 'active').length;
   const filteredProjects = activeFilter === 'all' ? projects : projects.filter((p) => p.status === activeFilter);
   const gallery = selected ? selected.images ?? [selected.image] : [];
-
-  useEffect(() => {
-    setSlideIndex(0);
-  }, [selected]);
 
   useEffect(() => {
     if (!selected) return;
@@ -150,10 +147,10 @@ export default function Projects() {
               <article
                 key={project.id}
                 className="project-card"
-                onClick={() => setSelected(project)}
+                onClick={() => { setSelected(project); setSlideIndex(0); }}
               >
                 <div className="project-card-media">
-                  <img src={project.image} alt={project.title} loading="lazy" />
+                  <SiteImage src={project.image} alt={project.title} width={800} height={420} sizes="(max-width: 768px) 100vw, 400px" />
                   <span className={`project-status project-status--${project.status}`}>
                     {c.statusLabel[project.status]}
                     {project.year && <span className="project-status-year">{project.year}</span>}
@@ -213,7 +210,7 @@ export default function Projects() {
               &times;
             </button>
             <div className="project-modal-media">
-              <img src={gallery[slideIndex]} alt={`${selected.title} ${slideIndex + 1}`} className="project-modal-image" />
+              <SiteImage src={gallery[slideIndex]} alt={`${selected.title} ${slideIndex + 1}`} className="project-modal-image" width={1200} height={800} sizes="(max-width: 800px) 100vw, 800px" style={{ height: 'auto' }} />
               {gallery.length > 1 && (
                 <>
                   <button

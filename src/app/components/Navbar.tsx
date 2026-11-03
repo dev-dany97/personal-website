@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { SunIcon, MoonIcon } from '@/app/components/Icons';
+import { SiteImage } from '@/app/components/SiteImage';
+import { useLocalStorage, writeLocalStorage } from './useBrowserState';
 
 interface NavbarProps {
   currentPage?: string;
@@ -11,17 +13,15 @@ interface NavbarProps {
 
 export function Navbar({ currentPage }: NavbarProps) {
   const { i18n, t } = useTranslation();
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const savedTheme = useLocalStorage('theme');
+  const theme: 'dark' | 'light' = savedTheme === 'light' ? 'light' : 'dark';
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
-      const nextTheme = savedTheme || 'dark';
-      setTheme(nextTheme);
-      document.documentElement.setAttribute('data-theme', nextTheme);
-    }
-  }, []);
+    // Before hydration the saved value is unknown, so leave the attribute alone.
+    if (savedTheme === undefined) return;
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [savedTheme, theme]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -42,8 +42,7 @@ export function Navbar({ currentPage }: NavbarProps) {
   ];
 
   const setThemeTo = (nextTheme: 'dark' | 'light') => {
-    setTheme(nextTheme);
-    localStorage.setItem('theme', nextTheme);
+    writeLocalStorage('theme', nextTheme);
     document.documentElement.setAttribute('data-theme', nextTheme);
   };
 
@@ -52,9 +51,13 @@ export function Navbar({ currentPage }: NavbarProps) {
     <nav className="navbar navbar-expand-lg sticky-top legacy-navbar">
       <div className="container px-4 px-lg-5">
         <Link href="/" className="navbar-brand fw-bold d-flex align-items-center gap-2" onClick={() => setMenuOpen(false)}>
-          <img
+          <SiteImage
             src="/favicon.ico"
             alt="Daniel Mohles logo"
+            width={28}
+            height={28}
+            unoptimized
+            loading="eager"
             className="navbar-logo"
             style={{
               width: '28px',

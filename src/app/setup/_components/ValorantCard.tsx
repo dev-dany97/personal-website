@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { formatNumber } from './telemetry';
+import { SiteImage } from '@/app/components/SiteImage';
 
 interface ValorantProfileData {
   name: string; tag: string;
@@ -68,9 +69,9 @@ export function ValorantCard({ lang }: { lang: 'de' | 'en' }) {
         </div>
         <div className="gx-val gx-rv">
           <ValorantBackdrop />
-          {p?.bannerUrl && <img src={p.bannerUrl} alt="" className="gx-val-banner" />}
+          {p?.bannerUrl && <SiteImage src={p.bannerUrl} alt="" className="gx-val-banner" width={1240} height={400} />}
           {/* Neon as a fixed figure, independent of the favourite agent from the API */}
-          <img src="/images/setup/neon-agent.webp" alt="" className="gx-val-agent" width={700} height={742} />
+          <SiteImage src="/images/setup/neon-agent.webp" alt="" className="gx-val-agent" width={700} height={742} sizes="(max-width: 560px) 240px, 380px" />
           <div className="gx-val-id">
             <div className="gx-eyebrow">{t.mode}</div>
             {!p ? (
@@ -80,7 +81,7 @@ export function ValorantCard({ lang }: { lang: 'de' | 'en' }) {
                 <div className="gx-val-name">{p.name}<span>#{p.tag}</span></div>
                 <div className="gx-rank">
                   {p.currentTierIcon
-                    ? <img src={p.currentTierIcon} alt="" className="gx-rank-icon" />
+                    ? <SiteImage src={p.currentTierIcon} alt="" className="gx-rank-icon" width={64} height={64} />
                     : <div className="gx-rank-badge">{p.currentTier.slice(0, 1)}</div>}
                   <div>
                     <span className="gx-dim gx-mono" style={{ fontSize: 12, letterSpacing: '.12em', textTransform: 'uppercase' }}>{t.current}</span>

@@ -21,7 +21,7 @@ const TEXT = {
 
 interface Props {
   host: RefObject<HTMLDivElement | null>;
-  scene: SceneRef;
+  sceneRef: SceneRef;
   lang: 'de' | 'en';
   overclock: boolean;
   setOverclock: (on: boolean) => void;
@@ -41,7 +41,7 @@ function savedMode(): Mode {
 // through them. The Konami code turns on Spectrum plus overclock.
 // Only rendered in the browser (the page loads its data on the client),
 // so the initial value may come straight from localStorage.
-export function RgbController({ host, scene, lang, overclock, setOverclock }: Props) {
+export function RgbController({ host, sceneRef, lang, overclock, setOverclock }: Props) {
   const t = TEXT[lang];
   const [mode, setMode] = useState<Mode>(savedMode);
   const [open, setOpen] = useState(false);
@@ -57,21 +57,21 @@ export function RgbController({ host, scene, lang, overclock, setOverclock }: Pr
   useEffect(() => {
     try { localStorage.setItem(STORAGE_KEY, mode.id); } catch { /* privater Modus */ }
     const apply = (h1: number, h2: number) => {
-      scene.current.h1 = h1; scene.current.h2 = h2;
+      sceneRef.current.h1 = h1; sceneRef.current.h2 = h2;
       host.current?.style.setProperty('--h1', String(h1));
       host.current?.style.setProperty('--h2', String(h2));
     };
     if (!('cycle' in mode)) { apply(mode.h1, mode.h2); return; }
     if (prefersReducedMotion()) { apply(200, 320); return; }
-    let raf = 0, h = scene.current.h1;
+    let raf = 0, h = sceneRef.current.h1;
     const step = () => {
-      h = (h + (scene.current.overclock ? 1.6 : 0.45)) % 360;
+      h = (h + (sceneRef.current.overclock ? 1.6 : 0.45)) % 360;
       apply(h, (h + 120) % 360);
       raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [mode, host, scene]);
+  }, [mode, host, sceneRef]);
 
   // Konami-Code
   useEffect(() => {
