@@ -35,6 +35,8 @@ interface SetupContent {
   printTitle: string;
   printText: string;
   printAlt: string;
+  spikeTitle: string;
+  spikeText: string;
   setupPhotoAlt: string;
   setupPhotoCaption: string;
   componentsPhotoTitle: string;
@@ -65,7 +67,7 @@ const UI = {
     loopEyebrow: 'Kreislauf · Alphacool', monitor: 'Loop-Monitor', water: 'Wasser', pump: 'Pumpe',
     waterPhotoAlt: 'Wasserkühlung im LIAN LI O11 Dynamic',
     warnTags: ['Lecks', 'Korrosion', 'Wartung', 'Drucktest'],
-    modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01', setupEyebrow: 'Battlestation',
+    modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01', setupEyebrow: 'Mein Setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build-Log', logTitle: 'Vom Karton zum Neon-Umbau',
     stepUnboxing: 'Unboxing', stepFirst: 'Erster Aufbau', stepRebuild: 'Umbau', stepPrint: '3D-Druck',
     b2Eyebrow: 'Build 02 · Luftkühlung'
@@ -79,7 +81,7 @@ const UI = {
     loopEyebrow: 'Loop · Alphacool', monitor: 'Loop monitor', water: 'Coolant', pump: 'Pump',
     waterPhotoAlt: 'Water cooling inside the LIAN LI O11 Dynamic',
     warnTags: ['Leaks', 'Corrosion', 'Maintenance', 'Leak test'],
-    modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01', setupEyebrow: 'Battlestation',
+    modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01', setupEyebrow: 'My setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build log', logTitle: 'From the boxes to the neon rebuild',
     stepUnboxing: 'Unboxing', stepFirst: 'First build', stepRebuild: 'Rebuild', stepPrint: '3D printing',
     b2Eyebrow: 'Build 02 · Air cooling'
@@ -257,16 +259,25 @@ export default function Setup() {
           </div>
         </section>
 
+        <section className="gx-band" id="battlestation">
+          <div className="gx-wrap">
+            <div className="gx-sec-head gx-rv">
+              <span className="gx-eyebrow">{ui.setupEyebrow}</span>
+              <h2>{ui.setupTitle}</h2>
+            </div>
+            <figure className="gx-setup-photo gx-hud gx-rv">
+              <SiteImage src="/images/setup/pc-setup.jpg" alt={c.setupPhotoAlt} width={1800} height={1350} sizes="(max-width: 1200px) 100vw, 1200px" style={{ height: 'auto' }} />
+              <figcaption>{c.setupPhotoCaption}</figcaption>
+            </figure>
+          </div>
+        </section>
+
         <section className="gx-band" id="hardware">
           <div className="gx-wrap">
             <div className="gx-sec-head gx-rv">
               <span className="gx-eyebrow">{ui.hwEyebrow}</span>
               <h2>{c.hardwareTitle}</h2>
             </div>
-            <figure className="gx-setup-photo gx-hud gx-rv">
-              <SiteImage src="/images/setup/pc-setup.jpg" alt={c.setupPhotoAlt} width={1800} height={1350} sizes="(max-width: 1200px) 100vw, 1200px" style={{ height: 'auto' }} />
-              <figcaption><span className="gx-eyebrow">{ui.setupEyebrow}</span>{c.setupPhotoCaption}</figcaption>
-            </figure>
             <HardwareMatrix components={data.primaryComponents} lang={lang} />
           </div>
         </section>
@@ -308,12 +319,12 @@ export default function Setup() {
                 <div className="gx-dot">03</div>
                 <div className="gx-step-body">
                   <div className="gx-step-text">
-                    <span className="gx-eyebrow">{ui.stepRebuild}</span>
-                    <h3>{c.umbauTitle}</h3>
-                    <p>{c.umbauDesc}</p>
+                    <span className="gx-eyebrow">{ui.stepPrint}</span>
+                    <h3>{c.printTitle}</h3>
+                    <p>{c.printText}</p>
                   </div>
-                  <div className="gx-media-frame gx-hud gx-tall gx-video-frame">
-                    <AutoplayVideo src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Umbau.mp4`} ariaLabel={c.umbauTitle} toggle={toggle} />
+                  <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
+                    <SiteImage src="/images/setup/neon-transition.jpg" alt={c.printAlt} className="gx-wide-img" width={1600} height={900} sizes="(max-width: 900px) 100vw, 50vw" style={{ height: 'auto' }} />
                   </div>
                 </div>
               </div>
@@ -322,11 +333,25 @@ export default function Setup() {
                 <div className="gx-step-body gx-flip">
                   <div className="gx-step-text">
                     <span className="gx-eyebrow">{ui.stepPrint}</span>
-                    <h3>{c.printTitle}</h3>
-                    <p>{c.printText}</p>
+                    <h3>{c.spikeTitle}</h3>
+                    <p>{c.spikeText}</p>
                   </div>
-                  <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
-                    <SiteImage src="/images/setup/neon-transition.jpg" alt={c.printAlt} className="gx-wide-img" width={1600} height={900} sizes="(max-width: 900px) 100vw, 50vw" style={{ height: 'auto' }} />
+                  <div className="gx-media-frame gx-hud gx-tall gx-video-frame">
+                    {/* Short clip (2.5 MB), kept in the repo instead of the video CDN */}
+                    <AutoplayVideo src="/media/setup/spike.mp4" poster="/images/setup/spike-poster.jpg" ariaLabel={c.spikeTitle} toggle={toggle} />
+                  </div>
+                </div>
+              </div>
+              <div className="gx-step gx-rv">
+                <div className="gx-dot">05</div>
+                <div className="gx-step-body">
+                  <div className="gx-step-text">
+                    <span className="gx-eyebrow">{ui.stepRebuild}</span>
+                    <h3>{c.umbauTitle}</h3>
+                    <p>{c.umbauDesc}</p>
+                  </div>
+                  <div className="gx-media-frame gx-hud gx-tall gx-video-frame">
+                    <AutoplayVideo src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Umbau.mp4`} ariaLabel={c.umbauTitle} toggle={toggle} />
                   </div>
                 </div>
               </div>

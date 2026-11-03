@@ -8,12 +8,12 @@ export interface HardwareComponent { label: string; value: string; image?: strin
 type Cat = 'core' | 'storage' | 'cooling' | 'periph' | 'display';
 const CATEGORY: Record<string, Cat> = {
   'Memory SSD': 'storage', 'Memory HDD': 'storage', 'Memory M2': 'storage',
-  'Water Cooling': 'cooling', Fan: 'cooling', Cable: 'cooling', 'Custom Water Front Plate': 'cooling',
+  'Water Cooling': 'cooling', Pump: 'cooling', Fan: 'cooling', Cable: 'cooling', 'Custom Water Front Plate': 'cooling',
   Keyboard: 'periph', Mouse: 'periph', Wheel: 'periph', Microphone: 'periph', Headset: 'periph', Monitor: 'display'
 };
-// These cards are twice as wide on wide screens. With 22 parts
-// and two wide cards the four-column grid fills without a gap.
-const WIDE = new Set(['GPU', 'Water Cooling']);
+// This card is twice as wide on wide screens. With 23 parts
+// and one wide card the four-column grid fills without a gap.
+const WIDE = new Set(['Water Cooling']);
 
 const TEXT = {
   de: { group: 'Komponenten filtern', all: 'Alle', core: 'Kernsystem', storage: 'Speicher', cooling: 'Kühlung & RGB', periph: 'Peripherie', display: 'Monitore' },

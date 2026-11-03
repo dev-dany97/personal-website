@@ -301,6 +301,6 @@
 .gx-media-frame img.gx-wide-img{aspect-ratio:16/9; object-position:center}
 
 /* Photo of the complete setup above the hardware matrix */
-.gx-setup-photo{margin:0 0 32px; padding:8px; position:relative}
+.gx-setup-photo{margin:0; padding:8px; position:relative}
 .gx-setup-photo img{width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center 60%; border-radius:2px}
 .gx-setup-photo figcaption{display:grid; gap:6px; padding:14px 8px 6px; color:var(--ink-dim); font-size:15px; max-width:70ch}
