@@ -315,7 +315,7 @@ function seedPageContent(db: DatabaseSync) {
     'setup',
     {
       title: 'My Gaming Setup',
-      lead: 'Hey gaming fans! 👾🎮 I want to show you my gaming PC, built for long gaming sessions. 🚀',
+      lead: 'Hey gaming fans! I want to show you my gaming PC, built for long gaming sessions.',
       highEndTitle: 'High-End Build',
       highEndDesc: 'My main PC — full custom water cooling, built for performance and a nice RGB look.',
       waterCoolingTitle: 'My Water Cooling Setup',
@@ -343,7 +343,7 @@ function seedPageContent(db: DatabaseSync) {
     },
     {
       title: 'Mein Gaming-Setup',
-      lead: 'Hey Gaming-Fans! 👾🎮 Ich freue mich, euch meinen ultimativen Gaming-PC für grenzenlose Gaming-Abenteuer vorzustellen. 🚀',
+      lead: 'Hey Gaming-Fans! Ich freue mich, euch meinen ultimativen Gaming-PC für grenzenlose Gaming-Abenteuer vorzustellen.',
       highEndTitle: 'High-End Build',
       highEndDesc: 'Mein Hauptrechner — komplett individuelle Wasserkühlung, gebaut für Performance und RGB-Show.',
       waterCoolingTitle: 'Wasserkühlung meistern: Eine individuelle Reise',

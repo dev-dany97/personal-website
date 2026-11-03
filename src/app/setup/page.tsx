@@ -1,21 +1,21 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { AutoplayVideo } from '@/app/components/AutoplayVideo';
-import { GamingHudBackground } from '@/app/components/backgrounds/GamingHudBackground';
+import { FlowCanvas } from './_components/FlowCanvas';
+import { RgbController } from './_components/RgbController';
+import { ModelChamber, type ModelChamberHandle } from './_components/ModelChamber';
+import { HardwareMatrix, type HardwareComponent } from './_components/HardwareMatrix';
+import { ValorantCard } from './_components/ValorantCard';
+import { Sparkline, formatNumber, useTelemetry } from './_components/telemetry';
+import type { SceneState } from './_components/scene';
 
 // Large video files are hosted on S3/CloudFront rather than bundled under
 // /public — falls back to the local /public/videos path when unset.
 const MEDIA_BASE_URL = process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? '';
-
-interface HardwareComponent {
-  label: string;
-  value: string;
-  image?: string;
-}
 
 interface SetupContent {
   title: string;
@@ -47,10 +47,64 @@ interface SetupResponse {
   de: SetupContent;
 }
 
+// Labels only the layout needs. The actual texts come
+// from the database (src/lib/seed-data.ts).
+const UI = {
+  de: {
+    heroEyebrow: 'SYS://GAMING · Build 01 · Custom Loop',
+    startModel: '3D-Modell starten', seeHardware: 'Hardware ansehen',
+    postLabel: 'Systemcheck', loopLine: 'Alphacool Custom Loop · Druck stabil',
+    flow: 'Durchfluss', demo: 'Demo-Werte', play: 'Video abspielen', pause: 'Video pausieren',
+    heroVideo: 'Rundgang um den umgebauten PC',
+    loopEyebrow: 'Kreislauf · Alphacool', monitor: 'Loop-Monitor', water: 'Wasser', pump: 'Pumpe',
+    waterPhotoAlt: 'Wasserkühlung im LIAN LI O11 Dynamic',
+    warnTags: ['Lecks', 'Korrosion', 'Wartung', 'Drucktest'],
+    modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01',
+    logEyebrow: 'Build-Log', logTitle: 'Vom Karton zum Neon-Umbau',
+    stepUnboxing: 'Unboxing', stepFirst: 'Erster Aufbau', stepRebuild: 'Umbau',
+    watchAbove: 'Video oben ansehen', displayAlt: 'Das kleine Display im Gehäuse zeigt Valorant-Statistiken',
+    b2Eyebrow: 'Build 02 · Luftkühlung'
+  },
+  en: {
+    heroEyebrow: 'SYS://GAMING · Build 01 · Custom loop',
+    startModel: 'Start the 3D model', seeHardware: 'See the hardware',
+    postLabel: 'System check', loopLine: 'Alphacool custom loop · pressure stable',
+    flow: 'Flow', demo: 'Demo values', play: 'Play video', pause: 'Pause video',
+    heroVideo: 'A walk around the rebuilt PC',
+    loopEyebrow: 'Loop · Alphacool', monitor: 'Loop monitor', water: 'Coolant', pump: 'Pump',
+    waterPhotoAlt: 'Water cooling inside the LIAN LI O11 Dynamic',
+    warnTags: ['Leaks', 'Corrosion', 'Maintenance', 'Leak test'],
+    modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01',
+    logEyebrow: 'Build log', logTitle: 'From the boxes to the neon rebuild',
+    stepUnboxing: 'Unboxing', stepFirst: 'First build', stepRebuild: 'Rebuild',
+    watchAbove: 'Watch the video above', displayAlt: 'The small display in the case shows Valorant stats',
+    b2Eyebrow: 'Build 02 · Air cooling'
+  }
+};
+
+const BENEFIT_ICONS = [
+  <path key="t" d="M14 14.8V4a2 2 0 1 0-4 0v10.8a4 4 0 1 0 4 0z" />,
+  <path key="o" d="M13 2 4 14h7l-1 8 9-12h-7z" />,
+  <path key="s" d="M11 5 6 9H2v6h4l5 4zM22 9l-6 6M16 9l6 6" />,
+  <path key="p" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+];
+
+// Highlights the word "Gaming" in the title as neon lettering.
+function HeroTitle({ title }: { title: string }) {
+  const parts = title.split(/(Gaming)/);
+  return <h1>{parts.map((p, i) => (p === 'Gaming' ? <span key={i} className="gx-glow">{p}</span> : p))}</h1>;
+}
+
 export default function Setup() {
   const { i18n } = useTranslation();
   const lang = i18n.language === 'de' ? 'de' : 'en';
+  const ui = UI[lang];
   const [data, setData] = useState<SetupResponse | null>(null);
+  const [overclock, setOverclock] = useState(false);
+  const hostRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<SceneState>({ h1: 186, h2: 262, overclock: false });
+  const modelRef = useRef<ModelChamberHandle>(null);
+  const tele = useTelemetry(sceneRef);
 
   useEffect(() => {
     fetch('/api/setup')
@@ -58,333 +112,233 @@ export default function Setup() {
       .then(setData);
   }, []);
 
+  // Sections below the fold slide in slightly while scrolling.
+  // They are always visible, just slightly offset.
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!data || !host || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.remove('gx-pre');
+      if (e.target.hasAttribute('data-scan')) e.target.classList.add('gx-scanned');
+      io.unobserve(e.target);
+    }), { threshold: 0.12 });
+    host.querySelectorAll('.gx-rv, [data-scan]').forEach((el) => {
+      if (el.getBoundingClientRect().top > window.innerHeight) el.classList.add('gx-pre');
+      io.observe(el);
+    });
+    return () => io.disconnect();
+  }, [data]);
+
+  // Canvas and telemetry read overclock from the ref every frame.
+  useEffect(() => { sceneRef.current.overclock = overclock; }, [overclock]);
+
   if (!data) {
     return (
-      <main style={{ minHeight: '100vh' }}>
+      <main>
         <Navbar currentPage="/setup" />
+        <div className="gx gx-loading" />
       </main>
     );
   }
 
   const c = data[lang];
+  const spec = (label: string) => data.primaryComponents.find((x) => x.label === label)?.value ?? '';
+  const toggle = { className: 'gx-icon-btn gx-vid-ctl', playLabel: ui.play, pauseLabel: ui.pause };
 
   return (
-    <main style={{ minHeight: '100vh' }}>
+    <main>
       <Navbar currentPage="/setup" />
 
-      <section className="setup-hero">
-        <GamingHudBackground />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <h1 className="display-4 mb-4 text-center fw-bold">{c.title}</h1>
-          <p className="lead text-center theme-text-soft mb-0">{c.lead}</p>
-        </div>
-      </section>
-
-      <ValorantProfile lang={lang} />
-
-      <section className="py-5">
-        <div className="container">
-          <div className="row justify-content-center mb-5">
-            <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
-              <div className="setup-build-card">
-                <AutoplayVideo
-                  src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC.mp4`}
-                  className="rounded shadow-lg"
-                  style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}
-                />
-                <div className="setup-build-caption">
-                  <h5 className="mb-1">{c.highEndTitle}</h5>
-                  <p className="theme-text-soft mb-0">{c.highEndDesc}</p>
-                </div>
+      <div className={`gx${overclock ? ' gx-oc-on' : ''}`} ref={hostRef}>
+        <header className="gx-hero" id="top">
+          <FlowCanvas scene={sceneRef} />
+          <div className="gx-wrap">
+            <div className="gx-rv">
+              <div className="gx-eyebrow">{ui.heroEyebrow}</div>
+              <HeroTitle title={c.title} />
+              <p className="gx-lead">{c.lead}</p>
+              <div className="gx-cta-row">
+                <a className="gx-btn gx-primary" href="#modell" onClick={() => modelRef.current?.activate()}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path d="M12 2 3 7v10l9 5 9-5V7z" /><path d="M3 7l9 5 9-5M12 12v10" />
+                  </svg>
+                  {ui.startModel}
+                </a>
+                <a className="gx-btn" href="#hardware">{ui.seeHardware}</a>
               </div>
-            </div>
-          </div>
-
-          <div className="row align-items-center mb-5">
-            <div className="col-lg-5 mb-4 mb-lg-0">
-              <img
-                src="/images/setup/bg-gaminghead.jpg"
-                alt="Water cooling setup"
-                className="img-fluid rounded shadow"
-                style={{ minHeight: '320px', objectFit: 'cover', width: '100%' }}
-              />
-            </div>
-            <div className="col-lg-7">
-              <h3 className="mb-3">{c.waterCoolingTitle}</h3>
-              <p className="theme-text-soft mb-2">{c.waterCoolingIntro}</p>
-              <ul className="theme-text-soft">
-                {c.bullets.map((b) => (
-                  <li key={b.title}><strong className="theme-text">{b.title}</strong> {b.text}</li>
+              <div className="gx-post" aria-label={ui.postLabel}>
+                {[['CPU', spec('CPU')], ['GPU', spec('GPU').replace('ASUS ', '').replace('NVIDIA GeForce ', '')], ['RAM', spec('RAM')], ['LOOP', ui.loopLine]].map(([k, v]) => (
+                  <div key={k}><span className="gx-k">{k}</span><span className="gx-v">{v}</span><span className="gx-ok">OK</span></div>
                 ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="mb-5">
-            <h3 className="mb-3">{c.tipsTitle}</h3>
-            <p className="theme-text-soft">{c.tipsText}</p>
-          </div>
-
-          <div className="row g-4 setup-component-grid mb-5">
-            {data.primaryComponents.map((component) => (
-              <div key={component.label} className="col-md-6 col-xl-4">
-                <div className="card bg-dark border-0 h-100 shadow-sm setup-component-card" style={{ border: '1px solid var(--card-border)' }}>
-                  {component.image ? (
-                    <img src={component.image} alt={component.label} className="card-img-top" style={{ height: '180px', objectFit: 'cover' }} />
-                  ) : (
-                    <div className="setup-component-placeholder" aria-hidden="true" />
-                  )}
-                  <div className="card-body">
-                    <h5 className="card-title">{component.label}</h5>
-                    <p className="card-text theme-text-soft mb-0">{component.value}</p>
-                  </div>
-                </div>
               </div>
-            ))}
-          </div>
+            </div>
 
-          <div className="mb-4">
-            <h3 className="mb-2">{c.explore3dTitle}</h3>
-            <p className="theme-text-soft mb-0">{c.explore3dText}</p>
-          </div>
-          <div className="mb-5">
-            <iframe
-              src="/pc-modell.html"
-              title="Custom-Loop PC – 3D-Modell"
-              style={{ width: '100%', height: '720px', border: 0, borderRadius: '12px' }}
-              allow="autoplay"
-              loading="lazy"
-            />
-          </div>
-
-          <div className="row justify-content-center mb-5">
-            <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
-              <div className="setup-build-card">
+            <div className="gx-stage gx-rv">
+              <div className="gx-screen gx-hud">
                 <AutoplayVideo
                   src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Umbau.mp4`}
-                  className="rounded shadow-lg"
-                  style={{ width: '100%', height: 'auto', aspectRatio: '9 / 16', display: 'block', background: '#000' }}
+                  poster="/images/setup/umbau-poster.jpg"
+                  ariaLabel={ui.heroVideo}
+                  toggle={toggle}
                 />
-                <div className="setup-build-caption">
-                  <h5 className="mb-1">{c.umbauTitle}</h5>
-                  <p className="theme-text-soft mb-0">{c.umbauDesc}</p>
-                </div>
+                <div className="gx-scan" />
+              </div>
+              <div className="gx-chip gx-c1"><small>CPU</small><b>{formatNumber(tele.cpu, lang)} °C</b></div>
+              <div className="gx-chip gx-c2"><small>{ui.flow}</small><b>{formatNumber(tele.flow, lang)} L/h</b></div>
+              <div className="gx-chip gx-c3"><small>GPU</small><b>{formatNumber(tele.gpu, lang)} °C</b></div>
+              <div className="gx-stage-cap">
+                <h3>{c.umbauTitle}</h3>
+                <span className="gx-demo-tag">{ui.demo}</span>
               </div>
             </div>
           </div>
+        </header>
 
-          <div className="mb-5">
-            <h3 className="mb-3">{c.componentsPhotoTitle}</h3>
-            <p className="theme-text-soft mb-3">{c.componentsPhotoCaption}</p>
-            <img
-              src="/images/setup/pc-setup/all-components.jpg"
-              alt={c.componentsPhotoAlt}
-              className="img-fluid rounded shadow-lg"
-              style={{ width: '100%', maxHeight: '640px', objectFit: 'cover', objectPosition: 'center 20%' }}
-            />
-          </div>
+        <ValorantCard lang={lang} />
 
-          <hr className="my-5" style={{ borderColor: 'var(--card-border)' }} />
-
-          <div className="row justify-content-center mb-4">
-            <div className="col-auto" style={{ maxWidth: '380px', width: '100%' }}>
-              <div className="setup-build-card">
-                <AutoplayVideo
-                  src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC2.mp4`}
-                  className="rounded shadow-lg"
-                  style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}
-                />
-                <div className="setup-build-caption">
-                  <h5 className="mb-1">{c.secondBuildTitle}</h5>
-                  <p className="theme-text-soft mb-0">{c.secondBuildDesc}</p>
+        <section className="gx-band" id="kuehlung">
+          <div className="gx-wrap">
+            <div className="gx-sec-head gx-rv">
+              <span className="gx-eyebrow">{ui.loopEyebrow}</span>
+              <h2>{c.waterCoolingTitle}</h2>
+              <p>{c.waterCoolingIntro}</p>
+            </div>
+            <div className="gx-loop">
+              <div className="gx-loop-photo gx-rv">
+                <img src="/images/setup/bg-gaminghead.jpg" alt={ui.waterPhotoAlt} loading="lazy" />
+                <div className="gx-monitor gx-hud">
+                  <div className="gx-monitor-top"><span className="gx-eyebrow">{ui.monitor}</span><span className="gx-demo-tag">{ui.demo}</span></div>
+                  <div className="gx-monitor-vals">
+                    <div><small>{ui.water}</small><b>{formatNumber(tele.water, lang, 1)} °C</b></div>
+                    <div><small>{ui.pump}</small><b>{formatNumber(tele.pump, lang)}</b></div>
+                    <div><small>Flow</small><b>{formatNumber(tele.flow, lang)}</b></div>
+                  </div>
+                  <Sparkline values={tele.history} scene={sceneRef} />
                 </div>
+              </div>
+              <div className="gx-benefits">
+                {c.bullets.map((b, i) => (
+                  <article key={b.title} className="gx-benefit gx-rv">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">{BENEFIT_ICONS[i % BENEFIT_ICONS.length]}</svg>
+                    <h3>{b.title.replace(/:\s*$/, '')}</h3>
+                    <p>{b.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="gx-warn gx-rv">
+              <div className="gx-warn-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 3 2 21h20zM12 10v5M12 18v.5" /></svg>
+              </div>
+              <div>
+                <h3>{c.tipsTitle}</h3>
+                <p>{c.tipsText}</p>
+                <div className="gx-tags">{ui.warnTags.map((tag) => <span key={tag}>{tag}</span>)}</div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div className="mb-3">
-            <h3 className="mb-2">{c.hardwareTitle}</h3>
-            <p className="theme-text-soft" style={{ fontSize: '0.9rem' }}>{c.hardwareDisclaimer}</p>
+        <section className="gx-band" id="modell">
+          <div className="gx-wrap">
+            <div className="gx-sec-head gx-rv">
+              <span className="gx-eyebrow">{ui.modelEyebrow}</span>
+              <h2>{c.explore3dTitle}</h2>
+              <p>{c.explore3dText}</p>
+            </div>
+            <ModelChamber ref={modelRef} lang={lang} />
           </div>
+        </section>
 
-          <div className="row g-4 setup-component-grid">
-            {c.pc2Components.map((component) => (
-              <div key={component.label} className="col-md-6 col-xl-4">
-                <div className="card bg-dark border-0 h-100 shadow-sm setup-component-card" style={{ border: '1px solid var(--card-border)' }}>
-                  <div className="setup-component-placeholder" aria-hidden="true" />
-                  <div className="card-body">
-                    <h5 className="card-title">{component.label}</h5>
-                    <p className="card-text theme-text-soft mb-0">{component.value}</p>
+        <section className="gx-band" id="hardware">
+          <div className="gx-wrap">
+            <div className="gx-sec-head gx-rv">
+              <span className="gx-eyebrow">{ui.hwEyebrow}</span>
+              <h2>{c.hardwareTitle}</h2>
+            </div>
+            <HardwareMatrix components={data.primaryComponents} lang={lang} />
+          </div>
+        </section>
+
+        <section className="gx-band" id="buildlog">
+          <div className="gx-wrap">
+            <div className="gx-sec-head gx-rv">
+              <span className="gx-eyebrow">{ui.logEyebrow}</span>
+              <h2>{ui.logTitle}</h2>
+            </div>
+            <div className="gx-log">
+              <div className="gx-step gx-rv">
+                <div className="gx-dot">01</div>
+                <div className="gx-step-body">
+                  <div className="gx-step-text">
+                    <span className="gx-eyebrow">{ui.stepUnboxing}</span>
+                    <h3>{c.componentsPhotoTitle}</h3>
+                    <p>{c.componentsPhotoCaption}</p>
+                  </div>
+                  <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
+                    <img src="/images/setup/pc-setup/all-components.jpg" alt={c.componentsPhotoAlt} loading="lazy" />
                   </div>
                 </div>
               </div>
-            ))}
+              <div className="gx-step gx-rv">
+                <div className="gx-dot">02</div>
+                <div className="gx-step-body gx-flip">
+                  <div className="gx-step-text">
+                    <span className="gx-eyebrow">{ui.stepFirst}</span>
+                    <h3>{c.highEndTitle}</h3>
+                    <p>{c.highEndDesc}</p>
+                  </div>
+                  <div className="gx-media-frame gx-hud gx-tall gx-video-frame">
+                    <AutoplayVideo src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC.mp4`} ariaLabel={c.highEndTitle} toggle={toggle} />
+                  </div>
+                </div>
+              </div>
+              <div className="gx-step gx-rv">
+                <div className="gx-dot">03</div>
+                <div className="gx-step-body">
+                  <div className="gx-step-text">
+                    <span className="gx-eyebrow">{ui.stepRebuild}</span>
+                    <h3>{c.umbauTitle}</h3>
+                    <p>{c.umbauDesc}</p>
+                    <div><a className="gx-btn" href="#top">{ui.watchAbove}</a></div>
+                  </div>
+                  <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
+                    <img src="/images/setup/umbau-display.jpg" alt={ui.displayAlt} loading="lazy" style={{ objectPosition: 'center 30%' }} />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="gx-band" id="build2">
+          <div className="gx-wrap">
+            <div className="gx-sec-head gx-rv">
+              <span className="gx-eyebrow">{ui.b2Eyebrow}</span>
+              <h2>{c.secondBuildTitle}</h2>
+              <p>{c.secondBuildDesc}</p>
+            </div>
+            <div className="gx-b2">
+              <div className="gx-media-frame gx-hud gx-video-frame gx-rv">
+                <AutoplayVideo src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC2.mp4`} ariaLabel={c.secondBuildTitle} toggle={toggle} />
+              </div>
+              <div className="gx-rv">
+                <p className="gx-note">{c.hardwareDisclaimer}</p>
+                <dl className="gx-spec-list">
+                  {c.pc2Components.map((s) => <div key={s.label}><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <RgbController host={hostRef} scene={sceneRef} lang={lang} overclock={overclock} setOverclock={setOverclock} />
+      </div>
 
       <Footer />
     </main>
   );
 }
 
-interface ValorantProfileData {
-  name: string;
-  tag: string;
-  currentTier: string;
-  currentTierIcon: string | null;
-  rr: number;
-  rrChange: number | null;
-  elo: number | null;
-  peakTier: string;
-  peakTierIcon: string | null;
-  accountLevel: number | null;
-  bannerUrl: string | null;
-  seasonWinRate: number | null;
-  lifetimeWinRate: number | null;
-  recentKD: number | null;
-  recentKills: number | null;
-  recentDeaths: number | null;
-  recentAssists: number | null;
-  favoriteAgentName: string;
-  favoriteAgentPortrait: string;
-}
-
-interface ValorantResponse {
-  available: boolean;
-  profile?: ValorantProfileData;
-  updatedAt?: string;
-}
-
-const VALORANT_TEXT = {
-  en: {
-    current: 'Current Rank', peak: 'Peak Rank', agent: 'Favorite Agent', level: 'Account Level',
-    winRate: 'Season Win Rate', lifetimeWinRate: 'Lifetime Win Rate', elo: 'Elo', rrChange: 'Last RR Change',
-    recentForm: 'Last 5 Matches (K/D/A)', kd: 'K/D Ratio'
-  },
-  de: {
-    current: 'Aktueller Rang', peak: 'Höchster Rang', agent: 'Lieblingsagent', level: 'Account-Level',
-    winRate: 'Winrate (Season)', lifetimeWinRate: 'Winrate (Lifetime)', elo: 'Elo', rrChange: 'Letzte RR-Änderung',
-    recentForm: 'Letzte 5 Matches (K/D/A)', kd: 'K/D-Verhältnis'
-  }
-};
-
-function ValorantProfile({ lang }: { lang: 'en' | 'de' }) {
-  const [data, setData] = useState<ValorantResponse | null>(null);
-  const t = VALORANT_TEXT[lang];
-
-  useEffect(() => {
-    fetch('/api/valorant-profile')
-      .then((res) => res.json())
-      .then(setData)
-      .catch(() => setData({ available: false }));
-  }, []);
-
-  if (data && !data.available) return null;
-  const profile = data?.profile;
-
-  return (
-    <section className="py-5">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-9">
-            <div className="valorant-card">
-              {profile?.bannerUrl && <img src={profile.bannerUrl} alt="" className="valorant-banner" />}
-              {profile?.favoriteAgentPortrait && (
-                <img src={profile.favoriteAgentPortrait} alt={profile.favoriteAgentName} className="valorant-agent-portrait" />
-              )}
-              <div className="valorant-card-content">
-                <div className="valorant-eyebrow">VALORANT</div>
-
-                {!profile ? (
-                  <p className="mb-0" style={{ color: 'rgba(236,232,225,0.6)' }}>…</p>
-                ) : (
-                  <>
-                    <div className="d-flex flex-wrap align-items-end gap-5 mt-2">
-                      <div>
-                        <div className="valorant-tag-name">{profile.name}<span style={{ color: '#FF4655' }}>#{profile.tag}</span></div>
-                      </div>
-
-                      <div className="valorant-divider d-none d-md-block" />
-
-                      <div>
-                        <div className="valorant-stat-label">{t.current}</div>
-                        <div className="d-flex align-items-center gap-2 mt-1">
-                          {profile.currentTierIcon && <img src={profile.currentTierIcon} alt={profile.currentTier} className="valorant-tier-icon" />}
-                          <div className="valorant-stat-sub">{profile.rr} RR</div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="valorant-stat-label">{t.peak}</div>
-                        <div className="mt-1">
-                          {profile.peakTierIcon && <img src={profile.peakTierIcon} alt={profile.peakTier} className="valorant-tier-icon" />}
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="valorant-stat-label">{t.agent}</div>
-                        <div className="valorant-stat-value">{profile.favoriteAgentName}</div>
-                      </div>
-                    </div>
-
-                    <div className="d-flex flex-wrap gap-4 mt-4 pt-3 valorant-stat-row">
-                      {profile.accountLevel !== null && (
-                        <div>
-                          <div className="valorant-stat-label">{t.level}</div>
-                          <div className="valorant-stat-value">{profile.accountLevel}</div>
-                        </div>
-                      )}
-
-                      {profile.elo !== null && (
-                        <div>
-                          <div className="valorant-stat-label">{t.elo}</div>
-                          <div className="valorant-stat-value">{profile.elo}</div>
-                        </div>
-                      )}
-
-                      {profile.rrChange !== null && (
-                        <div>
-                          <div className="valorant-stat-label">{t.rrChange}</div>
-                          <div className={`valorant-stat-value ${profile.rrChange >= 0 ? 'valorant-up' : 'valorant-down'}`}>
-                            {profile.rrChange >= 0 ? '+' : ''}{profile.rrChange}
-                          </div>
-                        </div>
-                      )}
-
-                      {profile.seasonWinRate !== null && (
-                        <div>
-                          <div className="valorant-stat-label">{t.winRate}</div>
-                          <div className="valorant-stat-value">{profile.seasonWinRate}%</div>
-                        </div>
-                      )}
-
-                      {profile.lifetimeWinRate !== null && (
-                        <div>
-                          <div className="valorant-stat-label">{t.lifetimeWinRate}</div>
-                          <div className="valorant-stat-value">{profile.lifetimeWinRate}%</div>
-                        </div>
-                      )}
-
-                      {profile.recentKD !== null && (
-                        <div>
-                          <div className="valorant-stat-label">{t.kd}</div>
-                          <div className="valorant-stat-value">{profile.recentKD}</div>
-                          {profile.recentKills !== null && (
-                            <div className="valorant-stat-sub">
-                              {profile.recentKills}/{profile.recentDeaths}/{profile.recentAssists}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}

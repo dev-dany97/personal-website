@@ -32,3 +32,18 @@ test('language toggle switches the navbar language', async ({ page }) => {
   await expect(enOption).toHaveClass(/active/);
   await expect(deOption).not.toHaveClass(/active/);
 });
+
+test('gaming page shows hero, hardware filter and 3D model on demand', async ({ page }) => {
+  await page.goto('/setup');
+  await expect(page.locator('.gx-hero h1')).toContainText('Gaming');
+  const parts = page.locator('.gx-part');
+  const total = await parts.count();
+  expect(total).toBeGreaterThan(10);
+
+  await page.locator('.gx-filters button', { hasText: /Peripherie|Peripherals/ }).click();
+  await expect.poll(() => parts.count()).toBeLessThan(total);
+
+  await expect(page.locator('.gx-chamber iframe')).toHaveCount(0);
+  await page.locator('.gx-chamber-gate').click();
+  await expect(page.locator('.gx-chamber iframe')).toHaveAttribute('src', '/pc-modell.html');
+});

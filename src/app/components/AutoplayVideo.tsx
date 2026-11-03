@@ -6,6 +6,11 @@ interface AutoplayVideoProps {
   src: string;
   className?: string;
   style?: CSSProperties;
+  poster?: string;
+  ariaLabel?: string;
+  // Renders a small play/pause button over the video (Gaming page). The
+  // labels are passed in so the component stays language-agnostic.
+  toggle?: { className?: string; playLabel: string; pauseLabel: string };
 }
 
 // Muted, looping background-style video that also plays on phones.
@@ -19,9 +24,12 @@ interface AutoplayVideoProps {
 // If the browser still refuses (iOS Low Power Mode, Android data saver), the
 // native controls are shown so a tap starts the video instead of leaving a
 // dead black box.
-export function AutoplayVideo({ src, className, style }: AutoplayVideoProps) {
+export function AutoplayVideo({ src, className, style, poster, ariaLabel, toggle }: AutoplayVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
   const [blocked, setBlocked] = useState(false);
+  const [paused, setPaused] = useState(true);
+  // Set when the visitor pauses by hand, so scrolling back does not restart it.
+  const userPaused = useRef(false);
 
   useEffect(() => {
     const video = ref.current;
@@ -34,6 +42,7 @@ export function AutoplayVideo({ src, className, style }: AutoplayVideoProps) {
     video.setAttribute('webkit-playsinline', '');
 
     const tryPlay = () => {
+      if (userPaused.current) return;
       const result = video.play();
       if (result) {
         result.then(() => setBlocked(false)).catch((err: unknown) => {
@@ -60,7 +69,19 @@ export function AutoplayVideo({ src, className, style }: AutoplayVideoProps) {
     return () => observer.disconnect();
   }, [src]);
 
-  return (
+  const onToggle = () => {
+    const video = ref.current;
+    if (!video) return;
+    if (video.paused) {
+      userPaused.current = false;
+      video.play().then(() => setBlocked(false)).catch(() => setBlocked(true));
+    } else {
+      userPaused.current = true;
+      video.pause();
+    }
+  };
+
+  const videoEl = (
     <video
       ref={ref}
       // "#t=0.001" makes iOS Safari render the first frame as a preview while
@@ -72,9 +93,33 @@ export function AutoplayVideo({ src, className, style }: AutoplayVideoProps) {
       loop
       playsInline
       preload="metadata"
+      poster={poster}
+      aria-label={ariaLabel}
       controls={blocked}
+      onPlay={() => setPaused(false)}
+      onPause={() => setPaused(true)}
     >
       Your browser does not support the video tag.
     </video>
+  );
+
+  if (!toggle || blocked) return videoEl;
+
+  return (
+    <>
+      {videoEl}
+      <button
+        type="button"
+        className={toggle.className}
+        onClick={onToggle}
+        aria-label={paused ? toggle.playLabel : toggle.pauseLabel}
+      >
+        {paused ? (
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z" /></svg>
+        ) : (
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" /><rect x="14" y="5" width="4" height="14" /></svg>
+        )}
+      </button>
+    </>
   );
 }

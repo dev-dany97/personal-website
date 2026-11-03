@@ -898,7 +898,6 @@ footer {
   margin-top: 0.9rem;
 }
 
-
 .site-footer {
   position: relative;
   background: var(--footer-bg);
@@ -1015,13 +1014,11 @@ footer {
   opacity: 0.6;
 }
 
-.setup-component-grid,
 .travel-story-grid,
 .travel-gallery-grid {
   align-items: stretch;
 }
 
-.setup-component-card,
 .travel-story-card {
   color: var(--text) !important;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025)) !important;
@@ -1029,49 +1026,18 @@ footer {
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.setup-component-card .card-title,
 .travel-story-card .card-title {
   color: var(--text) !important;
 }
 
-.setup-component-card .card-text,
 .travel-story-card .card-text {
   color: var(--text-soft) !important;
 }
 
-.setup-component-card:hover,
 .travel-story-card:hover {
   transform: translateY(-4px);
   border-color: rgba(79, 185, 173, 0.45) !important;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.22) !important;
-}
-
-.setup-component-card .card-img-top {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.setup-component-placeholder {
-  height: 180px;
-  background: linear-gradient(135deg, rgba(79, 185, 173, 0.16), rgba(255, 255, 255, 0.03));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.setup-build-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.setup-build-card video {
-  border-radius: 0;
-  background: #000;
-}
-
-.setup-build-caption {
-  padding: 1rem 1.25rem;
 }
 
 .pc3d-wrap {
@@ -2347,17 +2313,6 @@ footer {
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 80%, transparent 100%);
 }
 
-.bg-canvas--hud {
-  opacity: 0.85;
-}
-
-.setup-hero {
-  position: relative;
-  overflow: hidden;
-  padding: 4.5rem 0 3rem;
-  background: var(--bg-soft);
-}
-
 /* No longer used — Setup and Finance now follow the light/dark toggle like the
    rest of the site. Kept only in case a future page still wants a fixed-dark
    backdrop regardless of theme. */
@@ -2571,128 +2526,6 @@ footer {
     opacity: 0.5;
     box-shadow: 0 0 0 4px rgba(79, 185, 173, 0);
   }
-}
-
-.valorant-card {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #0f1923 0%, #1a2733 65%, #0f1923 100%);
-  border: 1px solid rgba(255, 70, 85, 0.35);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  min-height: 220px;
-}
-
-.valorant-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 100%;
-  background: #ff4655;
-  z-index: 2;
-}
-
-.valorant-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(115deg, rgba(255, 70, 85, 0.05) 0px, rgba(255, 70, 85, 0.05) 1px, transparent 1px, transparent 40px);
-  pointer-events: none;
-}
-
-.valorant-card-content {
-  position: relative;
-  z-index: 1;
-  padding: 2rem 2.5rem;
-}
-
-.valorant-agent-portrait {
-  position: absolute;
-  right: 0.5rem;
-  bottom: 0;
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  object-position: bottom;
-  opacity: 0.9;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.6));
-  pointer-events: none;
-  mask-image: linear-gradient(to left, black 55%, transparent 100%);
-}
-
-.valorant-eyebrow {
-  color: #ff4655;
-  font-weight: 800;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-
-.valorant-tag-name {
-  font-weight: 800;
-  font-size: 1.9rem;
-  color: #ece8e1;
-  letter-spacing: 0.02em;
-}
-
-.valorant-divider {
-  width: 1px;
-  align-self: stretch;
-  background: linear-gradient(to bottom, transparent, rgba(255, 70, 85, 0.5), transparent);
-}
-
-.valorant-stat-label {
-  color: rgba(236, 232, 225, 0.55);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-}
-
-.valorant-stat-value {
-  color: #ece8e1;
-  font-weight: 800;
-  font-size: 1.4rem;
-  margin-top: 0.2rem;
-}
-
-.valorant-stat-sub {
-  color: #ff4655;
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-top: 0.15rem;
-}
-
-.valorant-tier-icon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-}
-
-.valorant-banner {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.22;
-  z-index: 0;
-}
-
-.valorant-stat-row {
-  border-top: 1px solid rgba(255, 70, 85, 0.2);
-}
-
-.valorant-up {
-  color: #4fb96e !important;
-}
-
-.valorant-down {
-  color: #ff4655 !important;
 }
 
 .portfolio-donut-wrap {
