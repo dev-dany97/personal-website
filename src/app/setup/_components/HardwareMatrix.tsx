@@ -5,23 +5,24 @@ import { SiteImage } from '@/app/components/SiteImage';
 
 export interface HardwareComponent { label: string; value: string; image?: string }
 
-type Cat = 'core' | 'storage' | 'cooling' | 'periph';
+type Cat = 'core' | 'storage' | 'cooling' | 'periph' | 'display';
 const CATEGORY: Record<string, Cat> = {
-  'Memory SSD': 'storage', 'Memory M2': 'storage',
+  'Memory SSD': 'storage', 'Memory HDD': 'storage', 'Memory M2': 'storage',
   'Water Cooling': 'cooling', Fan: 'cooling', Cable: 'cooling', 'Custom Water Front Plate': 'cooling',
-  Keyboard: 'periph', Mouse: 'periph', Wheel: 'periph', Microphone: 'periph', Headset: 'periph', Monitor: 'periph'
+  Keyboard: 'periph', Mouse: 'periph', Wheel: 'periph', Microphone: 'periph', Headset: 'periph', Monitor: 'display'
 };
-// These cards are twice as wide on wide screens. With 21 parts
-// and three wide cards the four-column grid fills without a gap.
-const WIDE = new Set(['GPU', 'Water Cooling', 'Memory SSD']);
+// These cards are twice as wide on wide screens. With 22 parts
+// and two wide cards the four-column grid fills without a gap.
+const WIDE = new Set(['GPU', 'Water Cooling']);
 
 const TEXT = {
-  de: { group: 'Komponenten filtern', all: 'Alle', core: 'Kernsystem', storage: 'Speicher', cooling: 'Kühlung & RGB', periph: 'Peripherie' },
-  en: { group: 'Filter components', all: 'All', core: 'Core system', storage: 'Storage', cooling: 'Cooling & RGB', periph: 'Peripherals' }
+  de: { group: 'Komponenten filtern', all: 'Alle', core: 'Kernsystem', storage: 'Speicher', cooling: 'Kühlung & RGB', periph: 'Peripherie', display: 'Monitore' },
+  en: { group: 'Filter components', all: 'All', core: 'Core system', storage: 'Storage', cooling: 'Cooling & RGB', periph: 'Peripherals', display: 'Monitors' }
 };
 
 const GLYPH: Record<string, React.ReactNode> = {
   Wheel: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="2.5" /><path d="M3.5 10h6M14.5 10h6M12 14.5V21" /></svg>,
+  'Memory HDD': <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="2" width="16" height="20" rx="2" /><circle cx="12" cy="10" r="4.5" /><circle cx="12" cy="10" r="1" /><path d="M14.5 13.5 17 18M7 18.5h3" /></svg>,
   'Custom Water Front Plate': <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="6" y="2" width="12" height="20" rx="1.5" /><path d="M9 6c3 2 3 4 0 6s-3 4 0 6M15 6c-3 2-3 4 0 6s3 4 0 6" /></svg>
 };
 const CHIP = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="6" y="6" width="12" height="12" rx="1.5" /><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" /></svg>;
@@ -43,7 +44,7 @@ export function HardwareMatrix({ components, lang }: { components: HardwareCompo
   const t = TEXT[lang];
   const [filter, setFilter] = useState<'all' | Cat>('all');
   const catOf = (c: HardwareComponent): Cat => CATEGORY[c.label] ?? 'core';
-  const filters: Array<'all' | Cat> = ['all', 'core', 'storage', 'cooling', 'periph'];
+  const filters: Array<'all' | Cat> = ['all', 'core', 'storage', 'cooling', 'periph', 'display'];
 
   return (
     <>
@@ -59,7 +60,7 @@ export function HardwareMatrix({ components, lang }: { components: HardwareCompo
         {components.filter((c) => filter === 'all' || catOf(c) === filter).map((c) => (
           <article
             key={`${c.label}-${c.value}`}
-            className={`gx-part${WIDE.has(c.label) ? ' gx-wide' : ''}`}
+            className={`gx-part${WIDE.has(c.label) ? ' gx-wide' : ''}${c.image?.endsWith('.webp') ? ' gx-cut' : ''}`}
             onPointerMove={tilt}
             onPointerLeave={(e) => { e.currentTarget.style.transform = ''; }}
           >

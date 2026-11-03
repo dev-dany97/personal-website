@@ -891,16 +891,17 @@ function seedTravel(db: DatabaseSync) {
 function seedSetup(db: DatabaseSync) {
   // Hardware specs (brand/product names) stay identical in both languages.
   const primary: Array<{ label: string; value: string; image?: string }> = [
-    { label: 'CPU', value: 'AMD Ryzen 7 5800X3D 8-Core', image: '/images/setup/pc-setup/cpu-image.jpg' },
-    { label: 'GPU', value: 'ASUS ROG STRIX NVIDIA GeForce RTX 2080 Advanced', image: '/images/setup/pc-setup/graphic-image.jpg' },
-    { label: 'RAM', value: '32 GB - 4x G.Skill DIMM 8GB DDR4-3200, Trident Z RGB', image: '/images/setup/pc-setup/ram-image.jpg' },
-    { label: 'Memory SSD', value: 'Samsung 850 Pro 2.5 256GB + Samsung SSD 850 Evo 250GB + Samsung SSD 870 EVO 1TB + WD BLACK SSD AN1500 4TB', image: '/images/setup/pc-setup/memory-image.jpg' },
+    { label: 'CPU', value: 'AMD Ryzen 7 5800X3D 8-Core', image: '/images/setup/pc-setup/cpu-image.webp' },
+    { label: 'GPU', value: 'ASUS ROG STRIX NVIDIA GeForce RTX 2080 Advanced', image: '/images/setup/pc-setup/graphic-image.webp' },
+    { label: 'RAM', value: '32 GB - 4x G.Skill DIMM 8GB DDR4-3200, Trident Z RGB', image: '/images/setup/pc-setup/ram-image.webp' },
+    { label: 'Memory SSD', value: 'Samsung 850 Pro 2.5 256GB + Samsung SSD 850 Evo 250GB + Samsung SSD 870 EVO 1TB + WD BLACK SSD AN1500 4TB', image: '/images/setup/pc-setup/memory-image.webp' },
+    { label: 'Memory HDD', value: 'Western Digital WD_BLACK 4TB (WD4005FZBX)' },
     { label: 'Memory M2', value: 'SanDisk Extreme PRO M.2 500GB + WD Black SN750 500GB', image: '/images/setup/pc-setup/memory-m2.jpg' },
-    { label: 'MB', value: 'ASUS ROG Strix X470-F Gaming', image: '/images/setup/pc-setup/mb-image.jpg' },
+    { label: 'MB', value: 'ASUS ROG Strix X470-F Gaming', image: '/images/setup/pc-setup/mb-image.webp' },
     { label: 'Water Cooling', value: 'Alphacool Eisbecher Helix 250 + Alphacool Eisblock XPX Aurora Plexi Digital RGB + Alphacool Eisfluegel Aurora Durchflussanzeiger', image: '/images/setup/pc-setup/water-cooling-image.jpg' },
     { label: 'Fan', value: 'LIAN LI UNI FAN SL-INF 120 + Lian Li UNI FAN SL-INF LCD FLEX Wireless (ARGB und LCD, 120 mm, schwarz)', image: '/images/setup/pc-setup/fan-lcd-flex-image.jpg' },
     { label: 'Case', value: 'LIAN LI O11 Dynamic', image: '/images/setup/pc-setup/case-image.webp' },
-    { label: 'PowerSupply', value: 'be quiet! Dark Power Pro 11 1000W', image: '/images/setup/pc-setup/power-supply-image.jpg' },
+    { label: 'PowerSupply', value: 'be quiet! Dark Power Pro 11 1000W', image: '/images/setup/pc-setup/power-supply-image.webp' },
     { label: 'Keyboard', value: 'SteelSeries Apex Pro', image: '/images/setup/pc-setup/keyboard-image.jpg' },
     { label: 'Mouse', value: 'Logitech G502 + Logitech G Powerplay', image: '/images/setup/pc-setup/mouse-image.jpg' },
     { label: 'Wheel', value: 'Logitech G29', image: '/images/setup/pc-setup/wheel-image.jpg' },
@@ -908,9 +909,9 @@ function seedSetup(db: DatabaseSync) {
     { label: 'Headset', value: 'SteelSeries Arctis Nova 5 Wireless', image: '/images/setup/pc-setup/headset-image.jpg' },
     { label: 'Monitor', value: 'Samsung C49HG90DMU 49"', image: '/images/setup/pc-setup/monitor-image.jpg' },
     { label: 'Monitor', value: 'UPERFECT MDS-156F13', image: '/images/setup/pc-setup/monitor-uperfect-image.jpg' },
-    { label: 'Monitor', value: 'Wisecoco 9"', image: '/images/setup/pc-setup/monitor-wisecoco-image.jpg' },
-    { label: 'Monitor', value: 'MPI7002', image: '/images/setup/pc-setup/monitor-mpi7002-image.jpg' },
-    { label: 'Cable', value: 'Motherboard 24-Pin, GPU Dual 8-Pin Cable: Streamer Plus V2', image: '/images/setup/pc-setup/cable-image.jpg' },
+    { label: 'Monitor', value: 'Wisecoco 9"', image: '/images/setup/pc-setup/monitor-wisecoco-image.webp' },
+    { label: 'Monitor', value: 'MPI7002', image: '/images/setup/pc-setup/monitor-mpi7002-image.webp' },
+    { label: 'Cable', value: 'Motherboard 24-Pin, GPU Dual 8-Pin Cable: Streamer Plus V2', image: '/images/setup/pc-setup/cable-image.webp' },
     { label: 'Custom Water Front Plate', value: 'LIAN LI O11D XL FRONT PLATE SK2 + D5/DDC ADAPTER' }
   ];
 
