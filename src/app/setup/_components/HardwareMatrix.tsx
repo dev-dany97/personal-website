@@ -8,10 +8,11 @@ type Cat = 'core' | 'storage' | 'cooling' | 'periph';
 const CATEGORY: Record<string, Cat> = {
   'Memory SSD': 'storage', 'Memory M2': 'storage',
   'Water Cooling': 'cooling', Fan: 'cooling', Cable: 'cooling', 'Custom Water Front Plate': 'cooling',
-  Keyboard: 'periph', Mouse: 'periph', Wheel: 'periph', Microphone: 'periph', Monitor: 'periph'
+  Keyboard: 'periph', Mouse: 'periph', Wheel: 'periph', Microphone: 'periph', Headset: 'periph', Monitor: 'periph'
 };
-// These cards are twice as wide on wide screens.
-const WIDE = new Set(['GPU', 'Water Cooling', 'Monitor']);
+// These cards are twice as wide on wide screens. With 21 parts
+// and three wide cards the four-column grid fills without a gap.
+const WIDE = new Set(['GPU', 'Water Cooling', 'Memory SSD']);
 
 const TEXT = {
   de: { group: 'Komponenten filtern', all: 'Alle', core: 'Kernsystem', storage: 'Speicher', cooling: 'Kühlung & RGB', periph: 'Peripherie' },
@@ -56,7 +57,7 @@ export function HardwareMatrix({ components, lang }: { components: HardwareCompo
       <div className={`gx-parts${filter === 'all' ? ' gx-all' : ''}`}>
         {components.filter((c) => filter === 'all' || catOf(c) === filter).map((c) => (
           <article
-            key={c.label}
+            key={`${c.label}-${c.value}`}
             className={`gx-part${WIDE.has(c.label) ? ' gx-wide' : ''}`}
             onPointerMove={tilt}
             onPointerLeave={(e) => { e.currentTarget.style.transform = ''; }}

@@ -56,7 +56,7 @@ export function ValorantCard({ lang }: { lang: 'de' | 'en' }) {
     if (p.accountLevel !== null) stats.push({ label: t.level, value: String(p.accountLevel) });
     stats.push({ label: t.agent, value: p.favoriteAgentName });
   }
-  // The grid has three (phone: two) columns, so at most six values.
+  // The bar has six (tablet: three, phone: two) columns, so at most six values.
   const shown = stats.length > 6 ? stats.filter((s) => s.label !== t.level).slice(0, 6) : stats;
 
   return (
@@ -67,8 +67,11 @@ export function ValorantCard({ lang }: { lang: 'de' | 'en' }) {
           <h2>{t.title}</h2>
         </div>
         <div className="gx-val gx-rv">
+          <ValorantBackdrop />
+          {p?.bannerUrl && <img src={p.bannerUrl} alt="" className="gx-val-banner" />}
+          {/* Neon as a fixed figure, independent of the favourite agent from the API */}
+          <img src="/images/setup/neon-agent.webp" alt="" className="gx-val-agent" width={700} height={742} />
           <div className="gx-val-id">
-            {p?.favoriteAgentPortrait && <img src={p.favoriteAgentPortrait} alt="" className="gx-val-agent" />}
             <div className="gx-eyebrow">{t.mode}</div>
             {!p ? (
               <div className="gx-val-name">…</div>
@@ -100,5 +103,47 @@ export function ValorantCard({ lang }: { lang: 'de' | 'en' }) {
         </div>
       </div>
     </section>
+  );
+}
+
+// Custom background in Valorant style: angular red shapes and Neon's
+// blue lightning. Drawn entirely as SVG, so no external image files.
+// If the API returns a player card banner, it is laid on top.
+function ValorantBackdrop() {
+  return (
+    <svg className="gx-val-bg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="gxValBase" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#0f1923" />
+          <stop offset=".55" stopColor="#140d1c" />
+          <stop offset="1" stopColor="#081426" />
+        </linearGradient>
+        <linearGradient id="gxValRed" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#ff4655" stopOpacity=".55" />
+          <stop offset="1" stopColor="#ff4655" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="gxValBolt" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#7df9ff" />
+          <stop offset="1" stopColor="#2f6bff" />
+        </linearGradient>
+        <filter id="gxValGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" result="b" />
+          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+      <rect width="1200" height="420" fill="url(#gxValBase)" />
+      <polygon points="0,0 560,0 430,420 0,420" fill="url(#gxValRed)" opacity=".35" />
+      <polygon points="610,0 640,0 510,420 480,420" fill="#ff4655" opacity=".55" />
+      <polygon points="660,0 668,0 538,420 530,420" fill="#ff4655" opacity=".35" />
+      <g stroke="#ece8e1" strokeOpacity=".08" fill="none">
+        <path d="M40 360 L180 360 L210 330" /><path d="M40 60 L120 60" /><path d="M1060 40 L1160 40 L1160 120" />
+      </g>
+      <text x="1180" y="400" textAnchor="end" className="gx-val-word">NEON</text>
+      <g filter="url(#gxValGlow)" stroke="url(#gxValBolt)" strokeWidth="3" fill="none" strokeLinejoin="bevel" opacity=".85">
+        <polyline points="760,-10 820,120 790,140 880,300 850,318 930,430" />
+        <polyline points="1010,-10 980,90 1030,110 960,260 1000,280 950,430" strokeWidth="2" opacity=".7" />
+        <polyline points="1120,30 1090,150 1130,170 1080,300" strokeWidth="1.5" opacity=".6" />
+      </g>
+    </svg>
   );
 }

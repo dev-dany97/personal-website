@@ -84,16 +84,16 @@
   backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); white-space:nowrap}
 .gx-chip b{display:block; font-size:18px; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums}
 .gx-chip small{color:var(--ink-dim); letter-spacing:.1em; text-transform:uppercase; font-size:10px}
-.gx-chip.gx-c1{top:12%; left:-22%} .gx-chip.gx-c2{top:46%; right:-20%} .gx-chip.gx-c3{bottom:12%; left:-16%}
+.gx-chip.gx-c1{top:12%; left:-22%} .gx-chip.gx-c2{top:46%; right:-20%} .gx-chip.gx-c3{bottom:12%; left:-16%} .gx-chip.gx-c4{bottom:24%; right:-22%}
 .gx-chip::after{content:""; position:absolute; top:50%; width:22px; height:1px; background:var(--rgb-line)}
-.gx-chip.gx-c1::after,.gx-chip.gx-c3::after{left:100%} .gx-chip.gx-c2::after{right:100%}
+.gx-chip.gx-c1::after,.gx-chip.gx-c3::after{left:100%} .gx-chip.gx-c2::after,.gx-chip.gx-c4::after{right:100%}
 .gx-stage-cap{margin-top:14px; display:flex; justify-content:space-between; gap:12px; align-items:baseline}
 .gx-stage-cap h3{font-size:15px; letter-spacing:.06em; text-transform:uppercase}
 
 @media (max-width:900px){
   .gx-hero .gx-wrap{grid-template-columns:minmax(0,1fr); padding-block:44px 48px; gap:40px}
   .gx-stage{width:min(100%, 320px)}
-  .gx-chip.gx-c1{left:-12px} .gx-chip.gx-c2{right:-12px} .gx-chip.gx-c3{left:-12px}
+  .gx-chip.gx-c1{left:-12px} .gx-chip.gx-c2{right:-12px} .gx-chip.gx-c3{left:-12px} .gx-chip.gx-c4{right:-12px}
   .gx-chip::after{display:none}
 }
 
@@ -106,10 +106,9 @@
 @media (max-width:640px){ .gx-band{padding-block:64px} .gx-sec-head{margin-bottom:30px} }
 
 /* Valorant */
-.gx-val{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); overflow:hidden; border-radius:4px;
+.gx-val{position:relative; isolation:isolate; display:grid; grid-template-columns:minmax(0,1fr); overflow:hidden; border-radius:4px;
   background:linear-gradient(115deg, #1a0b14 0%, #0d0a18 55%, #0a0d1a 100%); border:1px solid rgba(255,70,85,.28)}
-.gx-val-id{padding:32px; position:relative; border-right:1px solid rgba(255,70,85,.18)}
-.gx-val-id::before{content:""; position:absolute; inset:0; background:repeating-linear-gradient(135deg, rgba(255,70,85,.06) 0 2px, transparent 2px 14px); pointer-events:none}
+.gx-val-id{padding:40px 36px 36px; position:relative; z-index:2; min-height:280px; display:grid; align-content:end; max-width:620px}
 .gx-val .gx-eyebrow{color:var(--alert)}
 .gx-val-name{font-family:var(--f-display); font-size:clamp(28px, 4vw, 42px); font-weight:800; margin:10px 0 18px; overflow-wrap:anywhere}
 .gx-val-name span{color:var(--alert)}
@@ -117,12 +116,13 @@
 .gx-rank-badge{width:64px; height:64px; flex:none; clip-path:polygon(50% 0,100% 30%,100% 70%,50% 100%,0 70%,0 30%);
   background:linear-gradient(160deg,#d8dde8,#7d8597); display:grid; place-items:center; font-family:var(--f-display); font-weight:800; color:#1a1d26; font-size:22px}
 .gx-rank b{font-family:var(--f-display); font-size:22px; display:block}
-.gx-val-stats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:rgba(255,70,85,.14)}
-.gx-val-stats div{background:#0c0b17; padding:20px 18px; min-width:0}
+.gx-val-stats{position:relative; z-index:2; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:1px; background:rgba(255,70,85,.22); border-top:1px solid rgba(255,70,85,.35)}
+.gx-val-stats div{background:rgba(9,10,20,.78); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); padding:20px 18px; min-width:0}
 .gx-val-stats small{display:block; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-dim)}
 .gx-val-stats b{font-family:var(--f-display); font-size:26px; font-weight:700; font-variant-numeric:tabular-nums}
 .gx-val-stats .gx-up{color:var(--ok)}
-@media (max-width:820px){ .gx-val{grid-template-columns:minmax(0,1fr)} .gx-val-id{border-right:0; border-bottom:1px solid rgba(255,70,85,.18); padding:24px} .gx-val-stats{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:1000px){ .gx-val-stats{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:560px){ .gx-val-id{padding:24px 20px; min-height:240px} .gx-val-stats{grid-template-columns:repeat(2,minmax(0,1fr))} }
 
 /* Water cooling */
 .gx-loop{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; align-items:stretch}
@@ -191,7 +191,7 @@
 .gx-part-body small{font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--rgb)}
 .gx-part-body p{font-size:15px; line-height:1.45}
 .gx-part[hidden]{display:none}
-@media (max-width:560px){ .gx-parts{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px} .gx-part-body{padding:10px 12px 14px; gap:4px} .gx-part-body p{font-size:13px} .gx-part-body small{font-size:10px; letter-spacing:.1em} .gx-part-img{aspect-ratio:4/3} }
+@media (max-width:560px){ .gx-parts{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px} .gx-parts .gx-part:last-child:nth-child(odd){grid-column:span 2} .gx-parts .gx-part:last-child:nth-child(odd) .gx-part-img{aspect-ratio:12/5} .gx-part-body{padding:10px 12px 14px; gap:4px} .gx-part-body p{font-size:13px} .gx-part-body small{font-size:10px; letter-spacing:.1em} .gx-part-img{aspect-ratio:4/3} }
 @media (min-width:1100px){ .gx-parts.gx-all .gx-part.gx-wide{grid-column:span 2} .gx-parts.gx-all .gx-part.gx-wide .gx-part-img{aspect-ratio:33/10} }
 
 /* Build-Log */
@@ -279,13 +279,25 @@
 
 /* Valorant: real rank icons and agent portrait */
 .gx-rank-icon{width:64px; height:64px; flex:none; object-fit:contain}
-.gx-val-agent{position:absolute; right:-10px; bottom:0; height:115%; width:auto; max-width:none; opacity:.35; pointer-events:none;
-  -webkit-mask-image:linear-gradient(90deg, transparent, #000 40%); mask-image:linear-gradient(90deg, transparent, #000 40%)}
-.gx-val-id > *{position:relative; z-index:1}
-.gx-val-id > .gx-val-agent{position:absolute; z-index:0}
+.gx-val-bg{position:absolute; inset:0; width:100%; height:100%; z-index:0}
+.gx-val-word{font-family:var(--f-display); font-weight:800; font-size:230px; letter-spacing:.02em; fill:none; stroke:rgba(125,249,255,.16); stroke-width:2}
+.gx-val-banner{position:absolute; top:0; right:0; height:100%; width:70%; object-fit:cover; z-index:0; opacity:.45;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 45%); mask-image:linear-gradient(90deg, transparent, #000 45%)}
+.gx-val-agent{position:absolute; right:4%; top:14px; height:calc(100% - 14px); max-height:100%; width:auto; max-width:55%; object-fit:contain; object-position:bottom right; z-index:1; pointer-events:none;
+  filter:drop-shadow(0 0 24px rgba(63,180,255,.45));
+  -webkit-mask-image:linear-gradient(180deg, #000 70%, transparent); mask-image:linear-gradient(180deg, #000 70%, transparent)}
+@media (max-width:560px){ .gx-val-agent{opacity:.5; right:-14%; top:6px; height:250px; max-width:75%} }
 .gx-val-stats .gx-down{color:var(--alert)}
 .gx-val-stats b + span{display:block; font-family:var(--f-mono); font-size:12px; color:var(--ink-dim)}
 
 /* Videos in the build log and build 02: aspect ratio comes from the clip */
 .gx-video-frame{position:relative}
 .gx-video-frame video{width:100%; height:auto; border-radius:2px; background:#000}
+
+/* The 3D print image is 16:9 and must not be cropped */
+.gx-media-frame img.gx-wide-img{aspect-ratio:16/9; object-position:center}
+
+/* Photo of the complete setup above the hardware matrix */
+.gx-setup-photo{margin:0 0 32px; padding:8px; position:relative}
+.gx-setup-photo img{width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center 60%; border-radius:2px}
+.gx-setup-photo figcaption{display:grid; gap:6px; padding:14px 8px 6px; color:var(--ink-dim); font-size:15px; max-width:70ch}

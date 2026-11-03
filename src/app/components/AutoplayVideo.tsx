@@ -7,6 +7,8 @@ interface AutoplayVideoProps {
   className?: string;
   style?: CSSProperties;
   poster?: string;
+  // Used if src fails to load, e.g. a new clip not yet uploaded to the CDN.
+  fallbackSrc?: string;
   ariaLabel?: string;
   // Renders a small play/pause button over the video (Gaming page). The
   // labels are passed in so the component stays language-agnostic.
@@ -24,7 +26,9 @@ interface AutoplayVideoProps {
 // If the browser still refuses (iOS Low Power Mode, Android data saver), the
 // native controls are shown so a tap starts the video instead of leaving a
 // dead black box.
-export function AutoplayVideo({ src, className, style, poster, ariaLabel, toggle }: AutoplayVideoProps) {
+export function AutoplayVideo({ src: primarySrc, className, style, poster, ariaLabel, toggle, fallbackSrc }: AutoplayVideoProps) {
+  const [failed, setFailed] = useState(false);
+  const src = failed && fallbackSrc ? fallbackSrc : primarySrc;
   const ref = useRef<HTMLVideoElement>(null);
   const [blocked, setBlocked] = useState(false);
   const [paused, setPaused] = useState(true);
@@ -96,6 +100,7 @@ export function AutoplayVideo({ src, className, style, poster, ariaLabel, toggle
       poster={poster}
       aria-label={ariaLabel}
       controls={blocked}
+      onError={() => { if (fallbackSrc && !failed) setFailed(true); }}
       onPlay={() => setPaused(false)}
       onPause={() => setPaused(true)}
     >

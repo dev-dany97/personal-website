@@ -31,6 +31,11 @@ interface SetupContent {
   explore3dText: string;
   umbauTitle: string;
   umbauDesc: string;
+  printTitle: string;
+  printText: string;
+  printAlt: string;
+  setupPhotoAlt: string;
+  setupPhotoCaption: string;
   componentsPhotoTitle: string;
   componentsPhotoCaption: string;
   componentsPhotoAlt: string;
@@ -54,30 +59,28 @@ const UI = {
     heroEyebrow: 'SYS://GAMING · Build 01 · Custom Loop',
     startModel: '3D-Modell starten', seeHardware: 'Hardware ansehen',
     postLabel: 'Systemcheck', loopLine: 'Alphacool Custom Loop · Druck stabil',
-    flow: 'Durchfluss', demo: 'Demo-Werte', play: 'Video abspielen', pause: 'Video pausieren',
+    flow: 'Durchfluss', play: 'Video abspielen', pause: 'Video pausieren',
     heroVideo: 'Rundgang um den umgebauten PC',
     loopEyebrow: 'Kreislauf · Alphacool', monitor: 'Loop-Monitor', water: 'Wasser', pump: 'Pumpe',
     waterPhotoAlt: 'Wasserkühlung im LIAN LI O11 Dynamic',
     warnTags: ['Lecks', 'Korrosion', 'Wartung', 'Drucktest'],
-    modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01',
+    modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01', setupEyebrow: 'Battlestation',
     logEyebrow: 'Build-Log', logTitle: 'Vom Karton zum Neon-Umbau',
-    stepUnboxing: 'Unboxing', stepFirst: 'Erster Aufbau', stepRebuild: 'Umbau',
-    watchAbove: 'Video oben ansehen', displayAlt: 'Das kleine Display im Gehäuse zeigt Valorant-Statistiken',
+    stepUnboxing: 'Unboxing', stepFirst: 'Erster Aufbau', stepRebuild: 'Umbau', stepPrint: '3D-Druck',
     b2Eyebrow: 'Build 02 · Luftkühlung'
   },
   en: {
     heroEyebrow: 'SYS://GAMING · Build 01 · Custom loop',
     startModel: 'Start the 3D model', seeHardware: 'See the hardware',
     postLabel: 'System check', loopLine: 'Alphacool custom loop · pressure stable',
-    flow: 'Flow', demo: 'Demo values', play: 'Play video', pause: 'Pause video',
+    flow: 'Flow', play: 'Play video', pause: 'Pause video',
     heroVideo: 'A walk around the rebuilt PC',
     loopEyebrow: 'Loop · Alphacool', monitor: 'Loop monitor', water: 'Coolant', pump: 'Pump',
     waterPhotoAlt: 'Water cooling inside the LIAN LI O11 Dynamic',
     warnTags: ['Leaks', 'Corrosion', 'Maintenance', 'Leak test'],
-    modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01',
+    modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01', setupEyebrow: 'Battlestation',
     logEyebrow: 'Build log', logTitle: 'From the boxes to the neon rebuild',
-    stepUnboxing: 'Unboxing', stepFirst: 'First build', stepRebuild: 'Rebuild',
-    watchAbove: 'Watch the video above', displayAlt: 'The small display in the case shows Valorant stats',
+    stepUnboxing: 'Unboxing', stepFirst: 'First build', stepRebuild: 'Rebuild', stepPrint: '3D printing',
     b2Eyebrow: 'Build 02 · Air cooling'
   }
 };
@@ -177,8 +180,9 @@ export default function Setup() {
             <div className="gx-stage gx-rv">
               <div className="gx-screen gx-hud">
                 <AutoplayVideo
-                  src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Umbau.mp4`}
-                  poster="/images/setup/umbau-poster.jpg"
+                  src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Loop.mp4`}
+                  fallbackSrc={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Umbau.mp4`}
+                  poster="/images/setup/loop-poster.jpg"
                   ariaLabel={ui.heroVideo}
                   toggle={toggle}
                 />
@@ -187,9 +191,9 @@ export default function Setup() {
               <div className="gx-chip gx-c1"><small>CPU</small><b>{formatNumber(tele.cpu, lang)} °C</b></div>
               <div className="gx-chip gx-c2"><small>{ui.flow}</small><b>{formatNumber(tele.flow, lang)} L/h</b></div>
               <div className="gx-chip gx-c3"><small>GPU</small><b>{formatNumber(tele.gpu, lang)} °C</b></div>
+              <div className="gx-chip gx-c4"><small>{ui.water}</small><b>{formatNumber(tele.water, lang, 1)} °C</b></div>
               <div className="gx-stage-cap">
                 <h3>{c.umbauTitle}</h3>
-                <span className="gx-demo-tag">{ui.demo}</span>
               </div>
             </div>
           </div>
@@ -208,7 +212,7 @@ export default function Setup() {
               <div className="gx-loop-photo gx-rv">
                 <img src="/images/setup/bg-gaminghead.jpg" alt={ui.waterPhotoAlt} loading="lazy" />
                 <div className="gx-monitor gx-hud">
-                  <div className="gx-monitor-top"><span className="gx-eyebrow">{ui.monitor}</span><span className="gx-demo-tag">{ui.demo}</span></div>
+                  <div className="gx-monitor-top"><span className="gx-eyebrow">{ui.monitor}</span></div>
                   <div className="gx-monitor-vals">
                     <div><small>{ui.water}</small><b>{formatNumber(tele.water, lang, 1)} °C</b></div>
                     <div><small>{ui.pump}</small><b>{formatNumber(tele.pump, lang)}</b></div>
@@ -258,6 +262,10 @@ export default function Setup() {
               <span className="gx-eyebrow">{ui.hwEyebrow}</span>
               <h2>{c.hardwareTitle}</h2>
             </div>
+            <figure className="gx-setup-photo gx-hud gx-rv">
+              <img src="/images/setup/pc-setup.jpg" alt={c.setupPhotoAlt} loading="lazy" />
+              <figcaption><span className="gx-eyebrow">{ui.setupEyebrow}</span>{c.setupPhotoCaption}</figcaption>
+            </figure>
             <HardwareMatrix components={data.primaryComponents} lang={lang} />
           </div>
         </section>
@@ -302,10 +310,22 @@ export default function Setup() {
                     <span className="gx-eyebrow">{ui.stepRebuild}</span>
                     <h3>{c.umbauTitle}</h3>
                     <p>{c.umbauDesc}</p>
-                    <div><a className="gx-btn" href="#top">{ui.watchAbove}</a></div>
+                  </div>
+                  <div className="gx-media-frame gx-hud gx-tall gx-video-frame">
+                    <AutoplayVideo src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC_Umbau.mp4`} ariaLabel={c.umbauTitle} toggle={toggle} />
+                  </div>
+                </div>
+              </div>
+              <div className="gx-step gx-rv">
+                <div className="gx-dot">04</div>
+                <div className="gx-step-body gx-flip">
+                  <div className="gx-step-text">
+                    <span className="gx-eyebrow">{ui.stepPrint}</span>
+                    <h3>{c.printTitle}</h3>
+                    <p>{c.printText}</p>
                   </div>
                   <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
-                    <img src="/images/setup/umbau-display.jpg" alt={ui.displayAlt} loading="lazy" style={{ objectPosition: 'center 30%' }} />
+                    <img src="/images/setup/neon-transition.jpg" alt={c.printAlt} loading="lazy" className="gx-wide-img" />
                   </div>
                 </div>
               </div>
