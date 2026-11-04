@@ -193,8 +193,9 @@ function createSchema(db: DatabaseSync) {
       updated_at TEXT NOT NULL
     );
 
-    CREATE TABLE IF NOT EXISTS watchlist_cache (
-      id INTEGER PRIMARY KEY CHECK (id = 1),
+    -- Public market quotes (watchlist, ticker band) and the news feed, one row per list.
+    CREATE TABLE IF NOT EXISTS market_quote_cache (
+      key TEXT PRIMARY KEY,
       data TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );

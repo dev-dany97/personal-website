@@ -2742,6 +2742,130 @@ footer {
   background: rgba(224, 122, 122, 0.14);
 }
 
+.finance-resource-placeholder {
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(79, 185, 173, 0.18), rgba(224, 169, 61, 0.1));
+}
+
+.market-ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  background: var(--card-bg);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.market-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: market-ticker-scroll 60s linear infinite;
+}
+
+.market-ticker:hover .market-ticker-track {
+  animation-play-state: paused;
+}
+
+.market-ticker-row {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.market-ticker-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  border-right: 1px solid var(--card-border);
+}
+
+.market-ticker-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.market-ticker-price {
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.market-ticker-change {
+  font-weight: 700;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-ticker-change.up {
+  color: #4fb9ad;
+}
+
+.market-ticker-change.down {
+  color: #e07a7a;
+}
+
+@keyframes market-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .market-ticker {
+    overflow-x: auto;
+  }
+
+  .market-ticker-track {
+    animation: none;
+  }
+}
+
+.news-ticker-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-ticker-list li + li {
+  border-top: 1px solid var(--card-border);
+}
+
+.news-ticker-link {
+  display: block;
+  padding: 0.85rem 0;
+  text-decoration: none;
+}
+
+.news-ticker-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+  margin-bottom: 0.2rem;
+}
+
+.news-ticker-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.news-ticker-link:hover .news-ticker-title {
+  color: var(--primary);
+}
+
 .briefing-stale-note {
   font-size: 0.8rem;
   border-radius: 999px;

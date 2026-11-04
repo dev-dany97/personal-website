@@ -140,6 +140,135 @@ export function Watchlist({ lang, title, lead }: { lang: 'en' | 'de'; title: str
   );
 }
 
+interface TickerItem {
+  symbol: string;
+  name: string;
+  kind: string;
+  price: number;
+  currency: string;
+  change: number | null;
+}
+
+function formatTickerPrice(item: TickerItem, lang: 'en' | 'de') {
+  const locale = lang === 'de' ? 'de-DE' : 'en-US';
+  if (item.kind === 'index') return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(item.price);
+  if (item.kind === 'fx') return new Intl.NumberFormat(locale, { minimumFractionDigits: 4, maximumFractionDigits: 4 }).format(item.price);
+  return formatPrice(item.price, item.currency, lang);
+}
+
+// Scrolling market band. The list is rendered twice so the CSS animation can
+// loop seamlessly; the copy is hidden from screen readers.
+export function MarketTicker({ lang }: { lang: 'en' | 'de' }) {
+  const [items, setItems] = useState<TickerItem[] | null>(null);
+
+  useEffect(() => {
+    fetch('/api/market-ticker')
+      .then((res) => res.json())
+      .then((data: { available: boolean; items?: TickerItem[] }) => setItems(data.available && data.items ? data.items : []))
+      .catch(() => setItems([]));
+  }, []);
+
+  if (!items || items.length === 0) return null;
+
+  const row = (hidden: boolean) => (
+    <ul className="market-ticker-row" aria-hidden={hidden || undefined}>
+      {items.map((item) => (
+        <li key={item.symbol} className="market-ticker-item">
+          <span className="market-ticker-name">{item.name}</span>
+          <span className="market-ticker-price">{formatTickerPrice(item, lang)}</span>
+          {item.change !== null && (
+            <span className={`market-ticker-change ${item.change >= 0 ? 'up' : 'down'}`}>
+              {item.change >= 0 ? '▲' : '▼'} {Math.abs(item.change).toFixed(2)}%
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+
+  return (
+    <div className="market-ticker" aria-label={lang === 'de' ? 'Börsen-Ticker' : 'Market ticker'}>
+      <div className="market-ticker-track">
+        {row(false)}
+        {row(true)}
+      </div>
+    </div>
+  );
+}
+
+interface NewsItem {
+  title: string;
+  link: string;
+  publishedAt: string | null;
+}
+
+export function NewsTicker({ lang }: { lang: 'en' | 'de' }) {
+  const [data, setData] = useState<{ items: NewsItem[]; source: string; sourceUrl: string } | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/news-ticker')
+      .then((res) => res.json())
+      .then((d: { available: boolean; items?: NewsItem[]; source?: string; sourceUrl?: string }) => {
+        if (d.available && d.items?.length) setData({ items: d.items, source: d.source ?? '', sourceUrl: d.sourceUrl ?? '' });
+        else setFailed(true);
+      })
+      .catch(() => setFailed(true));
+  }, []);
+
+  if (failed || !data) return null;
+  const locale = lang === 'de' ? 'de-DE' : 'en-GB';
+  const date = new Intl.DateTimeFormat(locale, { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'Europe/Berlin' });
+  const time = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' });
+
+  return (
+    <section className="py-5">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-9">
+            <div className="card border-0 shadow-sm" style={cardStyle}>
+              <div className="card-body p-4 p-lg-5">
+                <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                  <h3 className="theme-text mb-0">{lang === 'de' ? 'News-Ticker' : 'News ticker'}</h3>
+                  <span className="portfolio-live-badge">
+                    <span className="portfolio-live-dot" /> Live
+                  </span>
+                </div>
+                <ul className="news-ticker-list">
+                  {data.items.map((item) => {
+                    const d = item.publishedAt ? new Date(item.publishedAt) : null;
+                    return (
+                      <li key={item.link}>
+                        <a href={item.link} target="_blank" rel="noopener noreferrer" className="news-ticker-link">
+                          {d && (
+                            <span className="news-ticker-meta">
+                              <span>{date.format(d)}</span>
+                              <span>{time.format(d)}</span>
+                            </span>
+                          )}
+                          <span className="news-ticker-title">{item.title}</span>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+                {data.source && (
+                  <p className="theme-text-soft mt-3 mb-0" style={{ fontSize: '0.78rem' }}>
+                    {lang === 'de' ? 'Quelle' : 'Source'}:{' '}
+                    <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer" className="theme-accent">
+                      {data.source}
+                    </a>
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function TradeJournal({
   lang,
   title,

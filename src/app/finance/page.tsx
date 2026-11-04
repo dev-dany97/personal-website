@@ -9,6 +9,8 @@ import { SiteImage } from '@/app/components/SiteImage';
 import { ChartBackground } from '@/app/components/backgrounds/ChartBackground';
 import {
   LessonsLearned,
+  MarketTicker,
+  NewsTicker,
   ReadingList,
   TradeJournal,
   TradingRules,
@@ -163,7 +165,9 @@ export default function Finance() {
         </div>
       </section>
 
+      <MarketTicker lang={lang} />
       <MorningBriefing lang={lang} />
+      <NewsTicker lang={lang} />
       <PortfolioHistoryChart lang={lang} />
       <AllocationSection
         lang={lang}
@@ -269,7 +273,7 @@ export default function Finance() {
                     <div key={resource.name} className="col-md-6 col-xl-4">
                       <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
                         <div className="card h-100 border-0 shadow-sm finance-resource-card">
-                          {resource.image && (
+                          {resource.image ? (
                             <SiteImage
                               src={resource.image}
                               alt=""
@@ -279,6 +283,11 @@ export default function Finance() {
                               height={360}
                               sizes="(max-width: 768px) 100vw, 400px"
                             />
+                          ) : (
+                            // No image yet: a neutral title band keeps the card grid even.
+                            <div className="finance-resource-image finance-resource-placeholder" aria-hidden="true">
+                              {resource.name}
+                            </div>
                           )}
                           <div className="card-body p-4">
                             <div className="d-flex align-items-center justify-content-between gap-2 mb-2">

@@ -106,9 +106,9 @@ export default function Datenschutz() {
 
                   <h3>§ 5 Eingesetzte Dienste und Diensteanbieter</h3>
                   <p>
-                    Zur technischen Bereitstellung dieser Website binde ich die JavaScript-Bibliothek Bootstrap über das
-                    Content Delivery Network jsDelivr ein. Hierbei wird zwangsläufig Ihre IP-Adresse an den Anbieter
-                    übermittelt, damit die Datei ausgeliefert werden kann. Rechtsgrundlage ist mein berechtigtes
+                    Für das 3D-Modell meines Gaming-PCs auf der Setup-Seite binde ich die JavaScript-Bibliothek three.js
+                    über das Content Delivery Network jsDelivr ein. Hierbei wird zwangsläufig Ihre IP-Adresse an den
+                    Anbieter übermittelt, damit die Dateien ausgeliefert werden können. Rechtsgrundlage ist mein berechtigtes
                     Interesse an einer technisch einwandfreien Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO).
                   </p>
                   <p>Darüber hinaus setze ich keine Cookies und keine Plug-ins sozialer Netzwerke ein.</p>
@@ -257,9 +257,9 @@ export default function Datenschutz() {
 
                   <h3>§ 5 Services and Service Providers Used</h3>
                   <p>
-                    To technically provide this website, I include the Bootstrap JavaScript library via the jsDelivr
-                    content delivery network. This necessarily transmits your IP address to the provider so that the
-                    file can be delivered. The legal basis is my legitimate interest in the technically flawless
+                    For the 3D model of my gaming PC on the setup page, I include the three.js JavaScript library via the
+                    jsDelivr content delivery network. This necessarily transmits your IP address to the provider so that
+                    the files can be delivered. The legal basis is my legitimate interest in the technically flawless
                     presentation of the website (Art. 6(1)(f) GDPR).
                   </p>
                   <p>Beyond this, I do not use any cookies or social media plug-ins.</p>

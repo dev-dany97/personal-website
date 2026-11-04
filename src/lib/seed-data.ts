@@ -1084,7 +1084,9 @@ function seedFinance(db: DatabaseSync) {
     bloomberg: '/images/finance/resources/logos/bloomberg.png',
     oaws: '/images/finance/resources/oaws.jpg',
     'wallstreet-koch': '/images/finance/resources/wallstreet-koch.jpg',
-    marktgefluester: '/images/finance/resources/marktgefluester.jpg'
+    marktgefluester: '/images/finance/resources/marktgefluester.jpg',
+    capital: '/images/finance/resources/logos/capital.png',
+    'handelsblatt-wiwo': '/images/finance/resources/logos/handelsblatt-wiwo.png'
   };
   const resources = [
     {
@@ -1117,13 +1119,24 @@ function seedFinance(db: DatabaseSync) {
       description_de: 'Zwei Ex-Investmentbanker, Thomas Kehl und Prof. Dr. Holger Graf, sprechen wöchentlich über Finanzen, Börse, Wirtschaft und Karriere. Fokus: Einordnung, anekdotisch und lehrreich.',
       description_en: 'Two former investment bankers, Thomas Kehl and Prof. Dr. Holger Graf, talk weekly about finance, markets, the economy and careers. Focus: context, anecdotal and educational.'
     }
+,
+    {
+      id: 'capital', name: 'Capital', url: 'https://www.capital.de', category: 'Zeitschriften', category_en: 'Magazines',
+      description_de: 'Wirtschaftsmagazin, das ich abonniert habe. Fokus: Geldanlage, Unternehmen und Hintergründe zur Wirtschaft.',
+      description_en: 'Business magazine I subscribe to. Focus: investing, companies and the background to the economy.'
+    },
+    {
+      id: 'handelsblatt-wiwo', name: 'Handelsblatt & WirtschaftsWoche', url: 'https://www.handelsblatt.com', category: 'Zeitschriften', category_en: 'Magazines',
+      description_de: 'Im Abo zusammen: die führende Wirtschafts- und Finanzzeitung plus das wöchentliche Wirtschaftsmagazin. Fokus: Märkte, Unternehmen, Wirtschaftspolitik und Analysen.',
+      description_en: 'Subscribed together: the leading German business newspaper plus the weekly business magazine. Focus: markets, companies, economic policy and analysis.'
+    }
   ];
 
   const insertResource = db.prepare(
     'INSERT INTO finance_resources (id, sort_order, name, url, category, category_en, image, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
   );
   resources.forEach((r, i) =>
-    insertResource.run(r.id, i, r.name, r.url, r.category, r.category_en, img[r.id], r.description_en, r.description_de)
+    insertResource.run(r.id, i, r.name, r.url, r.category, r.category_en, img[r.id] ?? null, r.description_en, r.description_de)
   );
 
   // Manually entered positions (Trade Republic has no public API) — quantity + buy
