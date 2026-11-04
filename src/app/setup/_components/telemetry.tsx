@@ -10,27 +10,38 @@ export interface Telemetry {
 }
 
 const BASE = { cpu: 54, gpu: 58, flow: 142, water: 32.4, pump: 3240 };
-const walk = (v: number, base: number, spread: number, step: number) =>
-  Math.max(base - spread, Math.min(base + spread, v + (Math.random() - 0.5) * step));
+// Maximum rise at fully heated overclock
+const OC = { cpu: 24, gpu: 20, flow: 34, water: 3.4, pump: 950 };
+// Overclock heats up slowly over about 45 seconds and then cools down over about
+// doppelt so schnell wieder ab.
+const HEAT_UP = 1 / 45, COOL_DOWN = 2 / 45;
+
+// The value glides smoothly to its target with a little noise.
+const drift = (v: number, target: number, noise: number) =>
+  v + (target - v) * 0.18 + (Math.random() - 0.5) * noise;
 
 export function useTelemetry(scene: SceneRef): Telemetry {
   const [t, setT] = useState<Telemetry>({ ...BASE, history: Array(60).fill(BASE.water) });
 
   useEffect(() => {
+    const tick = prefersReducedMotion() ? 4 : 1.2;
+    let heat = 0;
     const id = window.setInterval(() => {
-      const oc = scene.current.overclock ? 1 : 0;
+      heat = scene.current.overclock ? Math.min(1, heat + HEAT_UP * tick) : Math.max(0, heat - COOL_DOWN * tick);
+      // slightly accelerating rise so it starts calmly
+      const k = heat * heat * (3 - 2 * heat);
       setT((p) => {
-        const water = walk(p.water, BASE.water + oc * 2.2, 1.2, 0.3);
+        const water = Math.min(35.9, drift(p.water, BASE.water + OC.water * k, 0.25));
         return {
-          cpu: walk(p.cpu, BASE.cpu + oc * 14, 6, 2.2),
-          gpu: walk(p.gpu, BASE.gpu + oc * 10, 6, 2),
-          flow: walk(p.flow, BASE.flow + oc * 18, 4, 1.6),
+          cpu: drift(p.cpu, BASE.cpu + OC.cpu * k, 2.4),
+          gpu: drift(p.gpu, BASE.gpu + OC.gpu * k, 2),
+          flow: drift(p.flow, BASE.flow + OC.flow * k, 2),
           water,
-          pump: walk(p.pump, BASE.pump + oc * 600, 80, 40),
+          pump: drift(p.pump, BASE.pump + OC.pump * k, 50),
           history: [...p.history.slice(1), water]
         };
       });
-    }, prefersReducedMotion() ? 4000 : 1200);
+    }, (prefersReducedMotion() ? 4000 : 1200));
     return () => window.clearInterval(id);
   }, [scene]);
 

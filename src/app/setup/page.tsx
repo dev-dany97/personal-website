@@ -74,7 +74,7 @@ const UI = {
     modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01', setupEyebrow: 'Mein Setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build-Log', logTitle: 'Vom Karton zum Neon-Umbau',
     stepUnboxing: 'Unboxing', stepFirst: 'Erster Aufbau', stepRebuild: 'Umbau', stepPrint: '3D-Druck',
-    b2Eyebrow: 'Build 02 · AIO-Wasserkühlung', b3Eyebrow: 'Build 03 · Server/Workstation'
+    b2Eyebrow: 'Build 02 · Minimalistischer und effizienter PC', b3Eyebrow: 'Build 03 · Server/Workstation'
   },
   en: {
     heroEyebrow: 'SYS://GAMING · Build 01 · Custom loop',
@@ -88,7 +88,7 @@ const UI = {
     modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01', setupEyebrow: 'My setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build log', logTitle: 'From the boxes to the neon rebuild',
     stepUnboxing: 'Unboxing', stepFirst: 'First build', stepRebuild: 'Rebuild', stepPrint: '3D printing',
-    b2Eyebrow: 'Build 02 · AIO water cooling', b3Eyebrow: 'Build 03 · Server/Workstation'
+    b2Eyebrow: 'Build 02 · Minimalist and efficient PC', b3Eyebrow: 'Build 03 · Server/Workstation'
   }
 };
 
