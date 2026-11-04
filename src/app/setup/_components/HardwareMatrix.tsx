@@ -23,6 +23,7 @@ const TEXT = {
 const GLYPH: Record<string, React.ReactNode> = {
   Wheel: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="2.5" /><path d="M3.5 10h6M14.5 10h6M12 14.5V21" /></svg>,
   'Memory HDD': <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="2" width="16" height="20" rx="2" /><circle cx="12" cy="10" r="4.5" /><circle cx="12" cy="10" r="1" /><path d="M14.5 13.5 17 18M7 18.5h3" /></svg>,
+  Drive: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="2.5" /><path d="M12 3a9 9 0 0 1 9 9M12 6.5a5.5 5.5 0 0 1 5.5 5.5" /></svg>,
   'Custom Water Front Plate': <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="6" y="2" width="12" height="20" rx="1.5" /><path d="M9 6c3 2 3 4 0 6s-3 4 0 6M15 6c-3 2-3 4 0 6s3 4 0 6" /></svg>
 };
 const CHIP = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="6" y="6" width="12" height="12" rx="1.5" /><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" /></svg>;
@@ -40,7 +41,7 @@ function tilt(e: PointerEvent<HTMLElement>) {
   card.style.transform = `perspective(800px) rotateY(${(x - 0.5) * 10}deg) rotateX(${(0.5 - y) * 10}deg) translateY(-4px)`;
 }
 
-export function HardwareMatrix({ components, lang }: { components: HardwareComponent[]; lang: 'de' | 'en' }) {
+export function HardwareMatrix({ components, lang, showFilters = true, wideAt = [] }: { components: HardwareComponent[]; lang: 'de' | 'en'; showFilters?: boolean; wideAt?: number[] }) {
   const t = TEXT[lang];
   const [filter, setFilter] = useState<'all' | Cat>('all');
   const catOf = (c: HardwareComponent): Cat => CATEGORY[c.label] ?? 'core';
@@ -48,19 +49,19 @@ export function HardwareMatrix({ components, lang }: { components: HardwareCompo
 
   return (
     <>
-      <div className="gx-filters" role="group" aria-label={t.group}>
+      {showFilters && <div className="gx-filters" role="group" aria-label={t.group}>
         {filters.map((f) => (
           <button key={f} type="button" aria-pressed={filter === f} onClick={() => setFilter(f)}>
             {t[f]}
             <span className="gx-n">{f === 'all' ? components.length : components.filter((c) => catOf(c) === f).length}</span>
           </button>
         ))}
-      </div>
+      </div>}
       <div className={`gx-parts${filter === 'all' ? ' gx-all' : ''}`}>
-        {components.filter((c) => filter === 'all' || catOf(c) === filter).map((c) => (
+        {components.filter((c) => filter === 'all' || catOf(c) === filter).map((c, i) => (
           <article
             key={`${c.label}-${c.value}`}
-            className={`gx-part${WIDE.has(c.label) ? ' gx-wide' : ''}${c.image?.endsWith('.webp') ? ' gx-cut' : ''}`}
+            className={`gx-part${WIDE.has(c.label) || wideAt.includes(i) ? ' gx-wide' : ''}${c.image?.endsWith('.webp') ? ' gx-cut' : ''}`}
             onPointerMove={tilt}
             onPointerLeave={(e) => { e.currentTarget.style.transform = ''; }}
           >

@@ -47,6 +47,10 @@ interface SetupContent {
   hardwareTitle: string;
   hardwareDisclaimer: string;
   pc2Components: HardwareComponent[];
+  serverTitle: string;
+  serverDesc: string;
+  serverPhotoAlt: string;
+  serverComponents: HardwareComponent[];
 }
 
 interface SetupResponse {
@@ -70,7 +74,7 @@ const UI = {
     modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01', setupEyebrow: 'Mein Setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build-Log', logTitle: 'Vom Karton zum Neon-Umbau',
     stepUnboxing: 'Unboxing', stepFirst: 'Erster Aufbau', stepRebuild: 'Umbau', stepPrint: '3D-Druck',
-    b2Eyebrow: 'Build 02 · Luftkühlung'
+    b2Eyebrow: 'Build 02 · AIO-Wasserkühlung', b3Eyebrow: 'Build 03 · Server/Workstation'
   },
   en: {
     heroEyebrow: 'SYS://GAMING · Build 01 · Custom loop',
@@ -84,7 +88,7 @@ const UI = {
     modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01', setupEyebrow: 'My setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build log', logTitle: 'From the boxes to the neon rebuild',
     stepUnboxing: 'Unboxing', stepFirst: 'First build', stepRebuild: 'Rebuild', stepPrint: '3D printing',
-    b2Eyebrow: 'Build 02 · Air cooling'
+    b2Eyebrow: 'Build 02 · AIO water cooling', b3Eyebrow: 'Build 03 · Server/Workstation'
   }
 };
 
@@ -371,12 +375,29 @@ export default function Setup() {
                 <AutoplayVideo src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC2.mp4`} ariaLabel={c.secondBuildTitle} toggle={toggle} />
               </div>
               <div className="gx-rv">
-                <p className="gx-note">{c.hardwareDisclaimer}</p>
+                {c.hardwareDisclaimer && <p className="gx-note">{c.hardwareDisclaimer}</p>}
                 <dl className="gx-spec-list">
                   {c.pc2Components.map((s) => <div key={s.label}><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
                 </dl>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="gx-band" id="build3">
+          <div className="gx-wrap">
+            <div className="gx-sec-head gx-rv">
+              <span className="gx-eyebrow">{ui.b3Eyebrow}</span>
+              <h2>{c.serverTitle}</h2>
+              <p>{c.serverDesc}</p>
+            </div>
+            <div className="gx-b3-photos gx-rv">
+              {[1, 2, 3].map((n) => (
+                <SiteImage key={n} src={`/images/setup/server/server-${n}.webp`} alt={c.serverPhotoAlt} width={1000} height={1150} sizes="33vw" />
+              ))}
+            </div>
+            {/* Ten parts, two of them wide: that fills the four-column grid without a gap. */}
+            <HardwareMatrix components={c.serverComponents} lang={lang} showFilters={false} wideAt={[2, 7]} />
           </div>
         </section>
 

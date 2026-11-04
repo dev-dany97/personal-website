@@ -344,9 +344,12 @@ function seedPageContent(db: DatabaseSync) {
       componentsPhotoCaption: 'Every box, before I put in a single screw.',
       componentsPhotoAlt: 'All the parts for the high-end PC build, unboxed and laid out',
       secondBuildTitle: 'Second Build',
-      secondBuildDesc: 'A second PC I built — a clean NZXT case with air cooling.',
+      secondBuildDesc: 'A second PC I built: an NZXT H510i with RGB, a Ryzen 5 5600G with integrated graphics and a 240 mm AIO water cooler.',
+      serverTitle: 'Third Build: Server',
+      serverDesc: 'My old gaming PC, which I used before my current gaming PC and which now only serves as a server/workstation.',
+      serverPhotoAlt: 'My old gaming PC, now rebuilt as a server',
       hardwareTitle: 'Hardware',
-      hardwareDisclaimer: "⚠️ Not final yet — I still need to check the exact parts in this build, so the specs below are just examples for now."
+      hardwareDisclaimer: ''
     },
     {
       title: 'Mein Gaming-Setup',
@@ -379,9 +382,12 @@ function seedPageContent(db: DatabaseSync) {
       componentsPhotoCaption: 'Jede Box, bevor auch nur eine Schraube verbaut wurde.',
       componentsPhotoAlt: 'Alle Teile für den High-End-PC-Build, ausgepackt und aufgereiht',
       secondBuildTitle: 'Zweiter Build',
-      secondBuildDesc: 'Ein zweiter PC, den ich zusammengebaut habe — cleanes NZXT-Gehäuse mit Luftkühlung.',
+      secondBuildDesc: 'Ein zweiter PC, den ich zusammengebaut habe: ein NZXT H510i mit RGB, ein Ryzen 5 5600G mit integrierter Grafik und eine 240-mm-AIO-Wasserkühlung.',
+      serverTitle: 'Dritter Build: Server',
+      serverDesc: 'Mein alter Gaming-PC, den ich vor meinem jetzigen Gaming-PC verwendet habe und nur noch als Server/Workstation dient.',
+      serverPhotoAlt: 'Mein alter Gaming-PC, jetzt als Server umgebaut',
       hardwareTitle: 'Hardware',
-      hardwareDisclaimer: '⚠️ Vorläufig — ich muss die genauen Teile in diesem Build noch überprüfen, daher sind die untenstehenden Angaben vorerst Beispiele.'
+      hardwareDisclaimer: ''
     }
   );
 
@@ -921,25 +927,41 @@ function seedSetup(db: DatabaseSync) {
   ];
 
   const secondEn: Array<{ label: string; value: string }> = [
-    { label: 'CPU', value: 'Example: AMD Ryzen 5 (exact model TBD)' },
-    { label: 'GPU', value: 'Example: NVIDIA GeForce RTX 3060 (exact model TBD)' },
-    { label: 'RAM', value: 'Example: 16-32 GB DDR4 (exact kit TBD)' },
-    { label: 'Storage', value: 'Example: 1 TB NVMe SSD (exact model TBD)' },
-    { label: 'MB', value: 'Example: mATX motherboard (exact model TBD)' },
-    { label: 'Case', value: 'NZXT H-Series (white)' },
-    { label: 'Cooling', value: 'Air cooling (exact cooler TBD)' },
-    { label: 'PowerSupply', value: 'Example: 650-750W (exact model TBD)' }
+    { label: 'CPU', value: 'AMD Ryzen 5 5600G (with integrated Radeon graphics)' },
+    { label: 'GPU', value: 'Not needed for now, the integrated Radeon graphics does the job' },
+    { label: 'RAM', value: 'Corsair Vengeance DDR4 32 GB (2x16 GB)' },
+    { label: 'Storage', value: 'SanDisk Extreme PRO M.2 500GB + Samsung 850 Pro 2.5 256GB' },
+    { label: 'MB', value: 'ASUS TUF Gaming B550-PLUS WIFI II' },
+    { label: 'Case', value: 'NZXT H510i (with RGB)' },
+    { label: 'Cooling', value: 'ASUS ROG Ryujin 240 (AIO water cooling)' },
+    { label: 'PowerSupply', value: 'be quiet! SFX Power 3 300W' },
+    { label: 'Monitor', value: 'Samsung C24F396FHR 24" Curved' }
   ];
 
   const secondDe: Array<{ label: string; value: string }> = [
-    { label: 'CPU', value: 'Beispiel: AMD Ryzen 5 (genaues Modell noch offen)' },
-    { label: 'GPU', value: 'Beispiel: NVIDIA GeForce RTX 3060 (genaues Modell noch offen)' },
-    { label: 'RAM', value: 'Beispiel: 16-32 GB DDR4 (genaues Kit noch offen)' },
-    { label: 'Storage', value: 'Beispiel: 1 TB NVMe SSD (genaues Modell noch offen)' },
-    { label: 'MB', value: 'Beispiel: mATX-Mainboard (genaues Modell noch offen)' },
-    { label: 'Case', value: 'NZXT H-Series (weiß)' },
-    { label: 'Cooling', value: 'Luftkühlung (genauer Kühler noch offen)' },
-    { label: 'PowerSupply', value: 'Beispiel: 650-750W (genaues Modell noch offen)' }
+    { label: 'CPU', value: 'AMD Ryzen 5 5600G (mit integrierter Radeon-Grafik)' },
+    { label: 'GPU', value: 'Vorerst nicht notwendig, die integrierte Radeon-Grafik reicht aus' },
+    { label: 'RAM', value: 'Corsair Vengeance DDR4 32 GB (2x16 GB)' },
+    { label: 'Storage', value: 'SanDisk Extreme PRO M.2 500GB + Samsung 850 Pro 2.5 256GB' },
+    { label: 'MB', value: 'ASUS TUF Gaming B550-PLUS WIFI II' },
+    { label: 'Case', value: 'NZXT H510i (mit RGB)' },
+    { label: 'Cooling', value: 'ASUS ROG Ryujin 240 (AIO-Wasserkühlung)' },
+    { label: 'PowerSupply', value: 'be quiet! SFX Power 3 300W' },
+    { label: 'Monitor', value: 'Samsung C24F396FHR 24" Curved' }
+  ];
+
+  const I = '/images/setup/server/';
+  const server: Array<{ label: string; en: string; de: string; image?: string }> = [
+    { label: 'Case', en: 'be quiet! Silent Base 600 Window', de: 'be quiet! Silent Base 600 Window', image: I + 'case-image.webp' },
+    { label: 'CPU', en: 'AMD Ryzen 5 5600', de: 'AMD Ryzen 5 5600', image: I + 'cpu-image.webp' },
+    { label: 'GPU', en: 'Gigabyte GeForce GTX 1070 G1 Gaming', de: 'Gigabyte GeForce GTX 1070 G1 Gaming', image: I + 'gpu-image.webp' },
+    { label: 'MB', en: 'GIGABYTE B550M X AORUS ELITE', de: 'GIGABYTE B550M X AORUS ELITE', image: I + 'mb-image.webp' },
+    { label: 'RAM', en: 'HyperX Fury DDR4 32 GB (4x8 GB)', de: 'HyperX Fury DDR4 32 GB (4x8 GB)', image: I + 'ram-image.webp' },
+    { label: 'Cooler', en: 'be quiet! Dark Rock Pro 5 (tower cooler)', de: 'be quiet! Dark Rock Pro 5 (Tower-Kühler)', image: I + 'cooler-image.webp' },
+    { label: 'PowerSupply', en: 'Tacens Anima APIII850 850W', de: 'Tacens Anima APIII850 850W', image: I + 'psu-image.webp' },
+    { label: 'Drive', en: 'ASUS BW-16D1HT Silent (Blu-ray)', de: 'ASUS BW-16D1HT Silent (Blu-ray)', image: I + 'drive-asus-image.webp' },
+    { label: 'Drive', en: 'LG Electronics GH24NSD6 DVD burner', de: 'LG Electronics DVD-Brenner GH24NSD6', image: I + 'drive-lg-image.webp' },
+    { label: 'Drive', en: 'Hitachi-LG Super Multi DVD burner', de: 'Hitachi-LG Super Multi DVD-Brenner', image: I + 'drive-hlg-image.webp' }
   ];
 
   const insert = db.prepare(`
@@ -949,6 +971,7 @@ function seedSetup(db: DatabaseSync) {
 
   primary.forEach((c, i) => insert.run('primary', i, c.label, c.value, c.value, c.image ?? null));
   secondEn.forEach((c, i) => insert.run('second', i, c.label, c.value, secondDe[i].value, null));
+  server.forEach((c, i) => insert.run('server', i, c.label, c.en, c.de, c.image ?? null));
 }
 
 function seedFinance(db: DatabaseSync) {
