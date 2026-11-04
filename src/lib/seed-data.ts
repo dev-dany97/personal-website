@@ -1105,7 +1105,7 @@ function seedFinance(db: DatabaseSync) {
       description_en: 'Global finance and business news. Focus: macro, central banks and major company news.'
     },
     {
-      id: 'oaws', name: 'Ohne Aktien wird schwer', url: 'https://oaws.de/', category: 'Podcasts', category_en: 'Podcasts',
+      id: 'oaws', name: 'Ohne Aktien wird schwer', url: 'https://open.spotify.com/show/2asbnnLJbo3dzukAJQfie6', category: 'Podcasts', category_en: 'Podcasts',
       description_de: 'Der tägliche Börsenpodcast von OMR und Scalable Capital mit Noah Leidinger, rund 12 Minuten. Fokus: was heute an der Börse wichtig ist, Aktien und Investment-Ideen.',
       description_en: 'The daily stock market podcast by OMR and Scalable Capital with Noah Leidinger, about 12 minutes. Focus: what matters on the market today, stocks and investment ideas.'
     },

@@ -33,6 +33,11 @@ body {
   scroll-behavior: smooth;
 }
 
+html {
+  /* Same colour under the browser chrome and in overscroll areas. */
+  background: var(--bg);
+}
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -48,7 +53,13 @@ body {
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Size to the large viewport: on iOS Safari a fixed `inset: 0` layer ends
+     above the floating toolbar, which left a visible seam behind it. */
+  height: 100vh;
+  height: 100lvh;
   z-index: 0;
   pointer-events: none;
   background:

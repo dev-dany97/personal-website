@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Award, ExternalLink } from 'lucide-react';
+import { Award, ExternalLink, Headphones } from 'lucide-react';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { SiteImage } from '@/app/components/SiteImage';
@@ -289,7 +289,7 @@ export default function Finance() {
                               {resource.name}
                             </div>
                           )}
-                          <div className="card-body p-4">
+                          <div className="card-body p-4 d-flex flex-column">
                             <div className="d-flex align-items-center justify-content-between gap-2 mb-2">
                               <span className="fw-semibold theme-text">{resource.name}</span>
                               <ExternalLink size={15} className="theme-text-soft flex-shrink-0" aria-hidden="true" />
@@ -298,6 +298,12 @@ export default function Finance() {
                               <p className="theme-text-soft mb-0" style={{ fontSize: '0.9rem' }}>
                                 {resource.description}
                               </p>
+                            )}
+                            {resource.category === 'Podcasts' && (
+                              <span className="d-inline-flex align-items-center gap-1 mt-auto pt-3 fw-semibold theme-accent" style={{ fontSize: '0.88rem' }}>
+                                <Headphones size={15} aria-hidden="true" />
+                                {lang === 'de' ? 'Reinhören' : 'Listen'}
+                              </span>
                             )}
                           </div>
                         </div>
