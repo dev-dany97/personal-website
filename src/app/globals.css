@@ -48,44 +48,29 @@ body {
   position: relative;
 }
 
-/* Ambient site-wide glow — soft, slowly drifting color so flat sections never
-   feel like a dead black wall, and section seams blend instead of cutting hard. */
+/* Ambient site-wide glow — soft color so flat sections never feel like a dead
+   black wall, and section seams blend instead of cutting hard.
+   This layer scrolls with the page on purpose: iOS Safari 26 paints a solid bar
+   behind its floating toolbar whenever a full-width `position: fixed` element
+   touches the bottom edge, which showed up as a hard colour seam on phones. */
 body::before {
   content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  /* Size to the large viewport: on iOS Safari a fixed `inset: 0` layer ends
-     above the floating toolbar, which left a visible seam behind it. */
-  height: 100vh;
-  height: 100lvh;
+  position: absolute;
+  inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(720px 520px at 12% -8%, rgba(79, 185, 173, 0.16), transparent 60%),
-    radial-gradient(680px 520px at 108% 18%, rgba(224, 169, 61, 0.10), transparent 60%),
-    radial-gradient(760px 640px at 50% 112%, rgba(79, 185, 173, 0.12), transparent 60%);
+    radial-gradient(720px 520px at 12% 0, rgba(79, 185, 173, 0.16), transparent 60%),
+    radial-gradient(680px 520px at 108% 600px, rgba(224, 169, 61, 0.10), transparent 60%),
+    radial-gradient(760px 640px at 50% 100%, rgba(79, 185, 173, 0.12), transparent 60%);
   background-repeat: no-repeat;
-  animation: ambientDrift 36s ease-in-out infinite alternate;
 }
 
 html[data-theme='light'] body::before {
   background:
-    radial-gradient(720px 520px at 12% -8%, rgba(79, 185, 173, 0.14), transparent 60%),
-    radial-gradient(680px 520px at 108% 18%, rgba(224, 169, 61, 0.12), transparent 60%),
-    radial-gradient(760px 640px at 50% 112%, rgba(79, 185, 173, 0.10), transparent 60%);
-}
-
-@keyframes ambientDrift {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(-2%, 2%, 0) scale(1.06); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body::before {
-    animation: none;
-  }
+    radial-gradient(720px 520px at 12% 0, rgba(79, 185, 173, 0.14), transparent 60%),
+    radial-gradient(680px 520px at 108% 600px, rgba(224, 169, 61, 0.12), transparent 60%),
+    radial-gradient(760px 640px at 50% 100%, rgba(79, 185, 173, 0.10), transparent 60%);
 }
 
 body > main {
