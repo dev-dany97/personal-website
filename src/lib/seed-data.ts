@@ -933,7 +933,7 @@ function seedTravel(db: DatabaseSync) {
         'Als leidenschaftlicher Valorant-Gamer konnte ich mir die Valorant Champions 2025 die in Paris ausgetragen wurden und nur 1,5h Flugzeit entfernt sind, natürlich nicht entgehen lassen. Die perfekte Gelegenheit für einen Kurztrip und um endlich eine Stadt zu entdecken, die schon lange auf meiner Bucketlist stand.'
     },
     {
-      id: 'canary-islands', flag: 'ES', image: '/images/travel/canary-islands/canary1.jpg', imageCount: 31, gallery: buildGallery('canary-islands', 31, 'canary'),
+      id: 'canary-islands', flag: 'ES', image: '/images/travel/canary-islands/canary1.jpg', imageCount: 36, gallery: buildGallery('canary-islands', 36, 'canary'),
       name_en: 'Canary Islands', name_de: 'Kanarische Inseln',
       description_en:
         "One of my most adventurous sailing trips so far, with a crew you honestly couldn't wish for a better one. And if you remember that fierce storm front over the Canary Islands: I was there and I was sailing :D",
