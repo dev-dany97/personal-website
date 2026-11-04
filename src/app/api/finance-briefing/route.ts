@@ -132,7 +132,7 @@ async function generateBriefing(lang: 'en' | 'de', date: string): Promise<Briefi
     const prompt = PROMPTS[lang];
 
     const response = await client.messages.create({
-      model: 'claude-opus-5',
+      model: 'claude-sonnet-5-5',
       max_tokens: 8000,
       system: prompt.system,
       messages: [{ role: 'user', content: prompt.user }],

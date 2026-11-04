@@ -418,12 +418,12 @@ function seedPageContent(db: DatabaseSync) {
         text: 'Börsenführerschein: how exchanges work, order types, securities and risk management.'
       },
       rulesTitle: 'My trading rules',
-      rulesLead: 'Fixed before every trade, not negotiated during one.',
+      rulesLead: 'What I consider before every trade:',
       rules: [
-        { title: 'Max. 1 % risk per trade', text: 'I never risk more than 1 % of my trading capital on a single trade. That way a losing streak stays a dent, not a crater.' },
-        { title: 'No trade without a stop-loss', text: 'The stop is set before I enter and is never moved against the position.' },
+        { title: 'Max. 10 % risk per trade', text: 'I never risk more than 10 % of my trading capital on a single trade. That keeps a possible loss manageable.' },
+        { title: 'No trade without a stop-loss', text: 'The stop should be set before the trade, so you can judge when to get out.' },
         { title: 'Reward at least 2:1', text: 'If the distance to the target is not at least twice the distance to the stop, I skip the trade.' },
-        { title: 'Trade with the trend', text: 'I would rather buy when the price is already rising than guess when a falling price will turn around.' },
+        { title: 'Trade with the trend', text: 'I would rather buy when the price is already rising than guess when a falling price will turn around. For me, that is usually a sign that the turning point has come.' },
         { title: 'No overvalued stocks', text: 'Before buying I check the P/E ratio and compare it with the sector and the stock\'s own history. If it is far above both, I wait.' },
         { title: 'Max. 20 % per stock', text: 'No single stock grows beyond a fifth of my stock portfolio, however convinced I am.' }
       ],
@@ -478,12 +478,12 @@ function seedPageContent(db: DatabaseSync) {
         text: 'Wie Börsen funktionieren, Ordertypen, Wertpapierarten und Risikomanagement.'
       },
       rulesTitle: 'Meine Trading-Regeln',
-      rulesLead: 'Vor jedem Trade festgelegt, nicht währenddessen verhandelt.',
+      rulesLead: 'Was ich vor jedem Trade berücksichtige:',
       rules: [
-        { title: 'Max. 1 % Risiko pro Trade', text: 'Pro Trade riskiere ich nie mehr als 1 % meines Trading-Kapitals. So bleibt eine Verlustserie eine Delle und wird kein Krater.' },
-        { title: 'Kein Trade ohne Stop-Loss', text: 'Der Stop steht, bevor ich einsteige, und wird nie gegen die Position verschoben.' },
+        { title: 'Max. 10 % Risiko pro Trade', text: 'Pro Trade riskiere ich nie mehr als 10 % meines Trading-Kapitals. So bleibt ein mögliches Verlustrisiko überschaubar.' },
+        { title: 'Kein Trade ohne Stop-Loss', text: 'Der Stop sollte vor dem Trade festgelegt werden, um abschätzen zu können, wann man rausgeht.' },
         { title: 'Chance-Risiko mindestens 2:1', text: 'Ist der Weg zum Ziel nicht mindestens doppelt so weit wie zum Stop, lasse ich den Trade aus.' },
-        { title: 'Mit dem Trend handeln', text: 'Ich kaufe lieber, wenn der Kurs schon steigt, als zu raten, wann ein fallender Kurs wieder dreht.' },
+        { title: 'Mit dem Trend handeln', text: 'Ich kaufe lieber, wenn der Kurs schon steigt, als zu raten, wann ein fallender Kurs wieder dreht. Meist ist dies ein Indiz für mich, dass dies der Wendepunkt ist.' },
         { title: 'Keine überbewerteten Aktien', text: 'Vor dem Kauf schaue ich aufs KGV (Kurs-Gewinn-Verhältnis) und vergleiche es mit der Branche und der eigenen Historie der Aktie. Liegt es weit darüber, warte ich.' },
         { title: 'Max. 20 % pro Aktie', text: 'Keine Einzelaktie wird größer als ein Fünftel meines Aktiendepots, egal wie überzeugt ich bin.' }
       ],
