@@ -105,7 +105,11 @@ function createSchema(db: DatabaseSync) {
       sort_order INTEGER NOT NULL,
       name TEXT NOT NULL,
       url TEXT NOT NULL,
-      category TEXT NOT NULL DEFAULT 'Sonstiges'
+      category TEXT NOT NULL DEFAULT 'Sonstiges',
+      category_en TEXT NOT NULL DEFAULT 'Other',
+      image TEXT,
+      description_en TEXT NOT NULL DEFAULT '',
+      description_de TEXT NOT NULL DEFAULT ''
     );
 
     CREATE TABLE IF NOT EXISTS resume_experience (
@@ -184,6 +188,12 @@ function createSchema(db: DatabaseSync) {
 
     -- Daily index series (% of a cost-basis proxy), never absolute values.
     CREATE TABLE IF NOT EXISTS portfolio_history_cache (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      data TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS watchlist_cache (
       id INTEGER PRIMARY KEY CHECK (id = 1),
       data TEXT NOT NULL,
       updated_at TEXT NOT NULL

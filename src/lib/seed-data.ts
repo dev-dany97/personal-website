@@ -397,8 +397,8 @@ function seedPageContent(db: DatabaseSync) {
     {
       eyebrow: 'Finance & Investing',
       title: 'My Investment Journey',
-      lead: "I've been actively trading since 2021 — my focus is on short-term crypto trading and hand-picked individual stocks rather than broad ETFs. I watch charts, price action and news daily and make my calls based on technical analysis.",
-      tags: ['Crypto', 'Day-Trading', 'Individual Stocks', 'Chart Analysis', 'Risk Management'],
+      lead: "I've been actively trading since 2021 — my focus is on short-term crypto trading and hand-picked individual stocks rather than broad ETFs. I watch charts, price action and news daily and make my calls based on technical analysis. In 2022 I also earned my stock exchange licence (Börsenführerschein), which covers the fundamentals of exchange trading, order types and an understanding of risk.",
+      tags: ['Stock Exchange Licence', 'Crypto', 'Day-Trading', 'Individual Stocks', 'Chart Analysis', 'Risk Management'],
       stats: [
         { label: 'Since', value: '2021' },
         { label: 'Focus', value: 'Individual Stocks' },
@@ -412,15 +412,53 @@ function seedPageContent(db: DatabaseSync) {
         'Technical chart analysis over gut feeling',
         'Watching price action and news daily'
       ],
+      credential: {
+        label: 'Certified · 2022',
+        title: 'Stock Exchange Licence',
+        text: 'Börsenführerschein: how exchanges work, order types, securities and risk management.'
+      },
+      rulesTitle: 'My trading rules',
+      rulesLead: 'Fixed before every trade, not negotiated during one.',
+      rules: [
+        { title: 'Max. 1 % risk per trade', text: 'I never risk more than 1 % of my trading capital on a single trade. That way a losing streak stays a dent, not a crater.' },
+        { title: 'No trade without a stop-loss', text: 'The stop is set before I enter and is never moved against the position.' },
+        { title: 'Reward at least 2:1', text: 'If the distance to the target is not at least twice the distance to the stop, I skip the trade.' },
+        { title: 'Trade with the trend', text: 'I would rather buy when the price is already rising than guess when a falling price will turn around.' },
+        { title: 'No overvalued stocks', text: 'Before buying I check the P/E ratio and compare it with the sector and the stock\'s own history. If it is far above both, I wait.' },
+        { title: 'Max. 20 % per stock', text: 'No single stock grows beyond a fifth of my stock portfolio, however convinced I am.' }
+      ],
+      watchlistTitle: 'Watchlist',
+      watchlistLead: 'What I am keeping an eye on right now. Change vs. previous close.',
+      journalTitle: 'My latest trades',
+      journalLead: 'Entry, idea and result in %. No euro amounts.',
+      journalColumns: { date: 'Date', asset: 'Asset', side: 'Side', idea: 'Idea', result: 'Result', open: 'open' },
+      trades: [],
+      lessonsTitle: 'Lessons learned',
+      lessons: [
+        { title: 'Fewer, better trades', text: 'A handful of well-prepared trades beats a dozen spontaneous ones.' },
+        { title: 'Conviction means buying more, not panicking', text: 'If I am convinced of a stock long term and nothing has changed in my analysis, I would rather buy more on a dip than sell in a hurry. Short-term trades still follow the stop-loss.' }
+      ],
+      booksTitle: 'Reading list',
+      booksLead: 'Books on trading and markets I can recommend.',
+      books: [
+        { title: 'Trading in the Zone', image: '/images/finance/books/trading-in-the-zone.jpg', author: 'Mark Douglas', text: 'Trading psychology: discipline, probabilities and why the mindset decides more than the setup.' },
+        { title: 'Technical Analysis of the Financial Markets', image: '/images/finance/books/technical-analysis.jpg', author: 'John J. Murphy', text: 'The standard reference for chart analysis, from trends and patterns to indicators.' },
+        { title: 'Reminiscences of a Stock Operator', image: '/images/finance/books/reminiscences.jpg', author: 'Edwin Lefèvre', text: 'The classic about speculator Jesse Livermore. Over 100 years old and still spot on.' },
+        { title: 'The Psychology of Money', image: '/images/finance/books/psychologie-des-geldes.jpg', author: 'Morgan Housel', text: 'Short stories on how people really behave with money, and why that matters more than any formula.' },
+        { title: 'Market Wizards', image: '/images/finance/books/market-wizards.jpg', author: 'Jack D. Schwager', text: 'Interviews with top traders. Very different styles, the same discipline.' },
+        { title: 'Aktien für Dummies', image: '/images/finance/books/aktien-fuer-dummies.jpg', author: 'Christine Bortenlänger, Ulrich Kirstein', text: 'The easy German introduction: how stocks work, building your own strategy and the basics of order types and investor protection.' }
+      ],
       platformsTitle: 'Where I invest & connect',
       platformsLead: "The platforms I trade on and the community I'm part of.",
-      resourcesTitle: 'Resources I use'
+      resourcesTitle: 'Resources I use',
+      resourcesLead: 'Where I get my market data, news and background knowledge from.',
+      resourcesFocusLabel: 'Focus'
     },
     {
       eyebrow: 'Finanzen & Investieren',
       title: 'Meine Investment-Reise',
-      lead: 'Ich handle seit 2021 aktiv — mein Fokus liegt auf kurzfristigem Krypto-Trading und ausgewählten Einzelaktien statt breit gestreuten ETFs. Ich beobachte Charts, Kursbewegungen und Nachrichtenlage täglich und treffe meine Entscheidungen technisch fundiert.',
-      tags: ['Krypto', 'Day-Trading', 'Einzelaktien', 'Chartanalyse', 'Risikomanagement'],
+      lead: 'Ich handle seit 2021 aktiv — mein Fokus liegt auf kurzfristigem Krypto-Trading und ausgewählten Einzelaktien statt breit gestreuten ETFs. Ich beobachte Charts, Kursbewegungen und Nachrichtenlage täglich und treffe meine Entscheidungen technisch fundiert. Zudem habe ich 2022 den Börsenführerschein abgelegt, der die Grundlagen zu Börsenhandel, Ordertypen und ein Verständnis zum Risiko gibt.',
+      tags: ['Börsenführerschein', 'Krypto', 'Day-Trading', 'Einzelaktien', 'Chartanalyse', 'Risikomanagement'],
       stats: [
         { label: 'Seit', value: '2021' },
         { label: 'Fokus', value: 'Einzelaktien' },
@@ -434,9 +472,47 @@ function seedPageContent(db: DatabaseSync) {
         'Technische Chartanalyse statt Bauchgefühl',
         'Tägliches Beobachten von Kursbewegungen und News'
       ],
+      credential: {
+        label: 'Zertifiziert · 2022',
+        title: 'Börsenführerschein',
+        text: 'Wie Börsen funktionieren, Ordertypen, Wertpapierarten und Risikomanagement.'
+      },
+      rulesTitle: 'Meine Trading-Regeln',
+      rulesLead: 'Vor jedem Trade festgelegt, nicht währenddessen verhandelt.',
+      rules: [
+        { title: 'Max. 1 % Risiko pro Trade', text: 'Pro Trade riskiere ich nie mehr als 1 % meines Trading-Kapitals. So bleibt eine Verlustserie eine Delle und wird kein Krater.' },
+        { title: 'Kein Trade ohne Stop-Loss', text: 'Der Stop steht, bevor ich einsteige, und wird nie gegen die Position verschoben.' },
+        { title: 'Chance-Risiko mindestens 2:1', text: 'Ist der Weg zum Ziel nicht mindestens doppelt so weit wie zum Stop, lasse ich den Trade aus.' },
+        { title: 'Mit dem Trend handeln', text: 'Ich kaufe lieber, wenn der Kurs schon steigt, als zu raten, wann ein fallender Kurs wieder dreht.' },
+        { title: 'Keine überbewerteten Aktien', text: 'Vor dem Kauf schaue ich aufs KGV (Kurs-Gewinn-Verhältnis) und vergleiche es mit der Branche und der eigenen Historie der Aktie. Liegt es weit darüber, warte ich.' },
+        { title: 'Max. 20 % pro Aktie', text: 'Keine Einzelaktie wird größer als ein Fünftel meines Aktiendepots, egal wie überzeugt ich bin.' }
+      ],
+      watchlistTitle: 'Watchlist',
+      watchlistLead: 'Was ich gerade im Blick habe. Veränderung zum letzten Schlusskurs.',
+      journalTitle: 'Meine letzten Trades',
+      journalLead: 'Einstieg, Idee und Ergebnis in %. Keine Euro-Beträge.',
+      journalColumns: { date: 'Datum', asset: 'Asset', side: 'Richtung', idea: 'Idee', result: 'Ergebnis', open: 'offen' },
+      trades: [],
+      lessonsTitle: 'Lessons Learned',
+      lessons: [
+        { title: 'Weniger, dafür bessere Trades', text: 'Eine Handvoll gut vorbereiteter Trades schlägt ein Dutzend spontane.' },
+        { title: 'Überzeugung heißt nachkaufen, nicht panisch verkaufen', text: 'Wenn ich von einer Aktie langfristig überzeugt bin und sich an meiner Analyse nichts geändert hat, kaufe ich bei Verlusten lieber nach, als voreilig auszusteigen. Für kurzfristige Trades gilt weiter der Stop-Loss.' }
+      ],
+      booksTitle: 'Leseliste',
+      booksLead: 'Bücher rund um Trading und Märkte, die ich empfehlen kann.',
+      books: [
+        { title: 'Trading in the Zone', image: '/images/finance/books/trading-in-the-zone.jpg', author: 'Mark Douglas', text: 'Trading-Psychologie: Disziplin, Wahrscheinlichkeiten und warum die Einstellung mehr entscheidet als das Setup.' },
+        { title: 'Technical Analysis of the Financial Markets', image: '/images/finance/books/technical-analysis.jpg', author: 'John J. Murphy', text: 'Das Standardwerk zur Chartanalyse, von Trends und Formationen bis zu Indikatoren.' },
+        { title: 'Reminiscences of a Stock Operator', image: '/images/finance/books/reminiscences.jpg', author: 'Edwin Lefèvre', text: 'Der Klassiker über den Spekulanten Jesse Livermore. Über 100 Jahre alt und immer noch treffend.' },
+        { title: 'Über die Psychologie des Geldes', image: '/images/finance/books/psychologie-des-geldes.jpg', author: 'Morgan Housel', text: 'Kurze Geschichten darüber, wie Menschen wirklich mit Geld umgehen, und warum das wichtiger ist als jede Formel.' },
+        { title: 'Market Wizards', image: '/images/finance/books/market-wizards.jpg', author: 'Jack D. Schwager', text: 'Interviews mit Top-Tradern. Ganz unterschiedliche Stile, dieselbe Disziplin.' },
+        { title: 'Aktien für Dummies', image: '/images/finance/books/aktien-fuer-dummies.jpg', author: 'Christine Bortenlänger, Ulrich Kirstein', text: 'Der leichte Einstieg: wie Aktien funktionieren, wie man eine eigene Strategie entwickelt und was man über Ordertypen und Anlegerschutz wissen sollte.' }
+      ],
       platformsTitle: 'Wo ich investiere & mich vernetze',
       platformsLead: 'Meine Handelsplattformen und die Community, deren Teil ich bin.',
-      resourcesTitle: 'Ressourcen, die ich nutze'
+      resourcesTitle: 'Ressourcen, die ich nutze',
+      resourcesLead: 'Woher ich meine Marktdaten, News und mein Hintergrundwissen beziehe.',
+      resourcesFocusLabel: 'Fokus'
     }
   );
 
@@ -1002,17 +1078,53 @@ function seedFinance(db: DatabaseSync) {
   `);
   platforms.forEach((p, i) => insertPlatform.run(p.id, i, p.name, p.url, p.description_en, p.description_de, p.affiliate_url));
 
+  const img: Record<string, string> = {
+    'boerse-de': '/images/finance/resources/logos/boerse-de.png',
+    coinmarketcap: '/images/finance/resources/logos/coinmarketcap.png',
+    bloomberg: '/images/finance/resources/logos/bloomberg.png',
+    oaws: '/images/finance/resources/oaws.jpg',
+    'wallstreet-koch': '/images/finance/resources/wallstreet-koch.jpg',
+    marktgefluester: '/images/finance/resources/marktgefluester.jpg'
+  };
   const resources = [
-    { id: 'boerse-de', name: 'Börse.de', url: 'https://www.boerse.de', category: 'Marktdaten' },
-    { id: 'coinmarketcap', name: 'CoinMarketCap', url: 'https://coinmarketcap.com', category: 'Marktdaten' },
-    { id: 'bloomberg', name: 'Bloomberg', url: 'https://www.bloomberg.com', category: 'Nachrichten' },
-    { id: 'oaws', name: 'Ohne Aktien wird schwer', url: 'https://open.spotify.com/show/2asbnnLJbo3dzukAJQfie6', category: 'Podcasts' },
-    { id: 'wallstreet-koch', name: 'Wall Street mit Markus Koch', url: 'https://open.spotify.com/show/3rTbUHHq3tpY5XYqQkem8c', category: 'Podcasts' },
-    { id: 'marktgefluester', name: 'Marktgeflüster', url: 'https://open.spotify.com/show/3y9LP87SHF5b3hciAsZDBh', category: 'Podcasts' }
+    {
+      id: 'boerse-de', name: 'Börse.de', url: 'https://www.boerse.de', category: 'Marktdaten', category_en: 'Market data',
+      description_de: 'Kurse, Charts und Kennzahlen zu deutschen und internationalen Aktien. Mein schneller Blick auf Einzelwerte und Indizes.',
+      description_en: 'Quotes, charts and key figures for German and international stocks. My quick check on single stocks and indices.'
+    },
+    {
+      id: 'coinmarketcap', name: 'CoinMarketCap', url: 'https://coinmarketcap.com', category: 'Marktdaten', category_en: 'Market data',
+      description_de: 'Kurse, Marktkapitalisierung und Handelsvolumen im Kryptomarkt. Fokus: Überblick über Momentum und Liquidität.',
+      description_en: 'Prices, market cap and trading volume across the crypto market. Focus: a read on momentum and liquidity.'
+    },
+    {
+      id: 'bloomberg', name: 'Bloomberg', url: 'https://www.bloomberg.com', category: 'Nachrichten', category_en: 'News',
+      description_de: 'Internationale Finanz- und Wirtschaftsnachrichten. Fokus: Makro, Notenbanken und große Unternehmensmeldungen.',
+      description_en: 'Global finance and business news. Focus: macro, central banks and major company news.'
+    },
+    {
+      id: 'oaws', name: 'Ohne Aktien wird schwer', url: 'https://oaws.de/', category: 'Podcasts', category_en: 'Podcasts',
+      description_de: 'Der tägliche Börsenpodcast von OMR und Scalable Capital mit Noah Leidinger, rund 12 Minuten. Fokus: was heute an der Börse wichtig ist, Aktien und Investment-Ideen.',
+      description_en: 'The daily stock market podcast by OMR and Scalable Capital with Noah Leidinger, about 12 minutes. Focus: what matters on the market today, stocks and investment ideas.'
+    },
+    {
+      id: 'wallstreet-koch', name: 'Wall Street mit Markus Koch', url: 'https://open.spotify.com/show/3rTbUHHq3tpY5XYqQkem8c', category: 'Podcasts', category_en: 'Podcasts',
+      description_de: 'Markus Koch berichtet seit den 90ern von der Wall Street, täglich und featured by Handelsblatt. Fokus: US-Börse, Aktien, Anleihen und Rohstoffe.',
+      description_en: 'Markus Koch has reported from Wall Street since the 90s, daily and featured by Handelsblatt. Focus: the US market, stocks, bonds and commodities.'
+    },
+    {
+      id: 'marktgefluester', name: 'Marktgeflüster', url: 'https://open.spotify.com/show/3y9LP87SHF5b3hciAsZDBh', category: 'Podcasts', category_en: 'Podcasts',
+      description_de: 'Zwei Ex-Investmentbanker, Thomas Kehl und Prof. Dr. Holger Graf, sprechen wöchentlich über Finanzen, Börse, Wirtschaft und Karriere. Fokus: Einordnung, anekdotisch und lehrreich.',
+      description_en: 'Two former investment bankers, Thomas Kehl and Prof. Dr. Holger Graf, talk weekly about finance, markets, the economy and careers. Focus: context, anecdotal and educational.'
+    }
   ];
 
-  const insertResource = db.prepare('INSERT INTO finance_resources (id, sort_order, name, url, category) VALUES (?, ?, ?, ?, ?)');
-  resources.forEach((r, i) => insertResource.run(r.id, i, r.name, r.url, r.category));
+  const insertResource = db.prepare(
+    'INSERT INTO finance_resources (id, sort_order, name, url, category, category_en, image, description_en, description_de) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+  );
+  resources.forEach((r, i) =>
+    insertResource.run(r.id, i, r.name, r.url, r.category, r.category_en, img[r.id], r.description_en, r.description_de)
+  );
 
   // Manually entered positions (Trade Republic has no public API) — quantity + buy
   // price only, used purely to compute allocation % and gain % since purchase.

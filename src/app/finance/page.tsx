@@ -2,9 +2,21 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Award, ExternalLink } from 'lucide-react';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
+import { SiteImage } from '@/app/components/SiteImage';
 import { ChartBackground } from '@/app/components/backgrounds/ChartBackground';
+import {
+  LessonsLearned,
+  ReadingList,
+  TradeJournal,
+  TradingRules,
+  Watchlist,
+  type FinanceBook,
+  type FinanceRule,
+  type FinanceTrade
+} from './sections';
 
 interface FinancePlatform {
   name: string;
@@ -24,19 +36,38 @@ interface FinanceContent {
   platformsTitle: string;
   platformsLead: string;
   platforms: FinancePlatform[];
+  credential?: { label: string; title: string; text: string };
+  rulesTitle: string;
+  rulesLead?: string;
+  rules: FinanceRule[];
+  watchlistTitle: string;
+  watchlistLead?: string;
+  journalTitle: string;
+  journalLead?: string;
+  journalColumns: { date: string; asset: string; side: string; idea: string; result: string; open: string };
+  trades: FinanceTrade[];
+  lessonsTitle: string;
+  lessons: FinanceRule[];
+  booksTitle: string;
+  booksLead?: string;
+  books: FinanceBook[];
   resourcesTitle: string;
+  resourcesLead?: string;
+  resourcesFocusLabel?: string;
+  resources: FinanceResource[];
 }
 
 interface FinanceResource {
   name: string;
   url: string;
   category: string;
+  image: string | null;
+  description: string;
 }
 
 interface FinanceResponse {
   en: FinanceContent;
   de: FinanceContent;
-  resources: FinanceResource[];
 }
 
 export default function Finance() {
@@ -108,6 +139,24 @@ export default function Finance() {
                     </div>
                   </div>
                 ))}
+                {c.credential && (
+                  <div className="col-12">
+                    <div className="card border-0 shadow-sm finance-credential">
+                      <div className="card-body p-4 d-flex align-items-center gap-3">
+                        <div className="finance-credential-icon" aria-hidden="true">
+                          <Award size={26} />
+                        </div>
+                        <div>
+                          <div className="text-uppercase theme-accent fw-semibold" style={{ fontSize: '0.72rem', letterSpacing: '0.08em' }}>
+                            {c.credential.label}
+                          </div>
+                          <div className="fs-5 fw-bold theme-text">{c.credential.title}</div>
+                          <div className="theme-text-soft" style={{ fontSize: '0.88rem' }}>{c.credential.text}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -128,6 +177,7 @@ export default function Finance() {
         title={{ en: 'Stock Allocation', de: 'Aktien-Allokation' }}
         changeLabel={{ en: 'since purchase', de: 'seit Kauf' }}
       />
+      <Watchlist lang={lang} title={c.watchlistTitle} lead={c.watchlistLead} />
 
       <section className="py-5">
         <div className="container">
@@ -153,6 +203,10 @@ export default function Finance() {
           </div>
         </div>
       </section>
+
+      <TradingRules title={c.rulesTitle} lead={c.rulesLead} rules={c.rules ?? []} />
+      <TradeJournal lang={lang} title={c.journalTitle} lead={c.journalLead} columns={c.journalColumns} trades={c.trades ?? []} />
+      <LessonsLearned title={c.lessonsTitle} lessons={c.lessons ?? []} />
 
       <section className="py-5">
         <div className="container">
@@ -200,30 +254,42 @@ export default function Finance() {
         <div className="container">
           <div className="mb-4">
             <h3 className="fw-bold">{c.resourcesTitle}</h3>
+            {c.resourcesLead && <p className="theme-text-soft mb-0">{c.resourcesLead}</p>}
           </div>
 
-          {Array.from(new Set(data.resources.map((r) => r.category))).map((category) => (
+          {Array.from(new Set(c.resources.map((r) => r.category))).map((category) => (
             <div key={category} className="mb-4">
               <h5 className="theme-text-soft mb-3" style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 {category}
               </h5>
               <div className="row g-3">
-                {data.resources
+                {c.resources
                   .filter((r) => r.category === category)
                   .map((resource) => (
                     <div key={resource.name} className="col-md-6 col-xl-4">
-                      <a
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-decoration-none"
-                      >
-                        <div
-                          className="card h-100 border-0 shadow-sm"
-                          style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)', transition: 'all 0.2s ease' }}
-                        >
+                      <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                        <div className="card h-100 border-0 shadow-sm finance-resource-card">
+                          {resource.image && (
+                            <SiteImage
+                              src={resource.image}
+                              alt=""
+                              // Logos sit on white and are shown whole; podcast covers fill the frame.
+                              className={`finance-resource-image${resource.image.includes('/logos/') ? ' is-logo' : ''}`}
+                              width={640}
+                              height={360}
+                              sizes="(max-width: 768px) 100vw, 400px"
+                            />
+                          )}
                           <div className="card-body p-4">
-                            <span className="fw-semibold theme-text">{resource.name}</span>
+                            <div className="d-flex align-items-center justify-content-between gap-2 mb-2">
+                              <span className="fw-semibold theme-text">{resource.name}</span>
+                              <ExternalLink size={15} className="theme-text-soft flex-shrink-0" aria-hidden="true" />
+                            </div>
+                            {resource.description && (
+                              <p className="theme-text-soft mb-0" style={{ fontSize: '0.9rem' }}>
+                                {resource.description}
+                              </p>
+                            )}
                           </div>
                         </div>
                       </a>
@@ -235,6 +301,8 @@ export default function Finance() {
         </div>
       </section>
 
+      <ReadingList title={c.booksTitle} lead={c.booksLead} books={c.books ?? []} />
+
       <Footer />
     </main>
   );
@@ -245,15 +313,18 @@ interface BriefingResponse {
   date?: string;
   generatedAt?: string;
   content?: string;
+  stale?: boolean;
 }
 
 const BRIEFING_TEXT = {
   en: {
     title: 'Morning Briefing',
+    stale: 'Latest briefing',
     disclaimer: 'Automatically generated based on current market news. This is not financial advice!'
   },
   de: {
     title: 'Morning Briefing',
+    stale: 'Letztes Briefing',
     disclaimer: 'Automatisch generiert auf Basis aktueller Börsennachrichten. Dies ist keine Anlageberatung!'
   }
 };
@@ -299,7 +370,10 @@ function MorningBriefing({ lang }: { lang: 'en' | 'de' }) {
               <div className="card-body p-4 p-lg-5">
                 <div className="d-flex flex-wrap align-items-baseline justify-content-between gap-2 mb-4">
                   <h3 className="theme-text mb-0">{t.title}</h3>
-                  {timestamp && <span className="theme-text-soft" style={{ fontSize: '0.85rem' }}>{timestamp}</span>}
+                  <div className="d-flex align-items-center gap-2">
+                    {briefing?.stale && <span className="briefing-stale-note">{t.stale}</span>}
+                    {timestamp && <span className="theme-text-soft" style={{ fontSize: '0.85rem' }}>{timestamp}</span>}
+                  </div>
                 </div>
 
                 {!briefing ? (

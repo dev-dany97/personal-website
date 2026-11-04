@@ -36,6 +36,17 @@ export function AppleMusicIcon() {
   );
 }
 
+export function SpotifyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="M7.2 9.4c3.3-1 6.9-.7 9.8.9" />
+      <path d="M7.8 12.4c2.7-.8 5.6-.5 8 .8" />
+      <path d="M8.4 15.3c2.1-.6 4.2-.4 6.1.6" />
+    </svg>
+  );
+}
+
 export function XingIcon() {
   return (
     <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
@@ -102,6 +113,7 @@ export const socialLinks = [
   { label: 'GitHub', href: 'https://github.com/dev-dany97', Icon: GithubIcon },
   { label: 'Instagram', href: 'https://www.instagram.com/d.mohles', Icon: InstagramIcon },
   { label: 'Apple Music', href: 'https://music.apple.com/profile/dany_mohles', Icon: AppleMusicIcon },
+  { label: 'Spotify', href: 'https://open.spotify.com/user/-.dany-.', Icon: SpotifyIcon },
   { label: 'Xing', href: 'https://www.xing.com/profile/Daniel_Mohles/', Icon: XingIcon },
   { label: 'X', href: 'https://x.com/Daniel69119111', Icon: XIcon },
 ];

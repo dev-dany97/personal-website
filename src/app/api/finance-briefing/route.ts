@@ -51,10 +51,36 @@ function sanitizeBriefingHtml(html: string): string {
 // hard daily cap per language. State is in memory: this runs as one process.
 const RETRY_AFTER_FAILURE_MS = 15 * 60 * 1000;
 const MAX_GENERATIONS_PER_DAY = 3;
-type BriefingResult = { available: boolean; date: string; content?: string; generatedAt?: string; reason?: string };
+type BriefingResult = {
+  available: boolean;
+  date: string;
+  content?: string;
+  generatedAt?: string;
+  reason?: string;
+  stale?: boolean;
+};
 const inFlight = new Map<string, Promise<BriefingResult>>();
 const lastFailureAt = new Map<string, number>();
 const attempts = new Map<string, number>();
+
+// When today's briefing can't be generated (no API key, no credits left, an
+// outage, the daily cap), show the most recent stored one instead of hiding the
+// section. It is flagged as stale so the page can label it with its date.
+function withFallback(lang: 'en' | 'de', result: BriefingResult): BriefingResult {
+  if (result.available) return result;
+  const latest = getDb()
+    .prepare('SELECT briefing_date, content, generated_at FROM finance_briefings WHERE lang = ? ORDER BY briefing_date DESC LIMIT 1')
+    .get(lang) as { briefing_date: string; content: string; generated_at: string } | undefined;
+  if (!latest) return result;
+  return {
+    available: true,
+    stale: true,
+    date: latest.briefing_date,
+    content: latest.content,
+    generatedAt: latest.generated_at,
+    reason: result.reason
+  };
+}
 
 export async function GET(req: NextRequest) {
   const lang = req.nextUrl.searchParams.get('lang') === 'de' ? 'de' : 'en';
@@ -70,16 +96,16 @@ export async function GET(req: NextRequest) {
   }
 
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ available: false, reason: 'not_configured' });
+    return NextResponse.json(withFallback(lang, { available: false, date, reason: 'not_configured' }));
   }
 
   const key = `${date}:${lang}`;
   const running = inFlight.get(key);
-  if (running) return NextResponse.json(await running);
+  if (running) return NextResponse.json(withFallback(lang, await running));
 
   const failedAt = lastFailureAt.get(key);
   if ((failedAt && Date.now() - failedAt < RETRY_AFTER_FAILURE_MS) || (attempts.get(key) ?? 0) >= MAX_GENERATIONS_PER_DAY) {
-    return NextResponse.json({ available: false, reason: 'unavailable' });
+    return NextResponse.json(withFallback(lang, { available: false, date, reason: 'unavailable' }));
   }
 
   attempts.set(key, (attempts.get(key) ?? 0) + 1);
@@ -93,7 +119,7 @@ export async function GET(req: NextRequest) {
   });
   inFlight.set(key, job);
   try {
-    return NextResponse.json(await job);
+    return NextResponse.json(withFallback(lang, await job));
   } finally {
     inFlight.delete(key);
   }
@@ -139,7 +165,10 @@ async function generateBriefing(lang: 'en' | 'de', date: string): Promise<Briefi
 
     return { available: true, date, content: html, generatedAt };
   } catch (err) {
-    console.error('finance-briefing generation failed', err);
-    return { available: false, date, reason: 'error' };
+    // An empty prepaid balance comes back as a 400 whose message mentions the
+    // credit balance. Name it in the log so it is easy to spot on the server.
+    const noCredits = err instanceof Anthropic.APIError && /credit balance/i.test(err.message);
+    console.error(noCredits ? 'finance-briefing: Anthropic credit balance is empty' : 'finance-briefing generation failed', err);
+    return { available: false, date, reason: noCredits ? 'no_credits' : 'error' };
   }
 }
