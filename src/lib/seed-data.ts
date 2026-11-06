@@ -50,92 +50,99 @@ function seedPageContent(db: DatabaseSync) {
       aboutHeading: "Hi, I'm Daniel!",
       aboutTags: ['Software Engineer', 'Sailor', 'Tech Nerd', 'Hobby Drone Pilot'],
       aboutIntro: [
-        "I'm {age} years old, a software developer, sailor, tech nerd, gamer, and above all someone who loves trying new things and figuring out how they work. That curiosity is, among other things, exactly why this website exists.",
-        "Here I don't just want to tell you a bit about myself — I also want to share my projects, travels, experiences, and interests with you. Maybe you'll even find an idea or two that inspires you."
+        "I'm {age} years old. I'm a software developer, sailor, tech nerd and gamer. Above all, I love trying new things and finding out how they work. This is the reason why I built this website.",
+        'Here I want to tell you a bit about myself and share my projects, travels, experiences and interests with you. Maybe you will even find an idea that inspires you.'
       ],
       aboutMoreLabel: 'More about me',
       aboutLessLabel: 'Show less',
       aboutSections: [
         {
-          heading: 'From hobby to profession and somehow back again',
+          heading: 'From hobby to job and somehow back again',
           image: '/images/about/hobby-zum-beruf.jpg',
           paragraphs: [
-            "I've been working as a software developer for {codingYears} years now. But programming isn't just a job for me. In my free time, I also love tinkering with my own projects, trying out new technologies, or making everyday things a little bit smarter.",
-            "That's resulted in everything from small software projects to smart home solutions (for my Home Assistant), electronics tinkering, or just things I wanted to try out of pure curiosity.",
-            'If that sounds interesting, feel free to check out my [personal projects](/projects). You’ll find both finished projects and things I’m still working on or have simply tried out for testing purposes.'
+            "I've been working as a software developer for {codingYears} years now. But coding isn't just a job for me. I somehow love it too. In my free time, I like to work on my own projects, try out new technologies or make everyday things a little smarter.",
+            "This has led to small software projects, smart home solutions (for my Home Assistant), electronics projects or simply things I always wanted to try out.",
+            'If that sounds interesting, feel free to check out my [projects](/projects). You will find finished projects there, but also things I am still working on or just tried out for fun.'
           ]
         },
         {
-          heading: 'At some point, sailing came into the picture …',
+          heading: 'At some point, sailing came along …',
           image: '/images/about/segeln.jpg',
+          extraImages: [
+            { src: '/images/about/jessica-watson.jpg', width: 1200, height: 969, alt: 'Jessica Watson', caption: 'Jessica Watson, my biggest sailing role model' },
+            { src: '/images/about/ellas-pink-lady.jpg', width: 900, height: 1200, alt: 'The yacht “Ella’s Pink Lady”', caption: 'Her yacht “Ella’s Pink Lady”' }
+          ],
           paragraphs: [
-            'As you can probably already tell from my profile picture, sailing has become one of my biggest passions alongside technology.',
-            'It actually started a bit differently about {sailingYears} years ago, and very small back then: with a motorboat license (in Germany called SBF Binnen/See).',
-            "After the first few longer trips, I quickly realized that pure motorboating didn't really fulfill me. Just going from A to B got a bit too monotonous over time, and it's famously not exactly cheap either – even less so now than back then (as of August 2026).",
-            'I ended up discovering sailing more or less by chance, through a student sailing trip, and I was immediately hooked by the connection to nature combined with that feeling of freedom.',
-            "At the same time, I also knew I didn't want to permanently depend on someone else deciding when and where to sail – and always with strangers along for the ride. Not that I'd mind, even if I can come across as a bit reserved and shy around new people, but sailing with friends is simply more fun. So it was clear to me that I wanted to be out there as a skipper myself one day.",
-            'The next logical step was therefore the SKS (Sport Coastal Skipper) license.',
-            "I quickly learned, though, that a sailing license isn't comparable to a motorboat or driver's license. Just because you've passed the exam doesn't mean you can safely handle a yacht in every situation.",
-            'So more skipper training and additional qualifications followed — including the SRC radio license for VHF marine radio, as well as the corresponding certificate for pyrotechnic distress signals.',
-            'Especially the practical training showed me how much there still is to learn about sailing, even after passing the exams.',
-            'By now I plan and organize my own sailing trips and try to explore new sailing areas almost every year. I also want to grow with bigger challenges: I’ve already sailed in the Canary Islands, for example, where I had to helm the boat at night in rough weather because the jetty we were moored to had broken.',
-            'My biggest role model here is the Australian sailor Jessica Watson. She is regarded as the youngest person to sail solo, non-stop and unassisted around the world. In October 2009, at just 16 years old, she set off from Sydney on her yacht “Ella’s Pink Lady” and returned in May 2010 after 210 days at sea – three days before her 17th birthday.',
-            'What impresses me most is that she never gave up. Even before the start, her boat collided with a bulk carrier at night on the delivery trip to the start and lost its mast. Many people called the whole project irresponsible after that – she had the boat repaired and set off anyway. Along the way, storms in the Southern Ocean knocked her boat flat onto its side several times, and she kept going every time. She later told her story in the book “True Spirit”, which was also made into a film in 2023.',
-            "If you'd like to follow my trips and sailing adventures, feel free to check out the [travel section](/travel)."
+            'As you can probably tell from my profile picture, sailing has become one of my biggest passions next to coding.',
+            'It started a bit differently about {sailingYears} years ago. Back then, I started small with a motorboat license (in Germany called SBF Binnen/See).',
+            "After the first longer trips, I quickly noticed that motorboating alone didn't really fulfill me. Just going from A to B got boring after a while. It's also not exactly cheap. Today it's even more expensive than back then (as of August 2026).",
+            'I found sailing more or less by chance on a student sailing trip. I was hooked right away by being so close to nature and by the feeling of freedom that comes with it.',
+            'And once you sail alongside dolphins, the feeling is simply indescribable. I think I have always been someone who feels very connected to nature. I also love hiking, camping out in the wild and skydiving. In the near future, I want to get my PPL (private pilot license) and fly through the air as free as a bird (okay, maybe that was a bit over the top).',
+            "At the same time, I knew I didn't want to always depend on someone else to decide when and where we sail. And always with strangers. Not that I would mind. I can seem a bit reserved and shy around new people at first, but sailing with friends is simply more fun. So it was clear to me that I wanted to be a skipper myself one day.",
+            'The next logical step was the SKS (Sport Coastal Skipper) license.',
+            "But I quickly learned that a sailing license is not like a motorboat or driver's license. Passing the exam and learning the theory doesn't mean you can safely handle a yacht in every situation later on.",
+            'So I did more skipper training and extra qualifications. These include the SRC radio license for VHF marine radio and the certificate for pyrotechnic distress signals.',
+            'The practical training in particular showed me how much there is still to learn about sailing, even after the exams.',
+            'Today I plan and organize my own sailing trips and try to explore a new sailing area almost every year. I also want to grow with bigger challenges. For example, I have already sailed in the Canary Islands. There I had to steer the boat at night in rough weather because the jetty we were moored to had broken.',
+            'My biggest role model is the Australian sailor Jessica Watson. You can also see her in the picture on the right. She is known as the youngest person to sail solo, non-stop and unassisted around the world. In October 2009, at just 16 years old, she set off from Sydney on her yacht “Ella’s Pink Lady” (see the picture right below). She returned in May 2010 after 210 days at sea.',
+            'What impresses me most is that she never gave up. Even before the start, her boat hit a cargo ship at night on the way to the start and lost its mast. After that, many people said the whole project was irresponsible. But she had the boat repaired and set off anyway. On the way, storms in the Southern Ocean knocked her boat flat on its side several times. Every time, she kept going. She later told her story in the book “True Spirit”, which was also made into a film in 2023.',
+            'This became a personal motto for me:',
+            '> “No matter how hard life gets and how many setbacks you face, even when you reach a point where it feels like everything is over: never give up. Even the biggest waves and the strongest storms can be beaten.”',
+            "If you'd like to follow my trips and sailing adventures too, feel free to visit the [travel section](/travel)."
           ]
         },
         {
-          heading: 'Why finance eventually became just as interesting to me',
+          heading: 'Why finance became just as interesting to me',
           image: '/images/about/finanzen.jpg',
           paragraphs: [
-            "Besides my job and my hobbies — which, alongside sailing, also include skiing and tennis — I've been digging deeper into my own finances and the topic of saving and investing for a few years now.",
-            "The reason is actually pretty simple: I don't want to be financially dependent on a single source of income. On top of that, I want my money to work for me and generate passive income that also counters the noticeably higher inflation we've seen since the start of the COVID crisis.",
-            "A job that feels secure isn't automatically a guarantee for the future. Illness, an accident, economic shifts, a company going bankrupt, or technological developments like AI can change career paths faster than you might expect. Unfortunately, I've felt that very strongly myself.",
-            'My former passion for programming, and in a way for creating things, changed almost overnight. You are no longer in the role of the developer, but rather that of a conductor who sets the direction, leads and oversees everything. But the more I tried to come to terms with it, the more I also saw the potential and the progress in it.',
-            "For example, it can also help education — which matters to me, because I've long felt that financial education plays a surprisingly small role in our society.",
-            "It wasn't any different for me at first. I learned a lot in school, but almost nothing about how building wealth actually works, what stocks and ETFs even are, how to assess risk, or why it can make sense to deal with your finances as early as possible. That's exactly why I find this topic all the more important.",
-            "My own educational path wasn't exactly a straight line either. I started at a Hauptschule (Germany's lower-tier secondary school), worked my way up step by step to a high school diploma, and eventually went to university — ending up with a master's degree. True to the motto: you can achieve anything in life if you have the courage and the drive it takes.",
-            'During my studies, I even had the chance to take a PhD position in Brisbane, Australia. As exciting as that opportunity was, I ultimately decided against it. I find research interesting, but I realized I’d rather work hands-on, build things, and actually be able to see what comes out of it in the end.',
-            'My time and experiences in Australia also changed how I see Germany, work, and financial security. They reinforced my decision to dig deeper into building wealth and long-term financial planning.',
-            "That said, I'm not trying to tell anyone on this website how to invest their money. Instead, I want to show how I go about it myself — the decisions I make, the mistakes I've made, and what I learned from them.",
+            "Besides my job and my hobbies (next to sailing, these include skiing and tennis), I've been looking more closely at my own finances for a few years now. Saving and investing have become a big topic for me.",
+            "The reason is simple: I don't want to depend on just one source of income. I also want my money to work for me. It should create passive income and help against the higher inflation we've had since the start of the COVID crisis.",
+            "A job that feels safe is not a guarantee for the future. Illness, an accident, changes in the economy, a company going bankrupt or new technology like AI can change a career faster than you think. Sadly, I have felt this myself.",
+            'My old passion for coding (and in a way for creating things) changed almost overnight. You are no longer the developer. You are more like a conductor who sets the direction, leads and checks everything. But the more I tried to accept it, the more I saw the potential and the progress in it.',
+            "For example, it can also help education. That matters to me, because I have long felt that financial education plays a surprisingly small role in our society.",
+            "It was the same for me at first. I learned a lot in school, but almost nothing about building wealth. Nobody explained what stocks and ETFs are, how to judge risk or why it makes sense to look at your finances early. That's exactly why I think this topic is so important.",
+            "My own path through school wasn't a straight line either. I started at a Hauptschule (the lowest type of secondary school in Germany). Step by step, I worked my way up to my Abitur and then went to university. In the end, I earned a master's degree. True to the motto: you can achieve anything in life if you have the courage and the drive.",
+            'During my studies, I even had the chance to do a PhD in Brisbane, Australia. It was an exciting offer, but in the end I said no. I find research interesting, but I noticed that I prefer practical work. I like to build things and see the result in the end.',
+            'My time in Australia also changed how I see Germany, work and financial security. It made me even more sure that I wanted to learn more about building wealth and long-term financial planning.',
+            "But I don't want to tell anyone on this website how to invest their money. Instead, I want to show how I do it myself: the decisions I make, the mistakes I've made and what I learned from them.",
             'Because I started small too.',
-            "And that's exactly why I know getting started can sometimes feel more complicated than it actually has to be. At the same time, you notice over time what a difference it makes to start early and stick with it consistently.",
-            'During my studies, I also joined a student investing club. Looking back, that was one of the best ways to really get into the topic. What I valued most was exchanging ideas with others — from fellow students who were just getting started themselves to members with years of experience.',
-            "It wasn't just about stocks or investments, either. I met a lot of open, warm people there, with whom I could share a common interest and learn from at the same time.",
-            "Especially if you're new to this field and come from a completely different industry, it always helps to build a network. At first, I was the only computer scientist among lots of business students and a few people from other fields of study — and that very mix is what made the exchange so valuable. So I can only recommend talking to others and getting to know different perspectives.",
-            "If you're interested in my personal approach to investing, or want to see the trades and decisions I make myself, you'll find more in the [finance section](/finance)."
+            "That's why I know that getting started can feel more complicated than it really is. Over time, you also notice how much it helps to start early and stick with it.",
+            'During my studies, I also joined MarketMavens, a student investing club. Looking back, it was one of the best ways to really get into the topic. What I valued most was talking with others, from students who were just starting out to members with years of experience.',
+            "It wasn't only about stocks or investments. I met many open and warm people there. We shared and followed a common interest, pushed each other and learned from each other at the same time.",
+            "If you're new to this field and come from a completely different industry, it always helps to build a network. At first, I was the only computer scientist among lots of business students and a few people from other subjects. This mix is what made the exchange so valuable. So I can only recommend talking to others and learning about different points of view.",
+            "If you're interested in how I invest, or want to see the trades and decisions I make, you'll find more in the [finance section](/finance)."
           ]
         },
         {
-          heading: 'And then there’s probably my strongest and longest-running passion …',
+          heading: 'And then there’s probably my strongest and longest passion …',
           image: '/images/about/gaming.jpg',
           paragraphs: [
             'My probably oldest passion has been with me since I was about seven years old: video games.',
-            'It all started with a PlayStation 2, a Game Boy, a Nintendo DS, and eventually a pretty old PC.',
-            'What started out as just playing games slowly turned into an interest in the technology behind them. At some point I no longer just wanted to know which game ran on my PC, but why it ran.',
-            'How does a processor actually work? What happens in RAM? How does software communicate with hardware? And what happens at the lower levels, all the way down to machine instructions and assembly?',
-            'The more I learned about it, the more interested I became in building my own PC.',
+            'It all started with a PlayStation 2, a Game Boy, a Nintendo DS and later a pretty old PC.',
+            'At first I just played games. Over time, I became more and more interested in the technology behind them. At some point I didn’t just want to know which game ran on my PC. I wanted to know why it ran.',
+            'How does a processor actually work? What happens in RAM? How does software talk to hardware? And what happens at the lower levels, all the way down to machine code and assembly?',
+            'The more I learned about it, the more I wanted to build my own PC.',
             "And that's how a little never-ending story began.",
-            'A fairly normal PC with classic air cooling eventually turned into an ever more optimized system. New hardware, better cooling, RGB lighting, cable management, different case concepts — all the way to a PC with a fully custom water-cooling loop, extra gimmicks, and mods I designed myself.',
-            'And as is usually the case with hobbies like this, a PC is never really "finished" … For me, that’s been going on for {pcYears} years now…',
-            "You can find what I'm currently playing, which hardware I use, and the mods I've built myself in the [gaming section](/setup)."
+            'A fairly normal PC with classic air cooling slowly turned into a more and more optimized system. New hardware, better cooling, RGB lighting, better cable management, different case concepts … all the way to a PC with a full custom water-cooling loop, extra gimmicks and mods I designed myself, both in hardware and in software.',
+            'And as usual with hobbies like this, a PC is never really "finished" … For me, it has been like this almost my whole life …',
+            "In the [gaming section](/setup) you can see what I'm playing right now, which hardware I use and which mods I've built myself."
           ]
         },
         {
           heading: "So that's me",
           image: '/images/about/das-bin-ich.jpg',
           paragraphs: [
-            'Software development, sailing, travel, finance, tech, gaming — at first glance, maybe pretty different topics.',
-            "But to me, they all have something in common: I love trying things out, I want to understand how they work, and I'm always trying to keep growing.",
+            'Software development, sailing, travel, finance, tech, gaming, free spirit … At first glance, these may seem like very different topics.',
+            "But for me, they all have something in common: I like to try things out, I want to understand how they work and I love going on side quests.",
             "That's exactly what this website is about.",
-            "If any of it is interesting, helpful, or just entertaining for you, then this site has already done its job."
+            "If any of it is interesting, helpful or just fun for you, then this site has already done its job."
           ]
         }
       ],
       aerialEyebrow: 'Drone Photography',
       aerialTitle: 'The World from a Different Perspective',
       aerialLead:
-        "Sometimes all it takes is a change of perspective to discover something completely new...\nEven though I try to stay down to earth and protecting nature matters a lot to me, I love to take off now and then, look beyond the horizon, and realize how beautiful everything actually is.\nWith my DJI Mavic 3, I love capturing beautiful landscapes and moments that often stay hidden from the ground.\n\nBelow you'll find some of my favorite shots around Regensburg and the surrounding area.",
+        "Sometimes a change of perspective is all it takes to discover something new...\nI try to stay down to earth and protecting nature is very important to me. But now and then I love to take off, look beyond the horizon and see how beautiful everything really is.\nWith my DJI Mavic 3, I love to capture landscapes and moments that you often can't see from the ground.\n\nBelow you'll find some of my favorite shots of Regensburg and the area around it.",
       stats: [
         { icon: 'code', value: '{codingYears}', label: 'Years Coding' },
         { icon: 'sailing', value: '{sailingYears}', label: 'Years Sailing' },
@@ -161,28 +168,35 @@ function seedPageContent(db: DatabaseSync) {
           heading: 'Vom Hobby zum Beruf und irgendwie wieder zurück',
           image: '/images/about/hobby-zum-beruf.jpg',
           paragraphs: [
-            'Seit mittlerweile {codingYears} Jahren arbeite ich als Softwareentwickler. Das Programmieren ist für mich allerdings nicht nur ein Beruf. Auch in meiner Freizeit tüftle ich gerne an eigenen Projekten, probiere neue Technologien aus oder versuche, alltägliche Dinge ein kleines bisschen smarter zu machen.',
-            'Dabei entstehen mal kleinere Softwareprojekte, mal Smart-Home-Lösungen (für mein Home Assistant), Elektronik-Basteleien oder einfach Dinge, die ich aus Interesse ausprobieren wollte.',
-            'Wenn dich das interessiert, kannst du gerne bei meinen [privaten Projekten](/projects) vorbeischauen. Dort findest du sowohl bereits abgeschlossene Projekte als auch Dinge, an denen ich aktuell noch arbeite oder die ich zu Testzwecken einfach mal ausprobiert habe.'
+            'Seit mittlerweile {codingYears} Jahren arbeite ich als Softwareentwickler. Das Programmieren ist für mich allerdings nicht nur ein Beruf, sondern ich liebe es irgendwie auch. Auch in meiner Freizeit tüftle ich gerne an eigenen Projekten, probiere neue Technologien aus oder versuche, alltägliche Dinge ein kleines bisschen smarter zu machen.',
+            'Dabei entstehen mal kleinere Softwareprojekte, mal Smart-Home-Lösungen (für mein Home Assistant), Elektronik-Basteleien oder einfach Dinge, die ich aus Interesse schon immer mal ausprobieren wollte.',
+            'Wenn dich das interessiert, kannst du gerne bei meinen [Projekten](/projects) vorbeischauen. Dort findest du sowohl bereits abgeschlossene Projekte als auch Dinge, an denen ich aktuell noch arbeite oder die ich zu Testzwecken einfach mal ausprobiert habe.'
           ]
         },
         {
           heading: 'Irgendwann kam das Segeln dazu …',
           image: '/images/about/segeln.jpg',
+          extraImages: [
+            { src: '/images/about/jessica-watson.jpg', width: 1200, height: 969, alt: 'Jessica Watson', caption: 'Jessica Watson, mein größtes Vorbild beim Segeln' },
+            { src: '/images/about/ellas-pink-lady.jpg', width: 900, height: 1200, alt: 'Die Yacht „Ella’s Pink Lady“', caption: 'Ihre Yacht „Ella’s Pink Lady“' }
+          ],
           paragraphs: [
-            'Wie du wahrscheinlich schon an meinem Profilbild erkennen kannst, gehört neben der Technik inzwischen auch das Segeln zu meinen größten Leidenschaften.',
+            'Wie du wahrscheinlich schon an meinem Profilbild erkennen kannst, gehört neben dem Coden inzwischen auch das Segeln zu meinen größten Leidenschaften.',
             'Angefangen hat das Ganze vor ungefähr {sailingYears} Jahren allerdings etwas anders – damals noch ganz klein mit einem Motorbootführerschein (auch SBF Binnen/See genannt).',
             'Nach den ersten längeren Fahrten habe ich relativ schnell festgestellt, dass mich reines Motorbootfahren nicht wirklich erfüllt. Einfach nur von A nach B zu fahren, wurde mir auf Dauer etwas zu eintönig und günstig ist das Ganze bekanntlich auch nicht gerade – heute sogar noch weniger als damals (Stand: August 2026).',
-            'Durch einen Studenten-Segeltörn bin ich schließlich eher zufällig beim Segeln gelandet und mich hat die Naturverbundenheit in Verbindung mit einem Freiheitsgefühl sofort begeistert.',
+            'Durch einen Studenten-Segeltörn bin ich schließlich eher zufällig beim Segeln gelandet und mich hat die Naturverbundenheit, die zugleich mit einem Freiheitsgefühl einhergeht, sofort gecatcht.',
+            'Spätestens wenn man dann noch gemeinsam mit Delfinen segelt, ist das Gefühl unbeschreiblich. Ich glaube, in mir steckte schon immer ein sehr naturverbundener Mensch. Ich liebe es auch, wandern zu gehen, in der freien Natur zu zelten und Fallschirm zu springen. In naher Zukunft möchte ich außerdem meinen PPL-Schein (Privatpilotenlizenz) machen und frei wie ein Vogel durch die Luft fliegen (okay, das war jetzt vielleicht etwas überspitzt dargestellt).',
             'Gleichzeitig wusste ich aber auch: Ich möchte nicht dauerhaft darauf angewiesen sein, dass jemand anderes entscheidet, wann und wohin gesegelt wird – und das auch immer mit fremden Leuten. Nicht, dass mir das etwas ausmachen würde, auch wenn ich auf neue Leute anfangs etwas distanziert und schüchtern wirke, aber mit Freunden macht es einfach mehr Spaß. Also stand für mich fest, dass ich irgendwann selbst als Skipper unterwegs sein möchte.',
             'Der nächste logische Schritt war deshalb der Sportküstenschifferschein, kurz SKS.',
-            'Dabei habe ich allerdings schnell gelernt, dass ein Segelschein nicht mit einem Motorboot- oder Autoführerschein vergleichbar ist. Nur weil man die Prüfung bestanden hat, bedeutet das noch lange nicht, dass man eine Yacht in jeder Situation sicher beherrscht.',
+            'Dabei habe ich allerdings schnell gelernt, dass ein Segelschein nicht mit einem Motorboot- oder Autoführerschein vergleichbar ist. Nur weil man die Prüfung bestanden und das theoretische Wissen erlernt hat, bedeutet das noch lange nicht, dass man eine Yacht später auch in jeder Situation sicher beherrscht.',
             'Deshalb folgten weitere Skippertrainings und zusätzliche Qualifikationen – unter anderem der SRC-Funkschein für den UKW-Seefunk sowie der entsprechende Fachkundenachweis für pyrotechnische Seenotsignalmittel.',
             'Vor allem die praktischen Trainings haben mir gezeigt, wie viel es beim Segeln auch nach den Prüfungen noch zu lernen gibt.',
-            'Mittlerweile plane und organisiere ich eigene Segeltörns und versuche, fast jedes Jahr neue Reviere kennenzulernen. Außerdem möchte ich an größeren Herausforderungen wachsen: So bin ich zum Beispiel schon auf den Kanaren gesegelt und musste dort bei widrigen Wetterbedingungen nachts das Boot steuern, weil der Steg, an dem wir festgemacht hatten, gebrochen war.',
-            'Mein größtes Vorbild ist dabei die australische Seglerin Jessica Watson. Sie gilt als jüngste Person, die allein, nonstop und ohne fremde Hilfe um die Welt gesegelt ist. Im Oktober 2009 startete sie mit gerade einmal 16 Jahren auf ihrer Yacht „Ella’s Pink Lady“ in Sydney und kam im Mai 2010 nach 210 Tagen auf See zurück – drei Tage vor ihrem 17. Geburtstag.',
-            'Was mich daran am meisten beeindruckt: Sie hat nie aufgegeben. Schon vor dem Start kollidierte ihr Boot auf der Überführungsfahrt zum Startort nachts mit einem Frachter und verlor dabei den Mast. Viele hielten ihr Vorhaben danach für unverantwortlich – sie ließ das Boot reparieren und segelte trotzdem los. Unterwegs wurde ihr Boot in den Stürmen des Südpolarmeers mehrmals flach aufs Wasser gedrückt und jedes Mal hat sie weitergemacht. Ihre Geschichte hat sie später im Buch „True Spirit“ erzählt, das 2023 auch verfilmt wurde.',
-            'Wenn du meine Reisen und Segelabenteuer verfolgen möchtest, schau gerne im [Bereich Reisen](/travel) vorbei.'
+            'Mittlerweile plane und organisiere ich eigene Segeltörns und versuche, fast jedes Jahr neue Reviere kennenzulernen. Außerdem möchte ich an größeren Herausforderungen wachsen: So bin ich zum Beispiel schon auf den Kanaren gesegelt und musste dort bei widrigen Wetterbedingungen nachts das Boot steuern, weil der Steg, an dem wir festgemacht waren, gebrochen war.',
+            'Mein größtes Vorbild ist dabei die australische Seglerin Jessica Watson, du siehst sie auch rechts im Bild. Sie gilt als jüngste Person, die allein, nonstop und ohne fremde Hilfe um die Welt gesegelt ist. Im Oktober 2009 startete sie mit gerade einmal 16 Jahren auf ihrer Yacht „Ella’s Pink Lady“ (siehe Bild direkt darunter) in Sydney und kam im Mai 2010 nach 210 Tagen auf See zurück.',
+            'Was mich daran am meisten beeindruckt: Sie hat nie aufgegeben. Schon vor dem Start kollidierte ihr Boot auf der Überführungsfahrt zum Startort nachts mit einem Frachter und verlor dabei den Mast. Viele hielten ihr Vorhaben danach für unverantwortlich, doch sie ließ das Boot reparieren und segelte trotzdem los. Unterwegs wurde ihr Boot in den Stürmen des Südpolarmeers mehrmals flach aufs Wasser gedrückt und jedes Mal hat sie weitergemacht. Ihre Geschichte hat sie später im Buch „True Spirit“ erzählt, das 2023 auch verfilmt wurde.',
+            'Für mich ist daraus ein Leitsatz entstanden:',
+            '> „Egal, wie schwer es im Leben ist, wie viele Rückschläge du einstecken musst und ob du vielleicht gerade an einem Punkt stehst, an dem alles zu enden scheint: Gib niemals auf. Denn selbst die größten Wellen und die heftigsten Stürme lassen sich bezwingen.“',
+            'Wenn du auch meine Reisen und Segelabenteuer verfolgen möchtest, dann schau gerne im [Bereich Reisen](/travel) vorbei.'
           ]
         },
         {
@@ -201,8 +215,8 @@ function seedPageContent(db: DatabaseSync) {
             'Dabei möchte ich auf dieser Webseite allerdings niemandem erzählen, wie er sein Geld anzulegen hat. Stattdessen möchte ich zeigen, wie ich selbst vorgehe, welche Entscheidungen ich treffe, welche Fehler ich gemacht habe und was ich daraus gelernt habe.',
             'Denn auch ich habe klein angefangen.',
             'Und genau deshalb weiß ich, dass der Einstieg manchmal komplizierter wirkt, als er eigentlich sein muss. Gleichzeitig merkt man mit der Zeit, welchen Unterschied es macht, früh anzufangen und konsequent dranzubleiben.',
-            'Während meines Studiums bin ich außerdem einem Börsenverein beigetreten. Rückblickend war das eine der besten Möglichkeiten, um tiefer in das Thema einzusteigen. Besonders wertvoll war für mich der Austausch mit anderen – von Studierenden, die selbst gerade erst angefangen hatten, bis hin zu Mitgliedern mit jahrelanger Erfahrung.',
-            'Dabei ging es nicht nur um Aktien oder Investments. Ich habe dort viele offene und herzliche Menschen kennengelernt, mit denen man ein gemeinsames Interesse teilen und gleichzeitig voneinander lernen konnte.',
+            'Während meines Studiums bin ich zudem dem studentischen Börsenverein MarketMavens beigetreten. Rückblickend war das eine der besten Möglichkeiten, um tiefer in das Thema einzusteigen. Besonders wertvoll war für mich der Austausch mit anderen – von Studierenden, die selbst gerade erst angefangen hatten, bis hin zu Mitgliedern mit jahrelanger Erfahrung.',
+            'Dabei ging es nicht nur um Aktien oder Investments. Ich habe dort viele offene und herzliche Menschen kennengelernt, mit denen man ein gemeinsames Interesse teilen und verfolgen, sich gegenseitig anspornen und gleichzeitig voneinander lernen konnte.',
             'Gerade wenn man neu in diesem Bereich ist und aus einer ganz anderen Branche kommt, ist es immer gut, sich zu vernetzen. Anfangs war ich der einzige Informatiker unter sehr vielen BWL-Studenten und ein paar Leuten aus anderen Studienrichtungen – und gerade diese Mischung hat den Austausch so wertvoll gemacht. Deshalb kann ich nur empfehlen, sich mit anderen auszutauschen und unterschiedliche Sichtweisen kennenzulernen.',
             'Wenn dich meine persönliche Herangehensweise an Investments interessiert oder du sehen möchtest, welche Trades und Entscheidungen ich selbst treffe, findest du mehr dazu im [Bereich Finanzen](/finance).'
           ]
@@ -217,8 +231,8 @@ function seedPageContent(db: DatabaseSync) {
             'Wie arbeitet eigentlich ein Prozessor? Was passiert im Arbeitsspeicher? Wie kommuniziert Software mit der Hardware? Und was passiert auf den unteren Ebenen bis hin zu Maschinenbefehlen und Assembler?',
             'Je mehr ich darüber gelernt habe, desto größer wurde mein Interesse daran, meinen eigenen PC zusammenzustellen.',
             'Und damit begann eine kleine Never-Ending-Story.',
-            'Aus einem relativ normalen PC mit klassischer Luftkühlung wurde irgendwann ein immer weiter optimiertes System. Neue Hardware, bessere Kühlung, RGB-Beleuchtung, Kabelmanagement, verschiedene Gehäusekonzepte – bis hin zu einem PC mit kompletter Custom-Wasserkühlung, zusätzlichen Spielereien und selbst entworfenen Modifikationen.',
-            'Und wie das bei solchen Hobbys meistens ist, ist ein PC eigentlich nie wirklich „fertig"… Bei mir geht das schon {pcYears} Jahre so…',
+            'Aus einem relativ normalen PC mit klassischer Luftkühlung wurde irgendwann ein immer weiter optimiertes System. Neue Hardware, bessere Kühlung, RGB-Beleuchtung, besseres Kabelmanagement, verschiedene Gehäusekonzepte … bis hin zu einem PC mit kompletter Custom-Wasserkühlung, zusätzlichen Spielereien und selbst entworfenen Modifikationen, sowohl hardware- als auch softwareseitig.',
+            'Und wie das bei solchen Hobbys meistens ist, ist ein PC eigentlich nie wirklich „fertig"… Bei mir geht das schon fast mein ganzes Leben so …',
             'Was ich aktuell spiele, welche Hardware ich verwende und welche Modifikationen ich selbst gebaut habe, findest du im [Bereich Gaming](/setup).'
           ]
         },
@@ -226,8 +240,8 @@ function seedPageContent(db: DatabaseSync) {
           heading: 'Das bin also ich',
           image: '/images/about/das-bin-ich.jpg',
           paragraphs: [
-            'Softwareentwicklung, Segeln, Reisen, Finanzen, Technik, Gaming – auf den ersten Blick vielleicht ziemlich unterschiedliche Themen.',
-            'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus und möchte verstehen, wie sie funktionieren. Außerdem versuche ich, mich ständig weiterzuentwickeln.',
+            'Softwareentwicklung, Segeln, Reisen, Finanzen, Technik, Gaming, Freigeist … auf den ersten Blick vielleicht ziemlich unterschiedliche Themen.',
+            'Für mich haben sie aber alle etwas gemeinsam: Ich probiere gerne Dinge aus, möchte verstehen, wie sie funktionieren, und liebe es, mich auf Sidequests zu begeben.',
             'Genau darum geht es auch auf dieser Webseite.',
             'Wenn davon etwas für dich interessant, hilfreich oder einfach unterhaltsam ist, hat die Seite schon ihren Zweck erfüllt.'
           ]
@@ -238,7 +252,7 @@ function seedPageContent(db: DatabaseSync) {
       aerialLead:
         'Manchmal reicht ein Wechsel der Perspektive, um etwas völlig Neues zu entdecken...\nAuch wenn ich bodenständig und geerdet bleiben möchte und es mir sehr wichtig ist, unsere Natur zu schützen, hebe ich gerne mal ab, blicke über den Horizont hinaus und erkenne dabei, wie schön eigentlich alles ist.\nMit meiner DJI Mavic 3 halte ich dabei gerne schöne Landschaften und Momente fest, die vom Boden aus oft verborgen bleiben.\n\nIm Folgenden findest du einige meiner schönsten Aufnahmen rund um Regensburg und Umgebung.',
       stats: [
-        { icon: 'code', value: '{codingYears}', label: 'Jahre Programmieren' },
+        { icon: 'code', value: '{codingYears}', label: 'Jahre Coding' },
         { icon: 'sailing', value: '{sailingYears}', label: 'Jahre Segeln' },
         { icon: 'globe', value: '7', label: 'Länder bereist' },
         { icon: 'idea', value: '∞', label: 'Ideen im Kopf' }
@@ -586,7 +600,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Regensburg Nord',
       title_de: 'Regensburg Nord',
       description_en:
-        "This photo was taken in 2022 on the Winzerer Höhen in the north of Regensburg. From up here, the view opens out over the city's northern outskirts toward Adlersberg and Tremmelhauserhöhe.\n\nBetween fields, meadows, and small villages, plenty of farmland and farmsteads still shape this area today. That contrast with the city center, just a few kilometers away, shows a different side of Regensburg: quiet, spacious, and surprisingly close to nature.",
+        "I took this photo in 2022 on the Winzerer Höhen in the north of Regensburg. From up here, you can look over the northern edge of the city toward Adlersberg and Tremmelhauserhöhe.\n\nThere are still lots of fields, meadows, farms and small villages here. Only a few kilometers from the city center, this area shows a different side of Regensburg: quiet, open and surprisingly close to nature.",
       description_de:
         'Dieses Foto entstand 2022 auf den Winzerer Höhen im Norden Regensburgs. Von hier aus öffnet sich der Blick über die nördlichen Ausläufer der Stadt in Richtung Adlersberg und Tremmelhauserhöhe.\n\nZwischen Feldern, Wiesen und kleinen Ortschaften liegen noch heute zahlreiche landwirtschaftlich geprägte Flächen und Höfe. Gerade dieser Kontrast zur nur wenige Kilometer entfernten Innenstadt zeigt eine andere Seite Regensburgs: ruhig, weitläufig und überraschend naturverbunden.'
     },
@@ -597,7 +611,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Lupburg',
       title_de: 'Lupburg',
       description_en:
-        "Lupburg is a small market town in the Upper Palatinate Jura, not far from Parsberg. With around 2,500 residents, it's surrounded by a wide landscape of forests, meadows, and fields.\n\nWhat I love about this photo is how closely the village and nature are woven together here. At the same time, the tall wind turbines on the horizon shape the modern landscape and stand as a symbol of the shift toward renewable energy.\n\nFor me, Lupburg is one of the most beautiful and lovable places in this area — quiet, rural, and with exactly the charm I associate with the Upper Palatinate.",
+        "Lupburg is a small market town in the Upper Palatinate Jura, not far from Parsberg. It has about 2,500 residents and is surrounded by forests, meadows and fields.\n\nWhat I love about this photo is how closely the village and nature are connected. The tall wind turbines on the horizon are part of the modern landscape and a symbol of the move toward renewable energy.\n\nFor me, Lupburg is one of the most beautiful places in the area. It's quiet and rural and has exactly the charm I connect with the Upper Palatinate.",
       description_de:
         'Lupburg ist eine kleine Marktgemeinde im Oberpfälzer Jura, unweit von Parsberg. Mit seinen rund 2.500 Einwohnern ist der Ort von einer weitläufigen Landschaft aus Wäldern, Wiesen und Feldern umgeben.\n\nDas Foto zeigt für mich besonders schön, wie eng Dorf und Natur hier miteinander verbunden sind. Gleichzeitig prägen die hoch aufragenden Windräder am Horizont das moderne Landschaftsbild und stehen sinnbildlich für den Wandel hin zu erneuerbaren Energien.\n\nLupburg gehört für mich zu den schönsten und liebenswertesten Orten in dieser Gegend – ruhig, ländlich und mit genau dem Charme, den ich mit der Oberpfalz verbinde.'
     },
@@ -608,7 +622,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Regensburg Süd',
       title_de: 'Regensburg Süd',
       description_en:
-        "Looking south over Regensburg, it becomes clear how much the city has grown and developed over the past few decades.\n\nIn the background lies Burgweinting-Harting, among other areas — today one of Regensburg's larger districts. Where fields and small settlements once shaped the landscape, residential areas, commercial zones, and transport infrastructure now meet the still-expansive countryside surrounding the city.\n\nFrom the air, this transition between city and nature becomes especially clear.",
+        "Looking south over Regensburg, you can see how much the city has grown over the past few decades.\n\nIn the background you can see Burgweinting-Harting, which is one of the bigger districts of Regensburg today. Where there used to be mostly fields and small villages, you now find homes, businesses and roads right next to the open countryside around the city.\n\nFrom the air, you can see this change from city to nature especially well.",
       description_de:
         'Richtet man den Blick in den Süden Regensburgs, wird deutlich, wie stark sich die Stadt über die vergangenen Jahrzehnte entwickelt und ausgedehnt hat.\n\nIm Hintergrund erstreckt sich unter anderem Burgweinting-Harting, heute einer der größeren Stadtbezirke Regensburgs. Wo früher vor allem Felder und kleinere Siedlungen das Landschaftsbild bestimmten, treffen heute Wohngebiete, Gewerbeflächen und Verkehrsinfrastruktur unmittelbar auf die noch immer weitläufige Landschaft rund um die Stadt.\n\nGerade aus der Luft wird dieser Übergang zwischen Stadt und Natur besonders deutlich.'
     },
@@ -619,7 +633,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Parsberg',
       title_de: 'Parsberg',
       description_en:
-        "Parsberg sits nestled in the hilly landscape of the Upper Palatinate Jura, blending history, nature, and the life of a modern small town in a special way — a town I feel closely connected to.\n\nParsberg Castle shapes the townscape from far away, even though it's a bit hard to make out in the photo — it sits on the hill in the right background. The Christmas market there is especially lovely, and I visit it every year.\n\nFrom the air, it's also especially clear how compactly Parsberg sits within the landscape — a small town surrounded by plenty of nature and the countryside typical of the Upper Palatinate.\n\nBut you can also see how it keeps growing. On the left you can spot the Möbelhof furniture store and the new Edeka supermarket, with the new housing developments right across from them.",
+        "Parsberg lies in the hilly landscape of the Upper Palatinate Jura. It combines history, nature and modern small-town life in a special way. I also feel closely connected to this town.\n\nParsberg Castle can be seen from far away. In the photo it's a bit hard to spot: it sits on the hill in the background on the right. The Christmas market there is especially nice and I go there every year.\n\nFrom the air, you can also see how compact Parsberg is: a small town with lots of nature and the typical countryside of the Upper Palatinate all around it.\n\nBut you can also see how it keeps growing. On the left you can spot the Möbelhof furniture store and the new Edeka supermarket. Right across from them are the new housing areas.",
       description_de:
         'Parsberg liegt eingebettet in die hügelige Landschaft des Oberpfälzer Jura und vereint auf besondere Weise Geschichte, Natur und das Leben einer modernen Kleinstadt, mit der ich mich auch eng verbunden fühle.\n\nSchon von Weitem prägt die Burg Parsberg das Stadtbild, auch wenn sie auf dem Foto her etwas schwer zu erkennen ist, liegt sie auf dem Hügel rechts im Hintergrund. Besonders schön ist dort der Weihnachtsmarkt, den ich jährlich besuche.\n\nAus der Luft zeigt sich zudem besonders schön, wie kompakt Parsberg in die Landschaft eingebettet ist – eine kleine Stadt, umgeben von viel Natur und typisch oberpfälzischer Landschaft.\n\nAber auch wie sie zunehmend wächst. So ist links der Möbelhof und der neue Edeka zu sehen und die Neubausiedlungen direkt Gegenüber.'
     },
@@ -630,7 +644,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Winter 2021',
       title_de: 'Winter 2021',
       description_en:
-        'During a brief but intense cold snap in 2021, I wanted to capture this particular moment. This recording was taken on a walk through the snow-covered forest near Steinweg.\n\nFor a short while, the snow turned a familiar path into an almost perfectly still winter landscape. The snow-laden trees, the narrow trail, and the muted atmosphere made this moment feel special to me.\n\nPrecisely because days with snow like this aren’t a given in Regensburg, I wanted to hold onto this moment.',
+        "During a short but strong cold snap in 2021, I wanted to capture this special moment. I took this shot on a walk through the snowy forest near Steinweg.\n\nFor a short time, the snow turned a familiar path into a very calm winter landscape. The snowy trees, the narrow path and the quiet mood made this moment special for me.\n\nDays with this much snow are rare in Regensburg. That's why I wanted to remember this moment.",
       description_de:
         'Während eines kurzen, aber kräftigen Wintereinbruchs im Jahr 2021 wollte ich diesen besonderen Moment festhalten. Bei einem Spaziergang durch den verschneiten Wald bei Steinweg entstand diese Aufnahme.\n\nFür kurze Zeit verwandelte der Schnee den vertrauten Weg in eine beinahe vollkommen ruhige Winterlandschaft. Die schneebedeckten Bäume, der schmale Weg und die gedämpfte Atmosphäre machten diesen Augenblick für mich zu etwas Besonderem.\n\nGerade weil solche ausgeprägten Wintertage in Regensburg nicht selbstverständlich sind, wollte ich diesen Moment in Erinnerung behalten.'
     },
@@ -641,7 +655,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Winter Dusk over the Danube',
       title_de: 'Winterliche Dämmerung über der Donau',
       description_en:
-        'Especially during the cold winter months, the landscape around Regensburg shows a completely different side of itself. When the surrounding fields are covered in snow and the sun slowly sets in the west, a very particular light settles over the Danube and its surroundings.\n\nThe last warm colors of the day meet the cool blues and whites of the winter landscape. For a brief moment, a mood emerges in which the otherwise lively surroundings feel almost completely still.',
+        "In the cold winter months, the landscape around Regensburg looks completely different. When the fields are covered in snow and the sun slowly sets in the west, a very special light falls over the Danube and the area around it.\n\nThe last warm colors of the day meet the cool blue and white of the winter landscape. For a short moment, the usually busy area feels almost completely still.",
       description_de:
         'Besonders in den kalten Wintermonaten zeigt sich die Landschaft rund um Regensburg von einer ganz anderen Seite. Wenn die umliegenden Felder von Schnee bedeckt sind und die Sonne im Westen langsam untergeht, legt sich ein ganz besonderes Licht über die Donau und ihre Umgebung.\n\nDie letzten warmen Farben des Tages treffen dabei auf die kühlen Blau- und Weißtöne der Winterlandschaft. Für einen kurzen Moment entsteht eine Stimmung, in der die sonst so lebendige Umgebung beinahe vollkommen ruhig wirkt.'
     },
@@ -652,7 +666,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'The Golden Hour over the Land',
       title_de: 'Die goldenen Stunden über dem Land',
       description_en:
-        'What I enjoy most is watching a sunrise or sunset.\n\nSeeing how the light slowly changes and bathes the landscape in warm gold, orange, and red tones for just a few minutes.\n\nI wanted to capture this sunset from the air, because what I find especially striking here is how the last warm rays of sunlight break through gaps in the cloud cover, casting cones of light onto the fields below.',
+        "What I enjoy most is watching a sunrise or a sunset.\n\nI love seeing how the light slowly changes and turns the landscape gold, orange and red for just a few minutes.\n\nI wanted to capture this sunset from the air. What I find most impressive here is how the last warm rays of sunlight break through gaps in the clouds and fall onto the fields like spotlights.",
       description_de:
         'Am schönsten finde ich es einen Sonnenauf- oder Sonnenuntergang zu beobachten.\n\nZu sehen, wie sich das Licht langsam verändert und die Landschaft für wenige Minuten in warme Gold-, Orange- und Rottöne taucht.\n\nDiesen Sonnenuntergang wollte ich dabei aus der Luft festhalten, da ich hier besonders beeindruckend finde, wie die letzten warmen Sonnenstrahlen durch einzelne Öffnungen in der Wolkendecke brechen und wie Lichtkegel auf die darunterliegenden Felder fallen.'
     },
@@ -663,7 +677,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Regensburg Dult',
       title_de: 'Regensburg Dult',
       description_en:
-        "Twice a year, the Regensburg Dult is one of the highlights of city life. With centuries of tradition behind it, it's far more than just a fun fair, and it's deeply tied to Regensburg and Stadtamhof.\n\nIts history goes back to the Middle Ages. Over the centuries, the markets and festivities were held in different parts of the city before the Dult finally found its current home at Dultplatz in Stadtamhof.\n\nOne of its most visible landmarks is the Ferris wheel. From its gondolas, you get an extraordinary view over the rooftops of Stadtamhof, the Danube, and Regensburg's historic old town with its many towers.\n\nFrom the air, it's especially striking to see how this colorful fun fair sits right next to the old town that grew over centuries — a mix of tradition, history, and modern city life.",
+        "Twice a year, the Regensburg Dult is one of the highlights in the city. It has centuries of tradition and is much more than just a fun fair. It is closely connected to Regensburg and Stadtamhof.\n\nIts history goes back to the Middle Ages. Over the centuries, the markets and festivals took place in different parts of the city. In the end, the Dult found its current home at the Dultplatz in Stadtamhof.\n\nOne of its best-known landmarks is the Ferris wheel. From the top, you get an amazing view over the rooftops of Stadtamhof, the Danube and the old town of Regensburg with its many towers.\n\nFrom the air, it's great to see how the colorful fun fair sits right next to the centuries-old town: a mix of tradition, history and modern city life.",
       description_de:
         'Zweimal im Jahr gehört die Regensburger Dult zu den Höhepunkten des Stadtlebens. Mit ihrer jahrhundertelangen Tradition ist sie weit mehr als nur ein Volksfest und inzwischen fest mit Regensburg und Stadtamhof verbunden.\n\nIhre Geschichte reicht bis ins Mittelalter zurück. Über die Jahrhunderte fanden die Märkte und Feste an unterschiedlichen Orten der Stadt statt, bevor die Dult schließlich ihren heutigen Platz am Dultplatz in Stadtamhof fand.\n\nEines ihrer weithin sichtbaren Wahrzeichen ist das Riesenrad. Von seinen Gondeln eröffnet sich ein außergewöhnlicher Blick über die Dächer von Stadtamhof, die Donau und die historische Regensburger Altstadt mit ihren zahlreichen Türmen.\n\nGerade aus der Luft zeigt sich besonders schön, wie das farbenfrohe Volksfest unmittelbar neben der über Jahrhunderte gewachsenen Altstadt liegt – ein Zusammenspiel aus Tradition, Geschichte und modernem Stadtleben.'
     }
@@ -684,7 +698,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Lupburg 360° at sunset',
       title_de: 'Lupburg 360° bei Sonnenuntergang',
       description_en:
-        'Sometimes it’s worth changing perspective. This 360° shot was taken during a sunset over Lupburg and shows the vastness of the Upper Palatinate landscape from a very special angle.\n\nAs the sun slowly disappears behind the horizon, it bathes fields, forests, and the small surrounding villages in a warm, golden light. From the air, the landscape seems almost endless — and especially in the last few minutes of the day, a very particular kind of stillness sets in.\n\nFor me, it’s one of those moments where you simply pause for a second and take in the view.',
+        "Sometimes it's worth changing your perspective. I took this 360° shot during a sunset over Lupburg. It shows how wide the landscape of the Upper Palatinate is.\n\nAs the sun slowly goes down, it covers fields, forests and the small villages around in warm, golden light. From the air, the landscape seems almost endless. In the last few minutes of the day, everything becomes very calm.\n\nFor me, it's one of those moments where you just stop for a second and enjoy the view.",
       description_de:
         'Manchmal lohnt es sich, die Perspektive zu wechseln. Diese 360°-Aufnahme entstand während eines Sonnenuntergangs über Lupburg und zeigt die Weite der oberpfälzischen Landschaft aus einer ganz besonderen Perspektive.\n\nWährend die Sonne langsam hinter dem Horizont verschwindet, taucht sie Felder, Wälder und die kleinen umliegenden Ortschaften in ein warmes, goldenes Licht. Aus der Luft scheint die Landschaft dabei beinahe endlos – und gerade in den letzten Minuten des Tages entsteht eine ganz besondere Ruhe.\n\nFür mich ist es einer dieser Momente, in denen man einfach kurz innehält und die Aussicht genießt.'
     },
@@ -695,7 +709,7 @@ function seedHome(db: DatabaseSync) {
       title_en: 'Winter over Regensburg',
       title_de: 'Winter über Regensburg',
       description_en:
-        'When snow covers the rooftops, fields, and streets overnight, Regensburg shows a completely different side of itself. The city, usually so familiar, suddenly feels quieter and almost transformed.\n\nFrom the air especially, you can see how the white winter landscape stretches from the densely built parts of the city all the way out into the surrounding fields and forests.\n\nDays like this aren’t all that common in Regensburg — and maybe that’s exactly why these brief winter moments give the city such a special atmosphere for a while, one I wanted to capture and hold on to.',
+        "When snow covers the rooftops, fields and streets overnight, Regensburg looks completely different. The familiar city suddenly feels quieter and almost transformed.\n\nFrom the air, you can see how the white winter landscape reaches from the busy city center all the way out to the fields and forests around it.\n\nDays like this are not very common in Regensburg. Maybe that's exactly why these short winter moments feel so special. I wanted to capture them and keep them.",
       description_de:
         'Wenn Schnee über Nacht die Dächer, Felder und Straßen bedeckt, zeigt sich Regensburg von einer ganz anderen Seite. Die sonst so vertraute Stadt wirkt plötzlich ruhiger und beinahe wie verwandelt.\n\nBesonders aus der Luft wird sichtbar, wie sich die weiße Winterlandschaft von den dicht bebauten Teilen der Stadt bis weit hinaus in die umliegenden Felder und Wälder zieht.\n\nSolche Tage sind in Regensburg nicht allzu häufig – und vielleicht sind es gerade deshalb diese kurzen Wintermomente, die die Stadt für eine Weile in einer ganz besonderen Atmosphäre erscheinen lassen und ich für die Vergangenheit festhalten möchte.'
     },
@@ -706,7 +720,7 @@ function seedHome(db: DatabaseSync) {
       title_en: "New Year's Eve in Regensburg",
       title_de: 'Silvester in Regensburg',
       description_en:
-        'As the old year comes to an end and the first fireworks rise over Regensburg at midnight, the city’s appearance changes within just a few moments.\n\nCountless small fireworks light up over the rooftops all at once, bathing the night sky in ever-changing colors. Seen from a distance, the individual rockets blend into an impressive sea of light that stretches across large parts of the city.\n\nFor me, this moment is something special every year.',
+        "When the old year ends and the first fireworks go up over Regensburg at midnight, the city changes within moments.\n\nCountless small fireworks light up over the rooftops at the same time and fill the night sky with changing colors. From a distance, the single rockets turn into a huge sea of light over large parts of the city.\n\nFor me, this moment is special every year.",
       description_de:
         'Wenn das alte Jahr zu Ende geht und um Mitternacht die ersten Feuerwerke über Regensburg aufsteigen, verändert sich das Bild der Stadt innerhalb weniger Augenblicke.\n\nÜber den Dächern leuchten unzählige kleine Feuerwerke gleichzeitig auf und tauchen den Nachthimmel immer wieder in neue Farben. Aus der Ferne betrachtet verschmelzen die einzelnen Raketen zu einem beeindruckenden Lichtermeer, das sich über weite Teile der Stadt erstreckt.\n\nFür mich ist dieser Moment jedes Jahr etwas Besonderes.'
     }

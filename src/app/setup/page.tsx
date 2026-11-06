@@ -10,6 +10,7 @@ import { RgbController } from './_components/RgbController';
 import { ModelChamber, type ModelChamberHandle } from './_components/ModelChamber';
 import { HardwareMatrix, type HardwareComponent } from './_components/HardwareMatrix';
 import { ValorantCard } from './_components/ValorantCard';
+import { GtaCountdown } from './_components/GtaCountdown';
 import { Sparkline, formatNumber, useTelemetry } from './_components/telemetry';
 import type { SceneState } from './_components/scene';
 import { SiteImage } from '@/app/components/SiteImage';
@@ -207,6 +208,8 @@ export default function Setup() {
         </header>
 
         <ValorantCard lang={lang} />
+
+        <GtaCountdown lang={lang} />
 
         <section className="gx-band" id="kuehlung">
           <div className="gx-wrap">

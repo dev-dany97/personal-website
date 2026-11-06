@@ -28,9 +28,20 @@ interface HomeVideo {
   description: string;
 }
 
+interface AboutSectionImage {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+}
+
 interface AboutSection {
   heading: string;
   image: string;
+  // Further pictures stacked below the main one, each with a short caption.
+  extraImages?: AboutSectionImage[];
+  // A paragraph starting with "> " is shown as a highlighted quote (e.g. my motto).
   paragraphs: string[];
 }
 
@@ -43,7 +54,6 @@ interface HomeStat {
 // Start years for the "x years" mentions in the about texts and stats.
 const CODING_START_YEAR = 2019;
 const SAILING_START_YEAR = 2021;
-const PC_BUILD_START_YEAR = 2021;
 
 const NUMBER_WORDS: Record<'de' | 'en', string[]> = {
   de: ['null', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf'],
@@ -160,17 +170,15 @@ export default function Home() {
   const c = data[lang];
   const aboutIntro = c.aboutIntro.map((p) => p.replace('{age}', String(currentAge)));
 
-  // Years since I started coding / sailing / building my own PC, so the texts and stats don't need
+  // Years since I started coding / sailing, so the texts and stats don't need
   // a manual update every year. Prose spells small numbers out ("fünf Jahren"),
   // the stats bar shows digits.
   const codingYears = today.getFullYear() - CODING_START_YEAR;
   const sailingYears = today.getFullYear() - SAILING_START_YEAR;
-  const pcYears = today.getFullYear() - PC_BUILD_START_YEAR;
   const fillYears = (text: string, asWords: boolean) =>
     text
       .replaceAll('{codingYears}', asWords ? numberWord(codingYears, lang) : String(codingYears))
-      .replaceAll('{sailingYears}', asWords ? numberWord(sailingYears, lang) : String(sailingYears))
-      .replaceAll('{pcYears}', asWords ? numberWord(pcYears, lang) : String(pcYears));
+      .replaceAll('{sailingYears}', asWords ? numberWord(sailingYears, lang) : String(sailingYears));
   const aboutSections = c.aboutSections.map((section) => ({
     ...section,
     paragraphs: section.paragraphs.map((p) => fillYears(p, true))
@@ -248,12 +256,24 @@ export default function Home() {
                     <div className={`legacy-about-more-image-wrap ${sIdx % 2 === 1 ? 'legacy-about-more-image-wrap--reverse' : ''}`}>
                       <SiteImage src={section.image} alt={section.heading} className="legacy-about-more-image" width={900} height={1200} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} />
                     </div>
+                    {section.extraImages?.map((img) => (
+                      <figure key={img.src} className="legacy-about-extra">
+                        <SiteImage src={img.src} alt={img.alt} className="legacy-about-extra-image" width={img.width} height={img.height} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} />
+                        <figcaption>{img.caption}</figcaption>
+                      </figure>
+                    ))}
                   </div>
                   <div className="col-lg-8">
                     <h3>{section.heading}</h3>
-                    {section.paragraphs.map((p, pIdx) => (
-                      <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
-                    ))}
+                    {section.paragraphs.map((p, pIdx) =>
+                      p.startsWith('> ') ? (
+                        <blockquote key={`section-${sIdx}-${pIdx}`} className="legacy-about-motto">
+                          <p>{renderWithLinks(p.slice(2), `section-${sIdx}-${pIdx}`)}</p>
+                        </blockquote>
+                      ) : (
+                        <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
+                      )
+                    )}
                   </div>
                 </Reveal>
               ))}
