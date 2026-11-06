@@ -724,21 +724,24 @@ function seedProjects(db: DatabaseSync) {
   const projects = [
     {
       id: 'bike-tracker',
-      image: '/images/projects/gpstracker.png',
-      images: null as string[] | null,
+      image: '/images/projects/bike-tracker-cover.jpg',
+      images: [
+        '/images/projects/bike-tracker-cover.jpg',
+        '/images/projects/bike-tracker-ubidots-dashboard.jpg'
+      ],
       status: 'completed',
-      year: 2022,
+      year: 2020,
       title_en: 'Bike Tracker',
       title_de: 'Bike Tracker',
       description_en:
-        "I built this a few years ago because I needed it. Someone stole parts off my bike — the bike computer and the front light were taken right off the handlebars. At the time you could only buy an alarm or a GPS tracker, not both together, so I built my own. You can check it from an app.",
+        'In spring 2020 (March to April) I built my own GPS tracker as theft protection for my bike, after someone stole the bike computer and the front light right off the handlebars. A commercial tracker I tried first did not work reliably and needed a large battery. Mine is a Raspberry Pi Zero W with a SIM868 HAT (GSM/GPRS/GNSS) and a power bank: it reads its position via GNSS, uploads it over the mobile network to my Ubidots dashboard whenever the bike moves, and sends a daily status SMS with its last known location. If the bike gets stolen, I can see when and where it was last seen, even if the tracker has been switched off. Version 2 is planned with a solar module and an ESP microcontroller instead of the Raspberry Pi to cut the power consumption.',
       description_de:
-        'Der Bike Tracker ist eine Projektidee, die ich vor etwa drei Jahren aus der Not heraus entwickelt habe. Der Grund dafür war ein Diebstahl an meinem Fahrrad, bei dem der Fahrradcomputer und das Frontlicht vom Lenker entfernt wurden. Da der Markt derzeit nur Alarmanlagen oder GPS-Tracker anbietet, aber nicht die Kombination aus beidem, habe ich das Ganze selbst entwickelt — überwachbar per App.',
-      tags_en: ['GPS Tracking', 'Mobile App', 'IoT', 'Arduino'],
-      tags_de: ['GPS-Tracking', 'Mobile App', 'IoT', 'Arduino'],
+        'Im Frühjahr 2020 (März bis April) habe ich mir einen eigenen GPS-Tracker als Diebstahlschutz für mein Fahrrad gebaut, nachdem mir Fahrradcomputer und Frontlicht vom Lenker gestohlen wurden. Ein gekaufter Tracker lief vorher nicht zuverlässig und brauchte einen großen Akku. Meiner besteht aus einem Raspberry Pi Zero W mit SIM868-HAT (GSM/GPRS/GNSS) und einer Powerbank: Er bestimmt seine Position per GNSS, lädt sie bei Bewegung über das Mobilfunknetz in mein Ubidots-Dashboard hoch und schickt täglich eine Status-SMS mit dem letzten Standort. Wird das Rad gestohlen, sehe ich, wann und wo es zuletzt war, auch wenn der Tracker ausgeschaltet wurde. Für Version 2 plane ich ein Solarmodul und einen ESP-Mikrocontroller statt des Raspberry Pi, um den Stromverbrauch deutlich zu senken.',
+      tags_en: ['Raspberry Pi', 'Python', 'GPS/GNSS', 'IoT', 'Ubidots'],
+      tags_de: ['Raspberry Pi', 'Python', 'GPS/GNSS', 'IoT', 'Ubidots'],
       link_label_en: 'View on GitHub',
       link_label_de: 'Auf GitHub ansehen',
-      link_url: 'https://github.com/dev-dany97/raspi_gps_tracker'
+      link_url: 'https://github.com/dev-dany97/raspi-gps-tracker'
     },
     {
       id: 'magic-mirror',
