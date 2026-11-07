@@ -22,3 +22,9 @@ test('exchange semester grade links to the transcript', async ({ page }) => {
     '/certificates/griffith-academic-transcript.pdf'
   );
 });
+
+test('multi-page proof shows every page', async ({ page }) => {
+  await page.goto('/contact');
+  await page.locator('.resume-cert-proof', { hasText: 'DAAD' }).click();
+  await expect(page.locator('.cert-proof-dialog img')).toHaveCount(5);
+});

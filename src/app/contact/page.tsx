@@ -338,8 +338,8 @@ export default function Contact() {
           onClose={() => setOpenProof(null)}
           labels={
             lang === 'de'
-              ? { close: 'Schließen', openPdf: 'PDF öffnen', previewAlt: 'Nachweis' }
-              : { close: 'Close', openPdf: 'Open PDF', previewAlt: 'Proof' }
+              ? { close: 'Schließen', openPdf: 'PDF öffnen', previewAlt: 'Nachweis', page: 'Seite' }
+              : { close: 'Close', openPdf: 'Open PDF', previewAlt: 'Proof', page: 'page' }
           }
         />
       )}

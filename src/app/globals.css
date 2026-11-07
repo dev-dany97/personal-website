@@ -2500,6 +2500,12 @@ footer {
   color: var(--primary);
 }
 
+.cert-proof-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .cert-proof-preview {
   display: block;
 }

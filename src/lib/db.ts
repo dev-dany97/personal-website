@@ -151,7 +151,8 @@ function createSchema(db: DatabaseSync) {
       sort_order INTEGER NOT NULL,
       name_en TEXT NOT NULL,
       name_de TEXT NOT NULL,
-      proof TEXT NOT NULL DEFAULT ''
+      proof TEXT NOT NULL DEFAULT '',
+      proof_pages INTEGER NOT NULL DEFAULT 1
     );
 
     CREATE TABLE IF NOT EXISTS finance_briefings (

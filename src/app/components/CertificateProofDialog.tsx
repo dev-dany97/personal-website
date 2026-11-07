@@ -5,18 +5,18 @@ import { SiteImage } from '@/app/components/SiteImage';
 
 export interface CertificateProof {
   pdf: string;
-  image: string;
+  images: string[];
 }
 
 interface CertificateProofDialogProps {
   name: string;
   proof: CertificateProof;
   onClose: () => void;
-  labels: { close: string; openPdf: string; previewAlt: string };
+  labels: { close: string; openPdf: string; previewAlt: string; page: string };
 }
 
-// Shows the proof of a certificate: preview of the first page and
-// a link to the PDF. The native <dialog> handles the focus trap and Esc.
+// Shows the proof of a certificate: previews of all pages
+// stacked, and a link to the PDF. The native <dialog> handles the focus trap and Esc.
 export function CertificateProofDialog({ name, proof, onClose, labels }: CertificateProofDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -44,16 +44,20 @@ export function CertificateProofDialog({ name, proof, onClose, labels }: Certifi
           &times;
         </button>
       </div>
-      <a href={proof.pdf} target="_blank" rel="noopener noreferrer" className="cert-proof-preview">
-        <SiteImage
-          src={proof.image}
-          alt={`${labels.previewAlt}: ${name}`}
-          width={1600}
-          height={1600}
-          sizes="(max-width: 900px) 100vw, 860px"
-          className="cert-proof-image"
-        />
-      </a>
+      <div className="cert-proof-pages">
+        {proof.images.map((image, i) => (
+          <a key={image} href={proof.pdf} target="_blank" rel="noopener noreferrer" className="cert-proof-preview">
+            <SiteImage
+              src={image}
+              alt={`${labels.previewAlt}: ${name}${proof.images.length > 1 ? `, ${labels.page} ${i + 1}` : ''}`}
+              width={1600}
+              height={1600}
+              sizes="(max-width: 900px) 100vw, 860px"
+              className="cert-proof-image"
+            />
+          </a>
+        ))}
+      </div>
       <a href={proof.pdf} target="_blank" rel="noopener noreferrer" className="btn legacy-cta cert-proof-pdf">
         {labels.openPdf}
       </a>

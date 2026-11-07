@@ -1361,8 +1361,9 @@ function seedResume(db: DatabaseSync) {
   skills.forEach((s, i) => insertSkill.run(i, s));
 
   // proof: file name (without extension) in public/certificates/. Each has a
-  // PDF without metadata and a WebP preview of the first page.
-  const certificates = [
+  // PDF without metadata and WebP previews: <proof>.webp for page 1,
+  // <proof>-2.webp etc. for further pages (count in pages, default 1).
+  const certificates: Array<{ en: string; de: string; proof: string; pages?: number }> = [
     { en: 'ISTQB Certified Tester (iSQI Group)', de: 'ISTQB Certified Tester (iSQI Group)', proof: 'istqb-ctfl' },
     { en: 'AWS Cloud Practitioner Essentials', de: 'AWS Cloud Practitioner Essentials', proof: 'aws-cloud-practitioner-essentials' },
     {
@@ -1381,8 +1382,8 @@ function seedResume(db: DatabaseSync) {
       de: 'Python for Everybody (University of Michigan, Coursera)',
       proof: 'python-for-everybody'
     },
-    { en: 'DAAD English Language Certificate', de: 'DAAD-Sprachzertifikat Englisch', proof: 'daad-english-language-certificate' }
+    { en: 'DAAD English Language Certificate', de: 'DAAD-Sprachzertifikat Englisch', proof: 'daad-english-language-certificate', pages: 5 }
   ];
-  const insertCert = db.prepare('INSERT INTO resume_certificates (sort_order, name_en, name_de, proof) VALUES (?, ?, ?, ?)');
-  certificates.forEach((c, i) => insertCert.run(i, c.en, c.de, c.proof));
+  const insertCert = db.prepare('INSERT INTO resume_certificates (sort_order, name_en, name_de, proof, proof_pages) VALUES (?, ?, ?, ?, ?)');
+  certificates.forEach((c, i) => insertCert.run(i, c.en, c.de, c.proof, c.pages ?? 1));
 }
