@@ -837,15 +837,15 @@ function seedProjects(db: DatabaseSync) {
     },
     {
       id: 'homeassistant',
-      image: '/images/projects/homeassistant-1.png',
+      image: '/images/projects/homeassistant-10.jpg',
       images: [
+        '/images/projects/homeassistant-10.jpg',
         '/images/projects/homeassistant-1.png',
         '/images/projects/homeassistant-5.jpg',
         '/images/projects/homeassistant-6.jpg',
         '/images/projects/homeassistant-7.jpg',
         '/images/projects/homeassistant-8.jpg',
         '/images/projects/homeassistant-9.jpg',
-        '/images/projects/homeassistant-10.jpg',
         '/images/projects/homeassistant-11.jpg',
         '/images/projects/homeassistant-2.jpg',
         '/images/projects/homeassistant-3.jpg',
