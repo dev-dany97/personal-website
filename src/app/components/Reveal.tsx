@@ -21,6 +21,13 @@ export function Reveal({ children, className, delayMs = 0 }: RevealProps) {
     const el = ref.current;
     if (!el || reducedMotion) return;
 
+    // An element can only ever show 15% of itself when it is at most
+    // (viewport / 0.15) tall. Long blocks (e.g. the expanded about sections on
+    // a phone, which stack several images) would otherwise never be revealed
+    // and stay invisible, so for those any visible pixel is enough.
+    const visibleHeight = window.innerHeight - 40;
+    const threshold = el.offsetHeight * 0.15 > visibleHeight ? 0 : 0.15;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -28,7 +35,7 @@ export function Reveal({ children, className, delayMs = 0 }: RevealProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      { threshold, rootMargin: '0px 0px -40px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();

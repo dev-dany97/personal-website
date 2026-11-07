@@ -1388,6 +1388,156 @@ footer {
   }
 }
 
+/* Home page on tablets and phones (below Bootstrap's lg breakpoint, where the
+   about columns stack). Desktop layout is untouched. */
+@media (max-width: 991.98px) {
+  /* .g-5 (3rem gutter) pulls the rows 1.5rem past the container's 0.75rem
+     padding, which made the page scroll sideways on phones. */
+  .legacy-about .row.g-5 {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 2rem;
+  }
+
+  .legacy-about-more-image-wrap,
+  .legacy-about-extra {
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .legacy-hero {
+    min-height: 520px;
+  }
+
+  .legacy-title {
+    font-size: clamp(2.4rem, 12vw, 3rem);
+    line-height: 1;
+  }
+
+  .legacy-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .legacy-cta {
+    min-width: 0;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.82rem;
+  }
+
+  .legacy-about {
+    padding: 3rem 0;
+  }
+
+  .legacy-about h2 {
+    font-size: 1.75rem;
+  }
+
+  .legacy-about-tags {
+    font-size: 0.9rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .legacy-about-tags-dot {
+    margin: 0 0.4rem;
+  }
+
+  .legacy-about p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .legacy-portrait {
+    width: min(70%, 240px);
+    border-width: 4px;
+  }
+
+  .legacy-about-more-section {
+    margin-top: 2.5rem;
+  }
+
+  .legacy-about-more-section h3 {
+    font-size: 1.15rem;
+  }
+
+  /* Portrait 3:4 photos filled the whole screen; a calmer 4:5 crop at a
+     smaller width keeps the text in view. */
+  .legacy-about-more-image-wrap,
+  .legacy-about-extra {
+    max-width: 260px;
+  }
+
+  .legacy-about-more-image {
+    aspect-ratio: 4 / 5;
+  }
+
+  .legacy-about-more-image-wrap::before {
+    transform: rotate(-3deg) translate(6px, 8px);
+  }
+
+  .legacy-about-more-image-wrap--reverse::before {
+    transform: rotate(3deg) translate(-6px, 8px);
+  }
+
+  .legacy-about-extra {
+    margin-top: 1.5rem;
+  }
+
+  .legacy-about-extra figcaption {
+    font-size: 0.82rem;
+  }
+
+  .legacy-about-motto {
+    margin: 1.25rem 0;
+    padding: 1rem 1.1rem 1rem 1.2rem;
+  }
+
+  .legacy-about .legacy-about-motto p {
+    font-size: 1.05rem;
+  }
+
+  .legacy-stats-bar {
+    margin-top: 1.75rem;
+  }
+
+  .legacy-aerial {
+    padding: 3.5rem 0;
+  }
+
+  .legacy-aerial h2 {
+    font-size: 1.75rem;
+  }
+
+  .legacy-aerial-lead {
+    font-size: 0.98rem;
+  }
+
+  .legacy-aerial-card img,
+  .legacy-aerial-card video {
+    height: 220px;
+  }
+
+  .legacy-aerial-video video {
+    height: 300px;
+  }
+
+  .legacy-aerial-card-body {
+    padding: 1.15rem;
+  }
+
+  .legacy-aerial-card-body h4 {
+    font-size: 1.2rem;
+  }
+
+  /* The social icons ran past the right edge on narrow phones. */
+  .site-footer-social {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+}
+
 /* Projects page */
 
 .projects-page {
