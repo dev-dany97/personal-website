@@ -760,18 +760,25 @@ function seedProjects(db: DatabaseSync) {
     {
       id: 'magic-mirror',
       image: '/images/projects/magic-mirror.jpg',
-      images: null,
+      images: [
+        '/images/projects/magic-mirror.jpg',
+        '/images/projects/magic-mirror-wiring.jpg',
+        '/images/projects/magic-mirror-back-cover.jpg',
+        '/images/projects/magic-mirror-cross-section.jpg'
+      ],
       status: 'completed',
-      year: 2025,
+      year: 2024,
       title_en: 'Magic Mirror',
       title_de: 'Magic Mirror',
-      description_en: 'A big, flexible project with a lot of possibilities. I use it to see important dates, events and news, and to start my day with a nice quote.',
-      description_de: 'Das Magic-Mirror-Projekt ist sehr umfangreich, aber auch flexibel mit endlosen Möglichkeiten. Ich nutze es, um über wichtige Termine, Events und Neuigkeiten informiert zu sein und den Tag mit schönen Sprüchen zu beginnen.',
-      tags_en: ['Raspberry Pi', 'JavaScript', 'Smart Display'],
-      tags_de: ['Raspberry Pi', 'JavaScript', 'Smart Display'],
+      description_en:
+        "My smart mirror hangs in the hallway. It looks like a normal mirror until text and pictures show up in the glass. In the morning I can see my appointments, the weather, official warnings, stock and crypto prices and the room temperatures from my smart home at a glance. It also says something nice to start the day. Behind 6 mm smart mirror glass (120 × 65 cm) there are two 15.6\" 4K panels (AUO B156ZAN03.1). Each panel has its own VSDISPLAY driver board and its own Raspberry Pi 4 that runs MagicMirror². The whole back is covered with black foil so you can't see the electronics from the front. A SafemaX magnetic mount holds it on the wall and I can just take it off when I need to fix something. The most important lesson: the displays need their own power supply. When they got their power through the Pi it kept restarting during boot. Since I switched to an Anker 100 W power supply everything runs fine. In November 2024 I cleaned up the repo. All keys are now in their own config file and a small Python script merges several calendars into one. After every push GitHub runs automatic tests and a secret scan. The config, the script and a step-by-step guide are on GitHub under the MIT license, so you can build your own.",
+      description_de:
+        'Mein Smart Mirror hängt im Flur und sieht aus wie ein ganz normaler Spiegel, bis Text und Bilder im Glas erscheinen. Morgens sehe ich so auf einen Blick meine Termine, das Wetter, amtliche Warnungen, Aktien- und Kryptokurse sowie die Temperaturen aus meinem Smart Home. Dazu gibt es noch einen netten Spruch für den Start in den Tag. Hinter einem 6 mm Smart-Mirror-Spezialglas (120 × 65 cm) sitzen zwei 15,6"-4K-Panels (AUO B156ZAN03.1), jedes mit eigenem VSDISPLAY-Treiberboard und eigenem Raspberry Pi 4, auf dem MagicMirror² läuft. Die komplette Rückseite ist mit schwarzer Folie abgeklebt, damit man die Technik von vorne nicht sieht, und eine SafemaX-Magnethalterung hält das Ganze an der Wand, so kann ich den Spiegel zur Wartung einfach abnehmen. Die wichtigste Erkenntnis: Die Displays brauchen eine eigene Stromversorgung. Solange sie über den Pi versorgt wurden, ist er beim Booten immer wieder neu gestartet, seit dem Wechsel auf ein Anker 100-W-Netzteil läuft alles stabil. Im November 2024 habe ich das Repo dann komplett überarbeitet: Alle Schlüssel liegen jetzt in einer eigenen Config-Datei, ein kleines Python-Skript führt mehrere Kalender zu einem zusammen und nach jedem Push laufen automatische Tests und ein Secret-Scan auf GitHub. Konfiguration, Skript und eine Schritt-für-Schritt-Anleitung findest du auf GitHub unter MIT-Lizenz, falls du dir selbst einen bauen willst.',
+      tags_en: ['Raspberry Pi', 'MagicMirror²', 'JavaScript', 'Python', 'Smart Home'],
+      tags_de: ['Raspberry Pi', 'MagicMirror²', 'JavaScript', 'Python', 'Smart Home'],
       link_label_en: 'View on GitHub',
       link_label_de: 'Auf GitHub ansehen',
-      link_url: 'https://github.com/dev-dany97/magicMirror'
+      link_url: 'https://github.com/dev-dany97/smart-mirror'
     },
     {
       id: 'pi-hole',
