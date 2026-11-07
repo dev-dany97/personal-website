@@ -782,19 +782,24 @@ function seedProjects(db: DatabaseSync) {
     },
     {
       id: 'pi-hole',
-      image: '/images/projects/pihole.png',
-      images: null,
-      status: 'completed',
+      image: '/images/projects/pihole-setup-fritzbox.png',
+      images: [
+        '/images/projects/pihole-setup-fritzbox.png',
+        '/images/projects/pihole.png'
+      ],
+      status: 'active',
       year: 2017,
       title_en: 'Pi Hole - Ad Blocker',
       title_de: 'Pi-hole - Werbeblocker',
-      description_en: 'Pi-hole adds an extra layer of security to my home network — it blocks ads and trackers for every device on the network. It runs on a Raspberry Pi 3.',
-      description_de: 'Das Pi-hole-Projekt fügt dem eigenen Heimnetzwerk eine zusätzliche Sicherheitsebene hinzu, um unerwünschte Werbung und Tracking netzwerkweit zu blockieren. Pi-hole läuft auf einem Raspberry Pi III.',
-      tags_en: ['Raspberry Pi', 'Networking', 'Privacy'],
-      tags_de: ['Raspberry Pi', 'Netzwerk', 'Privatsphäre'],
-      link_label_en: 'Visit pi-hole.net',
-      link_label_de: 'pi-hole.net besuchen',
-      link_url: 'https://pi-hole.net/'
+      description_en:
+        "In 2017 I set up Pi-hole on a Raspberry Pi 3. It adds an extra layer of protection to my home network and blocks ads and trackers for every device at once. Pi-hole works as the DNS server for the whole network. My router gives out the Pi as the DNS server, so every device asks the Pi first when it wants to open a website. If the address is on one of the blocklists, Pi-hole doesn't give back the real address and the ad or tracker simply never loads. All other requests go on to my FRITZ!Box, which asks the external DNS server. The big advantage: nothing has to be installed on the devices. It also works on phones, tablets, smart TVs and smart home devices where you can't add an ad blocker. Pages load a bit faster too because less data is downloaded. In the web dashboard I can see how many requests were blocked, which domains are asked for most often and which devices talk to which servers. If a website stops working, I can put a single domain on the allowlist with one click. The Pi runs quietly in the background, uses very little power and is still running today. I set it up with the FRITZ!Box guide from the Kuketz blog (in German), which is linked below.",
+      description_de:
+        'Im Jahr 2017 habe ich Pi-hole auf einem Raspberry Pi 3 eingerichtet. Es fügt meinem Heimnetzwerk eine zusätzliche Schutzebene hinzu und blockiert Werbung und Tracker für alle Geräte gleichzeitig. Pi-hole arbeitet dabei als DNS-Server für das gesamte Netzwerk: Mein Router verteilt den Pi als DNS-Server, sodass jedes Gerät zuerst beim Pi nachfragt, wenn es eine Webseite aufrufen will. Steht die Adresse auf einer der Blocklisten, gibt Pi-hole nicht die echte Adresse zurück und die Werbung oder der Tracker wird gar nicht erst geladen. Alle anderen Anfragen leitet der Pi an meine FRITZ!Box weiter, die sie beim externen DNS-Server auflöst. Der große Vorteil: Auf den Geräten selbst muss nichts installiert werden. Das funktioniert also auch auf Smartphones, Tablets, Smart-TVs und Smart-Home-Geräten, auf denen man keinen Werbeblocker installieren kann. Nebenbei laden Webseiten etwas schneller, weil weniger Daten übertragen werden. Im Web-Dashboard sehe ich, wie viele Anfragen blockiert wurden, welche Domains am häufigsten abgefragt werden und welche Geräte mit welchen Servern kommunizieren. Funktioniert eine Webseite einmal nicht richtig, kann ich einzelne Domains mit einem Klick auf die Allowlist setzen. Der Pi läuft dabei leise im Hintergrund, verbraucht kaum Strom und ist bis heute im Einsatz. Eingerichtet habe ich alles nach der FRITZ!Box-Anleitung aus dem Kuketz-Blog, die unten verlinkt ist.',
+      tags_en: ['Raspberry Pi', 'Pi-hole', 'DNS', 'FRITZ!Box', 'Networking', 'Privacy'],
+      tags_de: ['Raspberry Pi', 'Pi-hole', 'DNS', 'FRITZ!Box', 'Netzwerk', 'Privatsphäre'],
+      link_label_en: 'Setup guide (Kuketz blog, German)',
+      link_label_de: 'Einrichtungsanleitung (Kuketz-Blog)',
+      link_url: 'https://www.kuketz-blog.de/pi-hole-einrichtung-und-konfiguration-mit-fritzbox-adblocker-teil1/'
     },
     {
       id: 'homeassistant',
