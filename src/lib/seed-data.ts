@@ -884,10 +884,11 @@ function seedProjects(db: DatabaseSync) {
     },
     {
       id: 'crypto-trading-bot',
-      image: '/images/projects/cryptotrading-bot.png',
+      image: '/images/projects/crypto-trading-bot-windows.jpg',
       images: [
-        '/images/projects/cryptotrading-bot.png',
-        '/images/projects/crypto-trading-bot-terminal.jpg'
+        '/images/projects/crypto-trading-bot-windows.jpg',
+        '/images/projects/crypto-trading-bot-dashboard.jpg',
+        '/images/projects/cryptotrading-bot.png'
       ],
       status: 'completed',
       year: 2024,
