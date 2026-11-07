@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
@@ -42,10 +42,40 @@ interface ProjectsContent {
   close: string;
   previousImage: string;
   nextImage: string;
+  topicsAriaLabel: string;
+  topicAll: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+  filterByTag: string;
+  resultCount: string;
+  emptyState: string;
+  resetFilters: string;
   projects: Project[];
 }
 
 type ProjectsResponse = Record<'en' | 'de', ProjectsContent>;
+
+// A tag counts as a topic chip once at least this many projects share it.
+// Rarer tags stay reachable by clicking them on a project card.
+const MIN_PROJECTS_PER_TOPIC = 2;
+
+// Tags are translated per language. The English tag is the canonical key, so a
+// chosen topic survives a language switch and works in a shared ?tag= link.
+function buildTagMaps(data: ProjectsResponse) {
+  const toEn = new Map<string, string>();
+  const fromEn = { en: new Map<string, string>(), de: new Map<string, string>() };
+  data.en.projects.forEach((p) => {
+    const de = data.de.projects.find((d) => d.id === p.id);
+    p.tags.forEach((tag, i) => {
+      const deTag = de?.tags[i] ?? tag;
+      toEn.set(tag.toLowerCase(), tag);
+      toEn.set(deTag.toLowerCase(), tag);
+      fromEn.en.set(tag, tag);
+      fromEn.de.set(tag, deTag);
+    });
+  });
+  return { toEn, fromEn };
+}
 
 const goToImageLabel = (lang: 'en' | 'de', i: number) => (lang === 'de' ? `Zu Bild ${i} springen` : `Go to image ${i}`);
 
@@ -53,21 +83,70 @@ export default function Projects() {
   const { i18n } = useTranslation();
   const lang = i18n.language === 'de' ? 'de' : 'en';
   const [data, setData] = useState<ProjectsResponse | null>(null);
+  const [activeTag, setActiveTag] = useState<string | null>(null); // canonical (English) tag
 
   useEffect(() => {
     fetch('/api/projects')
       .then((res) => res.json())
-      .then(setData);
+      .then((json: ProjectsResponse) => {
+        setData(json);
+        // Pick up a shared link such as /projects?tag=Raspberry%20Pi.
+        const fromUrl = new URLSearchParams(window.location.search).get('tag');
+        const canonical = fromUrl ? buildTagMaps(json).toEn.get(fromUrl.toLowerCase()) : undefined;
+        if (canonical) setActiveTag(canonical);
+      });
   }, []);
 
   const [activeFilter, setActiveFilter] = useState<'all' | ProjectStatus>('all');
+  const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<Project | null>(null);
   const [slideIndex, setSlideIndex] = useState(0);
+
+  const tagMaps = useMemo(() => (data ? buildTagMaps(data) : null), [data]);
+
+  // Keep the URL in sync so a filtered view can be shared.
+  useEffect(() => {
+    if (!tagMaps) return;
+    const url = new URL(window.location.href);
+    if (activeTag) url.searchParams.set('tag', activeTag);
+    else url.searchParams.delete('tag');
+    window.history.replaceState(null, '', url);
+  }, [activeTag, tagMaps]);
 
   const projects = data ? data[lang].projects : [];
   const completedCount = projects.filter((p) => p.status === 'completed').length;
   const inProgressCount = projects.filter((p) => p.status === 'active').length;
-  const filteredProjects = activeFilter === 'all' ? projects : projects.filter((p) => p.status === activeFilter);
+
+  const activeTagLabel = activeTag && tagMaps ? tagMaps.fromEn[lang].get(activeTag) ?? activeTag : null;
+  const normalizedQuery = query.trim().toLowerCase();
+  const matchesTopicAndSearch = (p: Project) =>
+    (!activeTagLabel || p.tags.includes(activeTagLabel)) &&
+    (!normalizedQuery ||
+      [p.title, p.description, ...p.tags].some((text) => text.toLowerCase().includes(normalizedQuery)));
+  const matchesStatus = (p: Project) => activeFilter === 'all' || p.status === activeFilter;
+
+  const filteredProjects = projects.filter((p) => matchesStatus(p) && matchesTopicAndSearch(p));
+  const hasActiveFilters = activeFilter !== 'all' || activeTag !== null || normalizedQuery !== '';
+
+  // Topics: tags shared by several projects, most common first. Counts follow the status filter.
+  const tagCounts = new Map<string, number>();
+  projects.forEach((p) => p.tags.forEach((tag) => tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1)));
+  const topics = [...tagCounts.entries()]
+    .filter(([, n]) => n >= MIN_PROJECTS_PER_TOPIC)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], lang))
+    .map(([tag]) => tag);
+  // A tag picked from a card shows up as a chip too, even if it is rare.
+  const topicChips = activeTagLabel && !topics.includes(activeTagLabel) ? [...topics, activeTagLabel] : topics;
+
+  const toggleTag = (label: string) => {
+    const canonical = tagMaps?.toEn.get(label.toLowerCase()) ?? label;
+    setActiveTag((current) => (current === canonical ? null : canonical));
+  };
+  const resetFilters = () => {
+    setActiveFilter('all');
+    setActiveTag(null);
+    setQuery('');
+  };
   const gallery = selected ? selected.images ?? [selected.image] : [];
 
   useEffect(() => {
@@ -136,11 +215,67 @@ export default function Projects() {
               >
                 {f.label}
                 <span className="projects-filter-count">
-                  {f.id === 'all' ? projects.length : projects.filter((p) => p.status === f.id).length}
+                  {projects.filter((p) => (f.id === 'all' || p.status === f.id) && matchesTopicAndSearch(p)).length}
                 </span>
               </button>
             ))}
           </div>
+
+          <div className="projects-topics" role="group" aria-label={c.topicsAriaLabel}>
+            <button
+              type="button"
+              aria-pressed={activeTag === null}
+              className={`projects-topic-btn ${activeTag === null ? 'active' : ''}`}
+              onClick={() => setActiveTag(null)}
+            >
+              {c.topicAll}
+            </button>
+            {topicChips.map((tag) => {
+              const isActive = tag === activeTagLabel;
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  aria-pressed={isActive}
+                  className={`projects-topic-btn ${isActive ? 'active' : ''}`}
+                  onClick={() => toggleTag(tag)}
+                >
+                  {tag}
+                  <span className="projects-filter-count">
+                    {projects.filter((p) => matchesStatus(p) && p.tags.includes(tag)).length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="projects-search-row">
+            <input
+              type="search"
+              className="projects-search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={c.searchPlaceholder}
+              aria-label={c.searchLabel}
+            />
+            <p className="projects-result-count" aria-live="polite">
+              {c.resultCount.replace('{count}', String(filteredProjects.length)).replace('{total}', String(projects.length))}
+              {hasActiveFilters && (
+                <button type="button" className="projects-reset-btn" onClick={resetFilters}>
+                  {c.resetFilters}
+                </button>
+              )}
+            </p>
+          </div>
+
+          {filteredProjects.length === 0 && (
+            <div className="projects-empty">
+              <p>{c.emptyState}</p>
+              <button type="button" className="projects-filter-btn" onClick={resetFilters}>
+                {c.resetFilters}
+              </button>
+            </div>
+          )}
 
           <div className="projects-grid">
             {filteredProjects.map((project) => (
@@ -164,7 +299,19 @@ export default function Projects() {
                   <p className="project-card-desc">{project.description}</p>
                   <div className="project-tags">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="project-tag">{tag}</span>
+                      <button
+                        key={tag}
+                        type="button"
+                        className={`project-tag project-tag--button ${tag === activeTagLabel ? 'active' : ''}`}
+                        title={c.filterByTag}
+                        aria-pressed={tag === activeTagLabel}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleTag(tag);
+                        }}
+                      >
+                        {tag}
+                      </button>
                     ))}
                   </div>
                   <div className="project-card-footer">

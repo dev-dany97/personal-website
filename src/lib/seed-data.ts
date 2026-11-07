@@ -282,7 +282,15 @@ function seedPageContent(db: DatabaseSync) {
       viewDetails: 'View details',
       close: 'Close',
       previousImage: 'Previous image',
-      nextImage: 'Next image'
+      nextImage: 'Next image',
+      topicsAriaLabel: 'Filter projects by topic',
+      topicAll: 'All topics',
+      searchLabel: 'Search projects',
+      searchPlaceholder: 'Search, e.g. Raspberry Pi or Python',
+      filterByTag: 'Show all projects with this tag',
+      resultCount: '{count} of {total} projects',
+      emptyState: 'No project matches these filters.',
+      resetFilters: 'Reset filters'
     },
     {
       eyebrow: 'Portfolio',
@@ -303,7 +311,15 @@ function seedPageContent(db: DatabaseSync) {
       viewDetails: 'Details ansehen',
       close: 'Schließen',
       previousImage: 'Vorheriges Bild',
-      nextImage: 'Nächstes Bild'
+      nextImage: 'Nächstes Bild',
+      topicsAriaLabel: 'Projekte nach Thema filtern',
+      topicAll: 'Alle Themen',
+      searchLabel: 'Projekte durchsuchen',
+      searchPlaceholder: 'Suchen, z. B. Raspberry Pi oder Python',
+      filterByTag: 'Alle Projekte mit diesem Tag anzeigen',
+      resultCount: '{count} von {total} Projekten',
+      emptyState: 'Kein Projekt passt zu diesen Filtern.',
+      resetFilters: 'Filter zurücksetzen'
     }
   );
 
