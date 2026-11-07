@@ -2,11 +2,13 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Maximize2 } from 'lucide-react';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { GithubIcon, ExternalLinkIcon } from '@/app/components/Icons';
 import { CodeEditorBackground } from '@/app/components/backgrounds/CodeEditorBackground';
 import { SiteImage } from '@/app/components/SiteImage';
+import { ImageLightbox, useSwipe } from '@/app/components/ImageLightbox';
 
 type ProjectStatus = 'completed' | 'active' | 'experimental';
 
@@ -78,6 +80,7 @@ function buildTagMaps(data: ProjectsResponse) {
 }
 
 const goToImageLabel = (lang: 'en' | 'de', i: number) => (lang === 'de' ? `Zu Bild ${i} springen` : `Go to image ${i}`);
+const openFullscreenLabel = (lang: 'en' | 'de') => (lang === 'de' ? 'Bild im Vollbild anzeigen' : 'View image fullscreen');
 
 export default function Projects() {
   const { i18n } = useTranslation();
@@ -101,6 +104,7 @@ export default function Projects() {
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<Project | null>(null);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [fullscreen, setFullscreen] = useState(false);
 
   const tagMaps = useMemo(() => (data ? buildTagMaps(data) : null), [data]);
 
@@ -148,11 +152,14 @@ export default function Projects() {
     setQuery('');
   };
   const gallery = selected ? selected.images ?? [selected.image] : [];
+  const stepSlide = (step: 1 | -1) => setSlideIndex((i) => (i + step + gallery.length) % gallery.length);
+  const modalSwipe = useSwipe((dir) => gallery.length > 1 && stepSlide(dir));
+  const closeModal = () => { setFullscreen(false); setSelected(null); };
 
   useEffect(() => {
     if (!selected) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelected(null);
+      if (e.key === 'Escape') closeModal();
       if (e.key === 'ArrowRight') setSlideIndex((i) => (i + 1) % gallery.length);
       if (e.key === 'ArrowLeft') setSlideIndex((i) => (i - 1 + gallery.length) % gallery.length);
     };
@@ -342,7 +349,7 @@ export default function Projects() {
       {selected && (
         <div
           className="project-modal-overlay"
-          onClick={() => setSelected(null)}
+          onClick={closeModal}
           role="dialog"
           aria-modal="true"
           aria-label={selected.title}
@@ -351,19 +358,30 @@ export default function Projects() {
             <button
               type="button"
               className="project-modal-close"
-              onClick={() => setSelected(null)}
+              onClick={closeModal}
               aria-label={c.close}
             >
               &times;
             </button>
-            <div className="project-modal-media">
-              <SiteImage src={gallery[slideIndex]} alt={`${selected.title} ${slideIndex + 1}`} className="project-modal-image" width={1200} height={800} sizes="(max-width: 800px) 100vw, 800px" style={{ height: 'auto' }} />
+            <div className="project-modal-media" {...modalSwipe}>
+              <button
+                type="button"
+                className="project-modal-zoom"
+                onClick={() => setFullscreen(true)}
+                aria-label={openFullscreenLabel(lang)}
+                title={openFullscreenLabel(lang)}
+              >
+                <SiteImage src={gallery[slideIndex]} alt={`${selected.title} ${slideIndex + 1}`} className="project-modal-image" width={1200} height={800} sizes="(max-width: 800px) 100vw, 800px" style={{ height: 'auto' }} />
+                <span className="project-modal-zoom-hint" aria-hidden="true">
+                  <Maximize2 size={16} />
+                </span>
+              </button>
               {gallery.length > 1 && (
                 <>
                   <button
                     type="button"
                     className="project-modal-nav project-modal-nav--prev"
-                    onClick={() => setSlideIndex((i) => (i - 1 + gallery.length) % gallery.length)}
+                    onClick={() => stepSlide(-1)}
                     aria-label={c.previousImage}
                   >
                     &#8249;
@@ -371,7 +389,7 @@ export default function Projects() {
                   <button
                     type="button"
                     className="project-modal-nav project-modal-nav--next"
-                    onClick={() => setSlideIndex((i) => (i + 1) % gallery.length)}
+                    onClick={() => stepSlide(1)}
                     aria-label={c.nextImage}
                   >
                     &#8250;
@@ -416,6 +434,17 @@ export default function Projects() {
             </div>
           </div>
         </div>
+      )}
+
+      {selected && fullscreen && (
+        <ImageLightbox
+          images={gallery}
+          index={slideIndex}
+          alt={selected.title}
+          onIndexChange={setSlideIndex}
+          onClose={() => setFullscreen(false)}
+          labels={{ close: c.close, previous: c.previousImage, next: c.nextImage }}
+        />
       )}
 
       <Footer />
