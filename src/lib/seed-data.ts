@@ -822,6 +822,13 @@ function seedProjects(db: DatabaseSync) {
       image: '/images/projects/homeassistant-1.png',
       images: [
         '/images/projects/homeassistant-1.png',
+        '/images/projects/homeassistant-5.jpg',
+        '/images/projects/homeassistant-6.jpg',
+        '/images/projects/homeassistant-7.jpg',
+        '/images/projects/homeassistant-8.jpg',
+        '/images/projects/homeassistant-9.jpg',
+        '/images/projects/homeassistant-10.jpg',
+        '/images/projects/homeassistant-11.jpg',
         '/images/projects/homeassistant-2.jpg',
         '/images/projects/homeassistant-3.jpg',
         '/images/projects/homeassistant-4.jpg'
@@ -830,10 +837,13 @@ function seedProjects(db: DatabaseSync) {
       year: 2020,
       title_en: 'HomeAssistant',
       title_de: 'HomeAssistant',
-      description_en: 'Home Assistant is an open-source platform that lets you build your own smart home system by connecting and automating different devices. Mine runs on a Raspberry Pi 4.',
-      description_de: 'Home Assistant ist eine Open-Source-Plattform, mit der man durch die Integration und Automatisierung verschiedener Geräte und Dienste ein zentralisiertes, individuell anpassbares Smart-Home-System aufbauen kann. HomeAssistant läuft bei mir auf einem Raspberry Pi IV.',
-      tags_en: ['Raspberry Pi', 'Home Automation', 'Smart Home'],
-      tags_de: ['Raspberry Pi', 'Hausautomatisierung', 'Smart Home'],
+      // {yearsSince:2020} is replaced with the current number of years when the page is loaded.
+      description_en:
+        "Home Assistant is an open-source platform that lets you build your own smart home system by connecting and automating different devices. I have been expanding my Home Assistant for {yearsSince:2020} years now. It all started on a Raspberry Pi 3, then came a Raspberry Pi 5 and today everything runs on a Home Assistant Green because the computing power, performance and storage were no longer enough. For my lights I also switched from Philips Hue to Zigbee. Zigbee switches much more reliably and faster and it doesn't need Wi-Fi. In general I try to connect all my smart home devices by cable, BLE or Zigbee. I control everything through dashboards on tablets mounted on the wall in my flat and on the balcony.",
+      description_de:
+        'Home Assistant ist eine Open-Source-Plattform, mit der man durch die Integration und Automatisierung verschiedener Geräte und Dienste ein zentralisiertes, individuell anpassbares Smart-Home-System aufbauen kann. Mittlerweile erweitere ich mein Home Assistant schon seit {yearsSince:2020} Jahren. Angefangen hat alles mit einem Raspberry Pi 3, danach kam ein Raspberry Pi 5 und heute läuft alles auf einem Home Assistant Green, weil Rechenleistung, Performance und Speicher nicht mehr ausgereicht haben. Bei der Ansteuerung der Lampen bin ich außerdem von Philips Hue auf Zigbee umgestiegen, da Zigbee deutlich zuverlässiger und schneller schaltet und kein WLAN benötigt. Generell versuche ich, alle Smart-Home-Geräte per Kabel, BLE oder Zigbee einzubinden. Bedient wird das Ganze über Dashboards auf Tablets, die in der Wohnung und auf dem Balkon an der Wand hängen.',
+      tags_en: ['Home Assistant Green', 'Zigbee', 'BLE', 'Raspberry Pi', 'Home Automation', 'Smart Home'],
+      tags_de: ['Home Assistant Green', 'Zigbee', 'BLE', 'Raspberry Pi', 'Hausautomatisierung', 'Smart Home'],
       link_label_en: 'Visit home-assistant.io',
       link_label_de: 'home-assistant.io besuchen',
       link_url: 'https://www.home-assistant.io/'

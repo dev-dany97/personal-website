@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
+import { resolveTextPlaceholders } from '@/lib/text-placeholders';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,7 +33,7 @@ export async function GET() {
     rows.map((r) => ({
       id: r.id,
       title: lang === 'en' ? r.title_en : r.title_de,
-      description: lang === 'en' ? r.description_en : r.description_de,
+      description: resolveTextPlaceholders(lang === 'en' ? r.description_en : r.description_de),
       image: r.image,
       images: r.images ? JSON.parse(r.images) : undefined,
       status: r.status,
