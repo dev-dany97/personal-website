@@ -885,18 +885,23 @@ function seedProjects(db: DatabaseSync) {
     {
       id: 'crypto-trading-bot',
       image: '/images/projects/cryptotrading-bot.png',
-      images: null,
-      status: 'experimental',
-      year: 2023,
+      images: [
+        '/images/projects/cryptotrading-bot.png',
+        '/images/projects/crypto-trading-bot-terminal.jpg'
+      ],
+      status: 'completed',
+      year: 2024,
       title_en: 'Crypto Trading Bot',
       title_de: 'Crypto Trading Bot',
-      description_en: 'This bot watches the price of a few cryptocurrencies and buys or sells automatically when the price is low or high.',
-      description_de: 'Der Crypto Trading Bot überwacht aktuelle Preisänderungen ausgewählter Kryptowährungen und kauft oder verkauft, wenn der Preis niedrig oder hoch ist — so werden Handelsentscheidungen automatisiert.',
-      tags_en: ['Python', 'Trading API', 'Automation'],
-      tags_de: ['Python', 'Trading-API', 'Automatisierung'],
-      link_label_en: null,
-      link_label_de: null,
-      link_url: null
+      description_en:
+        "I wanted to see how far I could get with the Binance API, so I wrote a small bot in Python. It reads my wallet and my open orders, loads the daily prices of a coin pair like ETH/EUR and gives a simple buy signal. The rule is easy: the bot looks at the daily high of the last five days. If the high fell on three or more of those days, it says WAIT. Otherwise it says BUY. The bot only reads data and never places an order on its own, so a bug can't cost any money. The API key is not in the code but in a separate config file. With the offline mode you can try the bot without a Binance account. It then uses saved ETH/EUR prices from 2020 and 2021. Tests with a fake Binance client run on every push and a secret scan makes sure no key ends up on GitHub. The code is on GitHub under the MIT license. Next I want to add more indicators like the RSI and test the rule on old prices.",
+      description_de:
+        'Ich wollte wissen, wie weit ich mit der Binance-API komme, und habe deshalb einen kleinen Bot in Python geschrieben. Er liest mein Wallet und meine offenen Orders aus, lädt die Tageskurse eines Coin-Paars wie ETH/EUR und gibt ein einfaches Kaufsignal. Die Regel ist bewusst simpel: Der Bot schaut sich das Tageshoch der letzten fünf Tage an. Ist das Hoch an drei oder mehr dieser Tage gefallen, sagt er WAIT, sonst BUY. Der Bot liest nur Daten und setzt nie selbst eine Order ab, ein Fehler im Code kann also kein Geld kosten. Der API-Key steht nicht im Code, sondern in einer eigenen Konfigurationsdatei. Mit dem Offline-Modus kann man den Bot auch ohne Binance-Konto ausprobieren, er nutzt dann gespeicherte ETH/EUR-Kurse aus 2020 und 2021. Bei jedem Push laufen Tests mit einem simulierten Binance-Client und ein Secret-Scan stellt sicher, dass kein Key auf GitHub landet. Der Code liegt unter MIT-Lizenz auf GitHub. Als Nächstes möchte ich weitere Indikatoren wie den RSI ergänzen und die Regel an alten Kursen testen.',
+      tags_en: ['Python', 'Binance API', 'pandas', 'pytest', 'GitHub Actions'],
+      tags_de: ['Python', 'Binance-API', 'pandas', 'pytest', 'GitHub Actions'],
+      link_label_en: 'View on GitHub',
+      link_label_de: 'Auf GitHub ansehen',
+      link_url: 'https://github.com/dev-dany97/crypto-trading-bot'
     },
     {
       id: 'radar-recognition',
