@@ -136,7 +136,8 @@ function createSchema(db: DatabaseSync) {
       note_en TEXT NOT NULL,
       note_de TEXT NOT NULL,
       thesis_en TEXT NOT NULL,
-      thesis_de TEXT NOT NULL
+      thesis_de TEXT NOT NULL,
+      proof TEXT NOT NULL DEFAULT ''
     );
 
     CREATE TABLE IF NOT EXISTS resume_skills (
@@ -149,7 +150,8 @@ function createSchema(db: DatabaseSync) {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       sort_order INTEGER NOT NULL,
       name_en TEXT NOT NULL,
-      name_de TEXT NOT NULL
+      name_de TEXT NOT NULL,
+      proof TEXT NOT NULL DEFAULT ''
     );
 
     CREATE TABLE IF NOT EXISTS finance_briefings (

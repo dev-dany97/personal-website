@@ -2416,6 +2416,109 @@ footer {
   background: var(--primary);
 }
 
+/* Certificate with proof: the whole entry is clickable and opens the dialog. */
+.resume-cert-proof {
+  all: unset;
+  cursor: pointer;
+  color: var(--text-soft);
+  text-decoration: underline dotted var(--primary);
+  text-underline-offset: 0.25em;
+  transition: color 0.2s ease;
+}
+
+.resume-cert-proof:hover,
+.resume-cert-proof:focus-visible {
+  color: var(--primary);
+}
+
+.resume-cert-proof:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.resume-cert-proof-hint {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  color: var(--primary);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  vertical-align: 0.1em;
+}
+
+.cert-proof-dialog {
+  margin: auto;
+  width: min(900px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 1rem 1.25rem 1.25rem;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  background: var(--bg-soft);
+  color: var(--text);
+  overflow: auto;
+}
+
+.cert-proof-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.cert-proof-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.cert-proof-header h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.cert-proof-close {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cert-proof-close:hover,
+.cert-proof-close:focus-visible {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.cert-proof-preview {
+  display: block;
+}
+
+.cert-proof-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 11rem);
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.cert-proof-pdf {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
 @media (max-width: 900px) {
   .resume-grid {
     grid-template-columns: 1fr;

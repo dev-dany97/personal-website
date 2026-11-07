@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { PigeonBackground } from '@/app/components/backgrounds/PigeonBackground';
 import { socialLinks } from '@/app/components/Icons';
 import { SiteImage } from '@/app/components/SiteImage';
+import { CertificateProofDialog, type CertificateProof } from '@/app/components/CertificateProofDialog';
 
 const CONTACT_SOCIAL_LABELS = ['LinkedIn', 'Xing'];
 
@@ -46,6 +47,12 @@ interface EducationItem {
   period: string;
   note: string;
   thesis: string;
+  proof: CertificateProof | null;
+}
+
+interface CertificateItem {
+  name: string;
+  proof: CertificateProof | null;
 }
 
 interface ResumeContent {
@@ -60,7 +67,7 @@ interface ResumeContent {
   sailingLicenses?: string[];
   experience: ExperienceItem[];
   education: EducationItem[];
-  certificates: string[];
+  certificates: CertificateItem[];
 }
 
 interface ResumeResponse {
@@ -85,6 +92,7 @@ export default function Contact() {
 
   const [contact, setContact] = useState<ContactResponse | null>(null);
   const [resume, setResume] = useState<ResumeResponse | null>(null);
+  const [openProof, setOpenProof] = useState<CertificateItem | null>(null);
 
   useEffect(() => {
     fetch('/api/contact').then((res) => res.json()).then(setContact);
@@ -252,7 +260,23 @@ export default function Contact() {
                       <div className="timeline-content">
                         <strong>{item.degree}</strong>
                         <span className="timeline-company">{item.institution}</span>
-                        {item.note && <p className="timeline-note">{item.note}</p>}
+                        {item.note && (
+                          <p className="timeline-note">
+                            {item.proof ? (
+                              <button
+                                type="button"
+                                className="resume-cert-proof"
+                                onClick={() => setOpenProof({ name: `${item.degree}, ${item.institution}`, proof: item.proof })}
+                                aria-haspopup="dialog"
+                              >
+                                {item.note}
+                                <span className="resume-cert-proof-hint">{lang === 'de' ? 'Nachweis' : 'Proof'}</span>
+                              </button>
+                            ) : (
+                              item.note
+                            )}
+                          </p>
+                        )}
                         {item.thesis && <p className="timeline-thesis">{item.thesis}</p>}
                       </div>
                     </div>
@@ -273,7 +297,21 @@ export default function Contact() {
                 <h3>{r.certificatesTitle}</h3>
                 <ul className="resume-cert-list">
                   {r.certificates.map((cert) => (
-                    <li key={cert}>{cert}</li>
+                    <li key={cert.name}>
+                      {cert.proof ? (
+                        <button
+                          type="button"
+                          className="resume-cert-proof"
+                          onClick={() => setOpenProof(cert)}
+                          aria-haspopup="dialog"
+                        >
+                          {cert.name}
+                          <span className="resume-cert-proof-hint">{lang === 'de' ? 'Nachweis' : 'Proof'}</span>
+                        </button>
+                      ) : (
+                        cert.name
+                      )}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -292,6 +330,19 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {openProof?.proof && (
+        <CertificateProofDialog
+          name={openProof.name}
+          proof={openProof.proof}
+          onClose={() => setOpenProof(null)}
+          labels={
+            lang === 'de'
+              ? { close: 'Schließen', openPdf: 'PDF öffnen', previewAlt: 'Nachweis' }
+              : { close: 'Close', openPdf: 'Open PDF', previewAlt: 'Proof' }
+          }
+        />
+      )}
 
       <Footer />
     </main>

@@ -1278,14 +1278,16 @@ function seedResume(db: DatabaseSync) {
       period_en: '2019 – 2021', period_de: '2019 – 2021',
       note_en: 'Grade: 1.5', note_de: 'Note: 1,5',
       thesis_en: 'Thesis: Development of an Embedded Software Component for Obstacle Detection Using a Radar Hardware Accelerator',
-      thesis_de: 'Masterarbeit: Entwicklung einer embedded Softwarekomponente zur Hinderniserkennung mittels Radar Hardware Accelerator'
+      thesis_de: 'Masterarbeit: Entwicklung einer embedded Softwarekomponente zur Hinderniserkennung mittels Radar Hardware Accelerator',
+      proof: ''
     },
     {
       degree_en: 'Exchange Semester', degree_de: 'Auslandssemester',
       institution_en: 'Griffith University, Brisbane, Australia', institution_de: 'Griffith University, Brisbane, Australien',
       period_en: '2020 – 2021', period_de: '2020 – 2021',
       note_en: 'GPA: 6.67 / 7.00', note_de: 'GPA: 6,67 / 7,00',
-      thesis_en: '', thesis_de: ''
+      thesis_en: '', thesis_de: '',
+      proof: 'griffith-academic-transcript'
     },
     {
       degree_en: 'B.Sc. Computer Engineering', degree_de: 'B.Sc. Technische Informatik',
@@ -1293,30 +1295,46 @@ function seedResume(db: DatabaseSync) {
       period_en: '2015 – 2019', period_de: '2015 – 2019',
       note_en: '', note_de: '',
       thesis_en: 'Thesis: Analysis and Implementation of Build Time Optimization Through Massive Parallelization of a Multi-Computer System',
-      thesis_de: 'Bachelorarbeit: Analyse und Umsetzung von Möglichkeiten zur Buildzeitoptimierung durch die massive Parallelisierung eines Mehrrechnersystems'
+      thesis_de: 'Bachelorarbeit: Analyse und Umsetzung von Möglichkeiten zur Buildzeitoptimierung durch die massive Parallelisierung eines Mehrrechnersystems',
+      proof: ''
     }
   ];
 
   const insertEducation = db.prepare(`
-    INSERT INTO resume_education (sort_order, degree_en, degree_de, institution_en, institution_de, period_en, period_de, note_en, note_de, thesis_en, thesis_de)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO resume_education (sort_order, degree_en, degree_de, institution_en, institution_de, period_en, period_de, note_en, note_de, thesis_en, thesis_de, proof)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   education.forEach((e, i) =>
-    insertEducation.run(i, e.degree_en, e.degree_de, e.institution_en, e.institution_de, e.period_en, e.period_de, e.note_en, e.note_de, e.thesis_en, e.thesis_de)
+    insertEducation.run(i, e.degree_en, e.degree_de, e.institution_en, e.institution_de, e.period_en, e.period_de, e.note_en, e.note_de, e.thesis_en, e.thesis_de, e.proof)
   );
 
   const skills = ['C/C++', 'Python', 'C#', 'JavaScript', 'VHDL', 'SQL', 'Docker', 'Git', 'CI/CD', 'UML', 'Scrum'];
   const insertSkill = db.prepare('INSERT INTO resume_skills (sort_order, name) VALUES (?, ?)');
   skills.forEach((s, i) => insertSkill.run(i, s));
 
+  // proof: file name (without extension) in public/certificates/. Each has a
+  // PDF without metadata and a WebP preview of the first page.
   const certificates = [
-    { en: 'ISTQB Certified Tester (iSQI Group)', de: 'ISTQB Certified Tester (iSQI Group)' },
-    { en: 'AWS Cloud Practitioner Essentials', de: 'AWS Cloud Practitioner Essentials' },
-    { en: 'Embedded Software Design & Patterns with C (MicroConsult)', de: 'Embedded-Software-Design und Patterns mit C (MicroConsult)' },
-    { en: 'Autosar Architecture', de: 'Autosar Architecture' },
-    { en: 'Embedded Systems Programming on ARM Cortex M3/M4', de: 'Embedded Systems Programming on ARM Cortex M3/M4' },
-    { en: 'DAAD English Language Certificate', de: 'DAAD-Sprachzertifikat Englisch' }
+    { en: 'ISTQB Certified Tester (iSQI Group)', de: 'ISTQB Certified Tester (iSQI Group)', proof: 'istqb-ctfl' },
+    { en: 'AWS Cloud Practitioner Essentials', de: 'AWS Cloud Practitioner Essentials', proof: 'aws-cloud-practitioner-essentials' },
+    {
+      en: 'Embedded Software Design & Patterns with C (MicroConsult)',
+      de: 'Embedded-Software-Design und Patterns mit C (MicroConsult)',
+      proof: 'embedded-software-design-patterns-c'
+    },
+    { en: 'Autosar Architecture', de: 'Autosar Architecture', proof: 'autosar-architecture' },
+    {
+      en: 'Embedded Systems Programming on ARM Cortex M3/M4',
+      de: 'Embedded Systems Programming on ARM Cortex M3/M4',
+      proof: 'arm-cortex-m-embedded-programming'
+    },
+    {
+      en: 'Python for Everybody (University of Michigan, Coursera)',
+      de: 'Python for Everybody (University of Michigan, Coursera)',
+      proof: 'python-for-everybody'
+    },
+    { en: 'DAAD English Language Certificate', de: 'DAAD-Sprachzertifikat Englisch', proof: 'daad-english-language-certificate' }
   ];
-  const insertCert = db.prepare('INSERT INTO resume_certificates (sort_order, name_en, name_de) VALUES (?, ?, ?)');
-  certificates.forEach((c, i) => insertCert.run(i, c.en, c.de));
+  const insertCert = db.prepare('INSERT INTO resume_certificates (sort_order, name_en, name_de, proof) VALUES (?, ?, ?, ?)');
+  certificates.forEach((c, i) => insertCert.run(i, c.en, c.de, c.proof));
 }

@@ -32,13 +32,15 @@ export async function GET() {
     note_de: string;
     thesis_en: string;
     thesis_de: string;
+    proof: string;
   }>;
 
   const skillRows = db.prepare('SELECT name FROM resume_skills ORDER BY sort_order').all() as Array<{ name: string }>;
 
-  const certRows = db.prepare('SELECT name_en, name_de FROM resume_certificates ORDER BY sort_order').all() as Array<{
+  const certRows = db.prepare('SELECT name_en, name_de, proof FROM resume_certificates ORDER BY sort_order').all() as Array<{
     name_en: string;
     name_de: string;
+    proof: string;
   }>;
 
   const en = JSON.parse(pageRow.data_en);
@@ -47,23 +49,29 @@ export async function GET() {
   en.experience = experienceRows.map((r) => ({ role: r.role_en, company: r.company, period: r.period_en, description: r.description_en }));
   de.experience = experienceRows.map((r) => ({ role: r.role_de, company: r.company, period: r.period_de, description: r.description_de }));
 
+  // Nachweise liegen als PDF plus WebP-Vorschau in public/certificates/.
+  const certProof = (proof: string) =>
+    proof ? { pdf: `/certificates/${proof}.pdf`, image: `/certificates/${proof}.webp` } : null;
+
   en.education = educationRows.map((r) => ({
     degree: r.degree_en,
     institution: r.institution_en,
     period: r.period_en,
     note: r.note_en,
-    thesis: r.thesis_en
+    thesis: r.thesis_en,
+    proof: certProof(r.proof)
   }));
   de.education = educationRows.map((r) => ({
     degree: r.degree_de,
     institution: r.institution_de,
     period: r.period_de,
     note: r.note_de,
-    thesis: r.thesis_de
+    thesis: r.thesis_de,
+    proof: certProof(r.proof)
   }));
 
-  en.certificates = certRows.map((r) => r.name_en);
-  de.certificates = certRows.map((r) => r.name_de);
+  en.certificates = certRows.map((r) => ({ name: r.name_en, proof: certProof(r.proof) }));
+  de.certificates = certRows.map((r) => ({ name: r.name_de, proof: certProof(r.proof) }));
 
   const skills = skillRows.map((r) => r.name);
 
