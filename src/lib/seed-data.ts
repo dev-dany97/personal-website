@@ -905,6 +905,54 @@ function seedProjects(db: DatabaseSync) {
       link_url: 'https://github.com/dev-dany97/crypto-trading-bot'
     },
     {
+      id: 'valorant-spike',
+      image: '/images/projects/spike-cover.jpg',
+      images: [
+        '/images/projects/spike-cover.jpg',
+        '/images/setup/spike-poster.jpg'
+      ],
+      status: 'completed',
+      year: 2025,
+      title_en: 'Valorant Spike',
+      title_de: 'Valorant Spike',
+      description_en:
+        "In Valorant the Spike is the bomb that one team plants and the other team has to defuse. I wanted one for my gaming PC, so I built it myself. I 3D printed the housing and painted it by hand. Two LEDs at the top and bottom light it up. An ESP32 inside talks to the PC over USB. The Spike plays the same sounds and animations as the real one in the game. Its light changes from red to blue. It also has a working defuse function. Today it sits inside my PC case right next to the RAM. You can see it in action on my setup page.",
+      description_de:
+        'In Valorant ist der Spike die Bombe, die ein Team platziert und das andere Team entschärfen muss. Ich wollte so einen für meinen Gaming-PC haben und habe ihn deshalb selbst gebaut. Das Gehäuse habe ich mit dem 3D-Drucker gedruckt und von Hand bemalt. Zwei LEDs oben und unten bringen ihn zum Leuchten. Im Inneren sitzt ein ESP32, der über die USB-Schnittstelle mit dem PC kommuniziert. Der Spike hat dabei den gleichen Sound und die gleichen Animationen wie der echte Spike im Spiel. Dabei wechselt er die Farbe von Rot zu Blau. Auch eine Defuse-Funktion hat er. Heute steht er in meinem PC-Gehäuse direkt neben dem Arbeitsspeicher. In Aktion siehst du ihn auf meiner Setup-Seite.',
+      tags_en: ['3D Printing', 'ESP32', 'LEDs', 'Gaming', 'Valorant'],
+      tags_de: ['3D-Druck', 'ESP32', 'LEDs', 'Gaming', 'Valorant'],
+      link_label_en: 'See it on my setup page',
+      link_label_de: 'Auf der Setup-Seite ansehen',
+      link_url: '/setup'
+    },
+    {
+      id: 'balcony-raised-bed',
+      image: '/images/projects/hochbeet-cover.jpg',
+      images: [
+        '/images/projects/hochbeet-cover.jpg',
+        '/images/projects/hochbeet-2.jpg',
+        '/images/projects/hochbeet-3.jpg',
+        '/images/projects/hochbeet-4.jpg',
+        '/images/projects/hochbeet-1.jpg',
+        '/images/projects/hochbeet-5.jpg',
+        '/images/projects/hochbeet-6.jpg',
+        '/images/projects/hochbeet-7.jpg'
+      ],
+      status: 'active',
+      year: 2025,
+      title_en: 'Raised Bed with Irrigation',
+      title_de: 'Hochbeet mit Bewässerung',
+      description_en:
+        "I wanted to grow my own vegetables and herbs on the balcony, so I built a long raised bed myself. The frame is made of wood and the top edge is made of grooved decking boards. Inside, a dimpled membrane protects the wood from the wet soil. At the bottom there is a layer of expanded clay for drainage. On top of that come the base filling, compost and raised bed soil. A drip line runs through the whole bed and every plant gets its own small dripper. The water comes from a small tank with a pump. The whole irrigation runs on solar power. I built the soil moisture sensors in the bed myself. Home Assistant controls everything. Every day at 11 am an automation turns on the power of the solar charge controller and waits two minutes. Then it reads the soil moisture. If it is below 20 % the pump runs for 15 seconds. If the sensor gives no valid value the bed is not watered, so a broken sensor can't flood the bed. Every run is written to the Home Assistant logbook and at the end the power is turned off again. This way the plants only get water when they really need it and I don't have to water by hand, even when I'm on holiday. On my Home Assistant dashboard I can see the soil moisture and the water level of the tank at any time. Tomatoes, berries, lettuce and herbs grow in the bed. In winter I put a small greenhouse cover on top to protect the plants from the cold.",
+      description_de:
+        'Ich wollte auf dem Balkon mein eigenes Gemüse und meine eigenen Kräuter anbauen und habe mir deshalb ein langes Hochbeet selbst gebaut. Der Rahmen ist aus Holz, die obere Kante aus geriffelten Terrassendielen. Innen schützt eine Noppenfolie das Holz vor der feuchten Erde. Ganz unten liegt eine Schicht Blähton als Drainage. Darauf kommen Grundfüllung, Kompost und Hochbeet-Erde. Durch das ganze Beet läuft ein Tropfschlauch und jede Pflanze bekommt ihren eigenen kleinen Tropfer. Das Wasser kommt aus einem kleinen Wasserspeicher mit Pumpe. Die ganze Bewässerung läuft komplett mit Solarstrom. Die Bodenfeuchtesensoren im Beet habe ich selbst gebaut. Gesteuert wird alles über Home Assistant. Jeden Tag um 11 Uhr schaltet eine Automatisierung den Ausgang des Solar-Ladereglers ein und wartet zwei Minuten. Dann liest sie die Bodenfeuchte aus. Liegt sie unter 20 %, läuft die Pumpe für 15 Sekunden. Liefert der Sensor keinen gültigen Wert, wird nicht gegossen, damit ein defekter Sensor das Beet nicht unter Wasser setzt. Jeder Durchlauf landet im Logbuch von Home Assistant und am Ende wird der Strom wieder abgeschaltet. So bekommen die Pflanzen nur dann Wasser, wenn sie es wirklich brauchen, und ich muss nicht mehr von Hand gießen, auch nicht im Urlaub. Auf meinem Home-Assistant-Dashboard sehe ich jederzeit die Bodenfeuchte und den Wasserstand im Tank. Im Beet wachsen Tomaten, Beeren, Salat und Kräuter. Im Winter setze ich eine kleine Gewächshaus-Abdeckung darauf, damit die Pflanzen vor der Kälte geschützt sind.',
+      tags_en: ['Home Assistant', 'Solar', 'Irrigation', 'Sensors', 'Smart Home', 'DIY'],
+      tags_de: ['Home Assistant', 'Solar', 'Bewässerung', 'Sensoren', 'Smart Home', 'DIY'],
+      link_label_en: 'View on GitHub',
+      link_label_de: 'Auf GitHub ansehen',
+      link_url: 'https://github.com/dev-dany97/raised-bed-irrigation'
+    },
+    {
       id: 'radar-recognition',
       image: '/images/projects/radar.png',
       images: null,
