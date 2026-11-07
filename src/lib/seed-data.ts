@@ -1356,7 +1356,22 @@ function seedResume(db: DatabaseSync) {
     insertEducation.run(i, e.degree_en, e.degree_de, e.institution_en, e.institution_de, e.period_en, e.period_de, e.note_en, e.note_de, e.thesis_en, e.thesis_de, e.proof)
   );
 
-  const skills = ['C/C++', 'Python', 'C#', 'JavaScript', 'VHDL', 'SQL', 'Docker', 'Git', 'CI/CD', 'UML', 'Scrum'];
+  const skills = [
+    'Cloud & Backend',
+    'Embedded Systems',
+    'Automotive',
+    'C/C++',
+    'Python',
+    'C#',
+    'JavaScript',
+    'VHDL',
+    'SQL',
+    'Docker',
+    'Git',
+    'CI/CD',
+    'UML',
+    'Scrum'
+  ];
   const insertSkill = db.prepare('INSERT INTO resume_skills (sort_order, name) VALUES (?, ?)');
   skills.forEach((s, i) => insertSkill.run(i, s));
 
