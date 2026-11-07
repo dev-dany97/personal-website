@@ -56,6 +56,8 @@ interface ResumeContent {
   educationTitle: string;
   skillsTitle: string;
   certificatesTitle: string;
+  sailingTitle?: string;
+  sailingLicenses?: string[];
   experience: ExperienceItem[];
   education: EducationItem[];
   certificates: string[];
@@ -275,6 +277,17 @@ export default function Contact() {
                   ))}
                 </ul>
               </div>
+
+              {r.sailingLicenses && r.sailingLicenses.length > 0 && (
+                <div className="resume-card">
+                  <h3>{r.sailingTitle}</h3>
+                  <ul className="resume-cert-list">
+                    {r.sailingLicenses.map((license) => (
+                      <li key={license}>{license}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

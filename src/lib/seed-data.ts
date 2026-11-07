@@ -593,7 +593,16 @@ function seedPageContent(db: DatabaseSync) {
       experienceTitle: 'Experience',
       educationTitle: 'Education',
       skillsTitle: 'Skills & Tools',
-      certificatesTitle: 'Certificates'
+      certificatesTitle: 'Certificates',
+      sailingTitle: 'Sailing and boating licenses',
+      sailingLicenses: [
+        'Recreational boat license for coastal waters (SBF See)',
+        'Recreational boat license for inland waters (SBF Binnen)',
+        'Sport Coastal Skipper license (SKS)',
+        'Short Range Certificate for VHF marine radio (SRC)',
+        'VHF radio certificate for inland waterways (UBI)',
+        'Certificate for pyrotechnic distress signals (FKN)'
+      ]
     },
     {
       eyebrow: 'Werdegang',
@@ -602,7 +611,16 @@ function seedPageContent(db: DatabaseSync) {
       experienceTitle: 'Berufserfahrung',
       educationTitle: 'Ausbildung',
       skillsTitle: 'Skills & Tools',
-      certificatesTitle: 'Zertifikate'
+      certificatesTitle: 'Zertifikate',
+      sailingTitle: 'Segel- und Bootsscheine',
+      sailingLicenses: [
+        'Sportbootführerschein See (SBF See)',
+        'Sportbootführerschein Binnen (SBF Binnen)',
+        'Sportküstenschifferschein (SKS)',
+        'Beschränkt gültiges Funkbetriebszeugnis (SRC)',
+        'UKW-Sprechfunkzeugnis für den Binnenschifffahrtsfunk (UBI)',
+        'Fachkundenachweis für Seenotsignalmittel (FKN)'
+      ]
     }
   );
 }
