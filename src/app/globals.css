@@ -3610,3 +3610,8 @@ footer {
 .legacy-about-motto {
   clear: both;
 }
+
+.song-player-artist {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}

@@ -4,28 +4,30 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Music } from 'lucide-react';
 
-// "Go Hard or Go Home" (Wiz Khalifa & Iggy Azalea, Furious 7 Soundtrack).
+// "Go Hard Or Go Home" von Andreas W. Herb (Radio Edit), mein Motivationssong.
 // Plays through the official Spotify player: the music rights stay
 // with Spotify, this site hosts no audio file of its own.
-const TRACK_ID = '2QJnTfMpNG05KFf2E3gVIJ';
+const TRACK_ID = '4TQOj0TWlEAw2gk9EGeNJ1';
 const EMBED_URL = `https://open.spotify.com/embed/track/${TRACK_ID}?utm_source=generator&theme=0`;
 
 const TEXT = {
   de: {
     start: 'Song abspielen',
-    song: 'Go Hard or Go Home',
+    song: 'Go Hard Or Go Home',
+    artist: 'von Andreas W. Herb, mein Motivationssong',
     consent: 'Lädt den Spotify-Player. Dabei werden Daten an Spotify übertragen.',
     privacy: 'Datenschutz',
     close: 'Player schließen',
-    title: 'Spotify-Player: Go Hard or Go Home'
+    title: 'Spotify-Player: Go Hard Or Go Home von Andreas W. Herb'
   },
   en: {
     start: 'Play the song',
-    song: 'Go Hard or Go Home',
+    song: 'Go Hard Or Go Home',
+    artist: 'by Andreas W. Herb, my motivation song',
     consent: 'Loads the Spotify player, which sends data to Spotify.',
     privacy: 'Privacy',
     close: 'Close player',
-    title: 'Spotify player: Go Hard or Go Home'
+    title: 'Spotify player: Go Hard Or Go Home by Andreas W. Herb'
   }
 };
 
@@ -43,6 +45,7 @@ export function SongPlayer({ lang }: { lang: 'de' | 'en' }) {
           <Music size={16} strokeWidth={2} aria-hidden="true" />
           {t.start}: <span className="song-player-name">{t.song}</span>
         </button>
+        <span className="song-player-artist">{t.artist}</span>
         <small className="song-player-hint">
           {t.consent} <Link href="/datenschutz">{t.privacy}</Link>
         </small>
