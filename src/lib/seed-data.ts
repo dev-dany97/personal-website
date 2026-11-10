@@ -843,9 +843,9 @@ function seedProjects(db: DatabaseSync) {
         'Im Jahr 2017 habe ich Pi-hole auf einem Raspberry Pi 3 eingerichtet. Es fügt meinem Heimnetzwerk eine zusätzliche Schutzebene hinzu und blockiert Werbung und Tracker für alle Geräte gleichzeitig. Pi-hole arbeitet dabei als DNS-Server für das gesamte Netzwerk: Mein Router verteilt den Pi als DNS-Server, sodass jedes Gerät zuerst beim Pi nachfragt, wenn es eine Webseite aufrufen will. Steht die Adresse auf einer der Blocklisten, gibt Pi-hole nicht die echte Adresse zurück und die Werbung oder der Tracker wird gar nicht erst geladen. Alle anderen Anfragen leitet der Pi an meine FRITZ!Box weiter, die sie beim externen DNS-Server auflöst. Der große Vorteil: Auf den Geräten selbst muss nichts installiert werden. Das funktioniert also auch auf Smartphones, Tablets, Smart-TVs und Smart-Home-Geräten, auf denen man keinen Werbeblocker installieren kann. Nebenbei laden Webseiten etwas schneller, weil weniger Daten übertragen werden. Im Web-Dashboard sehe ich, wie viele Anfragen blockiert wurden, welche Domains am häufigsten abgefragt werden und welche Geräte mit welchen Servern kommunizieren. Funktioniert eine Webseite einmal nicht richtig, kann ich einzelne Domains mit einem Klick auf die Allowlist setzen. Der Pi läuft dabei leise im Hintergrund, verbraucht kaum Strom und ist bis heute im Einsatz. Eingerichtet habe ich alles nach der FRITZ!Box-Anleitung aus dem Kuketz-Blog, die unten verlinkt ist.',
       tags_en: ['Raspberry Pi', 'Pi-hole', 'DNS', 'FRITZ!Box', 'Networking', 'Privacy'],
       tags_de: ['Raspberry Pi', 'Pi-hole', 'DNS', 'FRITZ!Box', 'Netzwerk', 'Privatsphäre'],
-      link_label_en: 'Setup guide (Kuketz blog, German)',
-      link_label_de: 'Einrichtungsanleitung (Kuketz-Blog)',
-      link_url: 'https://www.kuketz-blog.de/pi-hole-einrichtung-und-konfiguration-mit-fritzbox-adblocker-teil1/'
+      link_label_en: 'Setup guide from 2017 (Kuketz blog, German)',
+      link_label_de: 'Einrichtungsanleitung von 2017 (Kuketz-Blog)',
+      link_url: 'https://www.kuketz-blog.de/pi-hole-schwarzes-loch-fuer-werbung-raspberry-pi-teil1/'
     },
     {
       id: 'homeassistant',
@@ -869,9 +869,9 @@ function seedProjects(db: DatabaseSync) {
       title_de: 'HomeAssistant',
       // {yearsSince:2020} is replaced with the current number of years when the page is loaded.
       description_en:
-        "Home Assistant is an open-source platform that lets you build your own smart home system by connecting and automating different devices. I have been expanding my Home Assistant for {yearsSince:2020} years now. It all started on a Raspberry Pi 3, then came a Raspberry Pi 5 and today everything runs on a Home Assistant Green because the computing power, performance and storage were no longer enough. For my lights I also switched from Philips Hue to Zigbee. Zigbee switches much more reliably and faster and it doesn't need Wi-Fi. In general I try to connect all my smart home devices by cable, BLE or Zigbee. I control everything through dashboards on tablets mounted on the wall in my flat and on the balcony.",
+        "Home Assistant is an open-source platform that lets you build your own smart home system by connecting and automating different devices. I have been expanding my Home Assistant for {yearsSince:2020} years now. It all started on a Raspberry Pi 3, then came a Raspberry Pi 5 and today everything runs on a Home Assistant Green because the computing power, performance and storage were no longer enough. For my lights I also switched from Philips Hue to Zigbee. Zigbee switches much more reliably and faster. In general I try to connect all my smart home devices by cable, BLE or Zigbee. I control everything through an iPad, an Amazon Fire tablet and a Shelly Wall Display X2i, mounted on the wall in my flat and on the balcony. Each dashboard is tailored to the room its device is in. For the iPad I chose a custom 3D mount that lets me take the iPad off. It is connected via PoE, a network cable that also supplies power. This makes it more secure, and I can control everything even without Wi-Fi.",
       description_de:
-        'Home Assistant ist eine Open-Source-Plattform, mit der man durch die Integration und Automatisierung verschiedener Geräte und Dienste ein zentralisiertes, individuell anpassbares Smart-Home-System aufbauen kann. Mittlerweile erweitere ich mein Home Assistant schon seit {yearsSince:2020} Jahren. Angefangen hat alles mit einem Raspberry Pi 3, danach kam ein Raspberry Pi 5 und heute läuft alles auf einem Home Assistant Green, weil Rechenleistung, Performance und Speicher nicht mehr ausgereicht haben. Bei der Ansteuerung der Lampen bin ich außerdem von Philips Hue auf Zigbee umgestiegen, da Zigbee deutlich zuverlässiger und schneller schaltet und kein WLAN benötigt. Generell versuche ich, alle Smart-Home-Geräte per Kabel, BLE oder Zigbee einzubinden. Bedient wird das Ganze über Dashboards auf Tablets, die in der Wohnung und auf dem Balkon an der Wand hängen.',
+        'Home Assistant ist eine Open-Source-Plattform, mit der man durch die Integration und Automatisierung verschiedener Geräte und Dienste ein zentralisiertes, individuell anpassbares Smart-Home-System aufbauen kann. Mittlerweile erweitere ich mein Home Assistant schon seit {yearsSince:2020} Jahren. Angefangen hat alles mit einem Raspberry Pi 3, danach kam ein Raspberry Pi 5 und heute läuft alles auf einem Home Assistant Green, weil Rechenleistung, Performance und Speicher nicht mehr ausgereicht haben. Bei der Ansteuerung der Lampen bin ich außerdem von Philips Hue auf Zigbee umgestiegen, da Zigbee deutlich zuverlässiger und schneller schaltet. Generell versuche ich, alle Smart-Home-Geräte per Kabel, BLE oder Zigbee einzubinden. Bedient wird das Ganze über ein iPad, ein Amazon Fire Tablet und ein Shelly Wall Display X2i, die in der Wohnung und auf dem Balkon an der Wand hängen. Die Dashboards sind jeweils an den Raum angepasst, in dem das Gerät hängt. Für das iPad habe ich mich für eine Custom-3D-Halterung entschieden, aus der sich das iPad abnehmen lässt. Angeschlossen ist es per PoE, also über ein Netzwerkkabel, das zugleich den Strom liefert. Das erhöht die Sicherheit, und ich kann auch ohne WLAN alles steuern.',
       tags_en: ['Home Assistant Green', 'Zigbee', 'BLE', 'Raspberry Pi', 'Home Automation', 'Smart Home'],
       tags_de: ['Home Assistant Green', 'Zigbee', 'BLE', 'Raspberry Pi', 'Hausautomatisierung', 'Smart Home'],
       link_label_en: 'Visit home-assistant.io',
@@ -881,13 +881,16 @@ function seedProjects(db: DatabaseSync) {
     {
       id: 'own-website',
       image: '/images/projects/website.png',
-      images: null,
-      status: 'active',
+      images: [
+        '/images/projects/website.png',
+        '/images/projects/website-v2.webp'
+      ],
+      status: 'completed',
       year: 2024,
       title_en: 'Own Website',
       title_de: 'Eigene Webseite',
-      description_en: 'This website. Built with Next.js and Bootstrap, and hosted on AWS.',
-      description_de: 'Die Erstellung dieser Webseite. Sie basiert auf Next.js in Kombination mit Bootstrap als Frontend-CSS-Framework und wird über einen AWS-Bucket gehostet.',
+      description_en: 'This website. The first version was built with Next.js and Bootstrap and hosted on AWS. In November 2026 I completely reworked the website as a second version. The second photo shows the new home page.',
+      description_de: 'Die Erstellung dieser Webseite. Die erste Version basierte auf Next.js in Kombination mit Bootstrap als Frontend-CSS-Framework und wurde über einen AWS-Bucket gehostet. Im November 2026 habe ich die Webseite in einer zweiten Version komplett überarbeitet. Das zweite Foto zeigt die neue Startseite.',
       tags_en: ['Next.js', 'React', 'AWS'],
       tags_de: ['Next.js', 'React', 'AWS'],
       link_label_en: 'View on GitHub',
