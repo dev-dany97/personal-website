@@ -29,7 +29,9 @@ const de = {
   'contact.title': 'Kontakt',
   'contact.social': 'Soziale Medien',
   'footer.copyright': 'Urheberrecht',
-  'footer.tagline': 'Hobby-Drohnenfotograf | Gamer | Software-Entwickler | Segler | Enthusiastischer Trader',
+  'footer.tagline': 'Hobby-Drohnenfotograf | Gamer | Software-Entwickler | Segler | Trader',
+  'footer.builtBy': 'Designed & built by Daniel',
+  'footer.stack': 'Hosted on AWS · Built with React',
   'footer.location': 'Regensburg, Deutschland',
   'notFound.title': 'Seite nicht gefunden',
   'notFound.text': 'Du hast eine Seite gefunden, die es nicht gibt. Atme kurz durch und versuche es noch einmal.',
@@ -40,6 +42,7 @@ const de = {
   'cookie.text': 'Diese Website nutzt nur technisch notwendige Daten (z.B. deine Sprach- und Theme-Einstellung) — kein Tracking, keine Cookies von Drittanbietern.',
   'cookie.privacyLink': 'Datenschutzerklärung',
   'cookie.accept': 'Verstanden',
+  scrollToTop: 'Nach oben scrollen',
 };
 
 const en = {
@@ -65,7 +68,9 @@ const en = {
   'contact.title': 'Contact',
   'contact.social': 'Social Media',
   'footer.copyright': 'Copyright',
-  'footer.tagline': 'Hobby Drone Photographer | Gamer | Software Engineer | Sailor | Enthusiastic Trader',
+  'footer.tagline': 'Hobby Drone Photographer | Gamer | Software Engineer | Sailor | Trader',
+  'footer.builtBy': 'Designed & built by Daniel',
+  'footer.stack': 'Hosted on AWS · Built with React',
   'footer.location': 'Regensburg, Germany',
   'notFound.title': 'Page not found',
   'notFound.text': "This page doesn't exist. Let's go back and try again.",
@@ -76,6 +81,7 @@ const en = {
   'cookie.text': 'This site only uses technically necessary data (e.g. your language and theme preference) to work — no tracking, no third-party cookies.',
   'cookie.privacyLink': 'Privacy policy',
   'cookie.accept': 'Got it',
+  scrollToTop: 'Scroll to top',
 };
 
 if (!i18n.isInitialized) {

@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
+import { SunIcon, MoonIcon } from '@/app/components/Icons';
+import { SiteImage } from '@/app/components/SiteImage';
+import { useLocalStorage, writeLocalStorage } from './useBrowserState';
 
 interface NavbarProps {
   currentPage?: string;
@@ -10,17 +13,15 @@ interface NavbarProps {
 
 export function Navbar({ currentPage }: NavbarProps) {
   const { i18n, t } = useTranslation();
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const savedTheme = useLocalStorage('theme');
+  const theme: 'dark' | 'light' = savedTheme === 'light' ? 'light' : 'dark';
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
-      const nextTheme = savedTheme || 'dark';
-      setTheme(nextTheme);
-      document.documentElement.setAttribute('data-theme', nextTheme);
-    }
-  }, []);
+    // Before hydration the saved value is unknown, so leave the attribute alone.
+    if (savedTheme === undefined) return;
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [savedTheme, theme]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -40,15 +41,8 @@ export function Navbar({ currentPage }: NavbarProps) {
     { href: '/contact', label: t('nav.contact') },
   ];
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'de' ? 'en' : 'de';
-    i18n.changeLanguage(newLang);
-  };
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
-    localStorage.setItem('theme', nextTheme);
+  const setThemeTo = (nextTheme: 'dark' | 'light') => {
+    writeLocalStorage('theme', nextTheme);
     document.documentElement.setAttribute('data-theme', nextTheme);
   };
 
@@ -57,9 +51,13 @@ export function Navbar({ currentPage }: NavbarProps) {
     <nav className="navbar navbar-expand-lg sticky-top legacy-navbar">
       <div className="container px-4 px-lg-5">
         <Link href="/" className="navbar-brand fw-bold d-flex align-items-center gap-2" onClick={() => setMenuOpen(false)}>
-          <img
+          <SiteImage
             src="/favicon.ico"
             alt="Daniel Mohles logo"
+            width={28}
+            height={28}
+            unoptimized
+            loading="eager"
             className="navbar-logo"
             style={{
               width: '28px',
@@ -96,21 +94,44 @@ export function Navbar({ currentPage }: NavbarProps) {
             ))}
           </ul>
           <div className="navbar-utility">
-            <button
-              onClick={toggleLanguage}
-              className="btn btn-sm btn-outline-light theme-button"
-              title={t('nav.toggleLanguage')}
-            >
-              {i18n.language === 'de' ? 'DE' : 'EN'}
-            </button>
-            <button
-              onClick={toggleTheme}
-              className="btn btn-sm btn-outline-light theme-button"
-              title={t('nav.toggleTheme')}
-              aria-label={t('nav.toggleTheme')}
-            >
-              {theme === 'dark' ? '☀️' : '🌙'}
-            </button>
+            <div className="lang-toggle" role="group" aria-label={t('nav.toggleLanguage')}>
+              <button
+                type="button"
+                className={`lang-toggle-option ${i18n.language === 'de' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('de')}
+                aria-pressed={i18n.language === 'de'}
+              >
+                DE
+              </button>
+              <button
+                type="button"
+                className={`lang-toggle-option ${i18n.language !== 'de' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('en')}
+                aria-pressed={i18n.language !== 'de'}
+              >
+                EN
+              </button>
+            </div>
+            <div className="lang-toggle" role="group" aria-label={t('nav.toggleTheme')}>
+              <button
+                type="button"
+                className={`lang-toggle-option ${theme === 'light' ? 'active' : ''}`}
+                onClick={() => setThemeTo('light')}
+                aria-pressed={theme === 'light'}
+                title={t('nav.toggleTheme')}
+              >
+                <SunIcon />
+              </button>
+              <button
+                type="button"
+                className={`lang-toggle-option ${theme === 'dark' ? 'active' : ''}`}
+                onClick={() => setThemeTo('dark')}
+                aria-pressed={theme === 'dark'}
+                title={t('nav.toggleTheme')}
+              >
+                <MoonIcon />
+              </button>
+            </div>
           </div>
         </div>
       </div>

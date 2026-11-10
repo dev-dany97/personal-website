@@ -5,7 +5,13 @@ import { useForm, ValidationError } from '@formspree/react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
+import Link from 'next/link';
 import { PigeonBackground } from '@/app/components/backgrounds/PigeonBackground';
+import { socialLinks } from '@/app/components/Icons';
+import { SiteImage } from '@/app/components/SiteImage';
+import { CertificateProofDialog, type CertificateProof } from '@/app/components/CertificateProofDialog';
+
+const CONTACT_SOCIAL_LABELS = ['LinkedIn', 'Xing'];
 
 const FORMSPREE_FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || 'YOUR_FORM_ID';
 
@@ -41,6 +47,12 @@ interface EducationItem {
   period: string;
   note: string;
   thesis: string;
+  proof: CertificateProof | null;
+}
+
+interface CertificateItem {
+  name: string;
+  proof: CertificateProof | null;
 }
 
 interface ResumeContent {
@@ -51,9 +63,11 @@ interface ResumeContent {
   educationTitle: string;
   skillsTitle: string;
   certificatesTitle: string;
+  sailingTitle?: string;
+  sailingLicenses?: string[];
   experience: ExperienceItem[];
   education: EducationItem[];
-  certificates: string[];
+  certificates: CertificateItem[];
 }
 
 interface ResumeResponse {
@@ -66,7 +80,7 @@ export default function Contact() {
   const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const honeypot = (e.currentTarget.elements.namedItem('company') as HTMLInputElement | null)?.value;
+    const honeypot = (e.currentTarget.elements.namedItem('_gotcha') as HTMLInputElement | null)?.value;
     if (honeypot) {
       e.preventDefault();
       return;
@@ -78,6 +92,7 @@ export default function Contact() {
 
   const [contact, setContact] = useState<ContactResponse | null>(null);
   const [resume, setResume] = useState<ResumeResponse | null>(null);
+  const [openProof, setOpenProof] = useState<CertificateItem | null>(null);
 
   useEffect(() => {
     fetch('/api/contact').then((res) => res.json()).then(setContact);
@@ -99,12 +114,12 @@ export default function Contact() {
     <main className="contact-page">
       <Navbar currentPage="/contact" />
 
-      <section className="projects-hero">
+      <section className="contact-hero">
         <PigeonBackground />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <p className="legacy-eyebrow">{c.eyebrow}</p>
           <h1>{c.title}</h1>
-          <p className="projects-hero-lead">{c.lead}</p>
+          <p className="contact-hero-lead">{c.lead}</p>
         </div>
       </section>
 
@@ -112,9 +127,14 @@ export default function Contact() {
         <div className="container">
           <div className="contact-grid">
             <aside className="contact-profile-card">
-              <img
+              <SiteImage
                 src="/images/contact-portrait.jpg"
                 alt="Daniel Mohles"
+                width={900}
+                height={1200}
+                sizes="(max-width: 768px) 100vw, 360px"
+                loading="eager"
+                style={{ height: 'auto' }}
                 className="contact-portrait"
               />
 
@@ -126,15 +146,28 @@ export default function Contact() {
 
             <div className="contact-form-card">
               <h3>{c.sendMessage}</h3>
+              <p className="contact-social-note">
+                {lang === 'de' ? 'Du erreichst mich auch über ' : 'You can also reach me via '}
+                {socialLinks
+                  .filter((link) => CONTACT_SOCIAL_LABELS.includes(link.label))
+                  .map((link, i, arr) => (
+                    <span key={link.label}>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.label}
+                      </a>
+                      {i < arr.length - 1 ? (lang === 'de' ? ' oder ' : ' or ') : '.'}
+                    </span>
+                  ))}
+              </p>
 
               {state.succeeded ? (
                 <p className="contact-form-note contact-form-note--success">{c.successMessage}</p>
               ) : (
                 <form onSubmit={onFormSubmit}>
-                  {/* Honeypot: hidden from real users, but bots tend to fill every field. */}
+                  {/* Honeypot: hidden from real users, but bots tend to fill every field. Formspree also drops any submission with _gotcha set, so bots posting straight to Formspree are filtered too. */}
                   <input
                     type="text"
-                    name="company"
+                    name="_gotcha"
                     tabIndex={-1}
                     autoComplete="off"
                     aria-hidden="true"
@@ -162,6 +195,17 @@ export default function Contact() {
                       errors={state.errors}
                     />
                   </div>
+
+                  <label className="contact-privacy-check">
+                    <input type="checkbox" name="privacyConsent" required />
+                    <span>
+                      {lang === 'de' ? 'Ich habe die ' : 'I have read and accept the '}
+                      <Link href="/datenschutz">
+                        {lang === 'de' ? 'Datenschutzerklärung' : 'privacy policy'}
+                      </Link>
+                      {lang === 'de' ? ' gelesen und akzeptiere sie.' : '.'}
+                    </span>
+                  </label>
 
                   <ValidationError className="contact-form-note contact-form-note--error" errors={state.errors} />
 
@@ -216,7 +260,23 @@ export default function Contact() {
                       <div className="timeline-content">
                         <strong>{item.degree}</strong>
                         <span className="timeline-company">{item.institution}</span>
-                        {item.note && <p className="timeline-note">{item.note}</p>}
+                        {item.note && (
+                          <p className="timeline-note">
+                            {item.proof ? (
+                              <button
+                                type="button"
+                                className="resume-cert-proof"
+                                onClick={() => setOpenProof({ name: `${item.degree}, ${item.institution}`, proof: item.proof })}
+                                aria-haspopup="dialog"
+                              >
+                                {item.note}
+                                <span className="resume-cert-proof-hint">{lang === 'de' ? 'Nachweis' : 'Proof'}</span>
+                              </button>
+                            ) : (
+                              item.note
+                            )}
+                          </p>
+                        )}
                         {item.thesis && <p className="timeline-thesis">{item.thesis}</p>}
                       </div>
                     </div>
@@ -237,14 +297,52 @@ export default function Contact() {
                 <h3>{r.certificatesTitle}</h3>
                 <ul className="resume-cert-list">
                   {r.certificates.map((cert) => (
-                    <li key={cert}>{cert}</li>
+                    <li key={cert.name}>
+                      {cert.proof ? (
+                        <button
+                          type="button"
+                          className="resume-cert-proof"
+                          onClick={() => setOpenProof(cert)}
+                          aria-haspopup="dialog"
+                        >
+                          {cert.name}
+                          <span className="resume-cert-proof-hint">{lang === 'de' ? 'Nachweis' : 'Proof'}</span>
+                        </button>
+                      ) : (
+                        cert.name
+                      )}
+                    </li>
                   ))}
                 </ul>
               </div>
+
+              {r.sailingLicenses && r.sailingLicenses.length > 0 && (
+                <div className="resume-card">
+                  <h3>{r.sailingTitle}</h3>
+                  <ul className="resume-cert-list">
+                    {r.sailingLicenses.map((license) => (
+                      <li key={license}>{license}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
+
+      {openProof?.proof && (
+        <CertificateProofDialog
+          name={openProof.name}
+          proof={openProof.proof}
+          onClose={() => setOpenProof(null)}
+          labels={
+            lang === 'de'
+              ? { close: 'Schließen', openPdf: 'PDF öffnen', previewAlt: 'Nachweis', page: 'Seite' }
+              : { close: 'Close', openPdf: 'Open PDF', previewAlt: 'Proof', page: 'page' }
+          }
+        />
+      )}
 
       <Footer />
     </main>

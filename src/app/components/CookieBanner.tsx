@@ -1,30 +1,24 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { useLocalStorage, writeLocalStorage } from './useBrowserState';
 
 const STORAGE_KEY = 'cookie-consent-ack';
 
 export function CookieBanner() {
   const { t } = useTranslation();
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    try {
-      if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
-    } catch {
-      // localStorage unavailable (e.g. private browsing) — skip the banner rather than break the page.
-    }
-  }, []);
+  // null means "not acknowledged yet". Without localStorage (e.g. private
+  // browsing) the hook returns a marker value, so the banner stays hidden
+  // rather than breaking the page, as before.
+  const ack = useLocalStorage(STORAGE_KEY);
+  const [dismissed, setDismissed] = useState(false);
+  const visible = ack === null && !dismissed;
 
   const dismiss = () => {
-    try {
-      localStorage.setItem(STORAGE_KEY, '1');
-    } catch {
-      // ignore
-    }
-    setVisible(false);
+    writeLocalStorage(STORAGE_KEY, '1');
+    setDismissed(true);
   };
 
   if (!visible) return null;

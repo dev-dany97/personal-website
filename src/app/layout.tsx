@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Providers } from "@/app/providers";
 import { CookieBanner } from "@/app/components/CookieBanner";
+import { ScrollToTopButton } from "@/app/components/ScrollToTopButton";
 import "bootstrap/dist/css/bootstrap.css";
 import "./globals.css";
 
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
   title: "Daniel Mohles",
   description: "Welcome to my portfolio. Explore my projects, PC setup, finance insights, and travel stories.",
 };
+
+const umamiSrc = process.env.NEXT_PUBLIC_UMAMI_SRC;
+const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
 
 export default function RootLayout({
   children,
@@ -21,11 +25,15 @@ export default function RootLayout({
         <Providers>
           {children}
           <CookieBanner />
+          <ScrollToTopButton />
         </Providers>
-        <Script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-          strategy="afterInteractive"
-        />
+        {umamiSrc && umamiWebsiteId && (
+          <Script
+            src={umamiSrc}
+            data-website-id={umamiWebsiteId}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

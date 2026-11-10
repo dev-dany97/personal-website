@@ -21,6 +21,7 @@ export async function GET() {
 
   const primary = rows.filter((r) => r.build === 'primary');
   const second = rows.filter((r) => r.build === 'second');
+  const server = rows.filter((r) => r.build === 'server');
 
   const primaryComponents = primary.map((r) => ({ label: r.label, value: r.value_en, image: r.image ?? undefined }));
 
@@ -29,6 +30,8 @@ export async function GET() {
 
   en.pc2Components = second.map((r) => ({ label: r.label, value: r.value_en }));
   de.pc2Components = second.map((r) => ({ label: r.label, value: r.value_de }));
+  en.serverComponents = server.map((r) => ({ label: r.label, value: r.value_en, image: r.image ?? undefined }));
+  de.serverComponents = server.map((r) => ({ label: r.label, value: r.value_de, image: r.image ?? undefined }));
 
   return NextResponse.json({ primaryComponents, en, de });
 }

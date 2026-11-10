@@ -32,13 +32,16 @@ export async function GET() {
     note_de: string;
     thesis_en: string;
     thesis_de: string;
+    proof: string;
   }>;
 
   const skillRows = db.prepare('SELECT name FROM resume_skills ORDER BY sort_order').all() as Array<{ name: string }>;
 
-  const certRows = db.prepare('SELECT name_en, name_de FROM resume_certificates ORDER BY sort_order').all() as Array<{
+  const certRows = db.prepare('SELECT name_en, name_de, proof, proof_pages FROM resume_certificates ORDER BY sort_order').all() as Array<{
     name_en: string;
     name_de: string;
+    proof: string;
+    proof_pages: number;
   }>;
 
   const en = JSON.parse(pageRow.data_en);
@@ -47,23 +50,35 @@ export async function GET() {
   en.experience = experienceRows.map((r) => ({ role: r.role_en, company: r.company, period: r.period_en, description: r.description_en }));
   de.experience = experienceRows.map((r) => ({ role: r.role_de, company: r.company, period: r.period_de, description: r.description_de }));
 
+  // Nachweise liegen als PDF plus WebP-Vorschau in public/certificates/.
+  // Seite 1 heißt <proof>.webp, weitere Seiten <proof>-2.webp, <proof>-3.webp usw.
+  const certProof = (proof: string, pages = 1) =>
+    proof
+      ? {
+          pdf: `/certificates/${proof}.pdf`,
+          images: Array.from({ length: pages }, (_, i) => `/certificates/${proof}${i === 0 ? '' : `-${i + 1}`}.webp`)
+        }
+      : null;
+
   en.education = educationRows.map((r) => ({
     degree: r.degree_en,
     institution: r.institution_en,
     period: r.period_en,
     note: r.note_en,
-    thesis: r.thesis_en
+    thesis: r.thesis_en,
+    proof: certProof(r.proof)
   }));
   de.education = educationRows.map((r) => ({
     degree: r.degree_de,
     institution: r.institution_de,
     period: r.period_de,
     note: r.note_de,
-    thesis: r.thesis_de
+    thesis: r.thesis_de,
+    proof: certProof(r.proof)
   }));
 
-  en.certificates = certRows.map((r) => r.name_en);
-  de.certificates = certRows.map((r) => r.name_de);
+  en.certificates = certRows.map((r) => ({ name: r.name_en, proof: certProof(r.proof, r.proof_pages) }));
+  de.certificates = certRows.map((r) => ({ name: r.name_de, proof: certProof(r.proof, r.proof_pages) }));
 
   const skills = skillRows.map((r) => r.name);
 

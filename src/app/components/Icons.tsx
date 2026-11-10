@@ -36,6 +36,17 @@ export function AppleMusicIcon() {
   );
 }
 
+export function SpotifyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="M7.2 9.4c3.3-1 6.9-.7 9.8.9" />
+      <path d="M7.8 12.4c2.7-.8 5.6-.5 8 .8" />
+      <path d="M8.4 15.3c2.1-.6 4.2-.4 6.1.6" />
+    </svg>
+  );
+}
+
 export function XingIcon() {
   return (
     <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
@@ -80,11 +91,29 @@ export function MapPinIcon() {
   );
 }
 
+export function SunIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2" />
+      <path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7" />
+    </svg>
+  );
+}
+
+export function MoonIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7Z" />
+    </svg>
+  );
+}
+
 export const socialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/daniel-mohles/', Icon: LinkedInIcon },
   { label: 'GitHub', href: 'https://github.com/dev-dany97', Icon: GithubIcon },
   { label: 'Instagram', href: 'https://www.instagram.com/d.mohles', Icon: InstagramIcon },
   { label: 'Apple Music', href: 'https://music.apple.com/profile/dany_mohles', Icon: AppleMusicIcon },
+  { label: 'Spotify', href: 'https://open.spotify.com/user/-.dany-.', Icon: SpotifyIcon },
   { label: 'Xing', href: 'https://www.xing.com/profile/Daniel_Mohles/', Icon: XingIcon },
   { label: 'X', href: 'https://x.com/Daniel69119111', Icon: XIcon },
 ];
