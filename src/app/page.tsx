@@ -251,55 +251,66 @@ export default function Home() {
 
           {aboutExpanded && (
             <div className="legacy-about-more">
-              {aboutSections.map((section, sIdx) => (
-                <Reveal
-                  key={section.heading}
-                  className={`row align-items-center g-5 legacy-about-more-section ${sIdx % 2 === 1 ? 'flex-row-reverse' : ''}`}
-                >
-                  <div className="col-lg-4 text-center">
-                    <div className={`legacy-about-more-image-wrap ${sIdx % 2 === 1 ? 'legacy-about-more-image-wrap--reverse' : ''}`}>
-                      <SiteImage src={section.image} alt={section.heading} className="legacy-about-more-image" width={900} height={1200} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} />
-                    </div>
-                    {section.extraImages && (
-                      <div className="d-none d-lg-block">
-                        {section.extraImages.map((img) => (
-                          <figure key={img.src} className="legacy-about-extra">
-                            <SiteImage src={img.src} alt={img.alt} className="legacy-about-extra-image" width={img.width} height={img.height} sizes="33vw" style={{ height: 'auto' }} />
-                            <figcaption>{img.caption}</figcaption>
-                          </figure>
-                        ))}
+              {/* Deliberately without reveal: the sections are visible right away, also
+                  on phones, where a section is taller than the screen
+                  and otherwise only faded in after a lot of scrolling. */}
+              {aboutSections.map((section, sIdx) => {
+                const hasExtras = Boolean(section.extraImages?.length);
+                // On phones the images of this section sit inside the text:
+                // the main image small next to the second paragraph, the extra images
+                // side by side right after the paragraph that mentions them.
+                const extrasAfter = section.extraImagesAfterParagraph ?? section.paragraphs.length - 1;
+                const renderParagraph = (p: string, pIdx: number) =>
+                  p.startsWith('> ') ? (
+                    <blockquote key={`section-${sIdx}-${pIdx}`} className="legacy-about-motto">
+                      <p>{renderWithLinks(p.slice(2), `section-${sIdx}-${pIdx}`)}</p>
+                    </blockquote>
+                  ) : (
+                    <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
+                  );
+
+                return (
+                  <div
+                    key={section.heading}
+                    className={`row align-items-center g-5 legacy-about-more-section ${sIdx % 2 === 1 ? 'flex-row-reverse' : ''}`}
+                  >
+                    <div className={`col-lg-4 text-center ${hasExtras ? 'd-none d-lg-block' : ''}`}>
+                      <div className={`legacy-about-more-image-wrap ${sIdx % 2 === 1 ? 'legacy-about-more-image-wrap--reverse' : ''}`}>
+                        <SiteImage src={section.image} alt={section.heading} className="legacy-about-more-image" width={900} height={1200} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} loading="eager" />
                       </div>
-                    )}
-                  </div>
-                  <div className="col-lg-8">
-                    <h3>{section.heading}</h3>
-                    {section.paragraphs.map((p, pIdx) => {
-                      const extrasAfter = section.extraImagesAfterParagraph ?? section.paragraphs.length - 1;
-                      return (
+                      {section.extraImages?.map((img) => (
+                        <figure key={img.src} className="legacy-about-extra">
+                          <SiteImage src={img.src} alt={img.alt} className="legacy-about-extra-image" width={img.width} height={img.height} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} loading="eager" />
+                          <figcaption>{img.caption}</figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                    <div className="col-lg-8">
+                      <h3>{section.heading}</h3>
+                      {section.paragraphs.map((p, pIdx) => (
                         <Fragment key={`section-${sIdx}-${pIdx}`}>
-                          {p.startsWith('> ') ? (
-                            <blockquote className="legacy-about-motto">
-                              <p>{renderWithLinks(p.slice(2), `section-${sIdx}-${pIdx}`)}</p>
-                            </blockquote>
-                          ) : (
-                            <p>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
+                          {hasExtras && pIdx === 1 && (
+                            <figure className="legacy-about-inline-main d-lg-none">
+                              <SiteImage src={section.image} alt={section.heading} width={900} height={1200} sizes="45vw" loading="eager" />
+                            </figure>
                           )}
-                          {section.extraImages && pIdx === extrasAfter && (
+                          {renderParagraph(p, pIdx)}
+                          {hasExtras && pIdx === extrasAfter && (
                             <div className="legacy-about-extras-inline d-lg-none">
-                              {section.extraImages.map((img) => (
+                              {section.extraImages!.map((img) => (
                                 <figure key={img.src}>
-                                  <SiteImage src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 576px) 50vw, 340px" />
+                                  <SiteImage src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="45vw" loading="eager" />
                                   <figcaption>{img.caption}</figcaption>
                                 </figure>
                               ))}
                             </div>
                           )}
                         </Fragment>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
-                </Reveal>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

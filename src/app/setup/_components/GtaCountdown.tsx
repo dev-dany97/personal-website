@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { SiteImage } from '@/app/components/SiteImage';
 
 // Offizieller Release laut Rockstar/Take-Two: 19. November 2026 (PS5, Xbox Series X|S).
 // Midnight German time, so the counter hits 0 for visitors here
@@ -11,7 +12,8 @@ const TEXT = {
   de: {
     eyebrow: 'Countdown · Release',
     title: 'Grand Theft Auto VI',
-    lead: 'Darauf warte ich seit Jahren. Erscheint am 19. November 2026 für PS5 und Xbox Series X|S.',
+    lead: 'Das Spiel, auf das ich schon lange warte... Erscheint am 19. November 2026 für PS5 und Xbox Series X|S.',
+    imageAlt: 'Titelbild von Grand Theft Auto VI mit Release-Datum 19. November 2026',
     released: 'Es ist so weit: GTA VI ist erschienen!',
     units: ['Tage', 'Std', 'Min', 'Sek'],
     aria: 'Zeit bis zum Release von GTA VI'
@@ -19,7 +21,8 @@ const TEXT = {
   en: {
     eyebrow: 'Countdown · Release',
     title: 'Grand Theft Auto VI',
-    lead: "I've been waiting for this for years. It comes out on 19 November 2026 for PS5 and Xbox Series X|S.",
+    lead: "The game I've been waiting for for a long time... It comes out on 19 November 2026 for PS5 and Xbox Series X|S.",
+    imageAlt: 'Grand Theft Auto VI cover art with the release date 19 November 2026',
     released: "It's here: GTA VI is out now!",
     units: ['Days', 'Hrs', 'Min', 'Sec'],
     aria: 'Time until the GTA VI release'
@@ -53,21 +56,26 @@ export function GtaCountdown({ lang }: { lang: 'de' | 'en' }) {
   return (
     <section className="gx-band gx-gta" id="gta6">
       <div className="gx-wrap gx-gta-inner">
-        <div className="gx-sec-head gx-rv">
-          <span className="gx-eyebrow">{t.eyebrow}</span>
-          <h2>{t.title}</h2>
-          <p>{done ? t.released : t.lead}</p>
+        <div className="gx-gta-cover gx-hud gx-rv">
+          <SiteImage src="/images/setup/gta6-cover.webp" alt={t.imageAlt} width={597} height={335} sizes="(max-width: 900px) 100vw, 420px" />
         </div>
-        {!done && (
-          <div className="gx-gta-clock gx-rv" role="timer" aria-label={t.aria}>
-            {t.units.map((unit, i) => (
-              <div key={unit} className="gx-gta-cell gx-hud">
-                <b>{parts ? String(parts[i]).padStart(i === 0 ? 1 : 2, '0') : '–'}</b>
-                <small>{unit}</small>
-              </div>
-            ))}
+        <div className="gx-gta-text">
+          <div className="gx-sec-head gx-rv">
+            <span className="gx-eyebrow">{t.eyebrow}</span>
+            <h2>{t.title}</h2>
+            <p>{done ? t.released : t.lead}</p>
           </div>
-        )}
+          {!done && (
+            <div className="gx-gta-clock gx-rv" role="timer" aria-label={t.aria}>
+              {t.units.map((unit, i) => (
+                <div key={unit} className="gx-gta-cell gx-hud">
+                  <b>{parts ? String(parts[i]).padStart(i === 0 ? 1 : 2, '0') : '–'}</b>
+                  <small>{unit}</small>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

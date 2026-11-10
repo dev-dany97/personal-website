@@ -1866,6 +1866,13 @@ footer {
 .project-modal-media {
   position: relative;
   background: #000000;
+  /* Very flat images (e.g. the Ubidots dashboard of the bike tracker) were
+     only ~80px high, so the close button at the top right and the
+     next arrow overlapped in the middle. With a minimum height the image sits
+     centred on black and the buttons have room. */
+  min-height: 11.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .project-modal-image {
@@ -1995,7 +2002,10 @@ footer {
 
 /* Click on the modal image opens it fullscreen and uncropped */
 .project-modal-zoom {
-  position: relative;
+  /* static: the zoom hint sits in the corner of the image area, not
+     of the image (very low for flat images), and so does not get in the way of the
+     back arrow. */
+  position: static;
   display: block;
   width: 100%;
   padding: 0;
@@ -3456,4 +3466,71 @@ footer {
 .project-tag--button.active {
   border-color: var(--primary);
   color: var(--primary);
+}
+
+/* Finance watchlist on phones: more compact cards and spacing between
+   live badge and the grid. */
+@media (max-width: 576px) {
+  .watchlist-head .mb-4 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .watchlist-head .portfolio-live-badge {
+    margin-bottom: 1.25rem;
+  }
+
+  .watchlist-grid {
+    --bs-gutter-x: 0.6rem;
+    --bs-gutter-y: 0.6rem;
+  }
+
+  .watchlist-card .card-body {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .watchlist-name {
+    font-size: 0.88rem;
+  }
+
+  .watchlist-symbol {
+    font-size: 0.62rem !important;
+  }
+
+  .watchlist-price {
+    margin-top: 0.3rem !important;
+    font-size: 1rem !important;
+  }
+
+  .watchlist-card .portfolio-legend-change {
+    font-size: 0.78rem;
+  }
+}
+
+/* About me on phones: sections with several images (sailing) show
+   the heading first and the images small inside the text. */
+.legacy-about-inline-main {
+  float: right;
+  width: 42%;
+  max-width: 190px;
+  margin: 0.3rem 0 0.75rem 1rem;
+}
+
+.legacy-about-inline-main img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Extra images (Jessica Watson, yacht) slightly smaller on phones */
+.legacy-about-extras-inline {
+  clear: both;
+  max-width: 320px;
+}
+
+.legacy-about-motto {
+  clear: both;
 }

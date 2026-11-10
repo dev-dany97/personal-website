@@ -353,12 +353,12 @@ function seedPageContent(db: DatabaseSync) {
       highEndTitle: 'High-End Build',
       highEndDesc: 'My main PC — full custom water cooling, built for performance and a nice RGB look.',
       waterCoolingTitle: 'My Water Cooling Setup',
-      waterCoolingIntro: "Here's why I decided to add water cooling to my PC, and why I think it's worth it.",
+      waterCoolingIntro: "I'd like to briefly go over the benefits of water cooling and explain why I decided to equip my PC with it, and why the investment and the extra effort that comes with it are worth it for me.",
       bullets: [
-        { title: 'Temperature Control:', text: 'Water cools a lot better than air.' },
-        { title: 'Overclocking Potential:', text: 'Lower temperatures mean you can push the hardware further.' },
-        { title: 'Silent Operation:', text: 'The PC runs a lot quieter.' },
-        { title: 'Component Protection:', text: 'Better temperatures can help your hardware last longer.' }
+        { title: 'Temperature Control:', text: 'Water absorbs heat far better than air and spreads it across the large radiators. CPU and GPU don\'t heat up as quickly under load and stay at steady temperatures, even during long gaming sessions.' },
+        { title: 'Overclocking Potential:', text: 'Lower temperatures mean you can push the hardware further. Because the components stay cooler, they hold higher clock speeds for longer instead of throttling down when they get hot.' },
+        { title: 'Silent Operation:', text: 'The PC runs a lot quieter. The heat goes into the water and out through the big radiators, so the fans usually only run at around 20 %. Even while gaming the PC stays pleasantly quiet.' },
+        { title: 'Component Protection:', text: 'Better temperatures can help your hardware last longer. Fewer heat spikes put less stress on chips and solder joints, and since the fans spin slower, less dust is pulled into the case.' }
       ],
       tipsTitle: 'A few tips',
       tipsText:
@@ -368,8 +368,9 @@ function seedPageContent(db: DatabaseSync) {
       umbauTitle: 'Current gaming PC',
       umbauDesc: 'A quick look at the finished PC with all its modifications, just as it looks today.',
       printTitle: 'Neon',
-      printText: 'I 3D printed the Neon figure inside the case myself and painted it by hand. On the left is the raw print, on the right the finished Neon.',
+      printText: 'I 3D printed the Neon figure inside the case myself and painted it by hand. On the left is the raw print, on the right the finished Neon. Below you can see the raw print inside the case and the finished, hand-painted figure up close.',
       printAlt: 'The Neon figure as a white 3D print and finished painted in blue',
+      printPhotoAlts: ['The white 3D print of Neon inside the case, between the water cooling tubes', 'The hand-painted Neon figure with blue hair standing on a table'],
       spikeTitle: 'Spike',
       spikeText: 'I built the Valorant Spike myself. I 3D printed the housing and fitted two LEDs at the top and bottom, which talk to the PC through an ESP32 over USB. The Spike plays the same sounds and animations as the real Spike in Valorant. It also has a defuse function.',
       setupPhotoAlt: 'My desk with the 49-inch Samsung monitor and the water-cooled PC next to it',
@@ -382,6 +383,9 @@ function seedPageContent(db: DatabaseSync) {
       serverTitle: 'Third Build: Server',
       serverDesc: 'My old gaming PC, which I used before my current gaming PC and which now only serves as a server/workstation.',
       serverPhotoAlt: 'My old gaming PC, now rebuilt as a server',
+      secondBuildCostLabel: 'Approximate cost',
+      secondBuildCost: 'around €800 for the PC, around €900 including the monitor',
+      secondBuildCostNote: 'Rough estimate based on typical prices for the parts, not to the euro.',
       hardwareTitle: 'Hardware',
       hardwareDisclaimer: ''
     },
@@ -391,12 +395,12 @@ function seedPageContent(db: DatabaseSync) {
       highEndTitle: 'High-End Build',
       highEndDesc: 'Mein Hauptrechner — komplett individuelle Wasserkühlung, gebaut für Performance und RGB-Show.',
       waterCoolingTitle: 'Wasserkühlung meistern: Eine individuelle Reise',
-      waterCoolingIntro: 'Ich möchte kurz auf die Vorteile von Wasserkühlung eingehen und erklären, warum ich mich entschieden habe, meinen Computer mit einer Wasserkühlung auszustatten.',
+      waterCoolingIntro: 'Ich möchte kurz auf die Vorteile einer Wasserkühlung eingehen und erklären, warum ich mich entschieden habe, meinen Computer mit einer Wasserkühlung auszustatten, und warum mir die Investition und der Mehraufwand, der damit einhergeht, das wert sind.',
       bullets: [
-        { title: 'Temperaturkontrolle:', text: 'Wasserkühlung leitet Wärme deutlich effizienter ab als Luft.' },
-        { title: 'Overclocking-Potenzial:', text: 'Niedrigere Temperaturen ermöglichen aggressiveres Tuning.' },
-        { title: 'Leiser Betrieb:', text: 'Die Systemlautstärke wird deutlich reduziert.' },
-        { title: 'Komponentenschutz:', text: 'Bessere thermische Stabilität kann die Lebensdauer der Hardware verlängern.' }
+        { title: 'Temperaturkontrolle:', text: 'Wasser nimmt Wärme deutlich besser auf als Luft und verteilt sie über die großen Radiatoren. CPU und Grafikkarte heizen sich dadurch unter Last nicht so schnell auf und bleiben auch bei langen Gaming-Sessions auf konstanten Temperaturen.' },
+        { title: 'Overclocking-Potenzial:', text: 'Niedrigere Temperaturen ermöglichen aggressiveres Tuning. Weil die Komponenten kühler bleiben, halten sie höhere Taktraten länger, statt bei Hitze automatisch herunterzutakten.' },
+        { title: 'Leiser Betrieb:', text: 'Die Systemlautstärke wird deutlich reduziert. Die Wärme wandert ins Wasser und wird über die großen Radiatoren abgegeben, deshalb laufen die Lüfter meist nur noch auf rund 20 %. Selbst beim Zocken bleibt der PC angenehm leise.' },
+        { title: 'Komponentenschutz:', text: 'Bessere thermische Stabilität kann die Lebensdauer der Hardware verlängern. Weniger Hitzespitzen belasten Chips und Lötstellen weniger, und weil die Lüfter langsamer drehen, wird auch weniger Staub ins Gehäuse gezogen.' }
       ],
       tipsTitle: 'Ein paar wichtige Dinge...',
       tipsText:
@@ -406,8 +410,9 @@ function seedPageContent(db: DatabaseSync) {
       umbauTitle: 'Aktueller Gaming PC',
       umbauDesc: 'Ein kurzer Einblick des fertigen PCs mit allen Modifikationen so wie er jetzt aussieht.',
       printTitle: 'Neon',
-      printText: 'Die Neon-Figur im Gehäuse habe ich selbst mit dem 3D-Drucker gedruckt und von Hand bemalt. Links siehst du den rohen Druck, rechts die fertige Neon.',
+      printText: 'Die Neon-Figur im Gehäuse habe ich selbst mit dem 3D-Drucker gedruckt und von Hand bemalt. Links siehst du den rohen Druck, rechts die fertige Neon. Darunter siehst du den rohen Druck im Gehäuse und die fertig bemalte Figur aus der Nähe.',
       printAlt: 'Die Neon-Figur als weißer 3D-Druck und fertig bemalt in Blau',
+      printPhotoAlts: ['Der weiße 3D-Druck von Neon im Gehäuse zwischen den Wasserkühlungs-Schläuchen', 'Die von Hand bemalte Neon-Figur mit blauen Haaren auf einem Tisch'],
       spikeTitle: 'Spike',
       spikeText: 'Den Valorant Spike habe ich selbst gebaut. Das Gehäuse habe ich mit dem 3D-Drucker gedruckt und zwei LEDs oben und unten eingebaut, welche über einen ESP32 über die USB-Schnittstelle mit dem PC kommunizieren. Der Spike hat dabei den gleichen Sound und Animationen wie der echte Spike in Valorant. Auch hat er eine Defuse Funktion.',
       setupPhotoAlt: 'Mein Schreibtisch mit dem 49-Zoll-Monitor von Samsung und dem wassergekühlten PC daneben',
@@ -420,6 +425,9 @@ function seedPageContent(db: DatabaseSync) {
       serverTitle: 'Dritter Build: Server',
       serverDesc: 'Mein alter Gaming-PC, den ich vor meinem jetzigen Gaming-PC verwendet habe und nur noch als Server/Workstation dient.',
       serverPhotoAlt: 'Mein alter Gaming-PC, jetzt als Server umgebaut',
+      secondBuildCostLabel: 'Kostenpunkt',
+      secondBuildCost: 'ca. 800 € für den PC, rund 900 € inklusive Monitor',
+      secondBuildCostNote: 'Grob geschätzt anhand üblicher Preise der Teile, nicht auf den Euro genau.',
       hardwareTitle: 'Hardware',
       hardwareDisclaimer: ''
     }
@@ -470,7 +478,8 @@ function seedPageContent(db: DatabaseSync) {
       lessonsTitle: 'Lessons learned',
       lessons: [
         { title: 'Fewer, better trades', text: 'A handful of well-prepared trades beats a dozen spontaneous ones.' },
-        { title: 'Conviction means buying more, not panicking', text: 'If I am convinced of a stock long term and nothing has changed in my analysis, I would rather buy more on a dip than sell in a hurry. Short-term trades still follow the stop-loss.' }
+        { title: 'Conviction means buying more, not panicking', text: 'If I am convinced of a stock long term and nothing has changed in my analysis, I would rather buy more on a dip than sell in a hurry. Short-term trades still follow the stop-loss.' },
+        { title: 'Stay informed every day', text: 'I read stock market news every day and follow InvestmentInsider. That way I understand why a price is moving and am not caught off guard by earnings, interest rate decisions or headlines.' }
       ],
       booksTitle: 'Reading list',
       booksLead: 'Books on trading and markets I can recommend.',
@@ -530,7 +539,8 @@ function seedPageContent(db: DatabaseSync) {
       lessonsTitle: 'Lessons Learned',
       lessons: [
         { title: 'Weniger, dafür bessere Trades', text: 'Eine Handvoll gut vorbereiteter Trades schlägt ein Dutzend spontane.' },
-        { title: 'Überzeugung heißt nachkaufen, nicht panisch verkaufen', text: 'Wenn ich von einer Aktie langfristig überzeugt bin und sich an meiner Analyse nichts geändert hat, kaufe ich bei Verlusten lieber nach, als voreilig auszusteigen. Für kurzfristige Trades gilt weiter der Stop-Loss.' }
+        { title: 'Überzeugung heißt nachkaufen, nicht panisch verkaufen', text: 'Wenn ich von einer Aktie langfristig überzeugt bin und sich an meiner Analyse nichts geändert hat, kaufe ich bei Verlusten lieber nach, als voreilig auszusteigen. Für kurzfristige Trades gilt weiter der Stop-Loss.' },
+        { title: 'Jeden Tag informiert bleiben', text: 'Ich lese täglich Börsennachrichten und verfolge InvestmentInsider. So verstehe ich, warum sich ein Kurs bewegt, und werde von Quartalszahlen, Zinsentscheidungen oder Schlagzeilen nicht überrascht.' }
       ],
       booksTitle: 'Leseliste',
       booksLead: 'Bücher rund um Trading und Märkte, die ich empfehlen kann.',
@@ -1067,9 +1077,9 @@ function seedTravel(db: DatabaseSync) {
       id: 'canary-islands', flag: 'ES', image: '/images/travel/canary-islands/canary1.jpg', imageCount: 36, gallery: buildGallery('canary-islands', 36, 'canary'),
       name_en: 'Canary Islands', name_de: 'Kanarische Inseln',
       description_en:
-        "One of my most adventurous sailing trips so far, with a crew you honestly couldn't wish for a better one. And if you remember that fierce storm front over the Canary Islands: I was there and I was sailing :D",
+        "One of my most adventurous sailing trips so far, with a crew you honestly couldn't wish for a better one. And if you remember that fierce storm front over the Canary Islands in November 2025: I was there and I was sailing :D",
       description_de:
-        'Einer meiner bisher abenteuerlichsten Segeltrips mit einer Crew, wie man sie sich besser kaum wünschen könnte. Und wer sich an die heftige Sturmfront über den Kanaren erinnert: I was there and I was sailing :D'
+        'Einer meiner bisher abenteuerlichsten Segeltrips mit einer Crew, wie man sie sich besser kaum wünschen könnte. Und wer sich an die heftige Sturmfront im November 2025 über den Kanaren erinnert: I was there and I was sailing :D'
     },
     {
       id: 'italy-trip', flag: 'IT', image: '/images/travel/italy-trip/italytrip1.jpg', imageCount: 13, gallery: buildGallery('italy-trip', 13, 'italytrip'),

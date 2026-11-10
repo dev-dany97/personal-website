@@ -14,6 +14,7 @@ import { GtaCountdown } from './_components/GtaCountdown';
 import { Sparkline, formatNumber, useTelemetry } from './_components/telemetry';
 import type { SceneState } from './_components/scene';
 import { SiteImage } from '@/app/components/SiteImage';
+import { ImageLightbox } from '@/app/components/ImageLightbox';
 
 // Large video files are hosted on S3/CloudFront rather than bundled under
 // /public — falls back to the local /public/videos path when unset.
@@ -36,6 +37,7 @@ interface SetupContent {
   printTitle: string;
   printText: string;
   printAlt: string;
+  printPhotoAlts?: string[];
   spikeTitle: string;
   spikeText: string;
   setupPhotoAlt: string;
@@ -45,6 +47,9 @@ interface SetupContent {
   componentsPhotoAlt: string;
   secondBuildTitle: string;
   secondBuildDesc: string;
+  secondBuildCostLabel?: string;
+  secondBuildCost?: string;
+  secondBuildCostNote?: string;
   hardwareTitle: string;
   hardwareDisclaimer: string;
   pc2Components: HardwareComponent[];
@@ -75,7 +80,8 @@ const UI = {
     modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01', setupEyebrow: 'Mein Setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build-Log', logTitle: 'Vom Karton zum Neon-Umbau',
     stepUnboxing: 'Unboxing', stepFirst: 'Erster Aufbau', stepRebuild: 'Umbau', stepPrint: '3D-Druck',
-    b2Eyebrow: 'Build 02 · Minimalistischer und effizienter PC', b3Eyebrow: 'Build 03 · Server/Workstation'
+    b2Eyebrow: 'Build 02 · Minimalistischer und effizienter PC', b3Eyebrow: 'Build 03 · Server/Workstation',
+    enlarge: 'Bild vergrößern', close: 'Schließen', previous: 'Vorheriges Bild', next: 'Nächstes Bild'
   },
   en: {
     heroEyebrow: 'SYS://GAMING · Build 01 · Custom loop',
@@ -89,9 +95,12 @@ const UI = {
     modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01', setupEyebrow: 'My setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build log', logTitle: 'From the boxes to the neon rebuild',
     stepUnboxing: 'Unboxing', stepFirst: 'First build', stepRebuild: 'Rebuild', stepPrint: '3D printing',
-    b2Eyebrow: 'Build 02 · Minimalist and efficient PC', b3Eyebrow: 'Build 03 · Server/Workstation'
+    b2Eyebrow: 'Build 02 · Minimalist and efficient PC', b3Eyebrow: 'Build 03 · Server/Workstation',
+    enlarge: 'Enlarge image', close: 'Close', previous: 'Previous image', next: 'Next image'
   }
 };
+
+const NEON_PHOTOS = ['/images/setup/neon-druck-roh.webp', '/images/setup/neon-druck-bemalt.webp'];
 
 const BENEFIT_ICONS = [
   <path key="t" d="M14 14.8V4a2 2 0 1 0-4 0v10.8a4 4 0 1 0 4 0z" />,
@@ -112,6 +121,8 @@ export default function Setup() {
   const ui = UI[lang];
   const [data, setData] = useState<SetupResponse | null>(null);
   const [overclock, setOverclock] = useState(false);
+  // Fullscreen view: which images are open and which one of them.
+  const [lightbox, setLightbox] = useState<{ images: string[]; index: number; alt: string } | null>(null);
   const hostRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<SceneState>({ h1: 186, h2: 262, overclock: false });
   const modelRef = useRef<ModelChamberHandle>(null);
@@ -273,7 +284,18 @@ export default function Setup() {
               <h2>{ui.setupTitle}</h2>
             </div>
             <figure className="gx-setup-photo gx-hud gx-rv">
-              <SiteImage src="/images/setup/pc-setup.jpg" alt={c.setupPhotoAlt} width={1800} height={1350} sizes="(max-width: 1200px) 100vw, 1200px" style={{ height: 'auto' }} />
+              <button
+                type="button"
+                className="gx-zoom"
+                onClick={() => setLightbox({ images: ['/images/setup/pc-setup.jpg'], index: 0, alt: c.setupPhotoAlt })}
+                aria-label={ui.enlarge}
+                title={ui.enlarge}
+              >
+                <SiteImage src="/images/setup/pc-setup.jpg" alt={c.setupPhotoAlt} width={1800} height={1350} sizes="(max-width: 1200px) 100vw, 1200px" style={{ height: 'auto' }} />
+                <span className="gx-zoom-hint" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg>
+                </span>
+              </button>
               <figcaption>{c.setupPhotoCaption}</figcaption>
             </figure>
           </div>
@@ -333,6 +355,22 @@ export default function Setup() {
                   <div className="gx-media-frame gx-hud gx-scan-reveal" data-scan>
                     <SiteImage src="/images/setup/neon-transition.jpg" alt={c.printAlt} className="gx-wide-img" width={1600} height={900} sizes="(max-width: 900px) 100vw, 50vw" style={{ height: 'auto' }} />
                   </div>
+                  <div className="gx-neon-photos">
+                    {NEON_PHOTOS.map((src, i) => {
+                      const alt = c.printPhotoAlts?.[i] ?? c.printAlt;
+                      return (
+                        <button
+                          key={src}
+                          type="button"
+                          className="gx-media-frame gx-hud gx-zoom"
+                          onClick={() => setLightbox({ images: NEON_PHOTOS, index: i, alt: c.printTitle })}
+                          aria-label={`${ui.enlarge}: ${alt}`}
+                        >
+                          <SiteImage src={src} alt={alt} width={1200} height={1600} sizes="(max-width: 900px) 50vw, 25vw" />
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
               <div className="gx-step gx-rv">
@@ -378,6 +416,13 @@ export default function Setup() {
                 <AutoplayVideo src={`${MEDIA_BASE_URL}/videos/setup/Gaming_PC2.mp4`} ariaLabel={c.secondBuildTitle} toggle={toggle} />
               </div>
               <div className="gx-rv">
+                {c.secondBuildCost && (
+                  <div className="gx-cost">
+                    <span className="gx-eyebrow">{c.secondBuildCostLabel}</span>
+                    <b>{c.secondBuildCost}</b>
+                    {c.secondBuildCostNote && <small>{c.secondBuildCostNote}</small>}
+                  </div>
+                )}
                 {c.hardwareDisclaimer && <p className="gx-note">{c.hardwareDisclaimer}</p>}
                 <dl className="gx-spec-list">
                   {c.pc2Components.map((s) => <div key={s.label}><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
@@ -406,6 +451,17 @@ export default function Setup() {
 
         <RgbController host={hostRef} sceneRef={sceneRef} lang={lang} overclock={overclock} setOverclock={setOverclock} />
       </div>
+
+      {lightbox && (
+        <ImageLightbox
+          images={lightbox.images}
+          index={lightbox.index}
+          alt={lightbox.alt}
+          onIndexChange={(index) => setLightbox((lb) => (lb ? { ...lb, index } : lb))}
+          onClose={() => setLightbox(null)}
+          labels={{ close: ui.close, previous: ui.previous, next: ui.next }}
+        />
+      )}
 
       <Footer />
     </main>

@@ -103,7 +103,7 @@ export function Watchlist({ lang, title, lead }: { lang: 'en' | 'de'; title: str
   return (
     <section className="py-5">
       <div className="container">
-        <div className="d-flex flex-wrap align-items-start justify-content-between gap-2">
+        <div className="watchlist-head d-flex flex-wrap align-items-start justify-content-between gap-2">
           <SectionHeader title={title} lead={lead} />
           <span className="portfolio-live-badge">
             <span className="portfolio-live-dot" /> Live
@@ -112,18 +112,18 @@ export function Watchlist({ lang, title, lead }: { lang: 'en' | 'de'; title: str
         {!items ? (
           <p className="theme-text-soft mb-0">…</p>
         ) : (
-          <div className="row g-3">
+          <div className="row g-3 watchlist-grid">
             {items.map((item) => (
               <div key={item.symbol} className="col-6 col-md-4 col-xl-3">
-                <div className="card h-100 border-0 shadow-sm" style={cardStyle}>
+                <div className="card h-100 border-0 shadow-sm watchlist-card" style={cardStyle}>
                   <div className="card-body p-3 p-lg-4">
                     <div className="d-flex align-items-baseline justify-content-between gap-2">
-                      <span className="fw-semibold theme-text">{item.name}</span>
-                      <span className="theme-text-soft" style={{ fontSize: '0.72rem', letterSpacing: '0.06em' }}>
+                      <span className="fw-semibold theme-text watchlist-name">{item.name}</span>
+                      <span className="theme-text-soft watchlist-symbol" style={{ fontSize: '0.72rem', letterSpacing: '0.06em' }}>
                         {item.symbol.replace('-USD', '')}
                       </span>
                     </div>
-                    <div className="mt-2 fs-5 fw-bold theme-text">{formatPrice(item.price, item.currency, lang)}</div>
+                    <div className="mt-2 fs-5 fw-bold theme-text watchlist-price">{formatPrice(item.price, item.currency, lang)}</div>
                     {item.change !== null && (
                       <div className={`portfolio-legend-change text-start ${item.change >= 0 ? 'up' : 'down'}`}>
                         {item.change >= 0 ? '▲' : '▼'} {Math.abs(item.change).toFixed(2)}%
