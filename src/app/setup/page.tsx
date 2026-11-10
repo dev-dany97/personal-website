@@ -75,7 +75,7 @@ const UI = {
     flow: 'Durchfluss', play: 'Video abspielen', pause: 'Video pausieren',
     heroVideo: 'Rundgang um den umgebauten PC',
     loopEyebrow: 'Kreislauf · Alphacool', monitor: 'Loop-Monitor', water: 'Wasser', pump: 'Pumpe',
-    waterPhotoAlt: 'Wasserkühlung im LIAN LI O11 Dynamic',
+    waterPhotoAlt: 'Mein Custom-PC mit Wasserkühlung im LIAN LI O11 Dynamic',
     warnTags: ['Lecks', 'Korrosion', 'Wartung', 'Drucktest'],
     modelEyebrow: 'Interaktiv · WebGL', hwEyebrow: 'Spec-Matrix · Build 01', setupEyebrow: 'Mein Setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build-Log', logTitle: 'Vom Karton zum Neon-Umbau',
@@ -90,7 +90,7 @@ const UI = {
     flow: 'Flow', play: 'Play video', pause: 'Pause video',
     heroVideo: 'A walk around the rebuilt PC',
     loopEyebrow: 'Loop · Alphacool', monitor: 'Loop monitor', water: 'Coolant', pump: 'Pump',
-    waterPhotoAlt: 'Water cooling inside the LIAN LI O11 Dynamic',
+    waterPhotoAlt: 'My custom PC with water cooling inside the LIAN LI O11 Dynamic',
     warnTags: ['Leaks', 'Corrosion', 'Maintenance', 'Leak test'],
     modelEyebrow: 'Interactive · WebGL', hwEyebrow: 'Spec matrix · Build 01', setupEyebrow: 'My setup', setupTitle: 'Battlestation',
     logEyebrow: 'Build log', logTitle: 'From the boxes to the neon rebuild',
@@ -231,7 +231,8 @@ export default function Setup() {
             </div>
             <div className="gx-loop">
               <div className="gx-loop-photo gx-rv">
-                <SiteImage src="/images/setup/bg-gaminghead.jpg" alt={ui.waterPhotoAlt} width={1800} height={1200} sizes="(max-width: 900px) 100vw, 60vw" />
+                <SiteImage src="/images/setup/bg-gaminghead.jpg" alt="" width={1800} height={1200} sizes="(max-width: 900px) 100vw, 60vw" />
+                <SiteImage className="gx-loop-pc" src="/images/setup/custom-pc.webp" alt={ui.waterPhotoAlt} width={852} height={1200} sizes="(max-width: 900px) 70vw, 30vw" />
                 <div className="gx-monitor gx-hud">
                   <div className="gx-monitor-top"><span className="gx-eyebrow">{ui.monitor}</span></div>
                   <div className="gx-monitor-vals">

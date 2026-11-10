@@ -90,7 +90,7 @@ function seedPageContent(db: DatabaseSync) {
             'My biggest role model is the Australian sailor Jessica Watson. You can also see her in the picture on the right. She is known as the youngest person to sail solo, non-stop and unassisted around the world. In October 2009, at just 16 years old, she set off from Sydney on her yacht “Ella’s Pink Lady” (see the picture right below). She returned in May 2010 after 210 days at sea.',
             'What impresses me most is that she never gave up. Even before the start, her boat hit a cargo ship at night on the way to the start and lost its mast. After that, many people said the whole project was irresponsible. But she had the boat repaired and set off anyway. On the way, storms in the Southern Ocean knocked her boat flat on its side several times. Every time, she kept going. She later told her story in the book “True Spirit”, which was also made into a film in 2023.',
             'This became a personal motto for me:',
-            '> “No matter how hard life gets and how many setbacks you face, even when you reach a point where it feels like everything is over: never give up. Even the biggest waves and the strongest storms can be beaten. After every storm, the sun usually comes out again and the sea calms down.”',
+            '> “No matter how hard life gets and how many setbacks you face, even when you reach a point where it feels like everything is over: never give up. Even the biggest waves and the strongest storms can be beaten, just as the sun usually comes out again after every storm and the sea calms down.”',
             "If you'd like to follow my trips and sailing adventures too, feel free to visit the [travel section](/travel)."
           ]
         },
@@ -199,7 +199,7 @@ function seedPageContent(db: DatabaseSync) {
             'Mein größtes Vorbild ist dabei die australische Seglerin Jessica Watson, du siehst sie auch rechts im Bild. Sie gilt als jüngste Person, die allein, nonstop und ohne fremde Hilfe um die Welt gesegelt ist. Im Oktober 2009 startete sie mit gerade einmal 16 Jahren auf ihrer Yacht „Ella’s Pink Lady“ (siehe Bild direkt darunter) in Sydney und kam im Mai 2010 nach 210 Tagen auf See zurück.',
             'Was mich daran am meisten beeindruckt: Sie hat nie aufgegeben. Schon vor dem Start kollidierte ihr Boot auf der Überführungsfahrt zum Startort nachts mit einem Frachter und verlor dabei den Mast. Viele hielten ihr Vorhaben danach für unverantwortlich, doch sie ließ das Boot reparieren und segelte trotzdem los. Unterwegs wurde ihr Boot in den Stürmen des Südpolarmeers mehrmals flach aufs Wasser gedrückt und jedes Mal hat sie weitergemacht. Ihre Geschichte hat sie später im Buch „True Spirit“ erzählt, das 2023 auch verfilmt wurde.',
             'Für mich ist daraus ein Leitsatz entstanden:',
-            '> „Egal, wie schwer es im Leben ist, wie viele Rückschläge du einstecken musst und ob du vielleicht gerade an einem Punkt stehst, an dem alles zu enden scheint: Gib niemals auf. Denn selbst die größten Wellen und die heftigsten Stürme lassen sich bezwingen. Nach jedem Sturm folgt meist wieder Sonnenschein und das Meer beruhigt sich.“',
+            '> „Egal, wie schwer es im Leben ist, wie viele Rückschläge du einstecken musst und ob du vielleicht gerade an einem Punkt stehst, an dem alles zu enden scheint: Gib niemals auf. Denn selbst die größten Wellen und die heftigsten Stürme lassen sich bezwingen, so wie nach jedem Sturm meist wieder Sonnenschein folgt und sich das Meer beruhigt.“',
             'Wenn du auch meine Reisen und Segelabenteuer verfolgen möchtest, dann schau gerne im [Bereich Reisen](/travel) vorbei.'
           ]
         },
@@ -538,7 +538,7 @@ function seedPageContent(db: DatabaseSync) {
       lessons: [
         { title: 'Weniger, dafür bessere Trades', text: 'Eine Handvoll gut vorbereiteter Trades schlägt ein Dutzend spontane.' },
         { title: 'Überzeugung heißt nachkaufen, nicht panisch verkaufen', text: 'Wenn ich von einer Aktie langfristig überzeugt bin und sich an meiner Analyse nichts geändert hat, kaufe ich bei Verlusten lieber nach, als voreilig auszusteigen. Für kurzfristige Trades gilt weiter der Stop-Loss.' },
-        { title: 'Jeden Tag informiert bleiben', text: 'Ich lese täglich Börsennachrichten und verfolge InvestmentInsider. So verstehe ich, warum sich ein Kurs bewegt, und werde von Quartalszahlen, Zinsentscheidungen oder Schlagzeilen nicht überrascht.' }
+        { title: 'Jeden Tag informiert bleiben', text: 'Ich lese täglich Börsennachrichten und verfolge InvestmentInsider. So verstehe ich, warum sich ein Kurs bewegt und werde von Quartalszahlen, Zinsentscheidungen oder Schlagzeilen nicht überrascht.' }
       ],
       booksTitle: 'Leseliste',
       booksLead: 'Bücher rund um Trading und Märkte, die ich empfehlen kann.',

@@ -129,6 +129,8 @@
 .gx-loop-photo{position:relative; overflow:hidden; border-radius:4px; min-height:420px}
 .gx-loop-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.06); transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .gx-loop-photo:hover img{transform:scale(1.1)}
+.gx-loop-photo img.gx-loop-pc{inset:auto; left:50%; top:24%; z-index:1; width:auto; height:40%; max-width:52%; object-fit:contain; transform:translateX(-50%); filter:brightness(.85) saturate(.9); -webkit-mask-image:radial-gradient(ellipse 62% 60% at 50% 50%, #000 58%, transparent 100%); mask-image:radial-gradient(ellipse 62% 60% at 50% 50%, #000 58%, transparent 100%)}
+.gx-loop-photo:hover img.gx-loop-pc{transform:translateX(-50%)}
 .gx-loop-photo::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(4,5,11,.9))}
 .gx-monitor{position:absolute; left:16px; right:16px; bottom:16px; z-index:2; padding:16px; display:grid; gap:12px}
 .gx-monitor-top{display:flex; justify-content:space-between; gap:12px; align-items:center}
@@ -150,7 +152,7 @@
 .gx-warn p{color:var(--ink-dim); max-width:72ch}
 .gx-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
 .gx-tags span{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.06em; padding:5px 10px; border-radius:3px; border:1px solid rgba(255,190,70,.3); color:#ffd58a}
-@media (max-width:900px){ .gx-loop{grid-template-columns:minmax(0,1fr)} .gx-loop-photo{min-height:380px} }
+@media (max-width:900px){ .gx-loop{grid-template-columns:minmax(0,1fr)} .gx-loop-photo{min-height:540px} }
 @media (max-width:520px){ .gx-benefits{grid-template-columns:minmax(0,1fr)} .gx-warn{grid-template-columns:minmax(0,1fr)} .gx-monitor-vals b{font-size:17px} }
 
 /* 3D-Kammer */

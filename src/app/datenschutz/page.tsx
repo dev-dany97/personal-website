@@ -112,7 +112,7 @@ export default function Datenschutz() {
                     Interesse an einer technisch einwandfreien Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO).
                   </p>
                   <p>
-                    Abgesehen vom Spotify-Player (§ 5c), der erst nach Ihrem Klick geladen wird, setze ich keine
+                    Abgesehen vom YouTube-Player (§ 5c), der erst nach Ihrem Klick geladen wird, setze ich keine
                     Cookies und keine Plug-ins sozialer Netzwerke ein.
                   </p>
 
@@ -145,21 +145,23 @@ export default function Datenschutz() {
                     Website (Art. 6 Abs. 1 lit. f DSGVO).
                   </p>
 
-                  <h3>§ 5c Spotify-Player auf der Finance-Seite</h3>
+                  <h3>§ 5c YouTube-Player auf der Finance-Seite</h3>
                   <p>
-                    Auf der Finance-Seite können Sie einen Song über den Player von Spotify abspielen (Anbieter: Spotify
-                    AB, Regeringsgatan 19, 111 53 Stockholm, Schweden). Der Player wird erst geladen, wenn Sie auf
-                    &bdquo;Song abspielen&ldquo; klicken; vorher werden keine Daten an Spotify übertragen. Nach dem Klick
-                    stellt Ihr Browser eine Verbindung zu Servern von Spotify her. Dabei werden insbesondere Ihre
-                    IP-Adresse, Informationen zu Browser und Gerät sowie die aufgerufene Seite an Spotify übermittelt,
-                    und Spotify kann Cookies oder ähnliche Technologien einsetzen. Sind Sie bei Spotify angemeldet, kann
-                    Spotify die Nutzung Ihrem Konto zuordnen. Eine Übermittlung in Drittländer wie die USA ist dabei
-                    nicht ausgeschlossen. Rechtsgrundlage ist Ihre Einwilligung durch den Klick (Art. 6 Abs. 1 lit. a
+                    Auf der Finance-Seite können Sie einen Song über den eingebetteten Player von YouTube abspielen
+                    (Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Ich nutze dafür
+                    den erweiterten Datenschutzmodus (youtube-nocookie.com). Der Player wird erst geladen, wenn Sie auf
+                    &bdquo;Song abspielen&ldquo; klicken; vorher werden keine Daten an YouTube übertragen. Nach dem Klick
+                    stellt Ihr Browser eine Verbindung zu Servern von YouTube bzw. Google her. Dabei werden insbesondere
+                    Ihre IP-Adresse, Informationen zu Browser und Gerät sowie die aufgerufene Seite an Google
+                    übermittelt, und YouTube kann Cookies oder ähnliche Technologien einsetzen. Sind Sie bei YouTube
+                    oder Google angemeldet, kann Google die Nutzung Ihrem Konto zuordnen. Eine Übermittlung in
+                    Drittländer wie die USA ist dabei nicht ausgeschlossen; Google ist nach dem EU-US Data Privacy
+                    Framework zertifiziert. Rechtsgrundlage ist Ihre Einwilligung durch den Klick (Art. 6 Abs. 1 lit. a
                     DSGVO, § 25 Abs. 1 TDDDG). Sie können den Player jederzeit über das &times; schließen; für künftige
-                    Besuche gilt die Einwilligung nicht fort. Näheres finden Sie in der Datenschutzerklärung von
-                    Spotify unter{' '}
-                    <a href="https://www.spotify.com/de/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">
-                      spotify.com/de/legal/privacy-policy
+                    Besuche gilt die Einwilligung nicht fort. Näheres finden Sie in der Datenschutzerklärung von Google
+                    unter{' '}
+                    <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">
+                      policies.google.com/privacy
                     </a>
                     .
                   </p>
@@ -285,7 +287,7 @@ export default function Datenschutz() {
                     presentation of the website (Art. 6(1)(f) GDPR).
                   </p>
                   <p>
-                    Apart from the Spotify player (§ 5c), which only loads after you click, I do not use any cookies
+                    Apart from the YouTube player (§ 5c), which only loads after you click, I do not use any cookies
                     or social media plug-ins.
                   </p>
 
@@ -315,20 +317,21 @@ export default function Datenschutz() {
                     that is limited to my target audience and low in potential for abuse (Art. 6(1)(f) GDPR).
                   </p>
 
-                  <h3>§ 5c Spotify Player on the Finance Page</h3>
+                  <h3>§ 5c YouTube Player on the Finance Page</h3>
                   <p>
-                    On the finance page you can play a song through Spotify&rsquo;s player (provider: Spotify AB,
-                    Regeringsgatan 19, 111 53 Stockholm, Sweden). The player only loads once you click &ldquo;Play the
-                    song&rdquo;; before that, no data is sent to Spotify. After the click, your browser connects to
-                    Spotify&rsquo;s servers. In particular, your IP address, information about your browser and device
-                    and the page you are visiting are transmitted to Spotify, and Spotify may use cookies or similar
-                    technologies. If you are logged in to Spotify, Spotify can link the use to your account. A transfer
-                    to third countries such as the USA cannot be ruled out. The legal basis is your consent given by
-                    the click (Art. 6(1)(a) GDPR, Section 25(1) TDDDG). You can close the player at any time using the
-                    &times;; the consent does not carry over to future visits. For details, see Spotify&rsquo;s privacy
-                    policy at{' '}
-                    <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">
-                      spotify.com/legal/privacy-policy
+                    On the finance page you can play a song through YouTube&rsquo;s embedded player (provider: Google
+                    Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland). I use YouTube&rsquo;s enhanced
+                    privacy mode (youtube-nocookie.com). The player only loads once you click &ldquo;Play the
+                    song&rdquo;; before that, no data is sent to YouTube. After the click, your browser connects to
+                    servers of YouTube or Google. In particular, your IP address, information about your browser and
+                    device and the page you are visiting are transmitted to Google, and YouTube may use cookies or
+                    similar technologies. If you are logged in to YouTube or Google, Google can link the use to your
+                    account. A transfer to third countries such as the USA cannot be ruled out; Google is certified
+                    under the EU-US Data Privacy Framework. The legal basis is your consent given by the click (Art.
+                    6(1)(a) GDPR, Section 25(1) TDDDG). You can close the player at any time using the &times;; the
+                    consent does not carry over to future visits. For details, see Google&rsquo;s privacy policy at{' '}
+                    <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener noreferrer">
+                      policies.google.com/privacy
                     </a>
                     .
                   </p>

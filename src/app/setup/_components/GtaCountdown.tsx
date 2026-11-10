@@ -12,7 +12,7 @@ const TEXT = {
   de: {
     eyebrow: 'Countdown · Release',
     title: 'Grand Theft Auto VI',
-    lead: 'Das Spiel, auf das ich schon lange warte... Erscheint am 19. November 2026 für PS5 und Xbox Series X|S.',
+    lead: 'Das Spiel, auf das ich schon lange warte...',
     imageAlt: 'Titelbild von Grand Theft Auto VI mit Release-Datum 19. November 2026',
     released: 'Es ist so weit: GTA VI ist erschienen!',
     units: ['Tage', 'Std', 'Min', 'Sek'],
@@ -21,7 +21,7 @@ const TEXT = {
   en: {
     eyebrow: 'Countdown · Release',
     title: 'Grand Theft Auto VI',
-    lead: "The game I've been waiting for for a long time... It comes out on 19 November 2026 for PS5 and Xbox Series X|S.",
+    lead: "The game I've been waiting for for a long time...",
     imageAlt: 'Grand Theft Auto VI cover art with the release date 19 November 2026',
     released: "It's here: GTA VI is out now!",
     units: ['Days', 'Hrs', 'Min', 'Sec'],

@@ -20,7 +20,7 @@ const mediaOrigin = process.env.NEXT_PUBLIC_MEDIA_BASE_URL
 const csp = [
 	"default-src 'self'",
 	// Spotify player on the finance page (only loads after a click).
-	"frame-src 'self' https://open.spotify.com",
+	"frame-src 'self' https://www.youtube-nocookie.com",
 	"img-src 'self' data: https://media.valorant-api.com",
 	// data: is needed by public/pc-modell.html, which carries the clip for the
 	// model's 7-inch display inline as a data URI.
