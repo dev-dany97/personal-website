@@ -6,6 +6,7 @@ import { Award, ExternalLink, Headphones } from 'lucide-react';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { SiteImage } from '@/app/components/SiteImage';
+import { SongPlayer } from '@/app/components/SongPlayer';
 import { ChartBackground } from '@/app/components/backgrounds/ChartBackground';
 import {
   LessonsLearned,
@@ -108,7 +109,7 @@ export default function Finance() {
               <h1 className="display-4 fw-bold mb-4">{c.title}</h1>
               <p className="lead theme-text-soft mb-4">{c.lead}</p>
 
-              <div className="d-flex flex-wrap gap-2 mb-5">
+              <div className="d-flex flex-wrap gap-2 mb-4">
                 {c.tags.map((tag) => (
                   <span
                     key={tag}
@@ -125,6 +126,8 @@ export default function Finance() {
                   </span>
                 ))}
               </div>
+
+              <SongPlayer lang={lang} />
             </div>
 
             <div className="col-lg-5">

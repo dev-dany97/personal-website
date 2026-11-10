@@ -111,7 +111,10 @@ export default function Datenschutz() {
                     Anbieter übermittelt, damit die Dateien ausgeliefert werden können. Rechtsgrundlage ist mein berechtigtes
                     Interesse an einer technisch einwandfreien Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO).
                   </p>
-                  <p>Darüber hinaus setze ich keine Cookies und keine Plug-ins sozialer Netzwerke ein.</p>
+                  <p>
+                    Abgesehen vom Spotify-Player (§ 5c), der erst nach Ihrem Klick geladen wird, setze ich keine
+                    Cookies und keine Plug-ins sozialer Netzwerke ein.
+                  </p>
 
                   <h3>§ 5a Reichweitenmessung mit Umami</h3>
                   <p>
@@ -140,6 +143,25 @@ export default function Datenschutz() {
                     keine Speicherung der IP-Adresse über die Dauer der Anfrage hinaus statt. Rechtsgrundlage ist mein
                     berechtigtes Interesse an einem auf mein Zielpublikum begrenzten und missbrauchsarmen Betrieb der
                     Website (Art. 6 Abs. 1 lit. f DSGVO).
+                  </p>
+
+                  <h3>§ 5c Spotify-Player auf der Finance-Seite</h3>
+                  <p>
+                    Auf der Finance-Seite können Sie einen Song über den Player von Spotify abspielen (Anbieter: Spotify
+                    AB, Regeringsgatan 19, 111 53 Stockholm, Schweden). Der Player wird erst geladen, wenn Sie auf
+                    &bdquo;Song abspielen&ldquo; klicken; vorher werden keine Daten an Spotify übertragen. Nach dem Klick
+                    stellt Ihr Browser eine Verbindung zu Servern von Spotify her. Dabei werden insbesondere Ihre
+                    IP-Adresse, Informationen zu Browser und Gerät sowie die aufgerufene Seite an Spotify übermittelt,
+                    und Spotify kann Cookies oder ähnliche Technologien einsetzen. Sind Sie bei Spotify angemeldet, kann
+                    Spotify die Nutzung Ihrem Konto zuordnen. Eine Übermittlung in Drittländer wie die USA ist dabei
+                    nicht ausgeschlossen. Rechtsgrundlage ist Ihre Einwilligung durch den Klick (Art. 6 Abs. 1 lit. a
+                    DSGVO, § 25 Abs. 1 TDDDG). Sie können den Player jederzeit über das &times; schließen; für künftige
+                    Besuche gilt die Einwilligung nicht fort. Näheres finden Sie in der Datenschutzerklärung von
+                    Spotify unter{' '}
+                    <a href="https://www.spotify.com/de/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                      spotify.com/de/legal/privacy-policy
+                    </a>
+                    .
                   </p>
 
                   <h3>§ 6 Lokale Speicherung im Browser</h3>
@@ -262,7 +284,10 @@ export default function Datenschutz() {
                     the files can be delivered. The legal basis is my legitimate interest in the technically flawless
                     presentation of the website (Art. 6(1)(f) GDPR).
                   </p>
-                  <p>Beyond this, I do not use any cookies or social media plug-ins.</p>
+                  <p>
+                    Apart from the Spotify player (§ 5c), which only loads after you click, I do not use any cookies
+                    or social media plug-ins.
+                  </p>
 
                   <h3>§ 5a Traffic Analysis with Umami</h3>
                   <p>
@@ -288,6 +313,24 @@ export default function Datenschutz() {
                     before a connection to my server is established. No storage of the IP address beyond the duration of the
                     request takes place. The legal basis is my legitimate interest in operating the website in a way
                     that is limited to my target audience and low in potential for abuse (Art. 6(1)(f) GDPR).
+                  </p>
+
+                  <h3>§ 5c Spotify Player on the Finance Page</h3>
+                  <p>
+                    On the finance page you can play a song through Spotify&rsquo;s player (provider: Spotify AB,
+                    Regeringsgatan 19, 111 53 Stockholm, Sweden). The player only loads once you click &ldquo;Play the
+                    song&rdquo;; before that, no data is sent to Spotify. After the click, your browser connects to
+                    Spotify&rsquo;s servers. In particular, your IP address, information about your browser and device
+                    and the page you are visiting are transmitted to Spotify, and Spotify may use cookies or similar
+                    technologies. If you are logged in to Spotify, Spotify can link the use to your account. A transfer
+                    to third countries such as the USA cannot be ruled out. The legal basis is your consent given by
+                    the click (Art. 6(1)(a) GDPR, Section 25(1) TDDDG). You can close the player at any time using the
+                    &times;; the consent does not carry over to future visits. For details, see Spotify&rsquo;s privacy
+                    policy at{' '}
+                    <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                      spotify.com/legal/privacy-policy
+                    </a>
+                    .
                   </p>
 
                   <h3>§ 6 Local Storage in Your Browser</h3>
