@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/app/components/Navbar';
@@ -41,6 +41,10 @@ interface AboutSection {
   image: string;
   // Further pictures stacked below the main one, each with a short caption.
   extraImages?: AboutSectionImage[];
+  // Phones only: index of the paragraph after which the extra images are shown
+  // side by side (defaults to the end of the text). Desktop keeps them in the
+  // image column.
+  extraImagesAfterParagraph?: number;
   // A paragraph starting with "> " is shown as a highlighted quote (e.g. my motto).
   paragraphs: string[];
 }
@@ -256,24 +260,43 @@ export default function Home() {
                     <div className={`legacy-about-more-image-wrap ${sIdx % 2 === 1 ? 'legacy-about-more-image-wrap--reverse' : ''}`}>
                       <SiteImage src={section.image} alt={section.heading} className="legacy-about-more-image" width={900} height={1200} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} />
                     </div>
-                    {section.extraImages?.map((img) => (
-                      <figure key={img.src} className="legacy-about-extra">
-                        <SiteImage src={img.src} alt={img.alt} className="legacy-about-extra-image" width={img.width} height={img.height} sizes="(max-width: 992px) 100vw, 33vw" style={{ height: 'auto' }} />
-                        <figcaption>{img.caption}</figcaption>
-                      </figure>
-                    ))}
+                    {section.extraImages && (
+                      <div className="d-none d-lg-block">
+                        {section.extraImages.map((img) => (
+                          <figure key={img.src} className="legacy-about-extra">
+                            <SiteImage src={img.src} alt={img.alt} className="legacy-about-extra-image" width={img.width} height={img.height} sizes="33vw" style={{ height: 'auto' }} />
+                            <figcaption>{img.caption}</figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="col-lg-8">
                     <h3>{section.heading}</h3>
-                    {section.paragraphs.map((p, pIdx) =>
-                      p.startsWith('> ') ? (
-                        <blockquote key={`section-${sIdx}-${pIdx}`} className="legacy-about-motto">
-                          <p>{renderWithLinks(p.slice(2), `section-${sIdx}-${pIdx}`)}</p>
-                        </blockquote>
-                      ) : (
-                        <p key={`section-${sIdx}-${pIdx}`}>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
-                      )
-                    )}
+                    {section.paragraphs.map((p, pIdx) => {
+                      const extrasAfter = section.extraImagesAfterParagraph ?? section.paragraphs.length - 1;
+                      return (
+                        <Fragment key={`section-${sIdx}-${pIdx}`}>
+                          {p.startsWith('> ') ? (
+                            <blockquote className="legacy-about-motto">
+                              <p>{renderWithLinks(p.slice(2), `section-${sIdx}-${pIdx}`)}</p>
+                            </blockquote>
+                          ) : (
+                            <p>{renderWithLinks(p, `section-${sIdx}-${pIdx}`)}</p>
+                          )}
+                          {section.extraImages && pIdx === extrasAfter && (
+                            <div className="legacy-about-extras-inline d-lg-none">
+                              {section.extraImages.map((img) => (
+                                <figure key={img.src}>
+                                  <SiteImage src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 576px) 50vw, 340px" />
+                                  <figcaption>{img.caption}</figcaption>
+                                </figure>
+                              ))}
+                            </div>
+                          )}
+                        </Fragment>
+                      );
+                    })}
                   </div>
                 </Reveal>
               ))}

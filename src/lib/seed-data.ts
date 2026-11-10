@@ -72,6 +72,9 @@ function seedPageContent(db: DatabaseSync) {
             { src: '/images/about/jessica-watson.jpg', width: 1200, height: 969, alt: 'Jessica Watson', caption: 'Jessica Watson, my biggest sailing role model' },
             { src: '/images/about/ellas-pink-lady.jpg', width: 900, height: 1200, alt: 'The yacht “Ella’s Pink Lady”', caption: 'Her yacht “Ella’s Pink Lady”' }
           ],
+          // On phones the extra images sit side by side right after this paragraph
+          // (0-based), where the text talks about them.
+          extraImagesAfterParagraph: 11,
           paragraphs: [
             'As you can probably tell from my profile picture, sailing has become one of my biggest passions next to coding.',
             'It started a bit differently about {sailingYears} years ago. Back then, I started small with a motorboat license (in Germany called SBF Binnen/See).',
@@ -180,6 +183,7 @@ function seedPageContent(db: DatabaseSync) {
             { src: '/images/about/jessica-watson.jpg', width: 1200, height: 969, alt: 'Jessica Watson', caption: 'Jessica Watson, mein größtes Vorbild beim Segeln' },
             { src: '/images/about/ellas-pink-lady.jpg', width: 900, height: 1200, alt: 'Die Yacht „Ella’s Pink Lady“', caption: 'Ihre Yacht „Ella’s Pink Lady“' }
           ],
+          extraImagesAfterParagraph: 11,
           paragraphs: [
             'Wie du wahrscheinlich schon an meinem Profilbild erkennen kannst, gehört neben dem Coden inzwischen auch das Segeln zu meinen größten Leidenschaften.',
             'Angefangen hat das Ganze vor ungefähr {sailingYears} Jahren allerdings etwas anders – damals noch ganz klein mit einem Motorbootführerschein (auch SBF Binnen/See genannt).',

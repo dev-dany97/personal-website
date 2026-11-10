@@ -599,6 +599,39 @@ html[data-theme='light'] .legacy-hero {
   opacity: 0.85;
 }
 
+/* Phones/tablets: the extra pictures sit side by side inside the text, right
+   where it talks about them, instead of stacking above the section. */
+.legacy-about-extras-inline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  max-width: 520px;
+  margin: 1.5rem auto;
+}
+
+.legacy-about-extras-inline figure {
+  margin: 0;
+}
+
+.legacy-about-extras-inline img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: 2px solid var(--bg-soft);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.legacy-about-extras-inline figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-soft);
+  opacity: 0.85;
+}
+
 /* My motto: a highlighted quote inside the about text. */
 .legacy-about-motto {
   position: relative;
@@ -1398,8 +1431,7 @@ footer {
     --bs-gutter-y: 2rem;
   }
 
-  .legacy-about-more-image-wrap,
-  .legacy-about-extra {
+  .legacy-about-more-image-wrap {
     max-width: 340px;
     margin-left: auto;
     margin-right: auto;
@@ -1464,8 +1496,7 @@ footer {
 
   /* Portrait 3:4 photos filled the whole screen; a calmer 4:5 crop at a
      smaller width keeps the text in view. */
-  .legacy-about-more-image-wrap,
-  .legacy-about-extra {
+  .legacy-about-more-image-wrap {
     max-width: 260px;
   }
 
@@ -1479,14 +1510,6 @@ footer {
 
   .legacy-about-more-image-wrap--reverse::before {
     transform: rotate(3deg) translate(-6px, 8px);
-  }
-
-  .legacy-about-extra {
-    margin-top: 1.5rem;
-  }
-
-  .legacy-about-extra figcaption {
-    font-size: 0.82rem;
   }
 
   .legacy-about-motto {
